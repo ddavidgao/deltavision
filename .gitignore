@@ -1,0 +1,29 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Environment
+.env
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Run outputs
+run_*.json
+
+# Claude memory (private)
+.claude/
+
+# Credentials / cookies
+*.credential*
+benchmarks/mcgrawhill/cookies/

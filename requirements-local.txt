@@ -1,0 +1,9 @@
+# Additional deps for local VLM backend (RTX 5080 / CUDA)
+# Install: pip install -r requirements.txt -r requirements-local.txt
+
+torch>=2.2.0
+torchvision>=0.17.0
+transformers>=4.45.0
+accelerate>=0.30.0
+qwen-vl-utils>=0.0.8
+bitsandbytes>=0.43.0    # for 4-bit / 8-bit quantization

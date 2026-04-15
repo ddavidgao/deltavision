@@ -1,0 +1,177 @@
+"""
+Core agent loop. Orchestrates the full DeltaVision pipeline.
+
+Loop invariants:
+- t0 always holds the last anchor frame (full frame at last NEW_PAGE)
+- t1 is always the current observation
+- The model NEVER makes transition type decisions
+- Retry logic is purely threshold-based, not model-driven
+"""
+
+import asyncio
+import logging
+from PIL import Image
+
+from vision.capture import capture_screenshot, get_current_url
+from vision.diff import compute_diff, extract_crops
+from vision.classifier import (
+    classify_transition,
+    extract_anchor,
+    TransitionType,
+)
+from observation.builder import build_observation
+from agent.state import AgentState
+from agent.actions import execute_action
+
+logger = logging.getLogger(__name__)
+
+
+async def run_agent(task: str, start_url: str, model, browser_page, config) -> AgentState:
+    """
+    Main DeltaVision agent loop.
+
+    Terminates when:
+    - model returns done=True
+    - max_steps exceeded
+    - max_consecutive_failures exceeded
+    """
+    state = AgentState(task=task)
+
+    # Bootstrap: navigate, capture initial full frame, establish anchor
+    await browser_page.goto(start_url)
+    await browser_page.wait_for_load_state("networkidle")
+
+    t0 = await capture_screenshot(browser_page)
+    url_t0 = get_current_url(browser_page)
+    anchor_template = extract_anchor(t0, config)
+
+    obs = build_observation(
+        obs_type="full_frame",
+        task=task,
+        step=0,
+        last_action=None,
+        frame=t0,
+        url=url_t0,
+        trigger_reason="initial",
+    )
+    state.add_observation(obs)
+
+    while not state.done and state.step < config.MAX_STEPS:
+        # Get next action from model
+        response = await model.predict(obs, state)
+        state.add_response(response)
+
+        if response.action is None or response.done:
+            state.done = True
+            logger.info(
+                "Agent finished at step %d. Reason: %s",
+                state.step,
+                response.reasoning,
+            )
+            break
+
+        action = response.action
+        logger.info("Step %d: %s (confidence=%.2f)", state.step, action, response.confidence)
+
+        # Execute in browser
+        url_before = get_current_url(browser_page)
+        await execute_action(action, browser_page, config)
+
+        # Wait for page to react
+        await asyncio.sleep(config.POST_ACTION_WAIT_MS / 1000)
+
+        # Capture post-action frame
+        t1 = await capture_screenshot(browser_page)
+        url_after = get_current_url(browser_page)
+
+        # Compute diff (always — needed for classification and observation)
+        diff_result = compute_diff(t0, t1, config)
+
+        # Classify transition — pure CV, no model
+        classification = classify_transition(
+            t0=t0,
+            t1=t1,
+            url_before=url_before,
+            url_after=url_after,
+            anchor_template=anchor_template,
+            config=config,
+            diff_result=diff_result,
+        )
+        state.log_transition(classification, action, state.step)
+
+        logger.debug(
+            "Transition: %s (trigger=%s, diff=%.3f, phash=%d, anchor=%.2f)",
+            classification.transition.value,
+            classification.trigger,
+            classification.diff_ratio,
+            classification.phash_distance,
+            classification.anchor_score,
+        )
+
+        if classification.transition == TransitionType.NEW_PAGE:
+            # Re-anchor on new context
+            t0 = t1
+            url_t0 = url_after
+            anchor_template = extract_anchor(t0, config)
+            state.reset_no_change_streak()
+            state.increment_new_page_count()
+
+            obs = build_observation(
+                obs_type="full_frame",
+                task=task,
+                step=state.step,
+                last_action=action,
+                frame=t1,
+                url=url_after,
+                trigger_reason=classification.trigger,
+            )
+
+        else:  # DELTA
+            crops = extract_crops(t0, t1, diff_result.changed_bboxes, config.CROP_PADDING)
+
+            if not diff_result.action_had_effect:
+                state.increment_no_change_streak()
+            else:
+                state.reset_no_change_streak()
+
+            # Force full frame refresh if stuck
+            if state.no_change_streak >= config.MAX_NO_EFFECT_RETRIES:
+                logger.warning(
+                    "No-effect streak hit %d — forcing full frame refresh",
+                    state.no_change_streak,
+                )
+                t0_refresh = await capture_screenshot(browser_page)
+                obs = build_observation(
+                    obs_type="full_frame",
+                    task=task,
+                    step=state.step,
+                    last_action=action,
+                    frame=t0_refresh,
+                    url=url_after,
+                    trigger_reason="force_refresh_no_effect",
+                )
+                state.reset_no_change_streak()
+                t0 = t0_refresh
+                anchor_template = extract_anchor(t0, config)
+            else:
+                obs = build_observation(
+                    obs_type="delta",
+                    task=task,
+                    step=state.step,
+                    last_action=action,
+                    diff_result=diff_result,
+                    crops=crops,
+                    action_had_effect=diff_result.action_had_effect,
+                    no_change_count=state.no_change_streak,
+                )
+
+        state.add_observation(obs)
+        state.step += 1
+
+    logger.info(
+        "Run complete. Steps: %d, Delta ratio: %.1f%%, New pages: %d",
+        state.step,
+        state.delta_ratio * 100,
+        state.new_page_count,
+    )
+    return state
