@@ -1,0 +1,22 @@
+{
+  "site": "dynamic_spa",
+  "scenario": "full_content_replacement",
+  "action": "js",
+  "url_before": "https://example.com/",
+  "url_after": "https://example.com/",
+  "classification": "new_page",
+  "trigger": "phash",
+  "diff_ratio": 0.5107,
+  "phash_distance": 28,
+  "anchor_score": 1.0,
+  "num_changed_regions": 1,
+  "num_crops": 1,
+  "bboxes": [
+    [
+      237,
+      116,
+      808,
+      784
+    ]
+  ]
+}

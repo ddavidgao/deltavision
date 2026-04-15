@@ -1,0 +1,40 @@
+{
+  "site": "humanbenchmark",
+  "scenario": "nav_tests",
+  "action": "navigate",
+  "url_before": "https://humanbenchmark.com/",
+  "url_after": "https://humanbenchmark.com/tests/reactiontime",
+  "classification": "new_page",
+  "trigger": "url_change",
+  "diff_ratio": 0.1183,
+  "phash_distance": 14,
+  "anchor_score": 1.0,
+  "num_changed_regions": 4,
+  "num_crops": 4,
+  "bboxes": [
+    [
+      137,
+      604,
+      1008,
+      296
+    ],
+    [
+      284,
+      296,
+      719,
+      231
+    ],
+    [
+      571,
+      111,
+      140,
+      177
+    ],
+    [
+      1055,
+      604,
+      96,
+      78
+    ]
+  ]
+}

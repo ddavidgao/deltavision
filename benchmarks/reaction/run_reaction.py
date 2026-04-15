@@ -38,11 +38,11 @@ async def capture(page) -> Image.Image:
     return Image.open(BytesIO(png))
 
 
-async def run_reaction_test(rounds: int = 5):
+async def run_reaction_test(rounds: int = 5, headless: bool = False):
     results = []
 
     async with async_playwright() as pw:
-        browser = await pw.chromium.launch(headless=False)
+        browser = await pw.chromium.launch(headless=headless)
         page = await browser.new_page(viewport={"width": 1280, "height": 900})
         await page.goto("https://humanbenchmark.com/tests/reactiontime")
         await asyncio.sleep(2)
@@ -50,23 +50,25 @@ async def run_reaction_test(rounds: int = 5):
         for round_num in range(rounds):
             print(f"\n--- Round {round_num + 1}/{rounds} ---")
 
-            # Click to enter red (wait) state
-            await page.mouse.click(640, 300)
-            await asyncio.sleep(0.2)
-
-            # Confirm we're in red/waiting state
-            frame = await capture(page)
-            state = get_dominant_color(frame)
-            print(f"  State after click: {state}")
-
-            if state == "blue":
-                # Still on result/start screen, click again
+            # State machine: click through blue/result screens until we reach red
+            for attempt in range(10):
                 await page.mouse.click(640, 300)
                 await asyncio.sleep(0.3)
+                frame = await capture(page)
+                state = get_dominant_color(frame)
+                if state == "red":
+                    break
+                print(f"  Setup: got {state}, clicking again... (attempt {attempt+1})")
+            else:
+                print(f"  Could not reach red state after 10 attempts, skipping round")
+                continue
+
+            print(f"  In red/waiting state")
 
             # TIGHT POLLING LOOP — the DeltaVision core
             poll_count = 0
             detection_to_click_ms = 0
+            timed_out = False
 
             while True:
                 t0 = time.perf_counter()
@@ -87,16 +89,20 @@ async def run_reaction_test(rounds: int = 5):
                     click_at = time.perf_counter()
                     detection_to_click_ms = (click_at - green_at) * 1000
 
-                    print(f"  GREEN! Detection→click: {detection_to_click_ms:.1f}ms")
+                    print(f"  GREEN! Detection->click: {detection_to_click_ms:.1f}ms")
                     print(f"  Capture latency: {capture_ms:.0f}ms, polls: {poll_count}")
                     break
 
-                if state == "blue" and poll_count > 5:
-                    # We somehow ended up on a result screen (false start?)
-                    print(f"  Got blue after {poll_count} polls — false start or stale state")
+                # Safety: if we've been polling for 15s, something is wrong
+                if poll_count > 500:
+                    print(f"  Timed out after {poll_count} polls")
+                    timed_out = True
                     break
 
                 await asyncio.sleep(0.01)  # ~100fps target
+
+            if timed_out:
+                continue
 
             # Wait for result to render
             await asyncio.sleep(1.5)
@@ -174,5 +180,6 @@ if __name__ == "__main__":
     import argparse
     p = argparse.ArgumentParser()
     p.add_argument("--rounds", type=int, default=5)
+    p.add_argument("--headless", action="store_true", help="Run headless")
     args = p.parse_args()
-    asyncio.run(run_reaction_test(args.rounds))
+    asyncio.run(run_reaction_test(args.rounds, headless=args.headless))

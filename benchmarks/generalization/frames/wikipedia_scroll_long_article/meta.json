@@ -1,0 +1,22 @@
+{
+  "site": "wikipedia",
+  "scenario": "scroll_long_article",
+  "action": "scroll",
+  "url_before": "https://en.wikipedia.org/wiki/Machine_learning",
+  "url_after": "https://en.wikipedia.org/wiki/Machine_learning",
+  "classification": "delta",
+  "trigger": "scroll_bypass",
+  "diff_ratio": 0.3452,
+  "phash_distance": 28,
+  "anchor_score": 1.0,
+  "num_changed_regions": 1,
+  "num_crops": 1,
+  "bboxes": [
+    [
+      26,
+      0,
+      1227,
+      900
+    ]
+  ]
+}

@@ -1,0 +1,28 @@
+[
+  {
+    "mode": "deltavision",
+    "model": "qwen2.5vl:7b",
+    "task": "wikipedia_multistep",
+    "steps": 5,
+    "done": true,
+    "delta_ratio": 0.8,
+    "full_frames_sent": 2,
+    "deltas_sent": 4,
+    "new_page_count": 1,
+    "estimated_image_tokens": 4800,
+    "wall_time_s": 49.6
+  },
+  {
+    "mode": "full_frame_only",
+    "model": "qwen2.5vl:7b",
+    "task": "wikipedia_multistep",
+    "steps": 12,
+    "done": true,
+    "delta_ratio": 0.75,
+    "full_frames_sent": 13,
+    "deltas_sent": 0,
+    "new_page_count": 3,
+    "estimated_image_tokens": 20800,
+    "wall_time_s": 75.0
+  }
+]

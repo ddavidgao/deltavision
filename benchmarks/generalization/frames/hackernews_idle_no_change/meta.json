@@ -1,0 +1,15 @@
+{
+  "site": "hackernews",
+  "scenario": "idle_no_change",
+  "action": "idle",
+  "url_before": "https://news.ycombinator.com/",
+  "url_after": "https://news.ycombinator.com/",
+  "classification": "delta",
+  "trigger": "none",
+  "diff_ratio": 0.0,
+  "phash_distance": 0,
+  "anchor_score": 1.0,
+  "num_changed_regions": 0,
+  "num_crops": 0,
+  "bboxes": []
+}

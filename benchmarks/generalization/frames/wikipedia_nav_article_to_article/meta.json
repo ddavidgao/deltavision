@@ -1,0 +1,40 @@
+{
+  "site": "wikipedia",
+  "scenario": "nav_article_to_article",
+  "action": "navigate",
+  "url_before": "https://en.wikipedia.org/wiki/Computer_vision",
+  "url_after": "https://en.wikipedia.org/wiki/Neural_network_(machine_learning)",
+  "classification": "new_page",
+  "trigger": "url_change",
+  "diff_ratio": 0.2586,
+  "phash_distance": 24,
+  "anchor_score": 1.0,
+  "num_changed_regions": 4,
+  "num_crops": 4,
+  "bboxes": [
+    [
+      245,
+      161,
+      792,
+      739
+    ],
+    [
+      26,
+      189,
+      190,
+      416
+    ],
+    [
+      245,
+      78,
+      488,
+      68
+    ],
+    [
+      891,
+      86,
+      55,
+      50
+    ]
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "site": "todomvc",
+  "scenario": "spa_add_items",
+  "action": "js",
+  "url_before": "https://todomvc.com/examples/react/dist/",
+  "url_after": "https://todomvc.com/examples/react/dist/",
+  "classification": "delta",
+  "trigger": "none",
+  "diff_ratio": 0.0393,
+  "phash_distance": 10,
+  "anchor_score": 1.0,
+  "num_changed_regions": 2,
+  "num_crops": 2,
+  "bboxes": [
+    [
+      494,
+      141,
+      594,
+      311
+    ],
+    [
+      695,
+      462,
+      192,
+      92
+    ]
+  ]
+}
