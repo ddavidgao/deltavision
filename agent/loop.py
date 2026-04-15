@@ -22,11 +22,12 @@ from vision.classifier import (
 from observation.builder import build_observation
 from agent.state import AgentState
 from agent.actions import execute_action
+from safety import SafetyLayer
 
 logger = logging.getLogger(__name__)
 
 
-async def run_agent(task: str, start_url: str, model, browser_page, config) -> AgentState:
+async def run_agent(task: str, start_url: str, model, browser_page, config, safety: SafetyLayer | None = None) -> AgentState:
     """
     Main DeltaVision agent loop.
 
@@ -72,6 +73,26 @@ async def run_agent(task: str, start_url: str, model, browser_page, config) -> A
 
         action = response.action
         logger.info("Step %d: %s (confidence=%.2f)", state.step, action, response.confidence)
+
+        # Safety check — runs regardless of which model backend generated the action
+        if safety is not None:
+            url_now = get_current_url(browser_page)
+            check = safety.check_action(action, url_now)
+            if not check.allowed:
+                logger.warning("SAFETY BLOCK: %s", check.reason)
+                state.step += 1
+                # Tell model its action was blocked
+                obs = build_observation(
+                    obs_type="full_frame",
+                    task=task,
+                    step=state.step,
+                    last_action=action,
+                    frame=await capture_screenshot(browser_page),
+                    url=url_now,
+                    trigger_reason=f"safety_block:{check.reason}",
+                )
+                state.add_observation(obs)
+                continue
 
         # Execute in browser
         url_before = get_current_url(browser_page)

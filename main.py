@@ -2,9 +2,20 @@
 DeltaVision CLI — Delta-first computer use agent.
 
 Usage:
+  # Claude API
   python main.py --task "Complete the quiz" --url https://example.com
-  python main.py --task "Fill out the form" --url https://example.com --backend local
-  python main.py --task "..." --url ... --backend local --model Qwen/Qwen2.5-VL-3B-Instruct --quantization 4bit
+
+  # OpenAI
+  python main.py --task "..." --url ... --backend openai
+
+  # Local VLM via transformers (Qwen2.5-VL)
+  python main.py --task "..." --url ... --backend local
+
+  # Any model via Ollama (Hermes, Qwen, LLaVA, etc.)
+  python main.py --task "..." --url ... --backend ollama --model hermes3:8b
+
+  # With safety layer
+  python main.py --task "..." --url ... --safety strict
 """
 
 import argparse
@@ -21,7 +32,7 @@ from config import DeltaVisionConfig, MCGRAWHILL_CONFIG
 from agent.loop import run_agent
 
 
-def get_model(backend: str, config: DeltaVisionConfig):
+def get_model(backend: str, config: DeltaVisionConfig, model_override: str = None):
     if backend == "claude":
         from model.claude import ClaudeModel
 
@@ -29,18 +40,51 @@ def get_model(backend: str, config: DeltaVisionConfig):
         if not api_key:
             print("Error: ANTHROPIC_API_KEY not set", file=sys.stderr)
             sys.exit(1)
-        return ClaudeModel(api_key=api_key, model=config.CLAUDE_MODEL)
+        return ClaudeModel(api_key=api_key, model=model_override or config.CLAUDE_MODEL)
+
+    elif backend == "openai":
+        from model.openai import OpenAIModel
+
+        api_key = os.environ.get("OPENAI_API_KEY")
+        if not api_key:
+            print("Error: OPENAI_API_KEY not set", file=sys.stderr)
+            sys.exit(1)
+        return OpenAIModel(api_key=api_key, model=model_override or "gpt-4o")
+
+    elif backend == "ollama":
+        from model.ollama import OllamaModel
+
+        model_name = model_override or "qwen2.5-vl:7b"
+        # Auto-detect vision capability from model name
+        vision = any(v in model_name.lower() for v in ["vl", "llava", "vision", "cogagent", "molmo"])
+        if not vision:
+            print(f"Note: {model_name} detected as text-only (no vision). "
+                  "DeltaVision will send structured text descriptions instead of images.",
+                  file=sys.stderr)
+        return OllamaModel(model=model_name, vision=vision)
 
     elif backend == "local":
         from model.local import LocalModel
 
         return LocalModel(
-            model_name=config.LOCAL_MODEL,
+            model_name=model_override or config.LOCAL_MODEL,
             quantization=config.LOCAL_QUANTIZATION,
         )
     else:
-        print(f"Unknown backend: {backend}", file=sys.stderr)
+        print(f"Unknown backend: {backend}. Options: claude, openai, ollama, local", file=sys.stderr)
         sys.exit(1)
+
+
+def get_safety(safety_mode: str):
+    if safety_mode == "none":
+        return None
+    from safety import PERMISSIVE, STRICT, EDUCATIONAL
+    modes = {"permissive": PERMISSIVE, "strict": STRICT, "educational": EDUCATIONAL}
+    if safety_mode in modes:
+        return modes[safety_mode]
+    print(f"Unknown safety mode: {safety_mode}. Options: none, permissive, strict, educational",
+          file=sys.stderr)
+    sys.exit(1)
 
 
 async def main(args):
@@ -63,7 +107,8 @@ async def main(args):
     if args.headless:
         config.HEADLESS = True
 
-    model = get_model(args.backend, config)
+    model = get_model(args.backend, config, args.model)
+    safety = get_safety(args.safety)
 
     logging.basicConfig(
         level=logging.DEBUG if args.verbose else logging.INFO,
@@ -86,6 +131,7 @@ async def main(args):
             model=model,
             browser_page=page,
             config=config,
+            safety=safety,
         )
 
         # Dump results
@@ -112,13 +158,14 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="DeltaVision — delta-first computer use agent")
     parser.add_argument("--task", required=True, help="Task description for the agent")
     parser.add_argument("--url", required=True, help="Starting URL")
-    parser.add_argument("--backend", choices=["claude", "local"], default="claude", help="Model backend")
+    parser.add_argument("--backend", choices=["claude", "openai", "ollama", "local"], default="claude", help="Model backend")
     parser.add_argument("--model", help="Override model name/ID")
     parser.add_argument("--quantization", choices=["4bit", "8bit"], help="Quantization for local models")
     parser.add_argument("--preset", choices=["default", "mcgrawhill"], default="default", help="Config preset")
     parser.add_argument("--max-steps", type=int, help="Override max steps")
     parser.add_argument("--headless", action="store_true", help="Run browser headless")
     parser.add_argument("--output", help="Output JSON path")
+    parser.add_argument("--safety", choices=["none", "permissive", "strict", "educational"], default="permissive", help="Safety mode")
     parser.add_argument("-v", "--verbose", action="store_true", help="Debug logging")
     args = parser.parse_args()
 
