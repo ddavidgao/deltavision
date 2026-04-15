@@ -1,0 +1,17 @@
+{
+  "benchmark": "mcgrawhill_classifier",
+  "timestamp": "2026-04-14T22:01:41.054611",
+  "backend": "cv_pipeline_only",
+  "metrics": {
+    "anchor_match_feedback_to_q3": 1.0,
+    "anchor_match_q3_to_reading": 1.0,
+    "diff_ratio_feedback_to_q3": 0.107,
+    "diff_ratio_q3_to_reading": 0.022,
+    "phash_feedback_to_q3": 26,
+    "phash_q3_to_reading": 16,
+    "primary_trigger": "phash (not diff_ratio)",
+    "nav_bar_height_fraction": 0.037
+  },
+  "config": {},
+  "notes": "Real EAPS 111 Lecture 13 (ch7) screenshots. Anchor matching perfect across all states. White-dominated pages keep diff_ratio low."
+}

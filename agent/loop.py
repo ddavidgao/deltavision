@@ -40,7 +40,11 @@ async def run_agent(task: str, start_url: str, model, browser_page, config, safe
 
     # Bootstrap: navigate, capture initial full frame, establish anchor
     await browser_page.goto(start_url)
-    await browser_page.wait_for_load_state("networkidle")
+    try:
+        await browser_page.wait_for_load_state("networkidle", timeout=10000)
+    except Exception:
+        # Some sites (HumanBenchmark, SPAs) never reach networkidle
+        await browser_page.wait_for_load_state("domcontentloaded")
 
     t0 = await capture_screenshot(browser_page)
     url_t0 = get_current_url(browser_page)

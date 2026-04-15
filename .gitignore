@@ -27,3 +27,4 @@ run_*.json
 # Credentials / cookies
 *.credential*
 benchmarks/mcgrawhill/cookies/
+results/deltavision.db

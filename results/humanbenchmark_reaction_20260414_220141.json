@@ -1,0 +1,16 @@
+{
+  "benchmark": "humanbenchmark_reaction",
+  "timestamp": "2026-04-14T22:01:41.054734",
+  "backend": "claude_standard_cu",
+  "metrics": {
+    "rounds": 1,
+    "site_reported_ms": [
+      13491
+    ],
+    "best_reaction_ms": 13491,
+    "avg_reaction_ms": 13491,
+    "notes": "Standard Claude computer use: screenshot\u2192model\u2192click loop"
+  },
+  "config": {},
+  "notes": "Baseline measurement. 49x slower than human median (273ms)."
+}
