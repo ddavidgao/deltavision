@@ -1,129 +1,188 @@
 # DeltaVision
 
-**Delta-first observation middleware for GUI agents.** Sends models only what changed on screen — not a full screenshot every step.
+**Observation middleware for GUI agents.** A CV pipeline sits between the browser and the model, sending only what changed on screen instead of a full screenshot every step.
 
-Standard computer use agents re-process the entire screen from scratch on every action. DeltaVision puts a CV pipeline in front of the model that classifies transitions and routes observations through a tiered system: skip the model entirely for no-ops, send text-only for tiny changes, send cropped regions for moderate changes, and only send full frames on navigation. The model still reasons — it just reasons about less.
+The model still reasons — it just reasons about less.
 
-## Results
+## Why This Matters
 
-| Benchmark | DeltaVision | Standard Claude CU | Human | Speedup |
-|-----------|-------------|---------------------|-------|---------|
-| Reaction time (best) | **412ms** | 13,491ms | 273ms | **30x** |
-| Detection→click | **6ms** | ~5,000ms | ~50ms | **800x** |
-| CV pipeline overhead | **42ms** | — | — | — |
+Standard computer use agents send a full 1280x900 screenshot (~1600 tokens) on every step, whether 1 pixel changed or the entire page swapped. DeltaVision puts a 4-layer CV classifier in front of the model that decides: did the page change, or just a region? Send accordingly.
+
+**Ablation on the same task, same 7B model (Qwen2.5-VL):**
+
+| | DeltaVision | Full-Frame Baseline |
+|---|---|---|
+| Wikipedia search | **3 steps, 4k tokens, completed** | 50 steps, 82k tokens, **failed** |
+| Multi-step navigation | **5 steps, 4.8k tokens** | 12 steps, 20.8k tokens |
+| Token reduction | | **77-95%** |
+
+The 7B model cannot complete the task with full screenshots. With delta gating, it can. This isn't just an optimization — it enables smaller models to do things they otherwise can't.
 
 ## How It Works
 
 ```
 Browser Action
-    │
-    ▼
-┌──────────────────────────────────────┐
-│  DeltaVision CV Pipeline (no LLM)   │
-│                                      │
-│  1. Capture screenshot               │
-│  2. Compute pixel diff vs anchor     │
-│  3. Classify: DELTA or NEW_PAGE      │
-│     (URL check → diff ratio →        │
-│      perceptual hash → anchor match) │
-│  4. Build observation (crops/text)   │
-└──────────────────┬───────────────────┘
-                   │
-          ┌────────┴────────┐
-          │                 │
+    |
+    v
++--------------------------------------+
+|  DeltaVision CV Pipeline (no LLM)    |
+|                                       |
+|  Layer 1: URL change (free)           |
+|  Layer 2: Pixel diff ratio (numpy)    |
+|  Layer 3: Perceptual hash (PIL)       |
+|  Layer 4: Anchor template match (cv2) |
+|  + Scroll bypass gate                 |
+|  + Animation guard                    |
++------------------+-------------------+
+                   |
+          +--------+--------+
+          |                 |
       DELTA path       NEW_PAGE path
-      crops + diff     full screenshot
-      (cheap)          (expensive, rare)
-          │                 │
-          ▼                 ▼
-┌──────────────────────────────────────┐
-│  Any Model Backend                   │
-│  Claude / GPT-4o / Ollama / Local    │
-└──────────────────────────────────────┘
+    crops + diff     full screenshot
+    (~400 tokens)    (~1600 tokens)
+          |                 |
+          v                 v
++--------------------------------------+
+|  Any Model Backend                    |
+|  Claude / GPT-4o / Ollama / Local     |
++--------------------------------------+
 ```
+
+**Classifier accuracy:** 17/17 scenarios across 7 diverse websites with default config. No site-specific tuning needed.
 
 ## Quick Start
 
 ```bash
-# Clone and install
 git clone https://github.com/ddavidgao/deltavision.git
 cd deltavision
-python -m venv .venv && source .venv/bin/activate
+python -m venv .venv && source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 playwright install chromium
 
 # Run tests (no API keys needed)
-pytest tests/ -v
+pytest tests/ -v  # 56 tests
 
-# Run reaction time benchmark (pure CV, no model)
-python benchmarks/reaction/run_reaction.py --rounds 5
+# Reaction time benchmark (pure CV, no model)
+python benchmarks/reaction/run_reaction.py --rounds 5 --headless
+
+# Classifier generalization test (17 scenarios, 7 sites)
+python benchmarks/generalization/test_classifier_diverse.py
 ```
 
 ### With a model backend
 
 ```bash
-# Claude
+# Ollama (free, local, no API key)
+ollama pull qwen2.5vl:7b
+python main.py --task "Search Wikipedia for 'computer vision'" \
+    --url https://en.wikipedia.org --backend ollama --model qwen2.5vl:7b --headless
+
+# Claude API
 export ANTHROPIC_API_KEY=sk-...
-python main.py --task "Search for sedimentary rocks" --url https://en.wikipedia.org --backend claude
+python main.py --task "..." --url ... --backend claude
 
 # OpenAI
 export OPENAI_API_KEY=sk-...
 python main.py --task "..." --url ... --backend openai
 
-# Local via Ollama (free, no API key)
-ollama pull qwen2.5vl:7b
-python main.py --task "..." --url ... --backend ollama --model qwen2.5vl:7b
-
-# GUI-specialized model
-ollama pull 0000/ui-tars-1.5-7b
-python main.py --task "..." --url ... --backend ollama --model 0000/ui-tars-1.5-7b
+# Ablation: same task without delta gating (for comparison)
+python main.py --task "..." --url ... --backend ollama --model qwen2.5vl:7b --force-full-frame
 ```
 
 ### Safety modes
 
 ```bash
-# Block credential entry, URL shorteners, suspicious domains
-python main.py --task "..." --url ... --safety strict
-
-# Allowlist educational sites only
-python main.py --task "..." --url ... --safety educational
+python main.py --task "..." --url ... --safety strict       # block credentials, shorteners
+python main.py --task "..." --url ... --safety educational   # allowlist edu sites only
+python main.py --task "..." --url ... --safety permissive    # log warnings only
 ```
 
 ## Architecture
 
 ```
 deltavision/
-├── vision/          # CV pipeline: diff, pHash, classifier, capture
-├── agent/           # Loop, state, typed actions
-├── observation/     # Builds model input (FullFrame or Delta)
-├── model/           # Pluggable: claude, openai, ollama, local, scripted
-├── safety.py        # Model-agnostic action validation
-├── config.py        # All thresholds, site presets
-├── results/         # SQLite result store
-├── benchmarks/      # Reaction time, site registry
-└── tests/           # 49 tests: unit, integration, live browser, real screenshots
+  vision/           # CV pipeline: diff engine, pHash, 4-layer classifier, capture
+  agent/            # Agent loop, state machine, typed actions
+  observation/      # Builds typed observations (FullFrame or Delta)
+  model/            # Pluggable backends: claude, openai, ollama, local, scripted
+  safety.py         # Model-agnostic action validation
+  config.py         # All thresholds in one place, site-specific presets
+  results/          # SQLite result store (query with db.summary() or raw SQL)
+  benchmarks/
+    reaction/       # CV-only reaction time benchmark
+    generalization/ # Classifier accuracy across diverse sites + visual frame capture
+    ablation/       # DeltaVision vs full-frame controlled comparison
+    sites/          # Benchmark site registry (7 sites, 3 difficulty tiers)
+  tests/            # 56 tests: unit, integration, live Playwright, real screenshots
+  paper/            # Paper outline with figure/table mapping to data
 ```
+
+## Results
+
+All results stored in `results/deltavision.db` (SQLite). Query:
+```bash
+python -c "from results.store import ResultStore; ResultStore().summary()"
+```
+
+### Ablation: Delta Gating vs Full-Frame
+
+| Metric | DeltaVision | Full-Frame Only | Savings |
+|--------|-------------|-----------------|---------|
+| Steps (simple task) | 3 | 50 (failed) | - |
+| Steps (multi-step) | 5 | 12 | 2.4x fewer |
+| Est. image tokens (simple) | 4,000 | 81,600 | 95% |
+| Est. image tokens (multi) | 4,800 | 20,800 | 77% |
+| Task completion (simple) | Yes | No | - |
+
+### Classifier Generalization
+
+| Site | Type | Scenarios | Accuracy |
+|------|------|-----------|----------|
+| Wikipedia | Traditional nav | 4 | 100% |
+| HumanBenchmark | Dynamic content | 3 | 100% |
+| Hacker News | Minimal HTML | 3 | 100% |
+| TodoMVC | SPA (React) | 1 | 100% |
+| GitHub | SPA (Turbo) | 1 | 100% |
+| Dynamic SPA | JS content injection | 2 | 100% |
+| Scroll test | Viewport shift | 2 | 100% |
+
+### Reaction Time (CV pipeline only, no model)
+
+| | DeltaVision | Human Median | Claude CU |
+|---|---|---|---|
+| Best | 74ms | 273ms | 13,491ms |
+| Average | 100ms | 273ms | 13,491ms |
+
+Note: This measures CV pipeline speed (screenshot + color detect + click). The comparison to Claude CU is unfair — Claude runs full model inference per step. The reaction benchmark demonstrates that simple visual tasks don't need a model at all.
+
+## Demo Video
+
+Pre-recorded comparison videos in `benchmarks/demo/`:
+
+| File | Content |
+|------|---------|
+| `deltavision_full_demo.mp4` | Complete demo: title + simple task + multi-step task |
+| `deltavision_demo.mp4` | Simple Wikipedia search, side-by-side |
+| `deltavision_demo_multistep.mp4` | 3-article navigation, DV completes in 4 steps vs baseline fails at 30 |
+
+Record your own:
+```bash
+# Needs Ollama running with a VLM
+ollama serve
+python benchmarks/demo/record_comparison.py --task wikipedia
+python benchmarks/demo/record_comparison.py --task wikipedia_multi
+```
+
+Videos are recorded by Playwright at 60fps. ffmpeg combines them side-by-side with labels.
 
 ## Key Design Decisions
 
-1. **The model never decides transition type.** The CV classifier handles it — deterministic, sub-millisecond, testable.
-2. **Speed comes from sending less, not skipping the model.** The model still reasons; it just gets cropped regions instead of full screenshots.
-3. **Safety is framework-level, not model-level.** Critical for uncensored local models (Hermes, etc.) that won't refuse dangerous actions on their own.
-4. **Backend-agnostic.** Same observation format whether Claude, GPT-4o, Qwen, or UI-TARS is reasoning.
-
-## Local VLM Setup (RTX 5080 / 16GB VRAM)
-
-```bash
-# Recommended: UI-TARS 1.5 (GUI-specialized, ByteDance, Apache 2.0)
-ollama pull 0000/ui-tars-1.5-7b    # ~4.4GB, runs in ~6-8GB VRAM
-
-# Alternative: Qwen2.5-VL (general VLM, strong vision)
-ollama pull qwen2.5vl:7b           # ~4.4GB, Q4 quantization
-
-# For faster iteration
-pip install -r requirements-local.txt  # torch + transformers
-python main.py --backend local --model Qwen/Qwen2.5-VL-3B-Instruct --quantization 4bit
-```
+1. **The model never decides transition type.** The CV classifier is deterministic, sub-millisecond, and testable.
+2. **Speed comes from sending less, not skipping the model.** The model still reasons; it gets cropped regions instead of full screenshots.
+3. **Safety is framework-level.** Critical for uncensored local models that won't refuse dangerous actions.
+4. **Backend-agnostic.** Same observation format for Claude, GPT-4o, Qwen, or UI-TARS.
+5. **Scroll-aware.** Scrolling shifts the viewport but doesn't change page state. The classifier knows this.
+6. **Animation-resistant.** Subtle animations (spinners, fades) don't trigger false page transitions.
 
 ## License
 
