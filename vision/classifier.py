@@ -42,10 +42,19 @@ def classify_transition(
     anchor_template: Image.Image,
     config,
     diff_result: DiffResult | None = None,
+    last_action_type: str | None = None,
 ) -> ClassificationResult:
     """
     4-layer classification cascade. First match wins.
+
+    Scroll-aware: if the last action was a scroll, the visual diff is expected
+    to be large (viewport shifted) but it's NOT a new page. Skip Layers 2-3
+    (diff_ratio and pHash) since scrolling invalidates both.
+    Layer 4 (anchor match) is also skipped since the anchor may have scrolled
+    out of view.
     """
+    is_scroll = last_action_type == "scroll"
+
     # Layer 1: URL change — free, most reliable for traditional nav
     if url_before != url_after:
         return ClassificationResult(
@@ -60,6 +69,18 @@ def classify_transition(
     if diff_result is None:
         diff_result = compute_diff(t0, t1, config)
 
+    # Scroll bypass: scrolling shifts the viewport but does NOT change page state.
+    # Layers 2-4 would false-positive because the visual content moved. Return
+    # DELTA immediately — the agent loop will re-anchor after scroll.
+    if is_scroll:
+        return ClassificationResult(
+            transition=TransitionType.DELTA,
+            trigger="scroll_bypass",
+            diff_ratio=diff_result.diff_ratio,
+            phash_distance=0,
+            anchor_score=1.0,
+        )
+
     # Layer 2: Diff ratio — covers SPA nav, full content replacement, reloads
     if diff_result.diff_ratio > config.NEW_PAGE_DIFF_THRESHOLD:
         return ClassificationResult(
@@ -71,11 +92,20 @@ def classify_transition(
         )
 
     # Layer 3: Perceptual hash distance
+    # Animation guard: when diff_ratio is low (page looks ~the same), require
+    # a higher pHash distance to trigger. Animated elements (spinners, fades)
+    # produce small diff but elevated pHash — real SPA nav has BOTH high.
     phash_t0 = compute_phash(t0)
     phash_t1 = compute_phash(t1)
     distance = hamming_distance(phash_t0, phash_t1)
 
-    if distance > config.PHASH_DISTANCE_THRESHOLD:
+    phash_threshold = config.PHASH_DISTANCE_THRESHOLD
+    low_diff_floor = getattr(config, 'PHASH_LOW_DIFF_FLOOR', 0.15)
+    animation_margin = getattr(config, 'PHASH_ANIMATION_MARGIN', 5)
+    if diff_result.diff_ratio < low_diff_floor:
+        phash_threshold += animation_margin
+
+    if distance > phash_threshold:
         return ClassificationResult(
             transition=TransitionType.NEW_PAGE,
             trigger="phash",

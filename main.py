@@ -56,7 +56,7 @@ def get_model(backend: str, config: DeltaVisionConfig, model_override: str = Non
 
         model_name = model_override or "qwen2.5-vl:7b"
         # Auto-detect vision capability from model name
-        vision = any(v in model_name.lower() for v in ["vl", "llava", "vision", "cogagent", "molmo"])
+        vision = any(v in model_name.lower() for v in ["vl", "llava", "vision", "cogagent", "molmo", "minicpm-v", "minicpm_v", "ui-tars", "uitars"])
         if not vision:
             print(f"Note: {model_name} detected as text-only (no vision). "
                   "DeltaVision will send structured text descriptions instead of images.",
@@ -106,6 +106,8 @@ async def main(args):
         config.MAX_STEPS = args.max_steps
     if args.headless:
         config.HEADLESS = True
+    if args.force_full_frame:
+        config.FORCE_FULL_FRAME = True
 
     model = get_model(args.backend, config, args.model)
     safety = get_safety(args.safety)
@@ -166,6 +168,7 @@ if __name__ == "__main__":
     parser.add_argument("--headless", action="store_true", help="Run browser headless")
     parser.add_argument("--output", help="Output JSON path")
     parser.add_argument("--safety", choices=["none", "permissive", "strict", "educational"], default="permissive", help="Safety mode")
+    parser.add_argument("--force-full-frame", action="store_true", help="Ablation: always send full frame, disable delta gating")
     parser.add_argument("-v", "--verbose", action="store_true", help="Debug logging")
     args = parser.parse_args()
 

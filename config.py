@@ -72,6 +72,18 @@ class DeltaVisionConfig:
     # Minimum OCR confidence to trust the text extraction
     OCR_MIN_CONFIDENCE: float = 0.7
 
+    # Minimum diff_ratio required for pHash to trigger NEW_PAGE.
+    # Animated pages have low diff (<15%) but elevated pHash due to
+    # subtle motion. Require pHash to exceed threshold by PHASH_ANIMATION_MARGIN
+    # when diff is below this floor.
+    PHASH_LOW_DIFF_FLOOR: float = 0.15
+    PHASH_ANIMATION_MARGIN: int = 5  # extra pHash distance needed when diff < floor
+
+    # -- Ablation --
+
+    # Force full-frame observations (disable delta gating). For controlled comparison.
+    FORCE_FULL_FRAME: bool = False
+
     # -- Model --
 
     # Claude API model ID

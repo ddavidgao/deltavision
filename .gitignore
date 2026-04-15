@@ -28,3 +28,12 @@ run_*.json
 *.credential*
 benchmarks/mcgrawhill/cookies/
 results/deltavision.db
+results/runs/
+
+# Demo build artifacts (keep final .mp4 + raw .webm)
+benchmarks/demo/arialbd.ttf
+benchmarks/demo/concat.txt
+benchmarks/demo/title.mp4
+benchmarks/demo/transition.mp4
+benchmarks/demo/deltavision_comparison.mp4
+benchmarks/demo/deltavision_comparison_60fps.mp4

@@ -47,10 +47,51 @@ class Action:
 
 
 def parse_action(action_dict: Optional[dict]) -> Optional[Action]:
-    """Parse model JSON output into a typed Action."""
+    """Parse model JSON output into a typed Action.
+
+    Supports two formats:
+    1. DeltaVision native: {"type": "click", "x": 100, "y": 200}
+    2. UI-TARS / CogAgent: {"action": "left_click", "coordinate": [100, 200]}
+    """
     if not action_dict:
         return None
+    if isinstance(action_dict, str):
+        return None
     try:
+        # UI-TARS / CogAgent format: {"action": "left_click", "coordinate": [x, y]}
+        if "action" in action_dict and "type" not in action_dict:
+            raw_action = action_dict["action"]
+            coord = action_dict.get("coordinate", [])
+
+            # Map UI-TARS action names to our ActionType
+            action_map = {
+                "left_click": ActionType.CLICK,
+                "click": ActionType.CLICK,
+                "right_click": ActionType.CLICK,
+                "double_click": ActionType.CLICK,
+                "type": ActionType.TYPE,
+                "scroll": ActionType.SCROLL,
+                "key": ActionType.KEY,
+                "press": ActionType.KEY,
+                "wait": ActionType.WAIT,
+                "finished": ActionType.DONE,
+                "done": ActionType.DONE,
+            }
+            atype = action_map.get(raw_action.lower())
+            if atype is None:
+                return None
+
+            return Action(
+                type=atype,
+                x=int(coord[0]) if len(coord) > 0 else None,
+                y=int(coord[1]) if len(coord) > 1 else None,
+                text=action_dict.get("text"),
+                direction=action_dict.get("direction"),
+                amount=action_dict.get("amount"),
+                key=action_dict.get("key"),
+            )
+
+        # DeltaVision native format
         return Action(
             type=ActionType(action_dict["type"]),
             x=action_dict.get("x"),
@@ -61,7 +102,7 @@ def parse_action(action_dict: Optional[dict]) -> Optional[Action]:
             key=action_dict.get("key"),
             duration_ms=action_dict.get("duration_ms"),
         )
-    except (KeyError, ValueError):
+    except (KeyError, ValueError, TypeError, IndexError):
         return None
 
 
@@ -89,7 +130,17 @@ async def execute_action(action: Action, page, config):
             await page.mouse.wheel(dx, dy)
 
         case ActionType.KEY:
-            await page.keyboard.press(action.key)
+            # Normalize common key names — models often output lowercase
+            key_map = {
+                "enter": "Enter", "return": "Enter",
+                "tab": "Tab", "escape": "Escape", "esc": "Escape",
+                "backspace": "Backspace", "delete": "Delete",
+                "arrowup": "ArrowUp", "arrowdown": "ArrowDown",
+                "arrowleft": "ArrowLeft", "arrowright": "ArrowRight",
+                "space": " ",
+            }
+            key = key_map.get(action.key.lower(), action.key) if action.key else "Enter"
+            await page.keyboard.press(key)
 
         case ActionType.WAIT:
             await asyncio.sleep((action.duration_ms or 1000) / 1000)

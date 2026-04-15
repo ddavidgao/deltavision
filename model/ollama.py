@@ -60,8 +60,22 @@ class OllamaModel(BaseModel):
         if images:
             payload["images"] = images
 
-        resp = requests.post(f"{self.host}/api/generate", json=payload, timeout=60)
-        resp.raise_for_status()
+        for attempt in range(3):
+            try:
+                resp = requests.post(f"{self.host}/api/generate", json=payload, timeout=120)
+                resp.raise_for_status()
+                break
+            except requests.exceptions.HTTPError as e:
+                import logging
+                logging.getLogger(__name__).warning(
+                    "Ollama error (attempt %d/3): %s — %s",
+                    attempt + 1, resp.status_code, resp.text[:300],
+                )
+                if attempt < 2:
+                    import time as _time
+                    _time.sleep(3)
+                    continue
+                raise
         raw_text = resp.json()["response"]
 
         try:

@@ -121,6 +121,7 @@ async def run_agent(task: str, start_url: str, model, browser_page, config, safe
             anchor_template=anchor_template,
             config=config,
             diff_result=diff_result,
+            last_action_type=action.type.value,
         )
         state.log_transition(classification, action, state.step)
 
@@ -133,14 +134,20 @@ async def run_agent(task: str, start_url: str, model, browser_page, config, safe
             classification.anchor_score,
         )
 
-        if classification.transition == TransitionType.NEW_PAGE:
-            # Re-anchor on new context
+        # Ablation: FORCE_FULL_FRAME overrides delta gating — always send full frame
+        force_full = getattr(config, 'FORCE_FULL_FRAME', False)
+
+        if classification.transition == TransitionType.NEW_PAGE or force_full:
+            # Re-anchor on new context (or forced full frame)
             t0 = t1
             url_t0 = url_after
             anchor_template = extract_anchor(t0, config)
-            state.reset_no_change_streak()
-            state.increment_new_page_count()
 
+            if classification.transition == TransitionType.NEW_PAGE:
+                state.reset_no_change_streak()
+                state.increment_new_page_count()
+
+            trigger = classification.trigger if not force_full else f"forced_full|{classification.trigger}"
             obs = build_observation(
                 obs_type="full_frame",
                 task=task,
@@ -148,10 +155,15 @@ async def run_agent(task: str, start_url: str, model, browser_page, config, safe
                 last_action=action,
                 frame=t1,
                 url=url_after,
-                trigger_reason=classification.trigger,
+                trigger_reason=trigger,
             )
 
         else:  # DELTA
+            # Re-anchor after scroll since viewport position changed
+            if action.type.value == "scroll":
+                t0 = t1
+                anchor_template = extract_anchor(t0, config)
+
             crops = extract_crops(t0, t1, diff_result.changed_bboxes, config.CROP_PADDING)
 
             if not diff_result.action_had_effect:
