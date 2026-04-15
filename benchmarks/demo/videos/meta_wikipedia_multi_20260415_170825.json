@@ -1,0 +1,20 @@
+[
+  {
+    "mode": "deltavision",
+    "task": "wikipedia_multi",
+    "steps": 4,
+    "done": true,
+    "delta_ratio": 0.5,
+    "wall_time_s": 39.0,
+    "video_path": "C:\\Users\\david\\Projects\\deltavision\\.claude\\worktrees\\interesting-bhabha\\benchmarks\\demo\\videos\\deltavision_wikipedia_multi\\2d356b2e7e9f78cdb6333d4c826a6988.webm"
+  },
+  {
+    "mode": "fullframe",
+    "task": "wikipedia_multi",
+    "steps": 30,
+    "done": false,
+    "delta_ratio": 0.933,
+    "wall_time_s": 162.6,
+    "video_path": "C:\\Users\\david\\Projects\\deltavision\\.claude\\worktrees\\interesting-bhabha\\benchmarks\\demo\\videos\\fullframe_wikipedia_multi\\c3a30d877d205c9e3d1ca8e401a7ab95.webm"
+  }
+]
