@@ -31,14 +31,16 @@ VIDEO_DIR = Path(__file__).parent / "videos"
 
 TASKS = {
     "wikipedia": {
-        "task": "Go to Wikipedia and search for 'computer vision'. Click the first result. Report done when you see the article.",
+        "task": "Go to Wikipedia and search for 'computer vision'. Click the first result. Report done ONLY when you can see the Computer Vision article page.",
         "url": "https://en.wikipedia.org",
         "max_steps": 25,
+        "success_keywords": ["computer_vision", "computer%20vision"],
     },
     "hackernews": {
         "task": "Navigate to Hacker News. Click on the top story title to read the article. Report done when you see the article.",
         "url": "https://news.ycombinator.com",
         "max_steps": 10,
+        "success_keywords": [],  # external link, can't predict
     },
     "wikipedia_multi": {
         "task": (
@@ -46,10 +48,11 @@ TASKS = {
             "1. Search Wikipedia for 'neural network'. "
             "2. Click the first result to open the article. "
             "3. Find and click the link to 'deep learning' within the article. "
-            "Report done when you can see the Deep Learning article."
+            "Report done ONLY when you can see the Deep Learning article page."
         ),
         "url": "https://en.wikipedia.org",
         "max_steps": 30,
+        "success_keywords": ["deep_learning", "deep%20learning"],
     },
 }
 
@@ -94,13 +97,24 @@ async def record_run(task_name: str, task_def: dict, mode: str, model_name: str)
             safety=None,
         )
         wall_time = time.perf_counter() - t_start
+        final_url = page.url
 
         # Close context to finalize video
         video_path = await page.video.path()
         await context.close()
         await browser.close()
 
+    # Check if task actually completed (URL should have changed from start)
+    success_keywords = task_def.get("success_keywords", [])
+    actually_completed = (
+        state.done
+        and state.step >= 2
+        and (not success_keywords or any(kw in final_url.lower() for kw in success_keywords))
+    )
+
     print(f"  Steps: {state.step}, Done: {state.done}, Delta ratio: {state.delta_ratio:.0%}")
+    print(f"  Final URL: {final_url}")
+    print(f"  Actually completed: {actually_completed}")
     print(f"  Wall time: {wall_time:.1f}s")
     print(f"  Video: {video_path}")
 
@@ -109,10 +123,24 @@ async def record_run(task_name: str, task_def: dict, mode: str, model_name: str)
         "task": task_name,
         "steps": state.step,
         "done": state.done,
+        "actually_completed": actually_completed,
         "delta_ratio": round(state.delta_ratio, 3),
         "wall_time_s": round(wall_time, 1),
+        "final_url": final_url,
         "video_path": str(video_path),
     }
+
+
+async def record_with_retries(task_name, task_def, mode, model_name, max_retries=3):
+    """Retry recording until the model actually completes the task."""
+    for attempt in range(max_retries):
+        result = await record_run(task_name, task_def, mode, model_name)
+        if result["actually_completed"]:
+            return result
+        print(f"  Attempt {attempt+1}/{max_retries} failed (model quit early). Retrying...")
+        await asyncio.sleep(2)
+    print(f"  WARNING: {mode} did not complete task after {max_retries} attempts. Using last recording.")
+    return result
 
 
 async def main():
@@ -122,19 +150,20 @@ async def main():
     parser.add_argument("--model", default="qwen2.5vl:7b")
     parser.add_argument("--skip-fullframe", action="store_true",
                         help="Only record DeltaVision mode")
+    parser.add_argument("--retries", type=int, default=3)
     args = parser.parse_args()
 
     VIDEO_DIR.mkdir(parents=True, exist_ok=True)
     task_def = TASKS[args.task]
     results = []
 
-    # Record DeltaVision mode
-    dv = await record_run(args.task, task_def, "deltavision", args.model)
+    # Record DeltaVision mode (retry until task actually completes)
+    dv = await record_with_retries(args.task, task_def, "deltavision", args.model, args.retries)
     results.append(dv)
 
     if not args.skip_fullframe:
         await asyncio.sleep(2)
-        # Record full-frame mode
+        # Record full-frame mode (may fail — that's the point)
         ff = await record_run(args.task, task_def, "fullframe", args.model)
         results.append(ff)
 

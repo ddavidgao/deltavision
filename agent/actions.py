@@ -110,7 +110,42 @@ async def execute_action(action: Action, page, config):
     """Execute action in Playwright browser page."""
     match action.type:
         case ActionType.CLICK:
-            await page.mouse.click(action.x, action.y)
+            # Robust click: find DOM element at coordinates, walk to nearest
+            # interactive element, dispatch full event sequence.
+            # Falls back to Playwright mouse.click if JS path fails.
+            try:
+                result = await page.evaluate("""([x, y]) => {
+                    const raw = document.elementFromPoint(x, y);
+                    if (!raw) return 'miss';
+                    // Walk up to nearest interactive element
+                    const interactive = raw.closest(
+                        'input, textarea, select, button, a, [role="button"], ' +
+                        '[role="textbox"], [role="link"], [contenteditable="true"], ' +
+                        '[tabindex], label'
+                    );
+                    const el = interactive || raw;
+                    // Full event sequence (pointer + mouse + focus + click)
+                    const rect = el.getBoundingClientRect();
+                    const cx = rect.left + rect.width / 2;
+                    const cy = rect.top + rect.height / 2;
+                    const opts = {bubbles: true, cancelable: true, clientX: cx, clientY: cy, view: window};
+                    el.dispatchEvent(new PointerEvent('pointerdown', opts));
+                    el.dispatchEvent(new MouseEvent('mousedown', opts));
+                    el.focus();
+                    el.dispatchEvent(new PointerEvent('pointerup', opts));
+                    el.dispatchEvent(new MouseEvent('mouseup', opts));
+                    el.dispatchEvent(new MouseEvent('click', opts));
+                    return el.tagName;
+                }""", [action.x, action.y])
+                # Verify: if targeting an input, check it got focus
+                if result in ("INPUT", "TEXTAREA"):
+                    import asyncio as _aio
+                    await _aio.sleep(0.05)
+                    focused = await page.evaluate("document.activeElement?.tagName")
+                    if focused not in ("INPUT", "TEXTAREA"):
+                        await page.mouse.click(action.x, action.y)
+            except Exception:
+                await page.mouse.click(action.x, action.y)
 
         case ActionType.TYPE:
             await page.keyboard.type(action.text, delay=30)
@@ -139,7 +174,10 @@ async def execute_action(action: Action, page, config):
                 "arrowleft": "ArrowLeft", "arrowright": "ArrowRight",
                 "space": " ",
             }
-            key = key_map.get(action.key.lower(), action.key) if action.key else "Enter"
+            raw = action.key if action.key else "Enter"
+            # Normalize modifier keys: ctrl -> Control, cmd -> Meta, alt -> Alt
+            raw = raw.replace("ctrl+", "Control+").replace("cmd+", "Meta+").replace("alt+", "Alt+").replace("shift+", "Shift+")
+            key = key_map.get(raw.lower(), raw)
             await page.keyboard.press(key)
 
         case ActionType.WAIT:

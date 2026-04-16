@@ -87,7 +87,7 @@ class DeltaVisionConfig:
     # -- Model --
 
     # Claude API model ID
-    CLAUDE_MODEL: str = "claude-sonnet-4-20250514"
+    CLAUDE_MODEL: str = "claude-sonnet-4-6"
 
     # Local model name (HuggingFace ID)
     LOCAL_MODEL: str = "Qwen/Qwen2.5-VL-7B-Instruct"

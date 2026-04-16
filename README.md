@@ -8,15 +8,18 @@ The model still reasons — it just reasons about less.
 
 Standard computer use agents send a full 1280x900 screenshot (~1600 tokens) on every step, whether 1 pixel changed or the entire page swapped. DeltaVision puts a 4-layer CV classifier in front of the model that decides: did the page change, or just a region? Send accordingly.
 
-**Ablation on the same task, same 7B model (Qwen2.5-VL):**
+**Fair comparison: same model (Claude Sonnet 4.6), same task, same browser, 3 runs each:**
 
-| | DeltaVision | Full-Frame Baseline |
+| | DeltaVision | Standard Agent |
 |---|---|---|
-| Wikipedia search | **3 steps, 4k tokens, completed** | 50 steps, 82k tokens, **failed** |
-| Multi-step navigation | **5 steps, 4.8k tokens** | 12 steps, 20.8k tokens |
-| Token reduction | | **77-95%** |
+| Steps | **4 every run** | 6 every run |
+| Total tokens | **~12,800** | ~36,900 |
+| History cost/step | **~130 tokens (text)** | ~1,650 tokens (screenshot) |
+| Token savings | **65%** | -- |
 
-The 7B model cannot complete the task with full screenshots. With delta gating, it can. This isn't just an optimization — it enables smaller models to do things they otherwise can't.
+Both complete the task. DeltaVision is faster because it tells the model "your action had no effect" via text metadata -- the standard approach relies on the model visually comparing screenshots in conversation history, which wastes steps.
+
+**4 steps vs 6, 12.8k tokens vs 36.9k -- same model, same result.**
 
 ## How It Works
 

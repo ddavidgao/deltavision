@@ -10,6 +10,7 @@ Key decisions:
 
 import json
 import base64
+import os
 from io import BytesIO
 
 import anthropic
@@ -78,7 +79,16 @@ class ClaudeModel(BaseModel):
         )
 
         raw_text = response.content[0].text
-        parsed = json.loads(raw_text)
+        try:
+            parsed = json.loads(raw_text)
+        except json.JSONDecodeError:
+            # Claude sometimes wraps JSON in markdown or adds preamble
+            start = raw_text.find("{")
+            end = raw_text.rfind("}") + 1
+            if start >= 0 and end > start:
+                parsed = json.loads(raw_text[start:end])
+            else:
+                parsed = {"reasoning": raw_text, "action": None, "done": True, "confidence": 0.0}
 
         action = parse_action(parsed.get("action")) if not parsed.get("done") else None
 
@@ -91,6 +101,48 @@ class ClaudeModel(BaseModel):
         )
 
     def _build_messages(self, observation, state) -> list:
+        messages = []
+
+        # Include recent history so the model remembers what it already tried.
+        # Keep last N turns (observation + response pairs) to stay within context.
+        # This is where delta observations pay off: delta history messages are
+        # text-only or single-image, cheaper than full-frame history.
+        max_history = 5
+        obs_history = state.observations[-(max_history + 1):-1]  # exclude current
+        resp_history = state.responses[-max_history:]
+
+        for prev_obs, prev_resp in zip(obs_history, resp_history):
+            prev_content = []
+
+            if prev_obs.obs_type == "full_frame" and prev_obs.frame:
+                # Include the actual screenshot in history (matches real Anthropic CU behavior)
+                prev_content.append({"type": "text", "text": (
+                    f"[Step {prev_obs.step}] Full screen after: {prev_obs.last_action}"
+                )})
+                prev_content.append(self._img_block(prev_obs.frame))
+            elif prev_obs.obs_type == "delta":
+                # Delta history: TEXT ONLY — no screenshot needed.
+                # The model already has the full page from the last NEW_PAGE.
+                # Sending text-only delta history is where DeltaVision saves tokens.
+                parts = [f"[Step {prev_obs.step}] After: {prev_obs.last_action}"]
+                if hasattr(prev_obs, 'action_had_effect'):
+                    parts.append(f"Effect: {prev_obs.action_had_effect}")
+                if hasattr(prev_obs, 'diff_result') and prev_obs.diff_result:
+                    parts.append(f"Change: {prev_obs.diff_result.diff_ratio:.1%}")
+                prev_content.append({"type": "text", "text": " | ".join(parts)})
+            else:
+                prev_content.append({"type": "text", "text": (
+                    f"[Step {prev_obs.step}] After: {prev_obs.last_action}"
+                )})
+
+            messages.append({"role": "user", "content": prev_content})
+
+            # Previous response (assistant turn)
+            messages.append({"role": "assistant", "content": [
+                {"type": "text", "text": json.dumps(prev_resp.raw_response) if prev_resp.raw_response else "{}"}
+            ]})
+
+        # Current observation (full content with image)
         content = []
 
         if observation.obs_type == "full_frame":
@@ -110,43 +162,99 @@ class ClaudeModel(BaseModel):
             content.append(self._img_block(observation.frame))
 
         else:  # delta
-            header = (
-                f"DELTA observation. Task: {observation.task}\n"
-                f"Step: {observation.step}\n"
-                f"Last action: {observation.last_action}\n"
-                f"Action had effect: {observation.action_had_effect}\n"
-                f"Consecutive no-effect steps: {observation.no_change_count}\n"
-            )
+            # Delta observation: send the CURRENT screenshot (one image)
+            # plus text metadata about what changed. The CV pipeline's value
+            # is in the classification and metadata, not in fancy visual diffs.
+            # One image = consistent token cost, no per-image overhead bloat.
+            parts = [
+                f"DELTA observation (same page, partial change). Task: {observation.task}",
+                f"Step: {observation.step}",
+                f"Last action: {observation.last_action}",
+                f"Action had effect: {observation.action_had_effect}",
+            ]
 
-            # Level 1: text deltas — cheapest path, no images needed
+            if observation.no_change_count > 0:
+                parts.append(f"WARNING: {observation.no_change_count} consecutive actions had no effect. Try something different.")
+
             if observation.text_deltas:
-                header += "\nText changes detected (OCR):\n"
+                parts.append("\nDetected text changes:")
                 for td in observation.text_deltas:
-                    header += f"  [{td['bbox']}] \"{td['before']}\" -> \"{td['after']}\"\n"
-                content.append({"type": "text", "text": header})
+                    parts.append(f"  Region {td['bbox']}: \"{td['before']}\" -> \"{td['after']}\"")
 
-            else:
-                # Level 2: image crops
-                header += (
-                    f"Diff ratio: {observation.diff_result.diff_ratio:.3f}\n"
-                    f"Changed regions: {len(observation.crops)}\n\n"
-                    f"Diff heatmap:"
-                )
-                content.append({"type": "text", "text": header})
+            elif observation.diff_result:
+                parts.append(f"\nPixel change: {observation.diff_result.diff_ratio:.1%} of screen")
+                if observation.crops:
+                    parts.append(f"Changed regions ({len(observation.crops)}):")
+                    for i, crop in enumerate(observation.crops):
+                        x, y, w, h = crop["bbox"]
+                        parts.append(f"  Region {i+1}: ({x},{y}) {w}x{h}px, magnitude={crop['change_magnitude']:.3f}")
+
+            content.append({"type": "text", "text": "\n".join(parts)})
+
+            # Video-compression-style delta observation:
+            # 1. Low-res thumbnail of current page (spatial context, ~100 tokens)
+            # 2. High-res crop(s) of what changed (detail, ~100 tokens each)
+            # Total: ~200-300 tokens vs ~500 for a full screenshot
+            if observation.current_frame:
+                from PIL import ImageDraw
+
+                # Thumbnail: 320x225 with green box showing where the change is
+                thumb = observation.current_frame.resize((320, 225), Image.LANCZOS)
+                draw = ImageDraw.Draw(thumb)
+                scale_x = 320 / observation.current_frame.width
+                scale_y = 225 / observation.current_frame.height
+                for crop in observation.crops:
+                    x, y, w, h = crop["bbox"]
+                    draw.rectangle([
+                        (int(x * scale_x) - 1, int(y * scale_y) - 1),
+                        (int((x + w) * scale_x) + 1, int((y + h) * scale_y) + 1)
+                    ], outline=(0, 255, 0), width=2)
+
+                content.append({"type": "text", "text": "Page overview (low-res, green box = changed area):"})
+                content.append(self._img_block(thumb))
+
+                # High-res crops of changed regions
+                if observation.crops:
+                    crops = observation.crops[:2]  # max 2 crops
+                    for i, c in enumerate(crops):
+                        after = c["crop_after"]
+                        # Cap crop size to keep tokens low
+                        max_dim = 400
+                        if after.width > max_dim or after.height > max_dim:
+                            ratio = min(max_dim / after.width, max_dim / after.height)
+                            after = after.resize((int(after.width * ratio), int(after.height * ratio)), Image.LANCZOS)
+                        x, y, w, h = c["bbox"]
+                        content.append({"type": "text", "text": f"Changed region {i+1} at ({x},{y}) — detail:"})
+                        content.append(self._img_block(after))
+
+            elif observation.diff_result and observation.diff_result.diff_image:
                 content.append(self._img_block(observation.diff_result.diff_image))
 
-                for i, crop in enumerate(observation.crops):
-                    content.append(
-                        {
-                            "type": "text",
-                            "text": f"\nRegion {i + 1} (magnitude={crop['change_magnitude']:.3f}) — BEFORE:",
-                        }
-                    )
-                    content.append(self._img_block(crop["crop_before"]))
-                    content.append({"type": "text", "text": "AFTER:"})
-                    content.append(self._img_block(crop["crop_after"]))
+        messages.append({"role": "user", "content": content})
 
-        return [{"role": "user", "content": content}]
+        # Save the exact images sent to the model (for demo/debugging)
+        save_dir = os.environ.get("DELTAVISION_SAVE_OBS")
+        if save_dir:
+            from pathlib import Path
+            d = Path(save_dir)
+            d.mkdir(parents=True, exist_ok=True)
+            step = observation.step
+            # Extract ALL images from content blocks
+            img_idx = 0
+            for block in content:
+                if isinstance(block, dict) and block.get("type") == "image":
+                    import base64 as _b64
+                    img_data = _b64.standard_b64decode(block["source"]["data"])
+                    img = Image.open(BytesIO(img_data))
+                    suffix = "" if img_idx == 0 else f"_{img_idx}"
+                    img.save(d / f"step_{step:03d}_sent_to_model{suffix}.png")
+                    img_idx += 1
+            # Also save the text prompt
+            text_parts = [b["text"] for b in content if isinstance(b, dict) and b.get("type") == "text"]
+            with open(d / f"step_{step:03d}_prompt.txt", "w") as f:
+                f.write("\n".join(text_parts))
+
+        return messages
 
     @staticmethod
     def _img_block(img: Image.Image) -> dict:

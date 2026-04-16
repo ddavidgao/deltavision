@@ -25,6 +25,7 @@ def build_observation(
     action_had_effect: bool = False,
     no_change_count: int = 0,
     text_deltas: Optional[List[dict]] = None,
+    current_frame: Optional[Image.Image] = None,
 ) -> Observation:
     """
     Factory for building the right observation type.
@@ -51,4 +52,5 @@ def build_observation(
         action_had_effect=action_had_effect,
         no_change_count=no_change_count,
         text_deltas=text_deltas or [],
+        current_frame=current_frame,
     )

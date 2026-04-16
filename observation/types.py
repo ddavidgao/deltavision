@@ -42,6 +42,8 @@ class DeltaObservation(Observation):
     no_change_count: int = 0
     # Level 1 optimization: text deltas extracted via OCR
     text_deltas: List[dict] = field(default_factory=list)  # [{"bbox": ..., "before": str, "after": str}]
+    # Current frame for backends that want a single annotated screenshot
+    current_frame: Optional[Image.Image] = None
 
     def __post_init__(self):
         self.obs_type = "delta"

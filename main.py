@@ -26,6 +26,16 @@ import sys
 import json
 from datetime import datetime
 
+from dotenv import load_dotenv
+from pathlib import Path
+# Load .env — check cwd, script dir, then walk up parents
+for _start in [Path.cwd(), Path(__file__).resolve().parent]:
+    for _d in [_start, *_start.parents]:
+        _env = _d / ".env"
+        if _env.exists():
+            load_dotenv(_env, override=True)
+            break
+
 from playwright.async_api import async_playwright
 
 from config import DeltaVisionConfig, MCGRAWHILL_CONFIG
@@ -56,7 +66,7 @@ def get_model(backend: str, config: DeltaVisionConfig, model_override: str = Non
 
         model_name = model_override or "qwen2.5-vl:7b"
         # Auto-detect vision capability from model name
-        vision = any(v in model_name.lower() for v in ["vl", "llava", "vision", "cogagent", "molmo", "minicpm-v", "minicpm_v", "ui-tars", "uitars"])
+        vision = any(v in model_name.lower() for v in ["vl", "llava", "vision", "cogagent", "molmo", "minicpm-v", "minicpm_v", "ui-tars", "uitars", "gemma4"])
         if not vision:
             print(f"Note: {model_name} detected as text-only (no vision). "
                   "DeltaVision will send structured text descriptions instead of images.",

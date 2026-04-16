@@ -200,6 +200,7 @@ async def run_agent(task: str, start_url: str, model, browser_page, config, safe
                     crops=crops,
                     action_had_effect=diff_result.action_had_effect,
                     no_change_count=state.no_change_streak,
+                    current_frame=t1,
                 )
 
         state.add_observation(obs)
