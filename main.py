@@ -42,7 +42,7 @@ from config import DeltaVisionConfig, MCGRAWHILL_CONFIG
 from agent.loop import run_agent
 
 
-def get_model(backend: str, config: DeltaVisionConfig, model_override: str = None):
+def get_model(backend: str, config: DeltaVisionConfig, model_override: str = None, base_url: str = None):
     if backend == "claude":
         from model.claude import ClaudeModel
 
@@ -55,9 +55,17 @@ def get_model(backend: str, config: DeltaVisionConfig, model_override: str = Non
     elif backend == "openai":
         from model.openai import OpenAIModel
 
+        # base_url points at an OpenAI-compatible server (llama-server, vLLM, SGLang).
+        # When set, we skip the OPENAI_API_KEY requirement — local servers don't need one.
+        if base_url:
+            return OpenAIModel(
+                api_key="sk-no-key-required",
+                model=model_override or "local-model",
+                base_url=base_url,
+            )
         api_key = os.environ.get("OPENAI_API_KEY")
         if not api_key:
-            print("Error: OPENAI_API_KEY not set", file=sys.stderr)
+            print("Error: OPENAI_API_KEY not set (or pass --base-url for local endpoint)", file=sys.stderr)
             sys.exit(1)
         return OpenAIModel(api_key=api_key, model=model_override or "gpt-4o")
 
@@ -119,7 +127,7 @@ async def main(args):
     if args.force_full_frame:
         config.FORCE_FULL_FRAME = True
 
-    model = get_model(args.backend, config, args.model)
+    model = get_model(args.backend, config, args.model, base_url=args.base_url)
     safety = get_safety(args.safety)
 
     logging.basicConfig(
@@ -166,7 +174,7 @@ async def main(args):
         await browser.close()
 
 
-if __name__ == "__main__":
+def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="DeltaVision — delta-first computer use agent")
     parser.add_argument("--task", required=True, help="Task description for the agent")
     parser.add_argument("--url", required=True, help="Starting URL")
@@ -179,7 +187,16 @@ if __name__ == "__main__":
     parser.add_argument("--output", help="Output JSON path")
     parser.add_argument("--safety", choices=["none", "permissive", "strict", "educational"], default="permissive", help="Safety mode")
     parser.add_argument("--force-full-frame", action="store_true", help="Ablation: always send full frame, disable delta gating")
+    parser.add_argument("--base-url", help="OpenAI-compatible base URL for local VLM servers (llama-server, vLLM). Only applies with --backend openai. Example: http://localhost:8080/v1")
     parser.add_argument("-v", "--verbose", action="store_true", help="Debug logging")
-    args = parser.parse_args()
+    return parser
 
+
+def cli_entry():
+    """Console-script entrypoint (pyproject.toml scripts table)."""
+    args = _build_parser().parse_args()
     asyncio.run(main(args))
+
+
+if __name__ == "__main__":
+    cli_entry()

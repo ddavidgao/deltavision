@@ -1,0 +1,1829 @@
+- generic [ref=e2]:
+  - region
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner [ref=e6]:
+      - heading "Navigation Menu" [level=2] [ref=e7]
+      - generic [ref=e8]:
+        - link "Homepage" [ref=e10] [cursor=pointer]:
+          - /url: /
+          - img [ref=e11]
+        - generic [ref=e13]:
+          - navigation "Global" [ref=e16]:
+            - list [ref=e17]:
+              - listitem [ref=e18]:
+                - button "Platform" [ref=e20] [cursor=pointer]:
+                  - text: Platform
+                  - img [ref=e21]
+              - listitem [ref=e23]:
+                - button "Solutions" [ref=e25] [cursor=pointer]:
+                  - text: Solutions
+                  - img [ref=e26]
+              - listitem [ref=e28]:
+                - button "Resources" [ref=e30] [cursor=pointer]:
+                  - text: Resources
+                  - img [ref=e31]
+              - listitem [ref=e33]:
+                - button "Open Source" [ref=e35] [cursor=pointer]:
+                  - text: Open Source
+                  - img [ref=e36]
+              - listitem [ref=e38]:
+                - button "Enterprise" [ref=e40] [cursor=pointer]:
+                  - text: Enterprise
+                  - img [ref=e41]
+              - listitem [ref=e43]:
+                - link "Pricing" [ref=e44] [cursor=pointer]:
+                  - /url: https://github.com/pricing
+                  - generic [ref=e45]: Pricing
+          - generic [ref=e46]:
+            - button "Search or jump to…" [ref=e49] [cursor=pointer]:
+              - img [ref=e51]
+            - link "Sign in" [ref=e54] [cursor=pointer]:
+              - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js
+            - link "Sign up" [ref=e55] [cursor=pointer]:
+              - /url: /signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E&source=header-repo&source_repo=vercel%2Fnext.js
+            - button "Appearance settings" [ref=e58] [cursor=pointer]:
+              - img
+  - main [ref=e62]:
+    - generic [ref=e63]:
+      - generic [ref=e64]:
+        - generic [ref=e66]:
+          - img [ref=e67]
+          - link "vercel" [ref=e70] [cursor=pointer]:
+            - /url: /vercel
+          - generic [ref=e71]: /
+          - strong [ref=e72]:
+            - link "next.js" [ref=e73] [cursor=pointer]:
+              - /url: /vercel/next.js
+          - generic [ref=e74]: Public
+        - generic [ref=e75]:
+          - list:
+            - listitem [ref=e76]:
+              - link "You must be signed in to change notification settings" [ref=e77] [cursor=pointer]:
+                - /url: /login?return_to=%2Fvercel%2Fnext.js
+                - img [ref=e78]
+                - text: Notifications
+            - listitem [ref=e80]:
+              - link "Fork 30.9k" [ref=e81] [cursor=pointer]:
+                - /url: /login?return_to=%2Fvercel%2Fnext.js
+                - img [ref=e82]
+                - text: Fork
+                - generic "30,927" [ref=e84]: 30.9k
+            - listitem [ref=e85]:
+              - link "You must be signed in to star a repository" [ref=e87] [cursor=pointer]:
+                - /url: /login?return_to=%2Fvercel%2Fnext.js
+                - img [ref=e88]
+                - text: Star
+                - generic "138974 users starred this repository" [ref=e90]: 139k
+      - navigation "Repository" [ref=e91]:
+        - list [ref=e92]:
+          - listitem [ref=e93]:
+            - link "Code" [ref=e94] [cursor=pointer]:
+              - /url: /vercel/next.js
+              - img [ref=e95]
+              - generic [ref=e97]: Code
+          - listitem [ref=e98]:
+            - link "Issues 2.1k" [ref=e99] [cursor=pointer]:
+              - /url: /vercel/next.js/issues
+              - img [ref=e100]
+              - generic [ref=e103]: Issues
+              - generic "2,112" [ref=e104]: 2.1k
+          - listitem [ref=e105]:
+            - link "Pull requests 1.6k" [ref=e106] [cursor=pointer]:
+              - /url: /vercel/next.js/pulls
+              - img [ref=e107]
+              - generic [ref=e109]: Pull requests
+              - generic "1,646" [ref=e110]: 1.6k
+          - listitem [ref=e111]:
+            - link "Discussions" [ref=e112] [cursor=pointer]:
+              - /url: /vercel/next.js/discussions
+              - img [ref=e113]
+              - generic [ref=e115]: Discussions
+          - listitem [ref=e116]:
+            - link "Actions" [ref=e117] [cursor=pointer]:
+              - /url: /vercel/next.js/actions
+              - img [ref=e118]
+              - generic [ref=e120]: Actions
+          - listitem [ref=e121]:
+            - link "Security and quality 37" [ref=e122] [cursor=pointer]:
+              - /url: /vercel/next.js/security
+              - img [ref=e123]
+              - generic [ref=e125]: Security and quality
+              - generic "37" [ref=e126]
+          - listitem [ref=e127]:
+            - link "Insights" [ref=e128] [cursor=pointer]:
+              - /url: /vercel/next.js/pulse
+              - img [ref=e129]
+              - generic [ref=e131]: Insights
+    - generic [ref=e144]:
+      - heading "vercel/next.js" [level=1] [ref=e146]
+      - generic [ref=e147]:
+        - generic [ref=e150]:
+          - generic [ref=e151]:
+            - generic [ref=e152]:
+              - button "canary branch" [ref=e154] [cursor=pointer]:
+                - generic [ref=e155]:
+                  - generic [ref=e157]:
+                    - img [ref=e159]
+                    - generic [ref=e162]: canary
+                  - generic:
+                    - img
+              - generic [ref=e163]:
+                - link "3107 Branches" [ref=e164] [cursor=pointer]:
+                  - /url: /vercel/next.js/branches
+                  - generic [ref=e165]:
+                    - generic:
+                      - img
+                    - generic [ref=e167]:
+                      - strong [ref=e168]: "3107"
+                      - text: Branches
+                - link "3849 Tags" [ref=e169] [cursor=pointer]:
+                  - /url: /vercel/next.js/tags
+                  - generic [ref=e170]:
+                    - generic:
+                      - img
+                    - generic [ref=e172]:
+                      - strong [ref=e173]: "3849"
+                      - text: Tags
+            - generic [ref=e174]:
+              - generic [ref=e178]:
+                - img [ref=e180]
+                - combobox "Go to file" [ref=e182]
+              - button "Code" [ref=e183] [cursor=pointer]:
+                - generic [ref=e184]:
+                  - generic:
+                    - img
+                  - generic [ref=e185]: Code
+                  - generic:
+                    - img
+          - generic [ref=e186]:
+            - generic [ref=e187]:
+              - heading "Folders and files" [level=2] [ref=e188]
+              - table "Folders and files" [ref=e189]:
+                - rowgroup:
+                  - row "Name Last commit message Last commit date":
+                    - columnheader "Name"
+                    - columnheader "Last commit message":
+                      - generic "Last commit message"
+                    - columnheader "Last commit date":
+                      - generic "Last commit date"
+                - rowgroup [ref=e190]:
+                  - row "Latest commit aurorascharff lubieowoce commits by aurorascharff and commits by lubieowoce Redesign blocking route dev overlay and build errors (#92638) Open commit details pending Commit e9bc619 · Apr 17, 202610 minutes ago History 33,752 Commits" [ref=e191]:
+                    - cell "Latest commit aurorascharff lubieowoce commits by aurorascharff and commits by lubieowoce Redesign blocking route dev overlay and build errors (#92638) Open commit details pending Commit e9bc619 · Apr 17, 202610 minutes ago History 33,752 Commits" [ref=e192]:
+                      - generic [ref=e193]:
+                        - heading "Latest commit" [level=2] [ref=e194]
+                        - generic [ref=e195]:
+                          - generic [ref=e196]:
+                            - generic [ref=e198]:
+                              - img "aurorascharff" [ref=e199]
+                              - img "lubieowoce" [ref=e200]
+                            - link "commits by aurorascharff" [ref=e202] [cursor=pointer]:
+                              - /url: /vercel/next.js/commits?author=aurorascharff
+                              - text: aurorascharff
+                            - generic [ref=e203]: and
+                            - link "commits by lubieowoce" [ref=e205] [cursor=pointer]:
+                              - /url: /vercel/next.js/commits?author=lubieowoce
+                              - text: lubieowoce
+                          - generic [ref=e206]:
+                            - generic [ref=e208]:
+                              - link "Redesign blocking route dev overlay and build errors (" [ref=e209] [cursor=pointer]:
+                                - /url: /vercel/next.js/commit/e9bc6190bde91de29bb4c597a909b22d07f7c42f
+                              - link "#92638" [ref=e210] [cursor=pointer]:
+                                - /url: https://github.com/vercel/next.js/pull/92638
+                              - link ")" [ref=e211] [cursor=pointer]:
+                                - /url: /vercel/next.js/commit/e9bc6190bde91de29bb4c597a909b22d07f7c42f
+                            - button "Open commit details" [ref=e212] [cursor=pointer]:
+                              - img [ref=e213]
+                            - button "pending" [ref=e215] [cursor=pointer]:
+                              - img [ref=e216]
+                        - generic [ref=e218]:
+                          - generic [ref=e220]:
+                            - link "Commit e9bc619" [ref=e221] [cursor=pointer]:
+                              - /url: /vercel/next.js/commit/e9bc6190bde91de29bb4c597a909b22d07f7c42f
+                              - text: e9bc619
+                            - text: ·
+                            - generic "Apr 17, 2026, 12:43 PM EDT" [ref=e222]: Apr 17, 202610 minutes ago
+                          - generic [ref=e223]:
+                            - heading "History" [level=2] [ref=e224]
+                            - link "33,752 Commits" [ref=e225] [cursor=pointer]:
+                              - /url: /vercel/next.js/commits/canary/
+                              - generic [ref=e226]:
+                                - generic:
+                                  - img
+                                - generic [ref=e227]: 33,752 Commits
+                  - 'row ".agents/skills, (Directory) scripts/pr-status: add reply-and-resolve-thread command (#92450) Apr 7, 2026last week" [ref=e228]':
+                    - cell ".agents/skills, (Directory)" [ref=e229]:
+                      - generic [ref=e230]:
+                        - img [ref=e231]
+                        - link ".agents/skills, (Directory)" [ref=e236] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/.agents/skills
+                          - text: .agents/skills
+                    - 'cell "scripts/pr-status: add reply-and-resolve-thread command (#92450)" [ref=e237]':
+                      - generic [ref=e239]:
+                        - 'link "scripts/pr-status: add reply-and-resolve-thread command (" [ref=e240] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/6d572c27e01cbdb19dfbdf5bce94604229478088
+                        - link "#92450" [ref=e241] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92450
+                        - link ")" [ref=e242] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/6d572c27e01cbdb19dfbdf5bce94604229478088
+                    - cell "Apr 7, 2026last week" [ref=e243]:
+                      - generic [ref=e244]: Apr 7, 2026last week
+                  - 'row ".cargo, (Directory) Turbopack: Use lld again on ARM64 glibc Linux (#92860) Apr 15, 20262 days ago" [ref=e245]':
+                    - cell ".cargo, (Directory)" [ref=e246]:
+                      - generic [ref=e247]:
+                        - img [ref=e248]
+                        - link ".cargo, (Directory)" [ref=e253] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/.cargo
+                          - text: .cargo
+                    - 'cell "Turbopack: Use lld again on ARM64 glibc Linux (#92860)" [ref=e254]':
+                      - generic [ref=e256]:
+                        - 'link "Turbopack: Use lld again on ARM64 glibc Linux (" [ref=e257] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/f381e3e587f8ed83dd24adaef22951b5f7b6e366
+                        - link "#92860" [ref=e258] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92860
+                        - link ")" [ref=e259] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/f381e3e587f8ed83dd24adaef22951b5f7b6e366
+                    - cell "Apr 15, 20262 days ago" [ref=e260]:
+                      - generic [ref=e261]: Apr 15, 20262 days ago
+                  - 'row ".claude-plugin, (Directory) feat: add Claude Code plugin marketplace with Cache Components skill (#… Jan 8, 20263 months ago" [ref=e262]':
+                    - cell ".claude-plugin, (Directory)" [ref=e263]:
+                      - generic [ref=e264]:
+                        - img [ref=e265]
+                        - link ".claude-plugin, (Directory)" [ref=e270] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/.claude-plugin
+                          - text: .claude-plugin
+                    - 'cell "feat: add Claude Code plugin marketplace with Cache Components skill (#…" [ref=e271]':
+                      - generic [ref=e273]:
+                        - 'link "feat: add Claude Code plugin marketplace with Cache Components skill (" [ref=e274] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/b9edb9175e15b433122afb114cbec6a2951d7d02
+                        - link "#…" [ref=e275] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/87993
+                    - cell "Jan 8, 20263 months ago" [ref=e276]:
+                      - generic [ref=e277]: Jan 8, 20263 months ago
+                  - 'row ".claude, (Directory) Restructure pr-status-triage skill: merge command into skill files (#… Mar 19, 2026last month" [ref=e278]':
+                    - cell ".claude, (Directory)" [ref=e279]:
+                      - generic [ref=e280]:
+                        - img [ref=e281]
+                        - link ".claude, (Directory)" [ref=e286] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/.claude
+                          - text: .claude
+                    - 'cell "Restructure pr-status-triage skill: merge command into skill files (#…" [ref=e287]':
+                      - generic [ref=e289]:
+                        - 'link "Restructure pr-status-triage skill: merge command into skill files (" [ref=e290] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/6836c26b723aa1b66c801039763618fb3cc1e3a7
+                        - link "#…" [ref=e291] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/91514
+                    - cell "Mar 19, 2026last month" [ref=e292]:
+                      - generic [ref=e293]: Mar 19, 2026last month
+                  - 'row ".conductor, (Directory) fix: move conductor.json to repo root for proper detection (#88184) Jan 6, 20263 months ago" [ref=e294]':
+                    - cell ".conductor, (Directory)" [ref=e295]:
+                      - generic [ref=e296]:
+                        - img [ref=e297]
+                        - link ".conductor, (Directory)" [ref=e302] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/.conductor
+                          - text: .conductor
+                    - 'cell "fix: move conductor.json to repo root for proper detection (#88184)" [ref=e303]':
+                      - generic [ref=e305]:
+                        - 'link "fix: move conductor.json to repo root for proper detection (" [ref=e306] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/aa9c71671a15601f11e3842a5473e8a6dacb5c2f
+                        - link "#88184" [ref=e307] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/88184
+                        - link ")" [ref=e308] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/aa9c71671a15601f11e3842a5473e8a6dacb5c2f
+                    - cell "Jan 6, 20263 months ago" [ref=e309]:
+                      - generic [ref=e310]: Jan 6, 20263 months ago
+                  - row ".config, (Directory) Add MCP get_compilation_issues tool and NAPI method (#92062) Apr 3, 20262 weeks ago" [ref=e311]:
+                    - cell ".config, (Directory)" [ref=e312]:
+                      - generic [ref=e313]:
+                        - img [ref=e314]
+                        - link ".config, (Directory)" [ref=e319] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/.config
+                          - text: .config
+                    - cell "Add MCP get_compilation_issues tool and NAPI method (#92062)" [ref=e320]:
+                      - generic [ref=e322]:
+                        - link "Add MCP" [ref=e323] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/41839289de02d7f426fff0d0b9922b646c7afe31
+                        - code [ref=e324]:
+                          - link "get_compilation_issues" [ref=e325] [cursor=pointer]:
+                            - /url: /vercel/next.js/commit/41839289de02d7f426fff0d0b9922b646c7afe31
+                        - link "tool and NAPI method (" [ref=e326] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/41839289de02d7f426fff0d0b9922b646c7afe31
+                        - link "#92062" [ref=e327] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92062
+                        - link ")" [ref=e328] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/41839289de02d7f426fff0d0b9922b646c7afe31
+                    - cell "Apr 3, 20262 weeks ago" [ref=e329]:
+                      - generic [ref=e330]: Apr 3, 20262 weeks ago
+                  - 'row ".cursor, (Directory) docs: improve Graphite workflow documentation (#89488) Feb 11, 20262 months ago" [ref=e331]':
+                    - cell ".cursor, (Directory)" [ref=e332]:
+                      - generic [ref=e333]:
+                        - img [ref=e334]
+                        - link ".cursor, (Directory)" [ref=e339] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/.cursor
+                          - text: .cursor
+                    - 'cell "docs: improve Graphite workflow documentation (#89488)" [ref=e340]':
+                      - generic [ref=e342]:
+                        - 'link "docs: improve Graphite workflow documentation (" [ref=e343] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/d95b7bffba51f93bd2166b11a7e7b30d5057ec74
+                        - link "#89488" [ref=e344] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/89488
+                        - link ")" [ref=e345] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/d95b7bffba51f93bd2166b11a7e7b30d5057ec74
+                    - cell "Feb 11, 20262 months ago" [ref=e346]:
+                      - generic [ref=e347]: Feb 11, 20262 months ago
+                  - row ".devcontainer, (Directory) Update Rust toolchain to nightly-2026-04-02 (#92288) Apr 3, 20262 weeks ago" [ref=e348]:
+                    - cell ".devcontainer, (Directory)" [ref=e349]:
+                      - generic [ref=e350]:
+                        - img [ref=e351]
+                        - link ".devcontainer, (Directory)" [ref=e356] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/.devcontainer
+                          - text: .devcontainer
+                    - cell "Update Rust toolchain to nightly-2026-04-02 (#92288)" [ref=e357]:
+                      - generic [ref=e359]:
+                        - link "Update Rust toolchain to nightly-2026-04-02 (" [ref=e360] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/d6906eabd6a4d95570d9a22cf4f8fdf6e5096a1a
+                        - link "#92288" [ref=e361] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92288
+                        - link ")" [ref=e362] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/d6906eabd6a4d95570d9a22cf4f8fdf6e5096a1a
+                    - cell "Apr 3, 20262 weeks ago" [ref=e363]:
+                      - generic [ref=e364]: Apr 3, 20262 weeks ago
+                  - 'row ".github, (Directory) [ci]: fix backport sync script (#92942) Apr 17, 20261 hour ago" [ref=e365]':
+                    - cell ".github, (Directory)" [ref=e366]:
+                      - generic [ref=e367]:
+                        - img [ref=e368]
+                        - link ".github, (Directory)" [ref=e373] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/.github
+                          - text: .github
+                    - 'cell "[ci]: fix backport sync script (#92942)" [ref=e374]':
+                      - generic [ref=e376]:
+                        - 'link "[ci]: fix backport sync script (" [ref=e377] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/20e51129ff51da3a3de9ab7e2b8729eb0b09f1b1
+                        - link "#92942" [ref=e378] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92942
+                        - link ")" [ref=e379] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/20e51129ff51da3a3de9ab7e2b8729eb0b09f1b1
+                    - cell "Apr 17, 20261 hour ago" [ref=e380]:
+                      - generic [ref=e381]: Apr 17, 20261 hour ago
+                  - row ".husky, (Directory) Use posix-compatible syntax for pre-push hook (#68421) Aug 2, 20242 years ago" [ref=e382]:
+                    - cell ".husky, (Directory)" [ref=e383]:
+                      - generic [ref=e384]:
+                        - img [ref=e385]
+                        - link ".husky, (Directory)" [ref=e390] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/.husky
+                          - text: .husky
+                    - cell "Use posix-compatible syntax for pre-push hook (#68421)" [ref=e391]:
+                      - generic [ref=e393]:
+                        - link "Use posix-compatible syntax for pre-push hook (" [ref=e394] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/5c88a3838ee079be55cc1af3ed9f2ceeaa893ab9
+                        - link "#68421" [ref=e395] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/68421
+                        - link ")" [ref=e396] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/5c88a3838ee079be55cc1af3ed9f2ceeaa893ab9
+                    - cell "Aug 2, 20242 years ago" [ref=e397]:
+                      - generic [ref=e398]: Aug 2, 20242 years ago
+                  - row ".vscode, (Directory) Use ESLint Flat Config (#84800) Oct 13, 20256 months ago" [ref=e399]:
+                    - cell ".vscode, (Directory)" [ref=e400]:
+                      - generic [ref=e401]:
+                        - img [ref=e402]
+                        - link ".vscode, (Directory)" [ref=e407] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/.vscode
+                          - text: .vscode
+                    - cell "Use ESLint Flat Config (#84800)" [ref=e408]:
+                      - generic [ref=e410]:
+                        - link "Use ESLint Flat Config (" [ref=e411] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/3b4e4478d45ed4cc46b2882a6d7ef84a80a9bad9
+                        - link "#84800" [ref=e412] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/84800
+                        - link ")" [ref=e413] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/3b4e4478d45ed4cc46b2882a6d7ef84a80a9bad9
+                    - cell "Oct 13, 20256 months ago" [ref=e414]:
+                      - generic [ref=e415]: Oct 13, 20256 months ago
+                  - row "apps, (Directory) Update next versions of internal apps (#92666) Apr 14, 20263 days ago" [ref=e416]:
+                    - cell "apps, (Directory)" [ref=e417]:
+                      - generic [ref=e418]:
+                        - img [ref=e419]
+                        - link "apps, (Directory)" [ref=e424] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/apps
+                          - text: apps
+                    - cell "Update next versions of internal apps (#92666)" [ref=e425]:
+                      - generic [ref=e427]:
+                        - link "Update next versions of internal apps (" [ref=e428] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/d4b051d92afaacc6394e4313204917dc0f9cf7e8
+                        - link "#92666" [ref=e429] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92666
+                        - link ")" [ref=e430] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/d4b051d92afaacc6394e4313204917dc0f9cf7e8
+                    - cell "Apr 14, 20263 days ago" [ref=e431]:
+                      - generic [ref=e432]: Apr 14, 20263 days ago
+                  - 'row "bench, (Directory) bench: add A/B branch comparison workflow to BENCHMARKING.md (#92721) Apr 13, 20264 days ago" [ref=e433]':
+                    - cell "bench, (Directory)" [ref=e434]:
+                      - generic [ref=e435]:
+                        - img [ref=e436]
+                        - link "bench, (Directory)" [ref=e441] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/bench
+                          - text: bench
+                    - 'cell "bench: add A/B branch comparison workflow to BENCHMARKING.md (#92721)" [ref=e442]':
+                      - generic [ref=e444]:
+                        - 'link "bench: add A/B branch comparison workflow to BENCHMARKING.md (" [ref=e445] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/49dd90352738af73d83129f7063390e4aed868d5
+                        - link "#92721" [ref=e446] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92721
+                        - link ")" [ref=e447] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/49dd90352738af73d83129f7063390e4aed868d5
+                    - cell "Apr 13, 20264 days ago" [ref=e448]:
+                      - generic [ref=e449]: Apr 13, 20264 days ago
+                  - 'row "contributing, (Directory) Turbopack: Write trace file to .next-profiles (#92189) Apr 8, 2026last week" [ref=e450]':
+                    - cell "contributing, (Directory)" [ref=e451]:
+                      - generic [ref=e452]:
+                        - img [ref=e453]
+                        - link "contributing, (Directory)" [ref=e458] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/contributing
+                          - text: contributing
+                    - 'cell "Turbopack: Write trace file to .next-profiles (#92189)" [ref=e459]':
+                      - generic [ref=e461]:
+                        - 'link "Turbopack: Write trace file to .next-profiles (" [ref=e462] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/c5596dd4e0c66c60f3f07908b581de2d2c465053
+                        - link "#92189" [ref=e463] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92189
+                        - link ")" [ref=e464] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/c5596dd4e0c66c60f3f07908b581de2d2c465053
+                    - cell "Apr 8, 2026last week" [ref=e465]:
+                      - generic [ref=e466]: Apr 8, 2026last week
+                  - 'row "crates, (Directory) Perf: Simplify static metadata handling (#92630) Apr 17, 20268 hours ago" [ref=e467]':
+                    - cell "crates, (Directory)" [ref=e468]:
+                      - generic [ref=e469]:
+                        - img [ref=e470]
+                        - link "crates, (Directory)" [ref=e475] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/crates
+                          - text: crates
+                    - 'cell "Perf: Simplify static metadata handling (#92630)" [ref=e476]':
+                      - generic [ref=e478]:
+                        - 'link "Perf: Simplify static metadata handling (" [ref=e479] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/7873aeaa51cb445bc345986941934c295c63e6f1
+                        - link "#92630" [ref=e480] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92630
+                        - link ")" [ref=e481] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/7873aeaa51cb445bc345986941934c295c63e6f1
+                    - cell "Apr 17, 20268 hours ago" [ref=e482]:
+                      - generic [ref=e483]: Apr 17, 20268 hours ago
+                  - row "docs, (Directory) Support more prefetch configuration options (#92859) Apr 17, 202625 minutes ago" [ref=e484]:
+                    - cell "docs, (Directory)" [ref=e485]:
+                      - generic [ref=e486]:
+                        - img [ref=e487]
+                        - link "docs, (Directory)" [ref=e492] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/docs
+                          - text: docs
+                    - cell "Support more prefetch configuration options (#92859)" [ref=e493]:
+                      - generic [ref=e495]:
+                        - link "Support more prefetch configuration options (" [ref=e496] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/a7d15733919f38bc6fe2aa8164955fbbf509c980
+                        - link "#92859" [ref=e497] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92859
+                        - link ")" [ref=e498] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/a7d15733919f38bc6fe2aa8164955fbbf509c980
+                    - cell "Apr 17, 202625 minutes ago" [ref=e499]:
+                      - generic [ref=e500]: Apr 17, 202625 minutes ago
+                  - 'row "errors, (Directory) docs: add documentation for no-typos ESLint rule (#92809) Apr 15, 20262 days ago" [ref=e501]':
+                    - cell "errors, (Directory)" [ref=e502]:
+                      - generic [ref=e503]:
+                        - img [ref=e504]
+                        - link "errors, (Directory)" [ref=e509] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/errors
+                          - text: errors
+                    - 'cell "docs: add documentation for no-typos ESLint rule (#92809)" [ref=e510]':
+                      - generic [ref=e512]:
+                        - 'link "docs: add documentation for no-typos ESLint rule (" [ref=e513] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/219c0bcee98484ee82689a186c7f235cd96083ac
+                        - link "#92809" [ref=e514] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92809
+                        - link ")" [ref=e515] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/219c0bcee98484ee82689a186c7f235cd96083ac
+                    - cell "Apr 15, 20262 days ago" [ref=e516]:
+                      - generic [ref=e517]: Apr 15, 20262 days ago
+                  - row "evals, (Directory) Add view transitions eval (agent-043) (#92260) Apr 3, 20262 weeks ago" [ref=e518]:
+                    - cell "evals, (Directory)" [ref=e519]:
+                      - generic [ref=e520]:
+                        - img [ref=e521]
+                        - link "evals, (Directory)" [ref=e526] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/evals
+                          - text: evals
+                    - cell "Add view transitions eval (agent-043) (#92260)" [ref=e527]:
+                      - generic [ref=e529]:
+                        - link "Add view transitions eval (agent-043) (" [ref=e530] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/fb3ebba63d0bfb1c1e2d676ebe389d6c4535de6a
+                        - link "#92260" [ref=e531] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92260
+                        - link ")" [ref=e532] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/fb3ebba63d0bfb1c1e2d676ebe389d6c4535de6a
+                    - cell "Apr 3, 20262 weeks ago" [ref=e533]:
+                      - generic [ref=e534]: Apr 3, 20262 weeks ago
+                  - row "examples, (Directory) Update React from 74568e86-20260328 to 404b38c7-20260408 (#92536) Apr 8, 2026last week" [ref=e535]:
+                    - cell "examples, (Directory)" [ref=e536]:
+                      - generic [ref=e537]:
+                        - img [ref=e538]
+                        - link "examples, (Directory)" [ref=e543] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/examples
+                          - text: examples
+                    - cell "Update React from 74568e86-20260328 to 404b38c7-20260408 (#92536)" [ref=e544]:
+                      - generic [ref=e546]:
+                        - link "Update React from" [ref=e547] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/bdf8bea015c05e43b5fdd5564d1b4ad3db23d598
+                        - code [ref=e548]:
+                          - link "74568e86-20260328" [ref=e549] [cursor=pointer]:
+                            - /url: /vercel/next.js/commit/bdf8bea015c05e43b5fdd5564d1b4ad3db23d598
+                        - link "to" [ref=e550] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/bdf8bea015c05e43b5fdd5564d1b4ad3db23d598
+                        - code [ref=e551]:
+                          - link "404b38c7-20260408" [ref=e552] [cursor=pointer]:
+                            - /url: /vercel/next.js/commit/bdf8bea015c05e43b5fdd5564d1b4ad3db23d598
+                        - link "(" [ref=e553] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/bdf8bea015c05e43b5fdd5564d1b4ad3db23d598
+                        - link "#92536" [ref=e554] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92536
+                        - link ")" [ref=e555] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/bdf8bea015c05e43b5fdd5564d1b4ad3db23d598
+                    - cell "Apr 8, 2026last week" [ref=e556]:
+                      - generic [ref=e557]: Apr 8, 2026last week
+                  - row "packages, (Directory) Redesign blocking route dev overlay and build errors (#92638) Apr 17, 202610 minutes ago" [ref=e558]:
+                    - cell "packages, (Directory)" [ref=e559]:
+                      - generic [ref=e560]:
+                        - img [ref=e561]
+                        - link "packages, (Directory)" [ref=e566] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/packages
+                          - text: packages
+                    - cell "Redesign blocking route dev overlay and build errors (#92638)" [ref=e567]:
+                      - generic [ref=e569]:
+                        - link "Redesign blocking route dev overlay and build errors (" [ref=e570] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/e9bc6190bde91de29bb4c597a909b22d07f7c42f
+                        - link "#92638" [ref=e571] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92638
+                        - link ")" [ref=e572] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/e9bc6190bde91de29bb4c597a909b22d07f7c42f
+                    - cell "Apr 17, 202610 minutes ago" [ref=e573]:
+                      - generic [ref=e574]: Apr 17, 202610 minutes ago
+                  - 'row "patches, (Directory) Replace deprecated moduleResolution: \"node\" (#92654) Apr 16, 202620 hours ago" [ref=e575]':
+                    - cell "patches, (Directory)" [ref=e576]:
+                      - generic [ref=e577]:
+                        - img [ref=e578]
+                        - link "patches, (Directory)" [ref=e583] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/patches
+                          - text: patches
+                    - 'cell "Replace deprecated moduleResolution: \"node\" (#92654)" [ref=e584]':
+                      - generic [ref=e586]:
+                        - link "Replace deprecated" [ref=e587] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/73e89d9f6c110ddbf2a2afda43af4e11247cbe68
+                        - code [ref=e588]:
+                          - 'link "moduleResolution: \"node\"" [ref=e589] [cursor=pointer]':
+                            - /url: /vercel/next.js/commit/73e89d9f6c110ddbf2a2afda43af4e11247cbe68
+                        - link "(" [ref=e590] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/73e89d9f6c110ddbf2a2afda43af4e11247cbe68
+                        - link "#92654" [ref=e591] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92654
+                        - link ")" [ref=e592] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/73e89d9f6c110ddbf2a2afda43af4e11247cbe68
+                    - cell "Apr 16, 202620 hours ago" [ref=e593]:
+                      - generic [ref=e594]: Apr 16, 202620 hours ago
+                  - 'row "rspack, (Directory) CI: Use minimumReleaseAge in pnpm workspace files (#92480) Apr 8, 2026last week" [ref=e595]':
+                    - cell "rspack, (Directory)" [ref=e596]:
+                      - generic [ref=e597]:
+                        - img [ref=e598]
+                        - link "rspack, (Directory)" [ref=e603] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/rspack
+                          - text: rspack
+                    - 'cell "CI: Use minimumReleaseAge in pnpm workspace files (#92480)" [ref=e604]':
+                      - generic [ref=e606]:
+                        - 'link "CI: Use minimumReleaseAge in pnpm workspace files (" [ref=e607] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/5abeaea316442971bf9244f75af23de4733ad5ec
+                        - link "#92480" [ref=e608] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92480
+                        - link ")" [ref=e609] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/5abeaea316442971bf9244f75af23de4733ad5ec
+                    - cell "Apr 8, 2026last week" [ref=e610]:
+                      - generic [ref=e611]: Apr 8, 2026last week
+                  - 'row "scripts, (Directory) [ci]: fix backport sync script (#92942) Apr 17, 20261 hour ago" [ref=e612]':
+                    - cell "scripts, (Directory)" [ref=e613]:
+                      - generic [ref=e614]:
+                        - img [ref=e615]
+                        - link "scripts, (Directory)" [ref=e620] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/scripts
+                          - text: scripts
+                    - 'cell "[ci]: fix backport sync script (#92942)" [ref=e621]':
+                      - generic [ref=e623]:
+                        - 'link "[ci]: fix backport sync script (" [ref=e624] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/20e51129ff51da3a3de9ab7e2b8729eb0b09f1b1
+                        - link "#92942" [ref=e625] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92942
+                        - link ")" [ref=e626] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/20e51129ff51da3a3de9ab7e2b8729eb0b09f1b1
+                    - cell "Apr 17, 20261 hour ago" [ref=e627]:
+                      - generic [ref=e628]: Apr 17, 20261 hour ago
+                  - row "skills/next-compile, (Directory) Bundle skills/ directory into next/dist/skills (#92493) Apr 8, 2026last week" [ref=e629]:
+                    - cell "skills/next-compile, (Directory)" [ref=e630]:
+                      - generic [ref=e631]:
+                        - img [ref=e632]
+                        - link "skills/next-compile, (Directory)" [ref=e637] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/skills/next-compile
+                          - text: skills/next-compile
+                    - cell "Bundle skills/ directory into next/dist/skills (#92493)" [ref=e638]:
+                      - generic [ref=e640]:
+                        - link "Bundle skills/ directory into next/dist/skills (" [ref=e641] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/e75d006d72f042564fec41b7c9655b837e44feae
+                        - link "#92493" [ref=e642] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92493
+                        - link ")" [ref=e643] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/e75d006d72f042564fec41b7c9655b837e44feae
+                    - cell "Apr 8, 2026last week" [ref=e644]:
+                      - generic [ref=e645]: Apr 8, 2026last week
+                  - row "test-config-errors, (Directory) improve next config schema validation errors (#84847) Oct 14, 20256 months ago" [ref=e646]:
+                    - cell "test-config-errors, (Directory)" [ref=e647]:
+                      - generic [ref=e648]:
+                        - img [ref=e649]
+                        - link "test-config-errors, (Directory)" [ref=e654] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/test-config-errors
+                          - text: test-config-errors
+                    - cell "improve next config schema validation errors (#84847)" [ref=e655]:
+                      - generic [ref=e657]:
+                        - link "improve next config schema validation errors (" [ref=e658] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/27821674a6d239b5159bdb285d4633c8435c3568
+                        - link "#84847" [ref=e659] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/84847
+                        - link ")" [ref=e660] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/27821674a6d239b5159bdb285d4633c8435c3568
+                    - cell "Oct 14, 20256 months ago" [ref=e661]:
+                      - generic [ref=e662]: Oct 14, 20256 months ago
+                  - row "test, (Directory) Redesign blocking route dev overlay and build errors (#92638) Apr 17, 202610 minutes ago" [ref=e663]:
+                    - cell "test, (Directory)" [ref=e664]:
+                      - generic [ref=e665]:
+                        - img [ref=e666]
+                        - link "test, (Directory)" [ref=e671] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/test
+                          - text: test
+                    - cell "Redesign blocking route dev overlay and build errors (#92638)" [ref=e672]:
+                      - generic [ref=e674]:
+                        - link "Redesign blocking route dev overlay and build errors (" [ref=e675] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/e9bc6190bde91de29bb4c597a909b22d07f7c42f
+                        - link "#92638" [ref=e676] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92638
+                        - link ")" [ref=e677] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/e9bc6190bde91de29bb4c597a909b22d07f7c42f
+                    - cell "Apr 17, 202610 minutes ago" [ref=e678]:
+                      - generic [ref=e679]: Apr 17, 202610 minutes ago
+                  - row "turbo/generators, (Directory) Prevent typescript errors in IDE for newly generated tests (part 2) (#… Jun 19, 202510 months ago" [ref=e680]:
+                    - cell "turbo/generators, (Directory)" [ref=e681]:
+                      - generic [ref=e682]:
+                        - img [ref=e683]
+                        - link "turbo/generators, (Directory)" [ref=e688] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/turbo/generators
+                          - text: turbo/generators
+                    - cell "Prevent typescript errors in IDE for newly generated tests (part 2) (#…" [ref=e689]:
+                      - generic [ref=e691]:
+                        - link "Prevent typescript errors in IDE for newly generated tests (part 2) (" [ref=e692] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/73202480cf04533407304050cd17baa606de6153
+                        - link "#…" [ref=e693] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/80664
+                    - cell "Jun 19, 202510 months ago" [ref=e694]:
+                      - generic [ref=e695]: Jun 19, 202510 months ago
+                  - 'row "turbopack, (Directory) Turbopack: optimize SelfTimeTree performance, memory usage, and fix r… Apr 17, 20264 hours ago" [ref=e696]':
+                    - cell "turbopack, (Directory)" [ref=e697]:
+                      - generic [ref=e698]:
+                        - img [ref=e699]
+                        - link "turbopack, (Directory)" [ref=e704] [cursor=pointer]:
+                          - /url: /vercel/next.js/tree/canary/turbopack
+                          - text: turbopack
+                    - 'cell "Turbopack: optimize SelfTimeTree performance, memory usage, and fix r…" [ref=e705]':
+                      - 'link "Turbopack: optimize SelfTimeTree performance, memory usage, and fix r…" [ref=e708] [cursor=pointer]':
+                        - /url: /vercel/next.js/commit/3d3def23a189af58fcb2c8f39de637843b94fd4a
+                    - cell "Apr 17, 20264 hours ago" [ref=e709]:
+                      - generic [ref=e710]: Apr 17, 20264 hours ago
+                  - row ".alexignore, (File) Add eval and docs for unstable_instant (#91334) Mar 13, 2026last month" [ref=e711]:
+                    - cell ".alexignore, (File)" [ref=e712]:
+                      - generic [ref=e713]:
+                        - img [ref=e714]
+                        - link ".alexignore, (File)" [ref=e719] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/.alexignore
+                          - text: .alexignore
+                    - cell "Add eval and docs for unstable_instant (#91334)" [ref=e720]:
+                      - generic [ref=e722]:
+                        - link "Add eval and docs for unstable_instant (" [ref=e723] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/0e3b35ecdaf491fda60d69cf4d4aa506cbaeb62c
+                        - link "#91334" [ref=e724] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/91334
+                        - link ")" [ref=e725] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/0e3b35ecdaf491fda60d69cf4d4aa506cbaeb62c
+                    - cell "Mar 13, 2026last month" [ref=e726]:
+                      - generic [ref=e727]: Mar 13, 2026last month
+                  - 'row ".alexrc, (File) docs(turbopack-core): Copy \"layers\" documentation from mdbook to rust… Mar 17, 2026last month" [ref=e728]':
+                    - cell ".alexrc, (File)" [ref=e729]:
+                      - generic [ref=e730]:
+                        - img [ref=e731]
+                        - link ".alexrc, (File)" [ref=e736] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/.alexrc
+                          - text: .alexrc
+                    - 'cell "docs(turbopack-core): Copy \"layers\" documentation from mdbook to rust…" [ref=e737]':
+                      - 'link "docs(turbopack-core): Copy \"layers\" documentation from mdbook to rust…" [ref=e740] [cursor=pointer]':
+                        - /url: /vercel/next.js/commit/cdec4740ecad755362c4928344179a7538e6dd7d
+                    - cell "Mar 17, 2026last month" [ref=e741]:
+                      - generic [ref=e742]: Mar 17, 2026last month
+                  - 'row ".cursorindexingignore, (File) [repo] misc: rename .cursorignore to .cursorindexingignore (#76494) Feb 25, 2025last year" [ref=e743]':
+                    - cell ".cursorindexingignore, (File)" [ref=e744]:
+                      - generic [ref=e745]:
+                        - img [ref=e746]
+                        - link ".cursorindexingignore, (File)" [ref=e751] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/.cursorindexingignore
+                          - text: .cursorindexingignore
+                    - 'cell "[repo] misc: rename .cursorignore to .cursorindexingignore (#76494)" [ref=e752]':
+                      - generic [ref=e754]:
+                        - 'link "[repo] misc: rename" [ref=e755] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/d6ec90398c0afe33e58aa0ea546aec91b929adbd
+                        - code [ref=e756]:
+                          - link ".cursorignore" [ref=e757] [cursor=pointer]:
+                            - /url: /vercel/next.js/commit/d6ec90398c0afe33e58aa0ea546aec91b929adbd
+                        - link "to" [ref=e758] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/d6ec90398c0afe33e58aa0ea546aec91b929adbd
+                        - code [ref=e759]:
+                          - link ".cursorindexingignore" [ref=e760] [cursor=pointer]:
+                            - /url: /vercel/next.js/commit/d6ec90398c0afe33e58aa0ea546aec91b929adbd
+                        - link "(" [ref=e761] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/d6ec90398c0afe33e58aa0ea546aec91b929adbd
+                        - link "#76494" [ref=e762] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/76494
+                        - link ")" [ref=e763] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/d6ec90398c0afe33e58aa0ea546aec91b929adbd
+                    - cell "Feb 25, 2025last year" [ref=e764]:
+                      - generic [ref=e765]: Feb 25, 2025last year
+                  - row ".git-blame-ignore-revs, (File) Add recent Turbopack reformats to blame-ignore (#79187) May 14, 202511 months ago" [ref=e766]:
+                    - cell ".git-blame-ignore-revs, (File)" [ref=e767]:
+                      - generic [ref=e768]:
+                        - img [ref=e769]
+                        - link ".git-blame-ignore-revs, (File)" [ref=e774] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/.git-blame-ignore-revs
+                          - text: .git-blame-ignore-revs
+                    - cell "Add recent Turbopack reformats to blame-ignore (#79187)" [ref=e775]:
+                      - generic [ref=e777]:
+                        - link "Add recent Turbopack reformats to blame-ignore (" [ref=e778] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/141e794f92e42489e86cb8a796142771e118c3ec
+                        - link "#79187" [ref=e779] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/79187
+                        - link ")" [ref=e780] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/141e794f92e42489e86cb8a796142771e118c3ec
+                    - cell "May 14, 202511 months ago" [ref=e781]:
+                      - generic [ref=e782]: May 14, 202511 months ago
+                  - 'row ".gitattributes, (File) fix: normalize CRLF line endings in jscodeshift tests on Windows (#88008 Jan 3, 20263 months ago" [ref=e783]':
+                    - cell ".gitattributes, (File)" [ref=e784]:
+                      - generic [ref=e785]:
+                        - img [ref=e786]
+                        - link ".gitattributes, (File)" [ref=e791] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/.gitattributes
+                          - text: .gitattributes
+                    - 'cell "fix: normalize CRLF line endings in jscodeshift tests on Windows (#88008" [ref=e792]':
+                      - generic [ref=e794]:
+                        - 'link "fix: normalize CRLF line endings in jscodeshift tests on Windows (" [ref=e795] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/69ae2c10e72e20df6b098197364d354d20376864
+                        - link "#88008" [ref=e796] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/88008
+                    - cell "Jan 3, 20263 months ago" [ref=e797]:
+                      - generic [ref=e798]: Jan 3, 20263 months ago
+                  - 'row ".gitignore, (File) feat(trace-server): add query CLI and MCP API to turbopack-trace-serv… Apr 14, 20263 days ago" [ref=e799]':
+                    - cell ".gitignore, (File)" [ref=e800]:
+                      - generic [ref=e801]:
+                        - img [ref=e802]
+                        - link ".gitignore, (File)" [ref=e807] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/.gitignore
+                          - text: .gitignore
+                    - 'cell "feat(trace-server): add query CLI and MCP API to turbopack-trace-serv…" [ref=e808]':
+                      - 'link "feat(trace-server): add query CLI and MCP API to turbopack-trace-serv…" [ref=e811] [cursor=pointer]':
+                        - /url: /vercel/next.js/commit/5ff5ae217b175d1b9f8a61b32685ee6506b59d35
+                    - cell "Apr 14, 20263 days ago" [ref=e812]:
+                      - generic [ref=e813]: Apr 14, 20263 days ago
+                  - 'row ".ignore, (File) Turbopack: vendor analysis benchmarks (#83178) Aug 28, 20258 months ago" [ref=e814]':
+                    - cell ".ignore, (File)" [ref=e815]:
+                      - generic [ref=e816]:
+                        - img [ref=e817]
+                        - link ".ignore, (File)" [ref=e822] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/.ignore
+                          - text: .ignore
+                    - 'cell "Turbopack: vendor analysis benchmarks (#83178)" [ref=e823]':
+                      - generic [ref=e825]:
+                        - 'link "Turbopack: vendor analysis benchmarks (" [ref=e826] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/80930d68f5f5f650c03fe33305cb44ac95526471
+                        - link "#83178" [ref=e827] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/83178
+                        - link ")" [ref=e828] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/80930d68f5f5f650c03fe33305cb44ac95526471
+                    - cell "Aug 28, 20258 months ago" [ref=e829]:
+                      - generic [ref=e830]: Aug 28, 20258 months ago
+                  - row ".node-version, (File) update .node-version to v20 (#83413) Sep 4, 20257 months ago" [ref=e831]:
+                    - cell ".node-version, (File)" [ref=e832]:
+                      - generic [ref=e833]:
+                        - img [ref=e834]
+                        - link ".node-version, (File)" [ref=e839] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/.node-version
+                          - text: .node-version
+                    - cell "update .node-version to v20 (#83413)" [ref=e840]:
+                      - generic [ref=e842]:
+                        - link "update" [ref=e843] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/f2e3357b5b772da64da37a83b5be7c9195df07eb
+                        - code [ref=e844]:
+                          - link ".node-version" [ref=e845] [cursor=pointer]:
+                            - /url: /vercel/next.js/commit/f2e3357b5b772da64da37a83b5be7c9195df07eb
+                        - link "to v20 (" [ref=e846] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/f2e3357b5b772da64da37a83b5be7c9195df07eb
+                        - link "#83413" [ref=e847] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/83413
+                        - link ")" [ref=e848] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/f2e3357b5b772da64da37a83b5be7c9195df07eb
+                    - cell "Sep 4, 20257 months ago" [ref=e849]:
+                      - generic [ref=e850]: Sep 4, 20257 months ago
+                  - 'row ".npmrc, (File) chore: update pnpm to 9.4.0 (#64945) Jun 28, 20242 years ago" [ref=e851]':
+                    - cell ".npmrc, (File)" [ref=e852]:
+                      - generic [ref=e853]:
+                        - img [ref=e854]
+                        - link ".npmrc, (File)" [ref=e859] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/.npmrc
+                          - text: .npmrc
+                    - 'cell "chore: update pnpm to 9.4.0 (#64945)" [ref=e860]':
+                      - generic [ref=e862]:
+                        - 'link "chore: update pnpm to 9.4.0 (" [ref=e863] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/e6983b911b01a13d975e61536e558f5ecef1eaac
+                        - link "#64945" [ref=e864] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/64945
+                        - link ")" [ref=e865] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/e6983b911b01a13d975e61536e558f5ecef1eaac
+                    - cell "Jun 28, 20242 years ago" [ref=e866]:
+                      - generic [ref=e867]: Jun 28, 20242 years ago
+                  - row ".prettierignore, (File) Add MCP get_compilation_issues tool and NAPI method (#92062) Apr 3, 20262 weeks ago" [ref=e868]:
+                    - cell ".prettierignore, (File)" [ref=e869]:
+                      - generic [ref=e870]:
+                        - img [ref=e871]
+                        - link ".prettierignore, (File)" [ref=e876] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/.prettierignore
+                          - text: .prettierignore
+                    - cell "Add MCP get_compilation_issues tool and NAPI method (#92062)" [ref=e877]:
+                      - generic [ref=e879]:
+                        - link "Add MCP" [ref=e880] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/41839289de02d7f426fff0d0b9922b646c7afe31
+                        - code [ref=e881]:
+                          - link "get_compilation_issues" [ref=e882] [cursor=pointer]:
+                            - /url: /vercel/next.js/commit/41839289de02d7f426fff0d0b9922b646c7afe31
+                        - link "tool and NAPI method (" [ref=e883] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/41839289de02d7f426fff0d0b9922b646c7afe31
+                        - link "#92062" [ref=e884] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92062
+                        - link ")" [ref=e885] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/41839289de02d7f426fff0d0b9922b646c7afe31
+                    - cell "Apr 3, 20262 weeks ago" [ref=e886]:
+                      - generic [ref=e887]: Apr 3, 20262 weeks ago
+                  - 'row ".prettierrc.json, (File) chore(examples): use default prettier for examples/templates (#60530) Jan 11, 20243 years ago" [ref=e888]':
+                    - cell ".prettierrc.json, (File)" [ref=e889]:
+                      - generic [ref=e890]:
+                        - img [ref=e891]
+                        - link ".prettierrc.json, (File)" [ref=e896] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/.prettierrc.json
+                          - text: .prettierrc.json
+                    - 'cell "chore(examples): use default prettier for examples/templates (#60530)" [ref=e897]':
+                      - generic [ref=e899]:
+                        - 'link "chore(examples): use default prettier for examples/templates (" [ref=e900] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/4466ba436b996263307171d344cca199e8087744
+                        - link "#60530" [ref=e901] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/60530
+                        - link ")" [ref=e902] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/4466ba436b996263307171d344cca199e8087744
+                    - cell "Jan 11, 20243 years ago" [ref=e903]:
+                      - generic [ref=e904]: Jan 11, 20243 years ago
+                  - row ".rustfmt.toml, (File) Update wasm and next-custom-transforms crates to Rust edition 2024 (#… Feb 23, 20262 months ago" [ref=e905]:
+                    - cell ".rustfmt.toml, (File)" [ref=e906]:
+                      - generic [ref=e907]:
+                        - img [ref=e908]
+                        - link ".rustfmt.toml, (File)" [ref=e913] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/.rustfmt.toml
+                          - text: .rustfmt.toml
+                    - cell "Update wasm and next-custom-transforms crates to Rust edition 2024 (#…" [ref=e914]:
+                      - generic [ref=e916]:
+                        - link "Update wasm and next-custom-transforms crates to Rust edition 2024 (" [ref=e917] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/f93a867d7741214ed6544a0ff673f498ca69234b
+                        - link "#…" [ref=e918] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/90350
+                    - cell "Feb 23, 20262 months ago" [ref=e919]:
+                      - generic [ref=e920]: Feb 23, 20262 months ago
+                  - 'row ".typos.toml, (File) chore: fix typos in rust files (#81113) Jul 1, 202510 months ago" [ref=e921]':
+                    - cell ".typos.toml, (File)" [ref=e922]:
+                      - generic [ref=e923]:
+                        - img [ref=e924]
+                        - link ".typos.toml, (File)" [ref=e929] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/.typos.toml
+                          - text: .typos.toml
+                    - 'cell "chore: fix typos in rust files (#81113)" [ref=e930]':
+                      - generic [ref=e932]:
+                        - 'link "chore: fix typos in rust files (" [ref=e933] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/1beea16b933a7acd3a180050a663d8ff1c41537f
+                        - link "#81113" [ref=e934] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/81113
+                        - link ")" [ref=e935] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/1beea16b933a7acd3a180050a663d8ff1c41537f
+                    - cell "Jul 1, 202510 months ago" [ref=e936]:
+                      - generic [ref=e937]: Jul 1, 202510 months ago
+                  - 'row "AGENTS.md, (File) docs: Ask AI agents to self-identify themselves in PR descriptions (#… Apr 3, 20262 weeks ago" [ref=e938]':
+                    - cell "AGENTS.md, (File)" [ref=e939]:
+                      - generic [ref=e940]:
+                        - img [ref=e941]
+                        - link "AGENTS.md, (File)" [ref=e946] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/AGENTS.md
+                          - text: AGENTS.md
+                    - 'cell "docs: Ask AI agents to self-identify themselves in PR descriptions (#…" [ref=e947]':
+                      - generic [ref=e949]:
+                        - 'link "docs: Ask AI agents to self-identify themselves in PR descriptions (" [ref=e950] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/124c4000abdba55c133fb4becd4a3391ed2b047f
+                        - link "#…" [ref=e951] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92235
+                    - cell "Apr 3, 20262 weeks ago" [ref=e952]:
+                      - generic [ref=e953]: Apr 3, 20262 weeks ago
+                  - row "CLAUDE.md, (Symlink to file) Rename CLAUDE.md to AGENTS.md with symlink (#88105) Jan 5, 20263 months ago" [ref=e954]:
+                    - cell "CLAUDE.md, (Symlink to file)" [ref=e955]:
+                      - generic [ref=e956]:
+                        - img [ref=e957]
+                        - link "CLAUDE.md, (Symlink to file)" [ref=e962] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/CLAUDE.md
+                          - text: CLAUDE.md
+                    - cell "Rename CLAUDE.md to AGENTS.md with symlink (#88105)" [ref=e963]:
+                      - generic [ref=e965]:
+                        - link "Rename CLAUDE.md to AGENTS.md with symlink (" [ref=e966] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/8fd79ff42e8b1ac82db104fca7a38dfa9cfa902e
+                        - link "#88105" [ref=e967] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/88105
+                        - link ")" [ref=e968] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/8fd79ff42e8b1ac82db104fca7a38dfa9cfa902e
+                    - cell "Jan 5, 20263 months ago" [ref=e969]:
+                      - generic [ref=e970]: Jan 5, 20263 months ago
+                  - row "CODE_OF_CONDUCT.md, (File) updated code of conduct to v2.1 (#34208) Feb 10, 20224 years ago" [ref=e971]:
+                    - cell "CODE_OF_CONDUCT.md, (File)" [ref=e972]:
+                      - generic [ref=e973]:
+                        - img [ref=e974]
+                        - link "CODE_OF_CONDUCT.md, (File)" [ref=e979] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/CODE_OF_CONDUCT.md
+                          - text: CODE_OF_CONDUCT.md
+                    - cell "updated code of conduct to v2.1 (#34208)" [ref=e980]:
+                      - generic [ref=e982]:
+                        - link "updated code of conduct to v2.1 (" [ref=e983] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/09443fc54605245a6a7b05be220aa8cb08008323
+                        - link "#34208" [ref=e984] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/34208
+                        - link ")" [ref=e985] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/09443fc54605245a6a7b05be220aa8cb08008323
+                    - cell "Feb 10, 20224 years ago" [ref=e986]:
+                      - generic [ref=e987]: Feb 10, 20224 years ago
+                  - 'row "Cargo.lock, (File) turbo-trace-server: reduce allocation overhead when loading large tra… Apr 17, 20265 hours ago" [ref=e988]':
+                    - cell "Cargo.lock, (File)" [ref=e989]:
+                      - generic [ref=e990]:
+                        - img [ref=e991]
+                        - link "Cargo.lock, (File)" [ref=e996] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/Cargo.lock
+                          - text: Cargo.lock
+                    - 'cell "turbo-trace-server: reduce allocation overhead when loading large tra…" [ref=e997]':
+                      - 'link "turbo-trace-server: reduce allocation overhead when loading large tra…" [ref=e1000] [cursor=pointer]':
+                        - /url: /vercel/next.js/commit/e2e8ba9aca525b45f8b320ce9fe93c14375bb7ac
+                    - cell "Apr 17, 20265 hours ago" [ref=e1001]:
+                      - generic [ref=e1002]: Apr 17, 20265 hours ago
+                  - 'row "Cargo.toml, (File) turbo-tasks: Reduce allocations on cache hits (#92756) Apr 16, 202619 hours ago" [ref=e1003]':
+                    - cell "Cargo.toml, (File)" [ref=e1004]:
+                      - generic [ref=e1005]:
+                        - img [ref=e1006]
+                        - link "Cargo.toml, (File)" [ref=e1011] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/Cargo.toml
+                          - text: Cargo.toml
+                    - 'cell "turbo-tasks: Reduce allocations on cache hits (#92756)" [ref=e1012]':
+                      - generic [ref=e1014]:
+                        - 'link "turbo-tasks: Reduce allocations on cache hits (" [ref=e1015] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/31a1b635b4bcbde761cf774dd4d17df30b354ce4
+                        - link "#92756" [ref=e1016] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92756
+                        - link ")" [ref=e1017] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/31a1b635b4bcbde761cf774dd4d17df30b354ce4
+                    - cell "Apr 16, 202619 hours ago" [ref=e1018]:
+                      - generic [ref=e1019]: Apr 16, 202619 hours ago
+                  - 'row "UPGRADING.md, (File) fix(docs): Fix links in UPGRADING.md (#84114) Sep 23, 20257 months ago" [ref=e1020]':
+                    - cell "UPGRADING.md, (File)" [ref=e1021]:
+                      - generic [ref=e1022]:
+                        - img [ref=e1023]
+                        - link "UPGRADING.md, (File)" [ref=e1028] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/UPGRADING.md
+                          - text: UPGRADING.md
+                    - 'cell "fix(docs): Fix links in UPGRADING.md (#84114)" [ref=e1029]':
+                      - generic [ref=e1031]:
+                        - 'link "fix(docs): Fix links in UPGRADING.md (" [ref=e1032] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/ce4d40b00b53aacd546bb061b9964cc34cc3f076
+                        - link "#84114" [ref=e1033] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/84114
+                        - link ")" [ref=e1034] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/ce4d40b00b53aacd546bb061b9964cc34cc3f076
+                    - cell "Sep 23, 20257 months ago" [ref=e1035]:
+                      - generic [ref=e1036]: Sep 23, 20257 months ago
+                  - 'row "conductor.json, (File) fix: move conductor.json to repo root for proper detection (#88184) Jan 6, 20263 months ago" [ref=e1037]':
+                    - cell "conductor.json, (File)" [ref=e1038]:
+                      - generic [ref=e1039]:
+                        - img [ref=e1040]
+                        - link "conductor.json, (File)" [ref=e1045] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/conductor.json
+                          - text: conductor.json
+                    - 'cell "fix: move conductor.json to repo root for proper detection (#88184)" [ref=e1046]':
+                      - generic [ref=e1048]:
+                        - 'link "fix: move conductor.json to repo root for proper detection (" [ref=e1049] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/aa9c71671a15601f11e3842a5473e8a6dacb5c2f
+                        - link "#88184" [ref=e1050] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/88184
+                        - link ")" [ref=e1051] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/aa9c71671a15601f11e3842a5473e8a6dacb5c2f
+                    - cell "Jan 6, 20263 months ago" [ref=e1052]:
+                      - generic [ref=e1053]: Jan 6, 20263 months ago
+                  - 'row "contributing.md, (File) docs(turbopack): Copy over turbopack-trace-server docs (#91111) Mar 9, 2026last month" [ref=e1054]':
+                    - cell "contributing.md, (File)" [ref=e1055]:
+                      - generic [ref=e1056]:
+                        - img [ref=e1057]
+                        - link "contributing.md, (File)" [ref=e1062] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/contributing.md
+                          - text: contributing.md
+                    - 'cell "docs(turbopack): Copy over turbopack-trace-server docs (#91111)" [ref=e1063]':
+                      - generic [ref=e1065]:
+                        - 'link "docs(turbopack): Copy over turbopack-trace-server docs (" [ref=e1066] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/ae6406afdd6733bc57642a88cbaeef3e85442c44
+                        - link "#91111" [ref=e1067] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/91111
+                        - link ")" [ref=e1068] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/ae6406afdd6733bc57642a88cbaeef3e85442c44
+                    - cell "Mar 9, 2026last month" [ref=e1069]:
+                      - generic [ref=e1070]: Mar 9, 2026last month
+                  - 'row "eslint.cli.config.mjs, (File) bench: render-pipeline benchmarks and stress routes (2/8) (#89863) Feb 17, 20262 months ago" [ref=e1071]':
+                    - cell "eslint.cli.config.mjs, (File)" [ref=e1072]:
+                      - generic [ref=e1073]:
+                        - img [ref=e1074]
+                        - link "eslint.cli.config.mjs, (File)" [ref=e1079] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/eslint.cli.config.mjs
+                          - text: eslint.cli.config.mjs
+                    - 'cell "bench: render-pipeline benchmarks and stress routes (2/8) (#89863)" [ref=e1080]':
+                      - generic [ref=e1082]:
+                        - 'link "bench: render-pipeline benchmarks and stress routes (2/8) (" [ref=e1083] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/663c9151cf2f75662cc1e8054b91409d8eea8cd1
+                        - link "#89863" [ref=e1084] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/89863
+                        - link ")" [ref=e1085] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/663c9151cf2f75662cc1e8054b91409d8eea8cd1
+                    - cell "Feb 17, 20262 months ago" [ref=e1086]:
+                      - generic [ref=e1087]: Feb 17, 20262 months ago
+                  - row "eslint.config.mjs, (File) [Turbopack] write route bundle stats to .next/diagnostics/route-bundl… Mar 13, 2026last month" [ref=e1088]:
+                    - cell "eslint.config.mjs, (File)" [ref=e1089]:
+                      - generic [ref=e1090]:
+                        - img [ref=e1091]
+                        - link "eslint.config.mjs, (File)" [ref=e1096] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/eslint.config.mjs
+                          - text: eslint.config.mjs
+                    - cell "[Turbopack] write route bundle stats to .next/diagnostics/route-bundl…" [ref=e1097]:
+                      - link "[Turbopack] write route bundle stats to .next/diagnostics/route-bundl…" [ref=e1100] [cursor=pointer]:
+                        - /url: /vercel/next.js/commit/5394d39a625f4c50b7507e792153d6071714842e
+                    - cell "Mar 13, 2026last month" [ref=e1101]:
+                      - generic [ref=e1102]: Mar 13, 2026last month
+                  - row "jest.config.js, (File) [test] Fix jest-haste-map warnings (#82995) Feb 26, 20262 months ago" [ref=e1103]:
+                    - cell "jest.config.js, (File)" [ref=e1104]:
+                      - generic [ref=e1105]:
+                        - img [ref=e1106]
+                        - link "jest.config.js, (File)" [ref=e1111] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/jest.config.js
+                          - text: jest.config.js
+                    - cell "[test] Fix jest-haste-map warnings (#82995)" [ref=e1112]:
+                      - generic [ref=e1114]:
+                        - link "[test] Fix jest-haste-map warnings (" [ref=e1115] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/d54719ae4c11c1974143481fc6e489c159af80e4
+                        - link "#82995" [ref=e1116] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/82995
+                        - link ")" [ref=e1117] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/d54719ae4c11c1974143481fc6e489c159af80e4
+                    - cell "Feb 26, 20262 months ago" [ref=e1118]:
+                      - generic [ref=e1119]: Feb 26, 20262 months ago
+                  - row "jest.config.turbopack.js, (File) Create Jest project for Turbopack (#73769) Dec 17, 20242 years ago" [ref=e1120]:
+                    - cell "jest.config.turbopack.js, (File)" [ref=e1121]:
+                      - generic [ref=e1122]:
+                        - img [ref=e1123]
+                        - link "jest.config.turbopack.js, (File)" [ref=e1128] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/jest.config.turbopack.js
+                          - text: jest.config.turbopack.js
+                    - cell "Create Jest project for Turbopack (#73769)" [ref=e1129]:
+                      - generic [ref=e1131]:
+                        - link "Create Jest project for Turbopack (" [ref=e1132] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/e72dc52be5ae4fa8f2286083576ae90f73a41c36
+                        - link "#73769" [ref=e1133] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/73769
+                        - link ")" [ref=e1134] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/e72dc52be5ae4fa8f2286083576ae90f73a41c36
+                    - cell "Dec 17, 20242 years ago" [ref=e1135]:
+                      - generic [ref=e1136]: Dec 17, 20242 years ago
+                  - row "lerna.json, (File) v16.3.0-canary.0 Apr 17, 20261 hour ago" [ref=e1137]:
+                    - cell "lerna.json, (File)" [ref=e1138]:
+                      - generic [ref=e1139]:
+                        - img [ref=e1140]
+                        - link "lerna.json, (File)" [ref=e1145] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/lerna.json
+                          - text: lerna.json
+                    - cell "v16.3.0-canary.0" [ref=e1146]:
+                      - link "v16.3.0-canary.0" [ref=e1149] [cursor=pointer]:
+                        - /url: /vercel/next.js/commit/430588c22e63ec5d1473980a1b809a58e6336a70
+                    - cell "Apr 17, 20261 hour ago" [ref=e1150]:
+                      - generic [ref=e1151]: Apr 17, 20261 hour ago
+                  - 'row "license.md, (File) docs: bump year (#74475) Jan 2, 20252 years ago" [ref=e1152]':
+                    - cell "license.md, (File)" [ref=e1153]:
+                      - generic [ref=e1154]:
+                        - img [ref=e1155]
+                        - link "license.md, (File)" [ref=e1160] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/license.md
+                          - text: license.md
+                    - 'cell "docs: bump year (#74475)" [ref=e1161]':
+                      - generic [ref=e1163]:
+                        - 'link "docs: bump year (" [ref=e1164] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/869694860afaa3f84c8a32bb315f2bf2bfef9c06
+                        - link "#74475" [ref=e1165] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/74475
+                        - link ")" [ref=e1166] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/869694860afaa3f84c8a32bb315f2bf2bfef9c06
+                    - cell "Jan 2, 20252 years ago" [ref=e1167]:
+                      - generic [ref=e1168]: Jan 2, 20252 years ago
+                  - row "lint-staged.config.js, (File) Use ESLint Flat Config (#84800) Oct 13, 20256 months ago" [ref=e1169]:
+                    - cell "lint-staged.config.js, (File)" [ref=e1170]:
+                      - generic [ref=e1171]:
+                        - img [ref=e1172]
+                        - link "lint-staged.config.js, (File)" [ref=e1177] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/lint-staged.config.js
+                          - text: lint-staged.config.js
+                    - cell "Use ESLint Flat Config (#84800)" [ref=e1178]:
+                      - generic [ref=e1180]:
+                        - link "Use ESLint Flat Config (" [ref=e1181] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/3b4e4478d45ed4cc46b2882a6d7ef84a80a9bad9
+                        - link "#84800" [ref=e1182] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/84800
+                        - link ")" [ref=e1183] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/3b4e4478d45ed4cc46b2882a6d7ef84a80a9bad9
+                    - cell "Oct 13, 20256 months ago" [ref=e1184]:
+                      - generic [ref=e1185]: Oct 13, 20256 months ago
+                  - 'row "package.json, (File) Replace deprecated moduleResolution: \"node\" (#92654) Apr 16, 202620 hours ago" [ref=e1186]':
+                    - cell "package.json, (File)" [ref=e1187]:
+                      - generic [ref=e1188]:
+                        - img [ref=e1189]
+                        - link "package.json, (File)" [ref=e1194] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/package.json
+                          - text: package.json
+                    - 'cell "Replace deprecated moduleResolution: \"node\" (#92654)" [ref=e1195]':
+                      - generic [ref=e1197]:
+                        - link "Replace deprecated" [ref=e1198] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/73e89d9f6c110ddbf2a2afda43af4e11247cbe68
+                        - code [ref=e1199]:
+                          - 'link "moduleResolution: \"node\"" [ref=e1200] [cursor=pointer]':
+                            - /url: /vercel/next.js/commit/73e89d9f6c110ddbf2a2afda43af4e11247cbe68
+                        - link "(" [ref=e1201] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/73e89d9f6c110ddbf2a2afda43af4e11247cbe68
+                        - link "#92654" [ref=e1202] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92654
+                        - link ")" [ref=e1203] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/73e89d9f6c110ddbf2a2afda43af4e11247cbe68
+                    - cell "Apr 16, 202620 hours ago" [ref=e1204]:
+                      - generic [ref=e1205]: Apr 16, 202620 hours ago
+                  - row "pnpm-lock.yaml, (File) v16.3.0-canary.0 Apr 17, 20261 hour ago" [ref=e1206]:
+                    - cell "pnpm-lock.yaml, (File)" [ref=e1207]:
+                      - generic [ref=e1208]:
+                        - img [ref=e1209]
+                        - link "pnpm-lock.yaml, (File)" [ref=e1214] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/pnpm-lock.yaml
+                          - text: pnpm-lock.yaml
+                    - cell "v16.3.0-canary.0" [ref=e1215]:
+                      - link "v16.3.0-canary.0" [ref=e1218] [cursor=pointer]:
+                        - /url: /vercel/next.js/commit/430588c22e63ec5d1473980a1b809a58e6336a70
+                    - cell "Apr 17, 20261 hour ago" [ref=e1219]:
+                      - generic [ref=e1220]: Apr 17, 20261 hour ago
+                  - row "pnpm-workspace.yaml, (File) Fix monorepo @next/swc binary postinstall (#92813) Apr 15, 20262 days ago" [ref=e1221]:
+                    - cell "pnpm-workspace.yaml, (File)" [ref=e1222]:
+                      - generic [ref=e1223]:
+                        - img [ref=e1224]
+                        - link "pnpm-workspace.yaml, (File)" [ref=e1229] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/pnpm-workspace.yaml
+                          - text: pnpm-workspace.yaml
+                    - cell "Fix monorepo @next/swc binary postinstall (#92813)" [ref=e1230]:
+                      - generic [ref=e1232]:
+                        - link "Fix monorepo" [ref=e1233] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/6413e523d33de47f3e7daeff2bd876647d28153e
+                        - code [ref=e1234]:
+                          - link "@next/swc" [ref=e1235] [cursor=pointer]:
+                            - /url: /vercel/next.js/commit/6413e523d33de47f3e7daeff2bd876647d28153e
+                        - link "binary postinstall (" [ref=e1236] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/6413e523d33de47f3e7daeff2bd876647d28153e
+                        - link "#92813" [ref=e1237] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92813
+                        - link ")" [ref=e1238] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/6413e523d33de47f3e7daeff2bd876647d28153e
+                    - cell "Apr 15, 20262 days ago" [ref=e1239]:
+                      - generic [ref=e1240]: Apr 15, 20262 days ago
+                  - row "readme.md, (Symlink to file) Monorepo (#5341) Sep 30, 20188 years ago" [ref=e1241]:
+                    - cell "readme.md, (Symlink to file)" [ref=e1242]:
+                      - generic [ref=e1243]:
+                        - img [ref=e1244]
+                        - link "readme.md, (Symlink to file)" [ref=e1249] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/readme.md
+                          - text: readme.md
+                    - cell "Monorepo (#5341)" [ref=e1250]:
+                      - generic [ref=e1252]:
+                        - link "Monorepo (" [ref=e1253] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/b1c4f3aec4ca2d51b0ed849914cc8fc97805740a
+                        - link "#5341" [ref=e1254] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/5341
+                        - link ")" [ref=e1255] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/b1c4f3aec4ca2d51b0ed849914cc8fc97805740a
+                    - cell "Sep 30, 20188 years ago" [ref=e1256]:
+                      - generic [ref=e1257]: Sep 30, 20188 years ago
+                  - 'row "release.js, (File) chore: update labels in workflows/templates (#63713) Apr 17, 20242 years ago" [ref=e1258]':
+                    - cell "release.js, (File)" [ref=e1259]:
+                      - generic [ref=e1260]:
+                        - img [ref=e1261]
+                        - link "release.js, (File)" [ref=e1266] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/release.js
+                          - text: release.js
+                    - 'cell "chore: update labels in workflows/templates (#63713)" [ref=e1267]':
+                      - generic [ref=e1269]:
+                        - 'link "chore: update labels in workflows/templates (" [ref=e1270] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/6a9a39205936396166ec0d0d643409d1073abe82
+                        - link "#63713" [ref=e1271] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/63713
+                        - link ")" [ref=e1272] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/6a9a39205936396166ec0d0d643409d1073abe82
+                    - cell "Apr 17, 20242 years ago" [ref=e1273]:
+                      - generic [ref=e1274]: Apr 17, 20242 years ago
+                  - row "run-evals.js, (File) Add PPR evals and fix env loading for agent-eval 0.9.5 (#92063) Mar 31, 20262 weeks ago" [ref=e1275]:
+                    - cell "run-evals.js, (File)" [ref=e1276]:
+                      - generic [ref=e1277]:
+                        - img [ref=e1278]
+                        - link "run-evals.js, (File)" [ref=e1283] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/run-evals.js
+                          - text: run-evals.js
+                    - cell "Add PPR evals and fix env loading for agent-eval 0.9.5 (#92063)" [ref=e1284]:
+                      - generic [ref=e1286]:
+                        - link "Add PPR evals and fix env loading for agent-eval 0.9.5 (" [ref=e1287] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/d6ff2197d91fe6716c48ea80aecaaa89f396edaa
+                        - link "#92063" [ref=e1288] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92063
+                        - link ")" [ref=e1289] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/d6ff2197d91fe6716c48ea80aecaaa89f396edaa
+                    - cell "Mar 31, 20262 weeks ago" [ref=e1290]:
+                      - generic [ref=e1291]: Mar 31, 20262 weeks ago
+                  - row "run-tests.js, (File) [ci] Cache passing test results so CI retries skip them (#92832) Apr 16, 202617 hours ago" [ref=e1292]:
+                    - cell "run-tests.js, (File)" [ref=e1293]:
+                      - generic [ref=e1294]:
+                        - img [ref=e1295]
+                        - link "run-tests.js, (File)" [ref=e1300] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/run-tests.js
+                          - text: run-tests.js
+                    - cell "[ci] Cache passing test results so CI retries skip them (#92832)" [ref=e1301]:
+                      - generic [ref=e1303]:
+                        - link "[ci] Cache passing test results so CI retries skip them (" [ref=e1304] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/7c966537d753694ab26cdfebc42b90df1546847c
+                        - link "#92832" [ref=e1305] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92832
+                        - link ")" [ref=e1306] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/7c966537d753694ab26cdfebc42b90df1546847c
+                    - cell "Apr 16, 202617 hours ago" [ref=e1307]:
+                      - generic [ref=e1308]: Apr 16, 202617 hours ago
+                  - row "rust-toolchain.toml, (File) Update Rust toolchain to nightly-2026-04-02 (#92288) Apr 3, 20262 weeks ago" [ref=e1309]:
+                    - cell "rust-toolchain.toml, (File)" [ref=e1310]:
+                      - generic [ref=e1311]:
+                        - img [ref=e1312]
+                        - link "rust-toolchain.toml, (File)" [ref=e1317] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/rust-toolchain.toml
+                          - text: rust-toolchain.toml
+                    - cell "Update Rust toolchain to nightly-2026-04-02 (#92288)" [ref=e1318]:
+                      - generic [ref=e1320]:
+                        - link "Update Rust toolchain to nightly-2026-04-02 (" [ref=e1321] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/d6906eabd6a4d95570d9a22cf4f8fdf6e5096a1a
+                        - link "#92288" [ref=e1322] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92288
+                        - link ")" [ref=e1323] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/d6906eabd6a4d95570d9a22cf4f8fdf6e5096a1a
+                    - cell "Apr 3, 20262 weeks ago" [ref=e1324]:
+                      - generic [ref=e1325]: Apr 3, 20262 weeks ago
+                  - row "sgconfig.yml, (File) Add ast-grep GitHub Action (#68540) Aug 5, 20242 years ago" [ref=e1326]:
+                    - cell "sgconfig.yml, (File)" [ref=e1327]:
+                      - generic [ref=e1328]:
+                        - img [ref=e1329]
+                        - link "sgconfig.yml, (File)" [ref=e1334] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/sgconfig.yml
+                          - text: sgconfig.yml
+                    - cell "Add ast-grep GitHub Action (#68540)" [ref=e1335]:
+                      - generic [ref=e1337]:
+                        - link "Add ast-grep GitHub Action (" [ref=e1338] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/5628c26e3e1fff4884a67e5be418fa3a3d48bd5c
+                        - link "#68540" [ref=e1339] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/68540
+                        - link ")" [ref=e1340] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/5628c26e3e1fff4884a67e5be418fa3a3d48bd5c
+                    - cell "Aug 5, 20242 years ago" [ref=e1341]:
+                      - generic [ref=e1342]: Aug 5, 20242 years ago
+                  - row "socket.yaml, (File) Update Socket config (#68875) Aug 14, 20242 years ago" [ref=e1343]:
+                    - cell "socket.yaml, (File)" [ref=e1344]:
+                      - generic [ref=e1345]:
+                        - img [ref=e1346]
+                        - link "socket.yaml, (File)" [ref=e1351] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/socket.yaml
+                          - text: socket.yaml
+                    - cell "Update Socket config (#68875)" [ref=e1352]:
+                      - generic [ref=e1354]:
+                        - link "Update Socket config (" [ref=e1355] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/675ec38fd661992aa8f05a1be7fe03eae1ea1b46
+                        - link "#68875" [ref=e1356] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/68875
+                        - link ")" [ref=e1357] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/675ec38fd661992aa8f05a1be7fe03eae1ea1b46
+                    - cell "Aug 14, 20242 years ago" [ref=e1358]:
+                      - generic [ref=e1359]: Aug 14, 20242 years ago
+                  - row "test-file.txt, (File) Add additional file serving tests (#12479) May 4, 20206 years ago" [ref=e1360]:
+                    - cell "test-file.txt, (File)" [ref=e1361]:
+                      - generic [ref=e1362]:
+                        - img [ref=e1363]
+                        - link "test-file.txt, (File)" [ref=e1368] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/test-file.txt
+                          - text: test-file.txt
+                    - cell "Add additional file serving tests (#12479)" [ref=e1369]:
+                      - generic [ref=e1371]:
+                        - link "Add additional file serving tests (" [ref=e1372] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/00d930aae82e59dd2d4facd25af249c31c9933c5
+                        - link "#12479" [ref=e1373] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/12479
+                        - link ")" [ref=e1374] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/00d930aae82e59dd2d4facd25af249c31c9933c5
+                    - cell "May 4, 20206 years ago" [ref=e1375]:
+                      - generic [ref=e1376]: May 4, 20206 years ago
+                  - row "tsconfig-tsec.json, (File) Integrate tsec into the linting process (#33746) Feb 24, 20224 years ago" [ref=e1377]:
+                    - cell "tsconfig-tsec.json, (File)" [ref=e1378]:
+                      - generic [ref=e1379]:
+                        - img [ref=e1380]
+                        - link "tsconfig-tsec.json, (File)" [ref=e1385] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/tsconfig-tsec.json
+                          - text: tsconfig-tsec.json
+                    - cell "Integrate tsec into the linting process (#33746)" [ref=e1386]:
+                      - generic [ref=e1388]:
+                        - link "Integrate tsec into the linting process (" [ref=e1389] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/ce4923c65988dc83680587bb2315e95ec7ee83bd
+                        - link "#33746" [ref=e1390] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/33746
+                        - link ")" [ref=e1391] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/ce4923c65988dc83680587bb2315e95ec7ee83bd
+                    - cell "Feb 24, 20224 years ago" [ref=e1392]:
+                      - generic [ref=e1393]: Feb 24, 20224 years ago
+                  - 'row "tsconfig.json, (File) Replace deprecated moduleResolution: \"node\" (#92654) Apr 16, 202620 hours ago" [ref=e1394]':
+                    - cell "tsconfig.json, (File)" [ref=e1395]:
+                      - generic [ref=e1396]:
+                        - img [ref=e1397]
+                        - link "tsconfig.json, (File)" [ref=e1402] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/tsconfig.json
+                          - text: tsconfig.json
+                    - 'cell "Replace deprecated moduleResolution: \"node\" (#92654)" [ref=e1403]':
+                      - generic [ref=e1405]:
+                        - link "Replace deprecated" [ref=e1406] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/73e89d9f6c110ddbf2a2afda43af4e11247cbe68
+                        - code [ref=e1407]:
+                          - 'link "moduleResolution: \"node\"" [ref=e1408] [cursor=pointer]':
+                            - /url: /vercel/next.js/commit/73e89d9f6c110ddbf2a2afda43af4e11247cbe68
+                        - link "(" [ref=e1409] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/73e89d9f6c110ddbf2a2afda43af4e11247cbe68
+                        - link "#92654" [ref=e1410] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92654
+                        - link ")" [ref=e1411] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/73e89d9f6c110ddbf2a2afda43af4e11247cbe68
+                    - cell "Apr 16, 202620 hours ago" [ref=e1412]:
+                      - generic [ref=e1413]: Apr 16, 202620 hours ago
+                  - row "tsec-exemptions.json, (File) [dev-overlay] Move code into new top-level folder in src/next-devtools ( Jun 11, 202510 months ago" [ref=e1414]:
+                    - cell "tsec-exemptions.json, (File)" [ref=e1415]:
+                      - generic [ref=e1416]:
+                        - img [ref=e1417]
+                        - link "tsec-exemptions.json, (File)" [ref=e1422] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/tsec-exemptions.json
+                          - text: tsec-exemptions.json
+                    - cell "[dev-overlay] Move code into new top-level folder in src/next-devtools (" [ref=e1423]:
+                      - link "[dev-overlay] Move code into new top-level folder in src/next-devtools (" [ref=e1426] [cursor=pointer]:
+                        - /url: /vercel/next.js/commit/0d7b49b1ca3205cabc7524d6ce53c9a309e8f122
+                    - cell "Jun 11, 202510 months ago" [ref=e1427]:
+                      - generic [ref=e1428]: Jun 11, 202510 months ago
+                  - 'row "turbo.json, (File) test: use Turborepo pack task for test isolation (#92575) Apr 13, 20264 days ago" [ref=e1429]':
+                    - cell "turbo.json, (File)" [ref=e1430]:
+                      - generic [ref=e1431]:
+                        - img [ref=e1432]
+                        - link "turbo.json, (File)" [ref=e1437] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/turbo.json
+                          - text: turbo.json
+                    - 'cell "test: use Turborepo pack task for test isolation (#92575)" [ref=e1438]':
+                      - generic [ref=e1440]:
+                        - 'link "test: use Turborepo pack task for test isolation (" [ref=e1441] [cursor=pointer]':
+                          - /url: /vercel/next.js/commit/263dac30bf9c1735052c05679a99b46cfb9a84ad
+                        - link "#92575" [ref=e1442] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92575
+                        - link ")" [ref=e1443] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/263dac30bf9c1735052c05679a99b46cfb9a84ad
+                    - cell "Apr 13, 20264 days ago" [ref=e1444]:
+                      - generic [ref=e1445]: Apr 13, 20264 days ago
+                  - row "vercel.json, (File) Silence GH Comments for Preview URLs (#18766) Nov 3, 20206 years ago" [ref=e1446]:
+                    - cell "vercel.json, (File)" [ref=e1447]:
+                      - generic [ref=e1448]:
+                        - img [ref=e1449]
+                        - link "vercel.json, (File)" [ref=e1454] [cursor=pointer]:
+                          - /url: /vercel/next.js/blob/canary/vercel.json
+                          - text: vercel.json
+                    - cell "Silence GH Comments for Preview URLs (#18766)" [ref=e1455]:
+                      - generic [ref=e1457]:
+                        - link "Silence GH Comments for Preview URLs (" [ref=e1458] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/7e51b29c23e405c4b15add8026086d83d8431d9b
+                        - link "#18766" [ref=e1459] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/18766
+                        - link ")" [ref=e1460] [cursor=pointer]:
+                          - /url: /vercel/next.js/commit/7e51b29c23e405c4b15add8026086d83d8431d9b
+                    - cell "Nov 3, 20206 years ago" [ref=e1461]:
+                      - generic [ref=e1462]: Nov 3, 20206 years ago
+            - generic [ref=e1464]:
+              - generic [ref=e1465]:
+                - heading "Repository files navigation" [level=2] [ref=e1466]
+                - navigation "Repository files" [ref=e1467]:
+                  - list [ref=e1468]:
+                    - listitem [ref=e1469]:
+                      - link "README" [ref=e1470] [cursor=pointer]:
+                        - /url: "#"
+                        - img [ref=e1472]
+                        - generic [ref=e1474]: README
+                    - listitem [ref=e1475]:
+                      - link "Code of conduct" [ref=e1476] [cursor=pointer]:
+                        - /url: "#"
+                        - img [ref=e1478]
+                        - generic [ref=e1480]: Code of conduct
+                    - listitem [ref=e1481]:
+                      - link "Contributing" [ref=e1482] [cursor=pointer]:
+                        - /url: "#"
+                        - img [ref=e1484]
+                        - generic [ref=e1486]: Contributing
+                    - listitem [ref=e1487]:
+                      - link "MIT license" [ref=e1488] [cursor=pointer]:
+                        - /url: "#"
+                        - img [ref=e1490]
+                        - generic [ref=e1492]: MIT license
+                    - listitem [ref=e1493]:
+                      - link "Security" [ref=e1494] [cursor=pointer]:
+                        - /url: "#"
+                        - img [ref=e1496]
+                        - generic [ref=e1498]: Security
+                - button "Outline" [ref=e1499] [cursor=pointer]:
+                  - img [ref=e1500]
+              - article [ref=e1503]:
+                - generic [ref=e1504]:
+                  - link "Next.js logo" [ref=e1505] [cursor=pointer]:
+                    - /url: https://nextjs.org
+                    - img "Next.js logo" [ref=e1508]
+                  - generic [ref=e1509]:
+                    - heading "Next.js" [level=1] [ref=e1510]
+                    - 'link "Permalink: Next.js" [ref=e1511] [cursor=pointer]':
+                      - /url: "#nextjs"
+                      - img [ref=e1512]
+                  - paragraph [ref=e1514]:
+                    - link "Vercel logo" [ref=e1515] [cursor=pointer]:
+                      - /url: https://vercel.com
+                      - img "Vercel logo" [ref=e1516]
+                    - link "NPM version" [ref=e1517] [cursor=pointer]:
+                      - /url: https://www.npmjs.com/package/next
+                      - img "NPM version" [ref=e1518]
+                    - link "License" [ref=e1519] [cursor=pointer]:
+                      - /url: https://github.com/vercel/next.js/blob/canary/license.md
+                      - img "License" [ref=e1520]
+                    - link "Join the community on GitHub" [ref=e1521] [cursor=pointer]:
+                      - /url: https://github.com/vercel/next.js/discussions
+                      - img "Join the community on GitHub" [ref=e1522]
+                - generic [ref=e1523]:
+                  - heading "Getting Started" [level=2] [ref=e1524]
+                  - 'link "Permalink: Getting Started" [ref=e1525] [cursor=pointer]':
+                    - /url: "#getting-started"
+                    - img [ref=e1526]
+                - paragraph [ref=e1528]: Used by some of the world's largest companies, Next.js enables you to create full-stack web applications by extending the latest React features, and integrating powerful Rust-based JavaScript tooling for the fastest builds.
+                - list [ref=e1529]:
+                  - listitem [ref=e1530]:
+                    - text: Visit our
+                    - link "Learn Next.js" [ref=e1531] [cursor=pointer]:
+                      - /url: https://nextjs.org/learn
+                    - text: course to get started with Next.js.
+                  - listitem [ref=e1532]:
+                    - text: Visit the
+                    - link "Next.js Showcase" [ref=e1533] [cursor=pointer]:
+                      - /url: https://nextjs.org/showcase
+                    - text: to see more sites built with Next.js.
+                - generic [ref=e1534]:
+                  - heading "Documentation" [level=2] [ref=e1535]
+                  - 'link "Permalink: Documentation" [ref=e1536] [cursor=pointer]':
+                    - /url: "#documentation"
+                    - img [ref=e1537]
+                - paragraph [ref=e1539]:
+                  - text: Visit
+                  - link "https://nextjs.org/docs" [ref=e1540] [cursor=pointer]:
+                    - /url: https://nextjs.org/docs
+                  - text: to view the full documentation.
+                - generic [ref=e1541]:
+                  - heading "Community" [level=2] [ref=e1542]
+                  - 'link "Permalink: Community" [ref=e1543] [cursor=pointer]':
+                    - /url: "#community"
+                    - img [ref=e1544]
+                - paragraph [ref=e1546]:
+                  - text: The Next.js community can be found on
+                  - link "GitHub Discussions" [ref=e1547] [cursor=pointer]:
+                    - /url: https://github.com/vercel/next.js/discussions
+                  - text: where you can ask questions, voice ideas, and share your projects with other people.
+                - paragraph [ref=e1548]:
+                  - text: To chat with other community members you can join the Next.js
+                  - link "Discord" [ref=e1549] [cursor=pointer]:
+                    - /url: https://nextjs.org/discord
+                  - text: server.
+                - paragraph [ref=e1550]:
+                  - text: Do note that our
+                  - link "Code of Conduct" [ref=e1551] [cursor=pointer]:
+                    - /url: https://github.com/vercel/next.js/blob/canary/CODE_OF_CONDUCT.md
+                  - text: applies to all Next.js community channels. Users are
+                  - strong [ref=e1552]: highly encouraged
+                  - text: to read and adhere to it to avoid repercussions.
+                - generic [ref=e1553]:
+                  - heading "Contributing" [level=2] [ref=e1554]
+                  - 'link "Permalink: Contributing" [ref=e1555] [cursor=pointer]':
+                    - /url: "#contributing"
+                    - img [ref=e1556]
+                - paragraph [ref=e1558]:
+                  - text: Contributions to Next.js are welcome and highly appreciated. However, before you jump right into it, we would like you to review our
+                  - link "Contribution Guidelines" [ref=e1559] [cursor=pointer]:
+                    - /url: /vercel/next.js/blob/canary/contributing.md
+                  - text: to make sure you have a smooth experience contributing to Next.js.
+                - generic [ref=e1560]:
+                  - heading "Good First Issues:" [level=3] [ref=e1561]
+                  - 'link "Permalink: Good First Issues:" [ref=e1562] [cursor=pointer]':
+                    - /url: "#good-first-issues"
+                    - img [ref=e1563]
+                - paragraph [ref=e1565]:
+                  - text: We have a list of
+                  - strong [ref=e1566]:
+                    - link "good first issues" [ref=e1567] [cursor=pointer]:
+                      - /url: https://github.com/vercel/next.js/labels/good%20first%20issue
+                  - text: that contain bugs that have a relatively limited scope. This is a great place for newcomers and beginners alike to get started, gain experience, and get familiar with our contribution process.
+                - separator [ref=e1568]
+                - generic [ref=e1569]:
+                  - heading "Security" [level=2] [ref=e1570]
+                  - 'link "Permalink: Security" [ref=e1571] [cursor=pointer]':
+                    - /url: "#security"
+                    - img [ref=e1572]
+                - paragraph [ref=e1574]:
+                  - text: If you believe you have found a security vulnerability in Next.js, we encourage you to
+                  - strong [ref=e1575]:
+                    - emphasis [ref=e1576]: responsibly disclose this and NOT open a public issue
+                  - text: .
+                - paragraph [ref=e1577]:
+                  - text: To participate in our Open Source Software Bug Bounty program, please email
+                  - link "responsible.disclosure@vercel.com" [ref=e1578] [cursor=pointer]:
+                    - /url: mailto:responsible.disclosure@vercel.com
+                  - text: . We will add you to the program and provide further instructions for submitting your report.
+        - generic [ref=e1582]:
+          - generic [ref=e1585]:
+            - heading "About" [level=2] [ref=e1586]
+            - paragraph [ref=e1587]: The React Framework
+            - generic [ref=e1588]:
+              - img [ref=e1589]
+              - link "nextjs.org" [ref=e1592] [cursor=pointer]:
+                - /url: https://nextjs.org
+            - heading "Topics" [level=3] [ref=e1593]
+            - generic [ref=e1595]:
+              - link "react" [ref=e1596] [cursor=pointer]:
+                - /url: /topics/react
+              - link "blog" [ref=e1597] [cursor=pointer]:
+                - /url: /topics/blog
+              - link "static-site-generator" [ref=e1598] [cursor=pointer]:
+                - /url: /topics/static-site-generator
+              - link "components" [ref=e1599] [cursor=pointer]:
+                - /url: /topics/components
+              - link "node" [ref=e1600] [cursor=pointer]:
+                - /url: /topics/node
+              - link "browser" [ref=e1601] [cursor=pointer]:
+                - /url: /topics/browser
+              - link "compiler" [ref=e1602] [cursor=pointer]:
+                - /url: /topics/compiler
+              - link "universal" [ref=e1603] [cursor=pointer]:
+                - /url: /topics/universal
+              - link "nextjs" [ref=e1604] [cursor=pointer]:
+                - /url: /topics/nextjs
+              - link "static" [ref=e1605] [cursor=pointer]:
+                - /url: /topics/static
+              - link "server-rendering" [ref=e1606] [cursor=pointer]:
+                - /url: /topics/server-rendering
+              - link "hybrid" [ref=e1607] [cursor=pointer]:
+                - /url: /topics/hybrid
+              - link "ssg" [ref=e1608] [cursor=pointer]:
+                - /url: /topics/ssg
+              - link "vercel" [ref=e1609] [cursor=pointer]:
+                - /url: /topics/vercel
+            - heading "Resources" [level=3] [ref=e1610]
+            - link "Readme" [ref=e1612] [cursor=pointer]:
+              - /url: "#readme-ov-file"
+              - img [ref=e1613]
+              - text: Readme
+            - heading "License" [level=3] [ref=e1615]
+            - link "MIT license" [ref=e1617] [cursor=pointer]:
+              - /url: "#MIT-1-ov-file"
+              - img [ref=e1618]
+              - text: MIT license
+            - heading "Code of conduct" [level=3] [ref=e1620]
+            - link "Code of conduct" [ref=e1622] [cursor=pointer]:
+              - /url: "#coc-ov-file"
+              - img [ref=e1623]
+              - text: Code of conduct
+            - heading "Contributing" [level=3] [ref=e1625]
+            - link "Contributing" [ref=e1627] [cursor=pointer]:
+              - /url: "#contributing-ov-file"
+              - img [ref=e1628]
+              - text: Contributing
+            - heading "Security policy" [level=3] [ref=e1630]
+            - link "Security policy" [ref=e1632] [cursor=pointer]:
+              - /url: "#security-ov-file"
+              - img [ref=e1633]
+              - text: Security policy
+            - link "Activity" [ref=e1636] [cursor=pointer]:
+              - /url: /vercel/next.js/activity
+              - img [ref=e1637]
+              - text: Activity
+            - link "Custom properties" [ref=e1640] [cursor=pointer]:
+              - /url: /vercel/next.js/custom-properties
+              - img [ref=e1641]
+              - text: Custom properties
+            - heading "Stars" [level=3] [ref=e1643]
+            - link "139k stars" [ref=e1645] [cursor=pointer]:
+              - /url: /vercel/next.js/stargazers
+              - img [ref=e1646]
+              - strong [ref=e1648]: 139k
+              - text: stars
+            - heading "Watchers" [level=3] [ref=e1649]
+            - link "1.5k watching" [ref=e1651] [cursor=pointer]:
+              - /url: /vercel/next.js/watchers
+              - img [ref=e1652]
+              - strong [ref=e1654]: 1.5k
+              - text: watching
+            - heading "Forks" [level=3] [ref=e1655]
+            - link "30.9k forks" [ref=e1657] [cursor=pointer]:
+              - /url: /vercel/next.js/forks
+              - img [ref=e1658]
+              - strong [ref=e1660]: 30.9k
+              - text: forks
+            - link "Report repository" [ref=e1662] [cursor=pointer]:
+              - /url: /contact/report-content?content_url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js&report=vercel+%28user%29
+          - generic [ref=e1664]:
+            - heading "Releases 3,659" [level=2] [ref=e1665]:
+              - link "Releases 3,659" [ref=e1666] [cursor=pointer]:
+                - /url: /vercel/next.js/releases
+                - text: Releases
+                - generic "3,659" [ref=e1667]
+            - link "v16.2.4 Latest Apr 15, 20262 days ago" [ref=e1668] [cursor=pointer]:
+              - /url: /vercel/next.js/releases/tag/v16.2.4
+              - img [ref=e1669]
+              - generic [ref=e1671]:
+                - generic [ref=e1672]:
+                  - generic [ref=e1673]: v16.2.4
+                  - 'generic "Label: Latest" [ref=e1674]': Latest
+                - generic [ref=e1675]: Apr 15, 20262 days ago
+            - link "+ 3,658 releases" [ref=e1677] [cursor=pointer]:
+              - /url: /vercel/next.js/releases
+          - generic [ref=e1679]:
+            - heading "Contributors 3,806" [level=2] [ref=e1680]:
+              - link "Contributors 3,806" [ref=e1681] [cursor=pointer]:
+                - /url: /vercel/next.js/graphs/contributors
+                - text: Contributors
+                - generic "3,806" [ref=e1682]
+            - list [ref=e1683]:
+              - listitem [ref=e1684]:
+                - link "@ijjk" [ref=e1685] [cursor=pointer]:
+                  - /url: https://github.com/ijjk
+                  - img "@ijjk" [ref=e1686]
+              - listitem [ref=e1687]:
+                - link "@timneutkens" [ref=e1688] [cursor=pointer]:
+                  - /url: https://github.com/timneutkens
+                  - img "@timneutkens" [ref=e1689]
+              - listitem [ref=e1690]:
+                - link "@sokra" [ref=e1691] [cursor=pointer]:
+                  - /url: https://github.com/sokra
+                  - img "@sokra" [ref=e1692]
+              - listitem [ref=e1693]:
+                - link "@vercel-release-bot" [ref=e1694] [cursor=pointer]:
+                  - /url: https://github.com/vercel-release-bot
+                  - img "@vercel-release-bot" [ref=e1695]
+              - listitem [ref=e1696]:
+                - link "@huozhi" [ref=e1697] [cursor=pointer]:
+                  - /url: https://github.com/huozhi
+                  - img "@huozhi" [ref=e1698]
+              - listitem [ref=e1699]:
+                - link "@Timer" [ref=e1700] [cursor=pointer]:
+                  - /url: https://github.com/Timer
+                  - img "@Timer" [ref=e1701]
+              - listitem [ref=e1702]:
+                - link "@ztanner" [ref=e1703] [cursor=pointer]:
+                  - /url: https://github.com/ztanner
+                  - img "@ztanner" [ref=e1704]
+              - listitem [ref=e1705]:
+                - link "@styfle" [ref=e1706] [cursor=pointer]:
+                  - /url: https://github.com/styfle
+                  - img "@styfle" [ref=e1707]
+              - listitem [ref=e1708]:
+                - link "@eps1lon" [ref=e1709] [cursor=pointer]:
+                  - /url: https://github.com/eps1lon
+                  - img "@eps1lon" [ref=e1710]
+              - listitem [ref=e1711]:
+                - link "@kdy1" [ref=e1712] [cursor=pointer]:
+                  - /url: https://github.com/kdy1
+                  - img "@kdy1" [ref=e1713]
+              - listitem [ref=e1714]:
+                - link "@shuding" [ref=e1715] [cursor=pointer]:
+                  - /url: https://github.com/shuding
+                  - img "@shuding" [ref=e1716]
+              - listitem [ref=e1717]:
+                - link "@mischnic" [ref=e1718] [cursor=pointer]:
+                  - /url: https://github.com/mischnic
+                  - img "@mischnic" [ref=e1719]
+              - listitem [ref=e1720]:
+                - link "@nextjs-bot" [ref=e1721] [cursor=pointer]:
+                  - /url: https://github.com/nextjs-bot
+                  - img "@nextjs-bot" [ref=e1722]
+              - listitem [ref=e1723]:
+                - link "@leerob" [ref=e1724] [cursor=pointer]:
+                  - /url: https://github.com/leerob
+                  - img "@leerob" [ref=e1725]
+            - link "+ 3,792 contributors" [ref=e1727] [cursor=pointer]:
+              - /url: /vercel/next.js/graphs/contributors
+          - generic [ref=e1729]:
+            - heading "Languages" [level=2] [ref=e1730]
+            - list [ref=e1738]:
+              - listitem [ref=e1739]:
+                - link "JavaScript 54.6%" [ref=e1740] [cursor=pointer]:
+                  - /url: /vercel/next.js/search?l=javascript
+                  - img [ref=e1741]
+                  - generic [ref=e1743]: JavaScript
+                  - generic [ref=e1744]: 54.6%
+              - listitem [ref=e1745]:
+                - link "TypeScript 30.7%" [ref=e1746] [cursor=pointer]:
+                  - /url: /vercel/next.js/search?l=typescript
+                  - img [ref=e1747]
+                  - generic [ref=e1749]: TypeScript
+                  - generic [ref=e1750]: 30.7%
+              - listitem [ref=e1751]:
+                - link "Rust 13.4%" [ref=e1752] [cursor=pointer]:
+                  - /url: /vercel/next.js/search?l=rust
+                  - img [ref=e1753]
+                  - generic [ref=e1755]: Rust
+                  - generic [ref=e1756]: 13.4%
+              - listitem [ref=e1757]:
+                - link "CSS 0.8%" [ref=e1758] [cursor=pointer]:
+                  - /url: /vercel/next.js/search?l=css
+                  - img [ref=e1759]
+                  - generic [ref=e1761]: CSS
+                  - generic [ref=e1762]: 0.8%
+              - listitem [ref=e1763]:
+                - link "MDX 0.5%" [ref=e1764] [cursor=pointer]:
+                  - /url: /vercel/next.js/search?l=mdx
+                  - img [ref=e1765]
+                  - generic [ref=e1767]: MDX
+                  - generic [ref=e1768]: 0.5%
+              - listitem [ref=e1769]:
+                - link "Shell 0.0%" [ref=e1770] [cursor=pointer]:
+                  - /url: /vercel/next.js/search?l=shell
+                  - img [ref=e1771]
+                  - generic [ref=e1773]: Shell
+                  - generic [ref=e1774]: 0.0%
+  - contentinfo [ref=e1776]:
+    - heading "Footer" [level=2] [ref=e1777]
+    - generic [ref=e1778]:
+      - generic [ref=e1779]:
+        - link "GitHub Homepage" [ref=e1780] [cursor=pointer]:
+          - /url: https://github.com
+          - img [ref=e1781]
+        - generic [ref=e1783]: © 2026 GitHub, Inc.
+      - navigation "Footer" [ref=e1784]:
+        - heading "Footer navigation" [level=3] [ref=e1785]
+        - list "Footer navigation" [ref=e1786]:
+          - listitem [ref=e1787]:
+            - link "Terms" [ref=e1788] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/github-terms/github-terms-of-service
+          - listitem [ref=e1789]:
+            - link "Privacy" [ref=e1790] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/privacy-policies/github-privacy-statement
+          - listitem [ref=e1791]:
+            - link "Security" [ref=e1792] [cursor=pointer]:
+              - /url: https://github.com/security
+          - listitem [ref=e1793]:
+            - link "Status" [ref=e1794] [cursor=pointer]:
+              - /url: https://www.githubstatus.com/
+          - listitem [ref=e1795]:
+            - link "Community" [ref=e1796] [cursor=pointer]:
+              - /url: https://github.community/
+          - listitem [ref=e1797]:
+            - link "Docs" [ref=e1798] [cursor=pointer]:
+              - /url: https://docs.github.com/
+          - listitem [ref=e1799]:
+            - link "Contact" [ref=e1800] [cursor=pointer]:
+              - /url: https://support.github.com?tags=dotcom-footer
+          - listitem [ref=e1801]:
+            - button "Manage cookies" [ref=e1803] [cursor=pointer]
+          - listitem [ref=e1804]:
+            - button "Do not share my personal information" [ref=e1806] [cursor=pointer]

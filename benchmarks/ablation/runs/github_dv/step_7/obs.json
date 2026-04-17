@@ -1,0 +1,18 @@
+{
+  "step": 7,
+  "obs_type": "delta",
+  "transition": "delta",
+  "diff_ratio": 0.2938,
+  "crops": [{"index": 0, "bbox": [0, 0, 1200, 640]}, {"index": 1, "bbox": [613, 621, 39, 19]}],
+  "action": "scroll",
+  "action_label": "scroll down 800px on issue #92877",
+  "reasoning": "DELTA obs (scroll_bypass). From thumbnail+crop_0_after: still in issue body content showing environment info. Labels: Instrumentation, Turbopack, bug. Need more scrolling to reach comments section.",
+  "t0_path": "benchmarks/ablation/runs/github_dv/step_6/t1.png",
+  "t1_path": "benchmarks/ablation/runs/github_dv/step_7/t1.png",
+  "url": "https://github.com/vercel/next.js/issues/92877",
+  "step_ff_tokens": 1600,
+  "step_dv_tokens": 420,
+  "ff_tokens_cumul": 12800,
+  "dv_tokens_cumul": 10420,
+  "done": false
+}

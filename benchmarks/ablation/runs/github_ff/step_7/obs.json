@@ -1,0 +1,18 @@
+{
+  "step": 7,
+  "obs_type": "full_frame",
+  "transition": "full_frame",
+  "diff_ratio": null,
+  "crops": [],
+  "action": "navigate to https://github.com/vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc",
+  "action_label": "view merged PRs sorted by most recently updated",
+  "reasoning": "Full screenshot shows merged PRs list. Top result: 'Redesign blocking route dev overlay and build errors' #92638 by aurorascharff, merged 11 minutes ago. This is the most recently merged PR.",
+  "t0_path": "step_6/t1.png",
+  "t1_path": "step_7/t1.png",
+  "url": "https://github.com/vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc",
+  "step_ff_tokens": 1600,
+  "step_dv_tokens": 1600,
+  "ff_tokens_cumul": 11200,
+  "dv_tokens_cumul": 11200,
+  "done": false
+}

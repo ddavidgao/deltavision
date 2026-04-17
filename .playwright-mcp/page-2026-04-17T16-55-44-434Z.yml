@@ -1,0 +1,1328 @@
+- generic [ref=e2]:
+  - region
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner [ref=e6]:
+      - heading "Navigation Menu" [level=2] [ref=e7]
+      - generic [ref=e8]:
+        - link "Homepage" [ref=e10] [cursor=pointer]:
+          - /url: /
+          - img [ref=e11]
+        - generic [ref=e13]:
+          - navigation "Global" [ref=e16]:
+            - list [ref=e17]:
+              - listitem [ref=e18]:
+                - button "Platform" [ref=e20] [cursor=pointer]:
+                  - text: Platform
+                  - img [ref=e21]
+              - listitem [ref=e23]:
+                - button "Solutions" [ref=e25] [cursor=pointer]:
+                  - text: Solutions
+                  - img [ref=e26]
+              - listitem [ref=e28]:
+                - button "Resources" [ref=e30] [cursor=pointer]:
+                  - text: Resources
+                  - img [ref=e31]
+              - listitem [ref=e33]:
+                - button "Open Source" [ref=e35] [cursor=pointer]:
+                  - text: Open Source
+                  - img [ref=e36]
+              - listitem [ref=e38]:
+                - button "Enterprise" [ref=e40] [cursor=pointer]:
+                  - text: Enterprise
+                  - img [ref=e41]
+              - listitem [ref=e43]:
+                - link "Pricing" [ref=e44] [cursor=pointer]:
+                  - /url: https://github.com/pricing
+                  - generic [ref=e45]: Pricing
+          - generic [ref=e46]:
+            - button "Search or jump to…" [ref=e49] [cursor=pointer]:
+              - img [ref=e51]
+            - link "Sign in" [ref=e54] [cursor=pointer]:
+              - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Freleases
+            - link "Sign up" [ref=e55] [cursor=pointer]:
+              - /url: /signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E%2Freleases%2Findex&source=header-repo&source_repo=vercel%2Fnext.js
+            - button "Appearance settings" [ref=e58] [cursor=pointer]:
+              - img
+  - main [ref=e62]:
+    - generic [ref=e63]:
+      - generic [ref=e64]:
+        - generic [ref=e66]:
+          - img [ref=e67]
+          - link "vercel" [ref=e70] [cursor=pointer]:
+            - /url: /vercel
+          - generic [ref=e71]: /
+          - strong [ref=e72]:
+            - link "next.js" [ref=e73] [cursor=pointer]:
+              - /url: /vercel/next.js
+          - generic [ref=e74]: Public
+        - generic [ref=e75]:
+          - list:
+            - listitem [ref=e76]:
+              - link "You must be signed in to change notification settings" [ref=e77] [cursor=pointer]:
+                - /url: /login?return_to=%2Fvercel%2Fnext.js
+                - img [ref=e78]
+                - text: Notifications
+            - listitem [ref=e80]:
+              - link "Fork 30.9k" [ref=e81] [cursor=pointer]:
+                - /url: /login?return_to=%2Fvercel%2Fnext.js
+                - img [ref=e82]
+                - text: Fork
+                - generic "30,927" [ref=e84]: 30.9k
+            - listitem [ref=e85]:
+              - link "You must be signed in to star a repository" [ref=e87] [cursor=pointer]:
+                - /url: /login?return_to=%2Fvercel%2Fnext.js
+                - img [ref=e88]
+                - text: Star
+                - generic "138974 users starred this repository" [ref=e90]: 139k
+      - navigation "Repository" [ref=e91]:
+        - list [ref=e92]:
+          - listitem [ref=e93]:
+            - link "Code" [ref=e94] [cursor=pointer]:
+              - /url: /vercel/next.js
+              - img [ref=e95]
+              - generic [ref=e97]: Code
+          - listitem [ref=e98]:
+            - link "Issues 2.1k" [ref=e99] [cursor=pointer]:
+              - /url: /vercel/next.js/issues
+              - img [ref=e100]
+              - generic [ref=e103]: Issues
+              - generic "2,112" [ref=e104]: 2.1k
+          - listitem [ref=e105]:
+            - link "Pull requests 1.6k" [ref=e106] [cursor=pointer]:
+              - /url: /vercel/next.js/pulls
+              - img [ref=e107]
+              - generic [ref=e109]: Pull requests
+              - generic "1,646" [ref=e110]: 1.6k
+          - listitem [ref=e111]:
+            - link "Discussions" [ref=e112] [cursor=pointer]:
+              - /url: /vercel/next.js/discussions
+              - img [ref=e113]
+              - generic [ref=e115]: Discussions
+          - listitem [ref=e116]:
+            - link "Actions" [ref=e117] [cursor=pointer]:
+              - /url: /vercel/next.js/actions
+              - img [ref=e118]
+              - generic [ref=e120]: Actions
+          - listitem [ref=e121]:
+            - link "Security and quality 37" [ref=e122] [cursor=pointer]:
+              - /url: /vercel/next.js/security
+              - img [ref=e123]
+              - generic [ref=e125]: Security and quality
+              - generic "37" [ref=e126]
+          - listitem [ref=e127]:
+            - link "Insights" [ref=e128] [cursor=pointer]:
+              - /url: /vercel/next.js/pulse
+              - img [ref=e129]
+              - generic [ref=e131]: Insights
+    - generic [ref=e133]:
+      - 'heading "Releases: vercel/next.js" [level=1] [ref=e134]'
+      - generic [ref=e135]:
+        - generic [ref=e137]:
+          - navigation "Releases and Tags" [ref=e138]:
+            - link "Releases" [ref=e139] [cursor=pointer]:
+              - /url: /vercel/next.js/releases
+            - link "Tags" [ref=e140] [cursor=pointer]:
+              - /url: /vercel/next.js/tags
+          - generic [ref=e143]:
+            - searchbox "Find a release" [ref=e144]
+            - img
+        - generic [ref=e145]:
+          - region "v16.3.0-canary.0" [ref=e146]:
+            - heading "v16.3.0-canary.0" [level=2] [ref=e147]
+            - generic [ref=e148]:
+              - generic [ref=e149]:
+                - generic [ref=e150]: 17 Apr 16:09 46 minutes ago
+                - generic [ref=e151]:
+                  - img "@nextjs-bot" [ref=e152]
+                  - link "nextjs-bot" [ref=e153] [cursor=pointer]:
+                    - /url: /nextjs-bot
+                - link "Tag v16.3.0-canary.0" [ref=e155] [cursor=pointer]:
+                  - /url: /vercel/next.js/tree/v16.3.0-canary.0
+                  - generic [ref=e156]:
+                    - img "Tag" [ref=e157]
+                    - text: v16.3.0-canary.0
+                - link "Commit 430588c" [ref=e160] [cursor=pointer]:
+                  - /url: /vercel/next.js/commit/430588c22e63ec5d1473980a1b809a58e6336a70
+                  - img "Commit" [ref=e161]
+                  - code [ref=e163]: 430588c
+                - button "Compare" [ref=e167] [cursor=pointer]:
+                  - generic [ref=e168]:
+                    - generic [ref=e169]: Compare
+                    - generic:
+                      - img
+              - generic [ref=e171]:
+                - generic [ref=e172]:
+                  - generic [ref=e175]:
+                    - link "v16.3.0-canary.0" [ref=e177] [cursor=pointer]:
+                      - /url: /vercel/next.js/releases/tag/v16.3.0-canary.0
+                    - generic [ref=e179]: Pre-release
+                  - generic [ref=e180]:
+                    - heading "Core Changes" [level=3] [ref=e181]
+                    - list [ref=e182]:
+                      - listitem [ref=e183]:
+                        - text: "fix(next/image): ensure"
+                        - code [ref=e184]: images.maximumResponseBody
+                        - text: "applies to local images too:"
+                        - link "#92920" [ref=e185] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92920
+                      - listitem [ref=e186]:
+                        - text: "Refactor trace server sort to SortMode enum (execution order / value / name):"
+                        - link "#92873" [ref=e187] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92873
+                      - listitem [ref=e188]:
+                        - text: "Perf: Simplify static metadata handling:"
+                        - link "#92630" [ref=e189] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92630
+                      - listitem [ref=e190]:
+                        - text: remove flag guarding
+                        - code [ref=e191]: unstable_io
+                        - text: ":"
+                        - link "#92923" [ref=e192] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92923
+                    - heading "Misc Changes" [level=3] [ref=e193]
+                    - list [ref=e194]:
+                      - listitem [ref=e195]:
+                        - text: "[ci] Cache passing test results so CI retries skip them:"
+                        - link "#92832" [ref=e196] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92832
+                      - listitem [ref=e197]:
+                        - text: "fix accidental test duplication:"
+                        - link "#92922" [ref=e198] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92922
+                      - listitem [ref=e199]:
+                        - text: "rename MagicAny:"
+                        - link "#92918" [ref=e200] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92918
+                      - listitem [ref=e201]:
+                        - text: "turbopack: reduce EffectStateStorage memory by storing u128 content hashes:"
+                        - link "#92902" [ref=e202] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92902
+                      - listitem [ref=e203]:
+                        - text: "turbo-trace-server: reduce allocation overhead when loading large trace files:"
+                        - link "#92896" [ref=e204] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92896
+                      - listitem [ref=e205]:
+                        - text: "Turbopack: optimize SelfTimeTree performance, memory usage, and fix range query boundaries:"
+                        - link "#92931" [ref=e206] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92931
+                      - listitem [ref=e207]:
+                        - text: "[ci]: fix backport sync script:"
+                        - link "#92942" [ref=e208] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92942
+                    - heading "Credits" [level=3] [ref=e209]
+                    - paragraph [ref=e210]:
+                      - text: Huge thanks to
+                      - link "@styfle" [ref=e211] [cursor=pointer]:
+                        - /url: https://github.com/styfle
+                      - text: ","
+                      - link "@mmastrac" [ref=e212] [cursor=pointer]:
+                        - /url: https://github.com/mmastrac
+                      - text: ","
+                      - link "@ztanner" [ref=e213] [cursor=pointer]:
+                        - /url: https://github.com/ztanner
+                      - text: ","
+                      - link "@lukesandberg" [ref=e214] [cursor=pointer]:
+                        - /url: https://github.com/lukesandberg
+                      - text: ","
+                      - link "@sokra" [ref=e215] [cursor=pointer]:
+                        - /url: https://github.com/sokra
+                      - text: ","
+                      - link "@timneutkens" [ref=e216] [cursor=pointer]:
+                        - /url: https://github.com/timneutkens
+                      - text: ", and"
+                      - link "@gnoff" [ref=e217] [cursor=pointer]:
+                        - /url: https://github.com/gnoff
+                      - text: for helping!
+                - generic [ref=e218]:
+                  - generic [ref=e219]:
+                    - heading "Contributors" [level=3] [ref=e220]
+                    - list [ref=e221]:
+                      - listitem [ref=e222]:
+                        - link "@lukesandberg" [ref=e223] [cursor=pointer]:
+                          - /url: https://github.com/lukesandberg
+                          - img "@lukesandberg" [ref=e224]
+                      - listitem [ref=e225]:
+                        - link "@styfle" [ref=e226] [cursor=pointer]:
+                          - /url: https://github.com/styfle
+                          - img "@styfle" [ref=e227]
+                      - listitem [ref=e228]:
+                        - link "@mmastrac" [ref=e229] [cursor=pointer]:
+                          - /url: https://github.com/mmastrac
+                          - img "@mmastrac" [ref=e230]
+                      - listitem [ref=e231]:
+                        - link "@sokra" [ref=e232] [cursor=pointer]:
+                          - /url: https://github.com/sokra
+                          - img "@sokra" [ref=e233]
+                      - listitem [ref=e234]:
+                        - link "@ztanner" [ref=e235] [cursor=pointer]:
+                          - /url: https://github.com/ztanner
+                          - img "@ztanner" [ref=e236]
+                      - listitem [ref=e237]:
+                        - link "@gnoff" [ref=e238] [cursor=pointer]:
+                          - /url: https://github.com/gnoff
+                          - img "@gnoff" [ref=e239]
+                      - listitem [ref=e240]:
+                        - link "@timneutkens" [ref=e241] [cursor=pointer]:
+                          - /url: https://github.com/timneutkens
+                          - img "@timneutkens" [ref=e242]
+                    - generic [ref=e243]: lukesandberg, styfle, and 5 other contributors
+                  - group [ref=e246]:
+                    - button "Assets 2" [ref=e247] [cursor=pointer]:
+                      - generic [ref=e248]:
+                        - generic [ref=e249]: Assets
+                        - generic "2" [ref=e250]
+          - region "v16.2.1-canary.46" [ref=e252]:
+            - heading "v16.2.1-canary.46" [level=2] [ref=e253]
+            - generic [ref=e254]:
+              - generic [ref=e255]:
+                - generic [ref=e256]: 16 Apr 23:46 17 hours ago
+                - generic [ref=e257]:
+                  - img "@nextjs-bot" [ref=e258]
+                  - link "nextjs-bot" [ref=e259] [cursor=pointer]:
+                    - /url: /nextjs-bot
+                - link "Tag v16.2.1-canary.46" [ref=e261] [cursor=pointer]:
+                  - /url: /vercel/next.js/tree/v16.2.1-canary.46
+                  - generic [ref=e262]:
+                    - img "Tag" [ref=e263]
+                    - text: v16.2.1-canary.46
+                - link "Commit f81a147" [ref=e266] [cursor=pointer]:
+                  - /url: /vercel/next.js/commit/f81a1476938a9d8ce358ff023f38eff5b5346ee4
+                  - img "Commit" [ref=e267]
+                  - code [ref=e269]: f81a147
+                - button "Compare" [ref=e273] [cursor=pointer]:
+                  - generic [ref=e274]:
+                    - generic [ref=e275]: Compare
+                    - generic:
+                      - img
+              - generic [ref=e277]:
+                - generic [ref=e278]:
+                  - generic [ref=e281]:
+                    - link "v16.2.1-canary.46" [ref=e283] [cursor=pointer]:
+                      - /url: /vercel/next.js/releases/tag/v16.2.1-canary.46
+                    - generic [ref=e285]: Pre-release
+                  - generic [ref=e286]:
+                    - heading "Core Changes" [level=3] [ref=e287]
+                    - list [ref=e288]:
+                      - listitem [ref=e289]:
+                        - text: "Support type cast expressions in page static info extractor:"
+                        - link "#92837" [ref=e290] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92837
+                      - listitem [ref=e291]:
+                        - text: "Fix dev mode hydration failure when page is served from HTTP cache:"
+                        - link "#92892" [ref=e292] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92892
+                      - listitem [ref=e293]:
+                        - text: "[devtools] Preserve full code frames in browser overlay:"
+                        - link "#92621" [ref=e294] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92621
+                      - listitem [ref=e295]:
+                        - text: "Enable prefetchInlining by default:"
+                        - link "#92863" [ref=e296] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92863
+                      - listitem [ref=e297]:
+                        - text: Replace deprecated
+                        - code [ref=e298]: "moduleResolution: \"node\""
+                        - text: ":"
+                        - link "#92654" [ref=e299] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92654
+                    - heading "Misc Changes" [level=3] [ref=e300]
+                    - list [ref=e301]:
+                      - listitem [ref=e302]:
+                        - text: "turbo-tasks: add info_span for blocking waits during task restore:"
+                        - link "#92878" [ref=e303] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92878
+                      - listitem [ref=e304]:
+                        - text: "Turbopack: Use an async lock in the filesystem watcher:"
+                        - link "#92906" [ref=e305] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92906
+                      - listitem [ref=e306]:
+                        - text: "[ci] Skip Playwright system deps install on subsequent self-hosted runs:"
+                        - link "#92893" [ref=e307] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92893
+                      - listitem [ref=e308]:
+                        - text: "turbo-tasks: Reduce allocations on cache hits:"
+                        - link "#92756" [ref=e309] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92756
+                      - listitem [ref=e310]:
+                        - text: "CI: Remove dead yarn support from next-stats-action:"
+                        - link "#92587" [ref=e311] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92587
+                    - heading "Credits" [level=3] [ref=e312]
+                    - paragraph [ref=e313]:
+                      - text: Huge thanks to
+                      - link "@mischnic" [ref=e314] [cursor=pointer]:
+                        - /url: https://github.com/mischnic
+                      - text: ","
+                      - link "@sokra" [ref=e315] [cursor=pointer]:
+                        - /url: https://github.com/sokra
+                      - text: ","
+                      - link "@unstubbable" [ref=e316] [cursor=pointer]:
+                        - /url: https://github.com/unstubbable
+                      - text: ","
+                      - link "@aurorascharff" [ref=e317] [cursor=pointer]:
+                        - /url: https://github.com/aurorascharff
+                      - text: ","
+                      - link "@acdlite" [ref=e318] [cursor=pointer]:
+                        - /url: https://github.com/acdlite
+                      - text: ","
+                      - link "@bgw" [ref=e319] [cursor=pointer]:
+                        - /url: https://github.com/bgw
+                      - text: ","
+                      - link "@mmastrac" [ref=e320] [cursor=pointer]:
+                        - /url: https://github.com/mmastrac
+                      - text: ","
+                      - link "@eps1lon" [ref=e321] [cursor=pointer]:
+                        - /url: https://github.com/eps1lon
+                      - text: ", and"
+                      - link "@lukesandberg" [ref=e322] [cursor=pointer]:
+                        - /url: https://github.com/lukesandberg
+                      - text: for helping!
+                - generic [ref=e323]:
+                  - generic [ref=e324]:
+                    - heading "Contributors" [level=3] [ref=e325]
+                    - list [ref=e326]:
+                      - listitem [ref=e327]:
+                        - link "@bgw" [ref=e328] [cursor=pointer]:
+                          - /url: https://github.com/bgw
+                          - img "@bgw" [ref=e329]
+                      - listitem [ref=e330]:
+                        - link "@lukesandberg" [ref=e331] [cursor=pointer]:
+                          - /url: https://github.com/lukesandberg
+                          - img "@lukesandberg" [ref=e332]
+                      - listitem [ref=e333]:
+                        - link "@mmastrac" [ref=e334] [cursor=pointer]:
+                          - /url: https://github.com/mmastrac
+                          - img "@mmastrac" [ref=e335]
+                      - listitem [ref=e336]:
+                        - link "@unstubbable" [ref=e337] [cursor=pointer]:
+                          - /url: https://github.com/unstubbable
+                          - img "@unstubbable" [ref=e338]
+                      - listitem [ref=e339]:
+                        - link "@sokra" [ref=e340] [cursor=pointer]:
+                          - /url: https://github.com/sokra
+                          - img "@sokra" [ref=e341]
+                      - listitem [ref=e342]:
+                        - link "@acdlite" [ref=e343] [cursor=pointer]:
+                          - /url: https://github.com/acdlite
+                          - img "@acdlite" [ref=e344]
+                      - listitem [ref=e345]:
+                        - link "@mischnic" [ref=e346] [cursor=pointer]:
+                          - /url: https://github.com/mischnic
+                          - img "@mischnic" [ref=e347]
+                      - listitem [ref=e348]:
+                        - link "@eps1lon" [ref=e349] [cursor=pointer]:
+                          - /url: https://github.com/eps1lon
+                          - img "@eps1lon" [ref=e350]
+                      - listitem [ref=e351]:
+                        - link "@aurorascharff" [ref=e352] [cursor=pointer]:
+                          - /url: https://github.com/aurorascharff
+                          - img "@aurorascharff" [ref=e353]
+                    - generic [ref=e354]: bgw, lukesandberg, and 7 other contributors
+                  - group [ref=e357]:
+                    - button "Assets 2" [ref=e358] [cursor=pointer]:
+                      - generic [ref=e359]:
+                        - generic [ref=e360]: Assets
+                        - generic "2" [ref=e361]
+                  - generic [ref=e363]:
+                    - 'button "hooray (1): nextjs-bot, 11:29PM yesterday" [disabled] [ref=e366]':
+                      - generic [ref=e367]: 🎉
+                      - generic [ref=e368]: "1"
+                    - generic [ref=e369]: 1 person reacted
+          - region "v16.2.1-canary.45" [ref=e370]:
+            - heading "v16.2.1-canary.45" [level=2] [ref=e371]
+            - generic [ref=e372]:
+              - generic [ref=e373]:
+                - generic [ref=e374]: 16 Apr 12:06 yesterday
+                - generic [ref=e375]:
+                  - img "@nextjs-bot" [ref=e376]
+                  - link "nextjs-bot" [ref=e377] [cursor=pointer]:
+                    - /url: /nextjs-bot
+                - link "Tag v16.2.1-canary.45" [ref=e379] [cursor=pointer]:
+                  - /url: /vercel/next.js/tree/v16.2.1-canary.45
+                  - generic [ref=e380]:
+                    - img "Tag" [ref=e381]
+                    - text: v16.2.1-canary.45
+                - link "Commit 40a4e66" [ref=e384] [cursor=pointer]:
+                  - /url: /vercel/next.js/commit/40a4e666da38d02b6bbcce0492825fe1ea6529f8
+                  - img "Commit" [ref=e385]
+                  - code [ref=e387]: 40a4e66
+                - button "Compare" [ref=e391] [cursor=pointer]:
+                  - generic [ref=e392]:
+                    - generic [ref=e393]: Compare
+                    - generic:
+                      - img
+              - generic [ref=e395]:
+                - generic [ref=e396]:
+                  - generic [ref=e399]:
+                    - link "v16.2.1-canary.45" [ref=e401] [cursor=pointer]:
+                      - /url: /vercel/next.js/releases/tag/v16.2.1-canary.45
+                    - generic [ref=e403]: Pre-release
+                  - generic [ref=e404]:
+                    - heading "Core Changes" [level=3] [ref=e405]
+                    - list [ref=e406]:
+                      - listitem [ref=e407]:
+                        - text: "Allow overriding outputHashSalt in modifyConfig:"
+                        - link "#92856" [ref=e408] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92856
+                    - heading "Misc Changes" [level=3] [ref=e409]
+                    - list [ref=e410]:
+                      - listitem [ref=e411]:
+                        - text: "Turbopack: Use lld again on ARM64 glibc Linux:"
+                        - link "#92860" [ref=e412] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92860
+                      - listitem [ref=e413]:
+                        - text: "[ci]: add workflow to bump canary after backport:"
+                        - link "#92801" [ref=e414] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92801
+                      - listitem [ref=e415]:
+                        - text: "turbopack: cache TransformPlugin in narrow-scoped turbo-tasks functions:"
+                        - link "#92842" [ref=e416] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92842
+                    - heading "Credits" [level=3] [ref=e417]
+                    - paragraph [ref=e418]:
+                      - text: Huge thanks to
+                      - link "@bgw" [ref=e419] [cursor=pointer]:
+                        - /url: https://github.com/bgw
+                      - text: ","
+                      - link "@ztanner" [ref=e420] [cursor=pointer]:
+                        - /url: https://github.com/ztanner
+                      - text: ","
+                      - link "@sokra" [ref=e421] [cursor=pointer]:
+                        - /url: https://github.com/sokra
+                      - text: ", and"
+                      - link "@mischnic" [ref=e422] [cursor=pointer]:
+                        - /url: https://github.com/mischnic
+                      - text: for helping!
+                - generic [ref=e423]:
+                  - generic [ref=e424]:
+                    - heading "Contributors" [level=3] [ref=e425]
+                    - list [ref=e426]:
+                      - listitem [ref=e427]:
+                        - link "@bgw" [ref=e428] [cursor=pointer]:
+                          - /url: https://github.com/bgw
+                          - img "@bgw" [ref=e429]
+                      - listitem [ref=e430]:
+                        - link "@sokra" [ref=e431] [cursor=pointer]:
+                          - /url: https://github.com/sokra
+                          - img "@sokra" [ref=e432]
+                      - listitem [ref=e433]:
+                        - link "@ztanner" [ref=e434] [cursor=pointer]:
+                          - /url: https://github.com/ztanner
+                          - img "@ztanner" [ref=e435]
+                      - listitem [ref=e436]:
+                        - link "@mischnic" [ref=e437] [cursor=pointer]:
+                          - /url: https://github.com/mischnic
+                          - img "@mischnic" [ref=e438]
+                    - generic [ref=e439]: bgw, sokra, and 2 other contributors
+                  - group [ref=e442]:
+                    - button "Assets 2" [ref=e443] [cursor=pointer]:
+                      - generic [ref=e444]:
+                        - generic [ref=e445]: Assets
+                        - generic "2" [ref=e446]
+                  - generic [ref=e448]:
+                    - 'button "hooray (1): nextjs-bot, 11:49AM yesterday" [disabled] [ref=e451]':
+                      - generic [ref=e452]: 🎉
+                      - generic [ref=e453]: "1"
+                    - generic [ref=e454]: 1 person reacted
+          - region "v16.2.4" [ref=e455]:
+            - heading "v16.2.4" [level=2] [ref=e456]
+            - generic [ref=e457]:
+              - generic [ref=e458]:
+                - generic [ref=e459]: 15 Apr 22:35 2 days ago
+                - generic [ref=e460]:
+                  - img "@andrewimm" [ref=e461]
+                  - link "andrewimm" [ref=e462] [cursor=pointer]:
+                    - /url: /andrewimm
+                - link "Tag v16.2.4" [ref=e464] [cursor=pointer]:
+                  - /url: /vercel/next.js/tree/v16.2.4
+                  - generic [ref=e465]:
+                    - img "Tag" [ref=e466]
+                    - text: v16.2.4
+                - link "Commit 2275bd8" [ref=e469] [cursor=pointer]:
+                  - /url: /vercel/next.js/commit/2275bd8598c88e8652d1271e74bcf972f72f4f38
+                  - img "Commit" [ref=e470]
+                  - code [ref=e472]: 2275bd8
+                - button "Compare" [ref=e476] [cursor=pointer]:
+                  - generic [ref=e477]:
+                    - generic [ref=e478]: Compare
+                    - generic:
+                      - img
+              - generic [ref=e480]:
+                - generic [ref=e481]:
+                  - generic [ref=e484]:
+                    - link "v16.2.4" [ref=e486] [cursor=pointer]:
+                      - /url: /vercel/next.js/releases/tag/v16.2.4
+                    - link "Latest" [ref=e488] [cursor=pointer]:
+                      - /url: /vercel/next.js/releases/latest
+                      - generic [ref=e489]: Latest
+                  - generic [ref=e490]:
+                    - generic [ref=e491]:
+                      - paragraph [ref=e492]:
+                        - img [ref=e493]
+                        - text: Note
+                      - paragraph [ref=e495]:
+                        - text: This release is backporting bug fixes. It does
+                        - strong [ref=e496]: not
+                        - text: include all pending features/changes on canary.
+                    - heading "Core Changes" [level=3] [ref=e497]
+                    - list [ref=e498]:
+                      - listitem [ref=e499]:
+                        - text: "chore: Bump reqwest to 0.13.2 (Fixes Google Fonts with Turbopack for Windows on ARM64) ("
+                        - link "#92713" [ref=e500] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92713
+                        - text: )
+                      - listitem [ref=e501]:
+                        - text: "Turbopack: fix filesystem watcher config not applying follow_symlinks(false) ("
+                        - link "#92631" [ref=e502] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92631
+                        - text: )
+                      - listitem [ref=e503]:
+                        - text: Scope Safari ?ts= cache-buster to CSS/font assets only (Pages Router) (
+                        - link "#92580" [ref=e504] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92580
+                        - text: )
+                      - listitem [ref=e505]:
+                        - text: "Compiler: Support boolean and number primtives in next.config defines ("
+                        - link "#92731" [ref=e506] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92731
+                        - text: )
+                      - listitem [ref=e507]:
+                        - text: "turbo-tasks: Fix recomputation loop by allowing cell cleanup on error during recomputation ("
+                        - link "#92725" [ref=e508] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92725
+                        - text: )
+                      - listitem [ref=e509]:
+                        - text: "Turbopack: shorter error for ChunkGroupInfo::get_index_of ("
+                        - link "#92814" [ref=e510] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92814
+                        - text: )
+                      - listitem [ref=e511]:
+                        - text: "Turbopack: shorter error message for ModuleBatchesGraph::get_entry_index ("
+                        - link "#92828" [ref=e512] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92828
+                        - text: )
+                      - listitem [ref=e513]:
+                        - text: Adding more system info to the 'initialize project' trace (
+                        - link "#92427" [ref=e514] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92427
+                        - text: )
+                    - heading "Credits" [level=3] [ref=e515]
+                    - paragraph [ref=e516]:
+                      - text: Huge thanks to
+                      - link "@Badbird5907" [ref=e517] [cursor=pointer]:
+                        - /url: https://github.com/Badbird5907
+                      - text: ","
+                      - link "@lukesandberg" [ref=e518] [cursor=pointer]:
+                        - /url: https://github.com/lukesandberg
+                      - text: ","
+                      - link "@andrewimm" [ref=e519] [cursor=pointer]:
+                        - /url: https://github.com/andrewimm
+                      - text: ","
+                      - link "@sokra" [ref=e520] [cursor=pointer]:
+                        - /url: https://github.com/sokra
+                      - text: ", and"
+                      - link "@mischnic" [ref=e521] [cursor=pointer]:
+                        - /url: https://github.com/mischnic
+                      - text: for helping!
+                - generic [ref=e522]:
+                  - generic [ref=e523]:
+                    - heading "Contributors" [level=3] [ref=e524]
+                    - list [ref=e525]:
+                      - listitem [ref=e526]:
+                        - link "@lukesandberg" [ref=e527] [cursor=pointer]:
+                          - /url: https://github.com/lukesandberg
+                          - img "@lukesandberg" [ref=e528]
+                      - listitem [ref=e529]:
+                        - link "@andrewimm" [ref=e530] [cursor=pointer]:
+                          - /url: https://github.com/andrewimm
+                          - img "@andrewimm" [ref=e531]
+                      - listitem [ref=e532]:
+                        - link "@sokra" [ref=e533] [cursor=pointer]:
+                          - /url: https://github.com/sokra
+                          - img "@sokra" [ref=e534]
+                      - listitem [ref=e535]:
+                        - link "@mischnic" [ref=e536] [cursor=pointer]:
+                          - /url: https://github.com/mischnic
+                          - img "@mischnic" [ref=e537]
+                      - listitem [ref=e538]:
+                        - link "@Badbird5907" [ref=e539] [cursor=pointer]:
+                          - /url: https://github.com/Badbird5907
+                          - img "@Badbird5907" [ref=e540]
+                    - generic [ref=e541]: lukesandberg, andrewimm, and 3 other contributors
+                  - group [ref=e544]:
+                    - button "Assets 2" [expanded] [ref=e545] [cursor=pointer]:
+                      - generic [ref=e546]:
+                        - generic [ref=e547]: Assets
+                        - generic "2" [ref=e548]
+                    - generic [ref=e551]:
+                      - img [ref=e552]
+                      - generic [ref=e555]: Loading
+                  - generic [ref=e557]:
+                    - generic [ref=e559]:
+                      - 'button "thumbs up (4): andrewimm, 10:17PM on April 15" [disabled] [ref=e560]':
+                        - generic [ref=e561]: 👍
+                        - generic [ref=e562]: "4"
+                      - 'button "hooray (11): andrewimm, 10:17PM on April 15" [disabled] [ref=e563]':
+                        - generic [ref=e564]: 🎉
+                        - generic [ref=e565]: "11"
+                      - 'button "heart (2): andrewimm, 10:17PM on April 15" [disabled] [ref=e566]':
+                        - generic [ref=e567]: ❤️
+                        - generic [ref=e568]: "2"
+                      - 'button "rocket (3): andrewimm, 10:17PM on April 15" [disabled] [ref=e569]':
+                        - generic [ref=e570]: 🚀
+                        - generic [ref=e571]: "3"
+                    - generic [ref=e572]: 17 people reacted
+          - region "v16.2.1-canary.44" [ref=e573]:
+            - heading "v16.2.1-canary.44" [level=2] [ref=e574]
+            - generic [ref=e575]:
+              - generic [ref=e576]:
+                - generic [ref=e577]: 15 Apr 23:47 2 days ago
+                - generic [ref=e578]:
+                  - img "@nextjs-bot" [ref=e579]
+                  - link "nextjs-bot" [ref=e580] [cursor=pointer]:
+                    - /url: /nextjs-bot
+                - link "Tag v16.2.1-canary.44" [ref=e582] [cursor=pointer]:
+                  - /url: /vercel/next.js/tree/v16.2.1-canary.44
+                  - generic [ref=e583]:
+                    - img "Tag" [ref=e584]
+                    - text: v16.2.1-canary.44
+                - link "Commit 852c145" [ref=e587] [cursor=pointer]:
+                  - /url: /vercel/next.js/commit/852c145ba97345082158662d1d9f54b3194989e9
+                  - img "Commit" [ref=e588]
+                  - code [ref=e590]: 852c145
+                - button "Compare" [ref=e594] [cursor=pointer]:
+                  - generic [ref=e595]:
+                    - generic [ref=e596]: Compare
+                    - generic:
+                      - img
+              - generic [ref=e598]:
+                - generic [ref=e599]:
+                  - generic [ref=e602]:
+                    - link "v16.2.1-canary.44" [ref=e604] [cursor=pointer]:
+                      - /url: /vercel/next.js/releases/tag/v16.2.1-canary.44
+                    - generic [ref=e606]: Pre-release
+                  - generic [ref=e607]:
+                    - heading "Core Changes" [level=3] [ref=e608]
+                    - list [ref=e609]:
+                      - listitem [ref=e610]:
+                        - text: "fix(trace-server): default MCP port to --port + 1 to avoid conflicts:"
+                        - link "#92831" [ref=e611] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92831
+                      - listitem [ref=e612]:
+                        - text: "Revert \"Node.js streams: Add forkpoint for prerenderToStream\":"
+                        - link "#92845" [ref=e613] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92845
+                      - listitem [ref=e614]:
+                        - text: Warn for non-deterministic
+                        - code [ref=e615]: "\"use cache\""
+                        - text: "args during final prerender:"
+                        - link "#92820" [ref=e616] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92820
+                    - heading "Misc Changes" [level=3] [ref=e617]
+                    - list [ref=e618]:
+                      - listitem [ref=e619]:
+                        - text: "Share native binaries via GitHub artifacts:"
+                        - link "#92758" [ref=e620] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92758
+                      - listitem [ref=e621]:
+                        - text: "Turbopack: shorter error message for ModuleBatchesGraph::get_entry_index:"
+                        - link "#92828" [ref=e622] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92828
+                      - listitem [ref=e623]:
+                        - text: "Turbopack: refactor export analysis:"
+                        - link "#92781" [ref=e624] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92781
+                      - listitem [ref=e625]:
+                        - text: "[ci] Skip sccache on Windows runners:"
+                        - link "#92847" [ref=e626] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92847
+                      - listitem [ref=e627]:
+                        - text: "Turbopack: remove StarImportAnalyzer:"
+                        - link "#92830" [ref=e628] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92830
+                      - listitem [ref=e629]:
+                        - text: "Turbopack: analyzer improvement followups:"
+                        - link "#92834" [ref=e630] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92834
+                      - listitem [ref=e631]:
+                        - text: "Update Rspack production test manifest:"
+                        - link "#92674" [ref=e632] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92674
+                      - listitem [ref=e633]:
+                        - text: "Update Rspack development test manifest:"
+                        - link "#92673" [ref=e634] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92673
+                      - listitem [ref=e635]:
+                        - text: "Turbopack: move assignment_scopes computation into ImportMap:"
+                        - link "#92835" [ref=e636] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92835
+                      - listitem [ref=e637]:
+                        - text: "docs: restructure instant nav guide for clarity:"
+                        - link "#92684" [ref=e638] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92684
+                      - listitem [ref=e639]:
+                        - text: "docs: add documentation for no-typos ESLint rule:"
+                        - link "#92809" [ref=e640] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92809
+                    - heading "Credits" [level=3] [ref=e641]
+                    - paragraph [ref=e642]:
+                      - text: Huge thanks to
+                      - link "@mmastrac" [ref=e643] [cursor=pointer]:
+                        - /url: https://github.com/mmastrac
+                      - text: ","
+                      - link "@sokra" [ref=e644] [cursor=pointer]:
+                        - /url: https://github.com/sokra
+                      - text: ","
+                      - link "@mischnic" [ref=e645] [cursor=pointer]:
+                        - /url: https://github.com/mischnic
+                      - text: ","
+                      - link "@timneutkens" [ref=e646] [cursor=pointer]:
+                        - /url: https://github.com/timneutkens
+                      - text: ","
+                      - link "@vercel-release-bot" [ref=e647] [cursor=pointer]:
+                        - /url: https://github.com/vercel-release-bot
+                      - text: ","
+                      - link "@unstubbable" [ref=e648] [cursor=pointer]:
+                        - /url: https://github.com/unstubbable
+                      - text: ","
+                      - link "@icyJoseph" [ref=e649] [cursor=pointer]:
+                        - /url: https://github.com/icyJoseph
+                      - text: ", and"
+                      - link "@MukundaKatta" [ref=e650] [cursor=pointer]:
+                        - /url: https://github.com/MukundaKatta
+                      - text: for helping!
+                - generic [ref=e651]:
+                  - generic [ref=e652]:
+                    - heading "Contributors" [level=3] [ref=e653]
+                    - list [ref=e654]:
+                      - listitem [ref=e655]:
+                        - link "@mmastrac" [ref=e656] [cursor=pointer]:
+                          - /url: https://github.com/mmastrac
+                          - img "@mmastrac" [ref=e657]
+                      - listitem [ref=e658]:
+                        - link "@unstubbable" [ref=e659] [cursor=pointer]:
+                          - /url: https://github.com/unstubbable
+                          - img "@unstubbable" [ref=e660]
+                      - listitem [ref=e661]:
+                        - link "@sokra" [ref=e662] [cursor=pointer]:
+                          - /url: https://github.com/sokra
+                          - img "@sokra" [ref=e663]
+                      - listitem [ref=e664]:
+                        - link "@mischnic" [ref=e665] [cursor=pointer]:
+                          - /url: https://github.com/mischnic
+                          - img "@mischnic" [ref=e666]
+                      - listitem [ref=e667]:
+                        - link "@timneutkens" [ref=e668] [cursor=pointer]:
+                          - /url: https://github.com/timneutkens
+                          - img "@timneutkens" [ref=e669]
+                      - listitem [ref=e670]:
+                        - link "@icyJoseph" [ref=e671] [cursor=pointer]:
+                          - /url: https://github.com/icyJoseph
+                          - img "@icyJoseph" [ref=e672]
+                      - listitem [ref=e673]:
+                        - link "@vercel-release-bot" [ref=e674] [cursor=pointer]:
+                          - /url: https://github.com/vercel-release-bot
+                          - img "@vercel-release-bot" [ref=e675]
+                      - listitem [ref=e676]:
+                        - link "@MukundaKatta" [ref=e677] [cursor=pointer]:
+                          - /url: https://github.com/MukundaKatta
+                          - img "@MukundaKatta" [ref=e678]
+                    - generic [ref=e679]: mmastrac, unstubbable, and 6 other contributors
+                  - group [ref=e682]:
+                    - button "Assets 2" [ref=e683] [cursor=pointer]:
+                      - generic [ref=e684]:
+                        - generic [ref=e685]: Assets
+                        - generic "2" [ref=e686]
+                  - generic [ref=e688]:
+                    - 'button "hooray (1): nextjs-bot, 11:30PM on April 15" [disabled] [ref=e691]':
+                      - generic [ref=e692]: 🎉
+                      - generic [ref=e693]: "1"
+                    - generic [ref=e694]: 1 person reacted
+          - region "v16.2.1-canary.43" [ref=e695]:
+            - heading "v16.2.1-canary.43" [level=2] [ref=e696]
+            - generic [ref=e697]:
+              - generic [ref=e698]:
+                - generic [ref=e699]: 15 Apr 14:10 2 days ago
+                - generic [ref=e700]:
+                  - img "@nextjs-bot" [ref=e701]
+                  - link "nextjs-bot" [ref=e702] [cursor=pointer]:
+                    - /url: /nextjs-bot
+                - link "Tag v16.2.1-canary.43" [ref=e704] [cursor=pointer]:
+                  - /url: /vercel/next.js/tree/v16.2.1-canary.43
+                  - generic [ref=e705]:
+                    - img "Tag" [ref=e706]
+                    - text: v16.2.1-canary.43
+                - link "Commit 74629e8" [ref=e709] [cursor=pointer]:
+                  - /url: /vercel/next.js/commit/74629e89071e7ccec89fd573eb44a0627eab90f0
+                  - img "Commit" [ref=e710]
+                  - code [ref=e712]: "74629e8"
+                - button "Compare" [ref=e716] [cursor=pointer]:
+                  - generic [ref=e717]:
+                    - generic [ref=e718]: Compare
+                    - generic:
+                      - img
+              - generic [ref=e720]:
+                - generic [ref=e721]:
+                  - generic [ref=e724]:
+                    - link "v16.2.1-canary.43" [ref=e726] [cursor=pointer]:
+                      - /url: /vercel/next.js/releases/tag/v16.2.1-canary.43
+                    - generic [ref=e728]: Pre-release
+                  - generic [ref=e729]:
+                    - heading "Core Changes" [level=3] [ref=e730]
+                    - list [ref=e731]:
+                      - listitem [ref=e732]:
+                        - text: "webpack: fix swcPlugins with relative paths:"
+                        - link "#92770" [ref=e733] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92770
+                      - listitem [ref=e734]:
+                        - text: "Node.js streams: Add forkpoint for logMessagesAndSendErrorsToBrowser:"
+                        - link "#92510" [ref=e735] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92510
+                      - listitem [ref=e736]:
+                        - text: "Node.js streams: Add forkpoint for createCombinedPayloadStream:"
+                        - link "#92511" [ref=e737] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92511
+                      - listitem [ref=e738]:
+                        - text: "Node.js streams: Add forkpoint for renderWithRestartOnCacheMissInValidation:"
+                        - link "#92512" [ref=e739] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92512
+                      - listitem [ref=e740]:
+                        - text: "Node.js streams: Add forkpoint for prerenderToStream:"
+                        - link "#92513" [ref=e741] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92513
+                      - listitem [ref=e742]:
+                        - text: "Perf: Fast path for trace() when opentelemetry is not enabled:"
+                        - link "#92678" [ref=e743] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92678
+                    - heading "Misc Changes" [level=3] [ref=e744]
+                    - list [ref=e745]:
+                      - listitem [ref=e746]:
+                        - text: "turbopack: gate ValueDebugFormat and ValueDebug behind debug_assertions:"
+                        - link "#92628" [ref=e747] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92628
+                      - listitem [ref=e748]:
+                        - text: "Add TurboMalloc::thread_park() to flush and collect on thread park:"
+                        - link "#92804" [ref=e749] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92804
+                      - listitem [ref=e750]:
+                        - text: Stop using deprecated
+                        - code [ref=e751]: baseUrl
+                        - text: ":"
+                        - link "#92653" [ref=e752] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92653
+                      - listitem [ref=e753]:
+                        - text: "Turbopack: Use FrozenMap for module export information:"
+                        - link "#92802" [ref=e754] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92802
+                      - listitem [ref=e755]:
+                        - text: "pr-status: Show all participants in review thread overview:"
+                        - link "#92730" [ref=e756] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92730
+                      - listitem [ref=e757]:
+                        - text: "docs: draftMode alignment:"
+                        - link "#92794" [ref=e758] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92794
+                      - listitem [ref=e759]:
+                        - text: "Turbopack: remove webpack chunk detection:"
+                        - link "#92773" [ref=e760] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92773
+                      - listitem [ref=e761]:
+                        - text: "Turbopack: refactor ESM codegen generation:"
+                        - link "#92777" [ref=e762] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92777
+                      - listitem [ref=e763]:
+                        - text: Fix monorepo
+                        - code [ref=e764]: "@next/swc"
+                        - text: "binary postinstall:"
+                        - link "#92813" [ref=e765] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92813
+                      - listitem [ref=e766]:
+                        - text: "Turbopack: shorter error for ChunkGroupInfo::get_index_of:"
+                        - link "#92814" [ref=e767] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92814
+                      - listitem [ref=e768]:
+                        - text: "Turbopack: properly set NODE_ENV for SWC plugins:"
+                        - link "#92579" [ref=e769] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92579
+                    - heading "Credits" [level=3] [ref=e770]
+                    - paragraph [ref=e771]:
+                      - text: Huge thanks to
+                      - link "@sokra" [ref=e772] [cursor=pointer]:
+                        - /url: https://github.com/sokra
+                      - text: ","
+                      - link "@eps1lon" [ref=e773] [cursor=pointer]:
+                        - /url: https://github.com/eps1lon
+                      - text: ","
+                      - link "@bgw" [ref=e774] [cursor=pointer]:
+                        - /url: https://github.com/bgw
+                      - text: ","
+                      - link "@icyJoseph" [ref=e775] [cursor=pointer]:
+                        - /url: https://github.com/icyJoseph
+                      - text: ","
+                      - link "@mischnic" [ref=e776] [cursor=pointer]:
+                        - /url: https://github.com/mischnic
+                      - text: ", and"
+                      - link "@timneutkens" [ref=e777] [cursor=pointer]:
+                        - /url: https://github.com/timneutkens
+                      - text: for helping!
+                - generic [ref=e778]:
+                  - generic [ref=e779]:
+                    - heading "Contributors" [level=3] [ref=e780]
+                    - list [ref=e781]:
+                      - listitem [ref=e782]:
+                        - link "@bgw" [ref=e783] [cursor=pointer]:
+                          - /url: https://github.com/bgw
+                          - img "@bgw" [ref=e784]
+                      - listitem [ref=e785]:
+                        - link "@sokra" [ref=e786] [cursor=pointer]:
+                          - /url: https://github.com/sokra
+                          - img "@sokra" [ref=e787]
+                      - listitem [ref=e788]:
+                        - link "@mischnic" [ref=e789] [cursor=pointer]:
+                          - /url: https://github.com/mischnic
+                          - img "@mischnic" [ref=e790]
+                      - listitem [ref=e791]:
+                        - link "@timneutkens" [ref=e792] [cursor=pointer]:
+                          - /url: https://github.com/timneutkens
+                          - img "@timneutkens" [ref=e793]
+                      - listitem [ref=e794]:
+                        - link "@eps1lon" [ref=e795] [cursor=pointer]:
+                          - /url: https://github.com/eps1lon
+                          - img "@eps1lon" [ref=e796]
+                      - listitem [ref=e797]:
+                        - link "@icyJoseph" [ref=e798] [cursor=pointer]:
+                          - /url: https://github.com/icyJoseph
+                          - img "@icyJoseph" [ref=e799]
+                    - generic [ref=e800]: bgw, sokra, and 4 other contributors
+                  - group [ref=e803]:
+                    - button "Assets 2" [ref=e804] [cursor=pointer]:
+                      - generic [ref=e805]:
+                        - generic [ref=e806]: Assets
+                        - generic "2" [ref=e807]
+                  - generic [ref=e809]:
+                    - 'button "hooray (1): nextjs-bot, 01:52PM on April 15" [disabled] [ref=e812]':
+                      - generic [ref=e813]: 🎉
+                      - generic [ref=e814]: "1"
+                    - generic [ref=e815]: 1 person reacted
+          - region "v16.2.1-canary.42" [ref=e816]:
+            - heading "v16.2.1-canary.42" [level=2] [ref=e817]
+            - generic [ref=e818]:
+              - generic [ref=e819]:
+                - generic [ref=e820]: 15 Apr 01:28 3 days ago
+                - generic [ref=e821]:
+                  - img "@nextjs-bot" [ref=e822]
+                  - link "nextjs-bot" [ref=e823] [cursor=pointer]:
+                    - /url: /nextjs-bot
+                - link "Tag v16.2.1-canary.42" [ref=e825] [cursor=pointer]:
+                  - /url: /vercel/next.js/tree/v16.2.1-canary.42
+                  - generic [ref=e826]:
+                    - img "Tag" [ref=e827]
+                    - text: v16.2.1-canary.42
+                - link "Commit f532b91" [ref=e830] [cursor=pointer]:
+                  - /url: /vercel/next.js/commit/f532b91efd18db9f054c1fd896976d88e8d75526
+                  - img "Commit" [ref=e831]
+                  - code [ref=e833]: f532b91
+                - button "Compare" [ref=e837] [cursor=pointer]:
+                  - generic [ref=e838]:
+                    - generic [ref=e839]: Compare
+                    - generic:
+                      - img
+              - generic [ref=e841]:
+                - generic [ref=e842]:
+                  - generic [ref=e845]:
+                    - link "v16.2.1-canary.42" [ref=e847] [cursor=pointer]:
+                      - /url: /vercel/next.js/releases/tag/v16.2.1-canary.42
+                    - generic [ref=e849]: Pre-release
+                  - generic [ref=e850]:
+                    - heading "Core Changes" [level=3] [ref=e851]
+                    - list [ref=e852]:
+                      - listitem [ref=e853]:
+                        - text: "Scope Safari ?ts= cache-buster to CSS/font assets only (Pages Router):"
+                        - link "#92580" [ref=e854] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92580
+                      - listitem [ref=e855]:
+                        - text: "Enable wasm plugins on windows arm:"
+                        - link "#92544" [ref=e856] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92544
+                      - listitem [ref=e857]:
+                        - text: "prefetchInlining: fix build crash on notFound() pages:"
+                        - link "#92806" [ref=e858] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92806
+                    - heading "Credits" [level=3] [ref=e859]
+                    - paragraph [ref=e860]:
+                      - text: Huge thanks to
+                      - link "@lukesandberg" [ref=e861] [cursor=pointer]:
+                        - /url: https://github.com/lukesandberg
+                      - text: and
+                      - link "@acdlite" [ref=e862] [cursor=pointer]:
+                        - /url: https://github.com/acdlite
+                      - text: for helping!
+                - generic [ref=e863]:
+                  - generic [ref=e864]:
+                    - heading "Contributors" [level=3] [ref=e865]
+                    - list [ref=e866]:
+                      - listitem [ref=e867]:
+                        - link "@lukesandberg" [ref=e868] [cursor=pointer]:
+                          - /url: https://github.com/lukesandberg
+                          - img "@lukesandberg" [ref=e869]
+                      - listitem [ref=e870]:
+                        - link "@acdlite" [ref=e871] [cursor=pointer]:
+                          - /url: https://github.com/acdlite
+                          - img "@acdlite" [ref=e872]
+                    - generic [ref=e873]: lukesandberg and acdlite
+                  - group [ref=e876]:
+                    - button "Assets 2" [ref=e877] [cursor=pointer]:
+                      - generic [ref=e878]:
+                        - generic [ref=e879]: Assets
+                        - generic "2" [ref=e880]
+                  - generic [ref=e882]:
+                    - 'button "heart (1): nextjs-bot, 01:09AM on April 15" [disabled] [ref=e885]':
+                      - generic [ref=e886]: ❤️
+                      - generic [ref=e887]: "1"
+                    - generic [ref=e888]: 1 person reacted
+          - region "v16.2.1-canary.41" [ref=e889]:
+            - heading "v16.2.1-canary.41" [level=2] [ref=e890]
+            - generic [ref=e891]:
+              - generic [ref=e892]:
+                - generic [ref=e893]: 14 Apr 23:47 3 days ago
+                - generic [ref=e894]:
+                  - img "@nextjs-bot" [ref=e895]
+                  - link "nextjs-bot" [ref=e896] [cursor=pointer]:
+                    - /url: /nextjs-bot
+                - link "Tag v16.2.1-canary.41" [ref=e898] [cursor=pointer]:
+                  - /url: /vercel/next.js/tree/v16.2.1-canary.41
+                  - generic [ref=e899]:
+                    - img "Tag" [ref=e900]
+                    - text: v16.2.1-canary.41
+                - link "Commit 0270dfb" [ref=e903] [cursor=pointer]:
+                  - /url: /vercel/next.js/commit/0270dfb2e3b6ad1d7c4ebfc4baa97e1c27336a39
+                  - img "Commit" [ref=e904]
+                  - code [ref=e906]: 0270dfb
+                - button "Compare" [ref=e910] [cursor=pointer]:
+                  - generic [ref=e911]:
+                    - generic [ref=e912]: Compare
+                    - generic:
+                      - img
+              - generic [ref=e914]:
+                - generic [ref=e915]:
+                  - generic [ref=e918]:
+                    - link "v16.2.1-canary.41" [ref=e920] [cursor=pointer]:
+                      - /url: /vercel/next.js/releases/tag/v16.2.1-canary.41
+                    - generic [ref=e922]: Pre-release
+                  - generic [ref=e923]:
+                    - heading "Misc Changes" [level=3] [ref=e924]
+                    - list [ref=e925]:
+                      - listitem [ref=e926]:
+                        - text: "Fix devlow-bench: tsconfig rootDir mismatch with package.json bin:"
+                        - link "#92800" [ref=e927] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92800
+                    - heading "Credits" [level=3] [ref=e928]
+                    - paragraph [ref=e929]:
+                      - text: Huge thanks to
+                      - link "@mmastrac" [ref=e930] [cursor=pointer]:
+                        - /url: https://github.com/mmastrac
+                      - text: for helping!
+                - generic [ref=e931]:
+                  - generic [ref=e932]:
+                    - heading "Contributors" [level=3] [ref=e933]
+                    - list [ref=e934]:
+                      - listitem [ref=e935]:
+                        - link "@mmastrac" [ref=e936] [cursor=pointer]:
+                          - /url: https://github.com/mmastrac
+                          - img "@mmastrac" [ref=e937]
+                    - generic [ref=e938]: mmastrac
+                  - group [ref=e941]:
+                    - button "Assets 2" [ref=e942] [cursor=pointer]:
+                      - generic [ref=e943]:
+                        - generic [ref=e944]: Assets
+                        - generic "2" [ref=e945]
+                  - generic [ref=e947]:
+                    - 'button "hooray (1): nextjs-bot, 11:31PM on April 14" [disabled] [ref=e950]':
+                      - generic [ref=e951]: 🎉
+                      - generic [ref=e952]: "1"
+                    - generic [ref=e953]: 1 person reacted
+          - region "v16.2.1-canary.40" [ref=e954]:
+            - heading "v16.2.1-canary.40" [level=2] [ref=e955]
+            - generic [ref=e956]:
+              - generic [ref=e957]:
+                - generic [ref=e958]: 14 Apr 19:59 3 days ago
+                - generic [ref=e959]:
+                  - img "@nextjs-bot" [ref=e960]
+                  - link "nextjs-bot" [ref=e961] [cursor=pointer]:
+                    - /url: /nextjs-bot
+                - link "Tag v16.2.1-canary.40" [ref=e963] [cursor=pointer]:
+                  - /url: /vercel/next.js/tree/v16.2.1-canary.40
+                  - generic [ref=e964]:
+                    - img "Tag" [ref=e965]
+                    - text: v16.2.1-canary.40
+                - link "Commit 6a73ecb" [ref=e968] [cursor=pointer]:
+                  - /url: /vercel/next.js/commit/6a73ecb9b3b9d41e476bd95a9499487708a6949e
+                  - img "Commit" [ref=e969]
+                  - code [ref=e971]: 6a73ecb
+                - button "Compare" [ref=e975] [cursor=pointer]:
+                  - generic [ref=e976]:
+                    - generic [ref=e977]: Compare
+                    - generic:
+                      - img
+              - generic [ref=e979]:
+                - generic [ref=e980]:
+                  - generic [ref=e983]:
+                    - link "v16.2.1-canary.40" [ref=e985] [cursor=pointer]:
+                      - /url: /vercel/next.js/releases/tag/v16.2.1-canary.40
+                    - generic [ref=e987]: Pre-release
+                  - generic [ref=e988]:
+                    - heading "Misc Changes" [level=3] [ref=e989]
+                    - list [ref=e990]:
+                      - listitem [ref=e991]:
+                        - text: "Fix turbo cache flag: use --force:"
+                        - link "#92796" [ref=e992] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92796
+                    - heading "Credits" [level=3] [ref=e993]
+                    - paragraph [ref=e994]:
+                      - text: Huge thanks to
+                      - link "@mmastrac" [ref=e995] [cursor=pointer]:
+                        - /url: https://github.com/mmastrac
+                      - text: for helping!
+                - generic [ref=e996]:
+                  - generic [ref=e997]:
+                    - heading "Contributors" [level=3] [ref=e998]
+                    - list [ref=e999]:
+                      - listitem [ref=e1000]:
+                        - link "@mmastrac" [ref=e1001] [cursor=pointer]:
+                          - /url: https://github.com/mmastrac
+                          - img "@mmastrac" [ref=e1002]
+                    - generic [ref=e1003]: mmastrac
+                  - group [ref=e1006]:
+                    - button "Assets 2" [ref=e1007] [cursor=pointer]:
+                      - generic [ref=e1008]:
+                        - generic [ref=e1009]: Assets
+                        - generic "2" [ref=e1010]
+                  - generic [ref=e1012]:
+                    - 'button "hooray (1): nextjs-bot, 07:38PM on April 14" [disabled] [ref=e1015]':
+                      - generic [ref=e1016]: 🎉
+                      - generic [ref=e1017]: "1"
+                    - generic [ref=e1018]: 1 person reacted
+          - region "v16.2.1-canary.38" [ref=e1019]:
+            - heading "v16.2.1-canary.38" [level=2] [ref=e1020]
+            - generic [ref=e1021]:
+              - generic [ref=e1022]:
+                - generic [ref=e1023]: 13 Apr 23:43 4 days ago
+                - generic [ref=e1024]:
+                  - img "@nextjs-bot" [ref=e1025]
+                  - link "nextjs-bot" [ref=e1026] [cursor=pointer]:
+                    - /url: /nextjs-bot
+                - link "Tag v16.2.1-canary.38" [ref=e1028] [cursor=pointer]:
+                  - /url: /vercel/next.js/tree/v16.2.1-canary.38
+                  - generic [ref=e1029]:
+                    - img "Tag" [ref=e1030]
+                    - text: v16.2.1-canary.38
+                - link "Commit df9e7d9" [ref=e1033] [cursor=pointer]:
+                  - /url: /vercel/next.js/commit/df9e7d9448327e471d25e5f1ff673d68f154b451
+                  - img "Commit" [ref=e1034]
+                  - code [ref=e1036]: df9e7d9
+                - button "Compare" [ref=e1040] [cursor=pointer]:
+                  - generic [ref=e1041]:
+                    - generic [ref=e1042]: Compare
+                    - generic:
+                      - img
+              - generic [ref=e1044]:
+                - generic [ref=e1045]:
+                  - generic [ref=e1048]:
+                    - link "v16.2.1-canary.38" [ref=e1050] [cursor=pointer]:
+                      - /url: /vercel/next.js/releases/tag/v16.2.1-canary.38
+                    - generic [ref=e1052]: Pre-release
+                  - generic [ref=e1053]:
+                    - heading "Core Changes" [level=3] [ref=e1054]
+                    - list [ref=e1055]:
+                      - listitem [ref=e1056]:
+                        - text: "Ensure x-nextjs-data header is only set during resolve:"
+                        - link "#92752" [ref=e1057] [cursor=pointer]:
+                          - /url: https://github.com/vercel/next.js/pull/92752
+                    - heading "Credits" [level=3] [ref=e1058]
+                    - paragraph [ref=e1059]:
+                      - text: Huge thanks to
+                      - link "@ijjk" [ref=e1060] [cursor=pointer]:
+                        - /url: https://github.com/ijjk
+                      - text: for helping!
+                - generic [ref=e1061]:
+                  - generic [ref=e1062]:
+                    - heading "Contributors" [level=3] [ref=e1063]
+                    - list [ref=e1064]:
+                      - listitem [ref=e1065]:
+                        - link "@ijjk" [ref=e1066] [cursor=pointer]:
+                          - /url: https://github.com/ijjk
+                          - img "@ijjk" [ref=e1067]
+                    - generic [ref=e1068]: ijjk
+                  - group [ref=e1071]:
+                    - button "Assets 2" [ref=e1072] [cursor=pointer]:
+                      - generic [ref=e1073]:
+                        - generic [ref=e1074]: Assets
+                        - generic "2" [ref=e1075]
+                  - generic [ref=e1077]:
+                    - 'button "hooray (1): nextjs-bot, 11:31PM on April 13" [disabled] [ref=e1080]':
+                      - generic [ref=e1081]: 🎉
+                      - generic [ref=e1082]: "1"
+                    - generic [ref=e1083]: 1 person reacted
+          - navigation "Pagination" [ref=e1085]:
+            - generic "Previous page" [ref=e1086]: Previous
+            - emphasis [ref=e1087] [cursor=pointer]: "1"
+            - link "Page 2" [ref=e1088] [cursor=pointer]:
+              - /url: /vercel/next.js/releases?page=2
+              - text: "2"
+            - link "Page 3" [ref=e1089] [cursor=pointer]:
+              - /url: /vercel/next.js/releases?page=3
+              - text: "3"
+            - link "Page 4" [ref=e1090] [cursor=pointer]:
+              - /url: /vercel/next.js/releases?page=4
+              - text: "4"
+            - link "Page 5" [ref=e1091] [cursor=pointer]:
+              - /url: /vercel/next.js/releases?page=5
+              - text: "5"
+            - generic [ref=e1092]: …
+            - link "Page 99" [ref=e1093] [cursor=pointer]:
+              - /url: /vercel/next.js/releases?page=99
+              - text: "99"
+            - link "Page 100" [ref=e1094] [cursor=pointer]:
+              - /url: /vercel/next.js/releases?page=100
+              - text: "100"
+            - link "Next page" [ref=e1095] [cursor=pointer]:
+              - /url: /vercel/next.js/releases?page=2
+              - text: Next
+  - contentinfo [ref=e1096]:
+    - heading "Footer" [level=2] [ref=e1097]
+    - generic [ref=e1098]:
+      - generic [ref=e1099]:
+        - link "GitHub Homepage" [ref=e1100] [cursor=pointer]:
+          - /url: https://github.com
+          - img [ref=e1101]
+        - generic [ref=e1103]: © 2026 GitHub, Inc.
+      - navigation "Footer" [ref=e1104]:
+        - heading "Footer navigation" [level=3] [ref=e1105]
+        - list "Footer navigation" [ref=e1106]:
+          - listitem [ref=e1107]:
+            - link "Terms" [ref=e1108] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/github-terms/github-terms-of-service
+          - listitem [ref=e1109]:
+            - link "Privacy" [ref=e1110] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/privacy-policies/github-privacy-statement
+          - listitem [ref=e1111]:
+            - link "Security" [ref=e1112] [cursor=pointer]:
+              - /url: https://github.com/security
+          - listitem [ref=e1113]:
+            - link "Status" [ref=e1114] [cursor=pointer]:
+              - /url: https://www.githubstatus.com/
+          - listitem [ref=e1115]:
+            - link "Community" [ref=e1116] [cursor=pointer]:
+              - /url: https://github.community/
+          - listitem [ref=e1117]:
+            - link "Docs" [ref=e1118] [cursor=pointer]:
+              - /url: https://docs.github.com/
+          - listitem [ref=e1119]:
+            - link "Contact" [ref=e1120] [cursor=pointer]:
+              - /url: https://support.github.com?tags=dotcom-footer
+          - listitem [ref=e1121]:
+            - button "Manage cookies" [ref=e1123] [cursor=pointer]
+          - listitem [ref=e1124]:
+            - button "Do not share my personal information" [ref=e1126] [cursor=pointer]

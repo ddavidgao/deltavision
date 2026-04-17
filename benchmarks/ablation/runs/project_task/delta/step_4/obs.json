@@ -1,0 +1,39 @@
+{
+  "mode": "delta",
+  "step": 4,
+  "transition": "delta",
+  "trigger": "none",
+  "diff_ratio": 0.0444,
+  "phash_distance": 8,
+  "anchor_score": 0.8916,
+  "action_had_effect": true,
+  "no_change_count": 0,
+  "last_action": "type_enter",
+  "crops": [
+    {
+      "index": 0,
+      "bbox": [
+        454,
+        362,
+        594,
+        253
+      ],
+      "change_magnitude": 0.1789,
+      "crop_before_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/project_task/delta/step_4/crop_0_before.png",
+      "crop_after_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/project_task/delta/step_4/crop_0_after.png"
+    }
+  ],
+  "obs_type": "delta",
+  "thumbnail_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/project_task/delta/step_4/thumbnail.png",
+  "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/project_task/delta/step_4/t1.png",
+  "action": "type_enter",
+  "payload": "update docs",
+  "action_label": "type('update docs') + Enter",
+  "t0_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/project_task/delta/step_3/t1.png",
+  "t1_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/project_task/delta/step_4/t1.png",
+  "elapsed_ms": 760,
+  "step_ff_tokens": 1600,
+  "step_dv_tokens": 240,
+  "ff_tokens_cumul": 8000,
+  "dv_tokens_cumul": 2740
+}

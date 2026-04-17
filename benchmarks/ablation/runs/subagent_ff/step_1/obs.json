@@ -1,0 +1,17 @@
+{
+  "step": 1,
+  "obs_type": "full_frame",
+  "transition": "full_frame",
+  "diff_ratio": null,
+  "crops": [],
+  "action": "type('write report') + Enter",
+  "action_label": "type('write report') + Enter",
+  "reasoning": "Full screenshot shows todo app with 1 item 'write report' added. The filter bar appeared showing All/Active/Completed, counter shows '1 item left!'. Input cleared and ready for next item.",
+  "t0_path": "benchmarks/ablation/runs/subagent_ff/step_0/t0.png",
+  "t1_path": "benchmarks/ablation/runs/subagent_ff/step_1/t1.png",
+  "step_ff_tokens": 1600,
+  "step_dv_tokens": 1600,
+  "ff_tokens_cumul": 3200,
+  "dv_tokens_cumul": 3200,
+  "done": false
+}

@@ -32,7 +32,10 @@ class SafetyLayer:
     Plugged into the agent loop between model response and execute_action.
     """
 
-    # Domains known to be credential/phishing targets
+    # Domains/URL patterns known to be credential/phishing targets.
+    # URL shorteners are checked separately in _check_url_safety so that
+    # block_url_shorteners=False can actually disable the check — including
+    # them here would defeat that flag.
     SUSPICIOUS_PATTERNS = [
         r".*login.*\.(?!edu|gov)",  # login pages outside .edu/.gov
         r".*signin.*",
@@ -40,9 +43,6 @@ class SafetyLayer:
         r".*password.*reset.*",
         r".*\.ru/.*",
         r".*\.cn/.*login.*",
-        r"bit\.ly",
-        r"tinyurl\.com",
-        r"t\.co",
     ]
 
     # Input fields that should never be auto-filled

@@ -91,16 +91,26 @@ def parse_action(action_dict: Optional[dict]) -> Optional[Action]:
                 key=action_dict.get("key"),
             )
 
-        # DeltaVision native format
+        # DeltaVision native format.
+        # Coerce numeric fields — some local VLMs (MAI-UI-8B observed) emit
+        # coordinates as strings like "551" instead of ints.
+        def _to_int(v):
+            if v is None:
+                return None
+            try:
+                return int(v)
+            except (ValueError, TypeError):
+                return None
+
         return Action(
             type=ActionType(action_dict["type"]),
-            x=action_dict.get("x"),
-            y=action_dict.get("y"),
+            x=_to_int(action_dict.get("x")),
+            y=_to_int(action_dict.get("y")),
             text=action_dict.get("text"),
             direction=action_dict.get("direction"),
-            amount=action_dict.get("amount"),
+            amount=_to_int(action_dict.get("amount")),
             key=action_dict.get("key"),
-            duration_ms=action_dict.get("duration_ms"),
+            duration_ms=_to_int(action_dict.get("duration_ms")),
         )
     except (KeyError, ValueError, TypeError, IndexError):
         return None
@@ -172,7 +182,17 @@ async def execute_action(action: Action, page, config):
                 "backspace": "Backspace", "delete": "Delete",
                 "arrowup": "ArrowUp", "arrowdown": "ArrowDown",
                 "arrowleft": "ArrowLeft", "arrowright": "ArrowRight",
+                # Models often emit bare directional names for arrow keys
+                "up": "ArrowUp", "down": "ArrowDown",
+                "left": "ArrowLeft", "right": "ArrowRight",
                 "space": " ",
+                "home": "Home", "end": "End",
+                "pageup": "PageUp", "pagedown": "PageDown",
+                # Bare modifier keys — pressing alone is nearly always wrong,
+                # but at least don't crash: map to valid Playwright names.
+                "ctrl": "Control", "control": "Control",
+                "cmd": "Meta", "meta": "Meta",
+                "shift": "Shift", "alt": "Alt",
             }
             raw = action.key if action.key else "Enter"
             # Normalize modifier keys: ctrl -> Control, cmd -> Meta, alt -> Alt

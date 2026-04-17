@@ -1,0 +1,18 @@
+{
+  "step": 2,
+  "obs_type": "full_frame",
+  "transition": "new_page",
+  "diff_ratio": 0.0,
+  "crops": [],
+  "thumbnail_path": null,
+  "action": "check_todo_and_filter",
+  "action_label": "check 'write report', check 'review PR', click 'Active' filter",
+  "reasoning": "URL changed from base to #/active — DV classified as full_frame (new_page via url_change). Full frame shows Active filter selected, only 3 uncompleted items visible (send invoice, update docs, schedule meeting). Both 'write report' and 'review PR' are marked done and filtered out. Task is complete.",
+  "t0_path": "benchmarks/ablation/runs/subagent_dv/step_1/t1.png",
+  "t1_path": "benchmarks/ablation/runs/subagent_dv/step_2/t1.png",
+  "step_ff_tokens": 1600,
+  "step_dv_tokens": 1600,
+  "ff_tokens_cumul": 4800,
+  "dv_tokens_cumul": 3620,
+  "done": true
+}

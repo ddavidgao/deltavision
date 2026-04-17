@@ -1,10 +1,19 @@
 """
 All tunable parameters in one place.
 Benchmark-specific overrides go in benchmarks/*/task.py
+
+Every field has a validator in __post_init__. This catches fat-finger config
+errors at construction time rather than letting them cause weird CV behavior
+much later — e.g. a negative PHASH_DISTANCE_THRESHOLD would make every frame
+classify as NEW_PAGE, wasting tokens silently.
 """
 
 from dataclasses import dataclass, field
 from typing import Optional, Tuple
+
+
+class ConfigError(ValueError):
+    """Raised when a DeltaVisionConfig is constructed with invalid values."""
 
 
 @dataclass
@@ -94,6 +103,63 @@ class DeltaVisionConfig:
 
     # Local model quantization: None, "4bit", "8bit"
     LOCAL_QUANTIZATION: Optional[str] = None
+
+    def __post_init__(self):
+        # Fractions must live in [0, 1].
+        for name in ("NEW_PAGE_DIFF_THRESHOLD", "ANCHOR_MATCH_THRESHOLD",
+                     "ANCHOR_HEIGHT_FRACTION", "MIN_EFFECT_THRESHOLD",
+                     "OCR_REGION_MAX_FRACTION", "OCR_MIN_CONFIDENCE",
+                     "PHASH_LOW_DIFF_FLOOR"):
+            v = getattr(self, name)
+            if not (0.0 <= v <= 1.0):
+                raise ConfigError(f"{name} must be in [0, 1], got {v}")
+
+        # pHash Hamming distance is on 8x8 hash = 64 bits.
+        if not (0 <= self.PHASH_DISTANCE_THRESHOLD <= 64):
+            raise ConfigError(
+                f"PHASH_DISTANCE_THRESHOLD must be in [0, 64], got {self.PHASH_DISTANCE_THRESHOLD}"
+            )
+        if self.PHASH_ANIMATION_MARGIN < 0:
+            raise ConfigError(
+                f"PHASH_ANIMATION_MARGIN must be >= 0, got {self.PHASH_ANIMATION_MARGIN}"
+            )
+
+        # Pixel / count params must be positive integers.
+        for name in ("DIFF_PIXEL_THRESHOLD", "DILATE_KERNEL_SIZE",
+                     "MIN_CONTOUR_AREA", "MAX_REGIONS", "CROP_PADDING",
+                     "MAX_STEPS", "POST_ACTION_WAIT_MS",
+                     "MAX_NO_EFFECT_RETRIES", "BROWSER_WIDTH", "BROWSER_HEIGHT"):
+            v = getattr(self, name)
+            if not isinstance(v, int) or v < 0:
+                raise ConfigError(f"{name} must be a non-negative int, got {v!r}")
+
+        if self.DIFF_PIXEL_THRESHOLD > 255:
+            raise ConfigError(
+                f"DIFF_PIXEL_THRESHOLD is a 0-255 brightness delta, got {self.DIFF_PIXEL_THRESHOLD}"
+            )
+
+        if self.MAX_STEPS < 1:
+            raise ConfigError(f"MAX_STEPS must be >= 1, got {self.MAX_STEPS}")
+
+        if self.MAX_REGIONS < 1:
+            raise ConfigError(f"MAX_REGIONS must be >= 1, got {self.MAX_REGIONS}")
+
+        # Quantization must be one of the known values.
+        if self.LOCAL_QUANTIZATION not in (None, "4bit", "8bit"):
+            raise ConfigError(
+                f"LOCAL_QUANTIZATION must be None, '4bit', or '8bit', "
+                f"got {self.LOCAL_QUANTIZATION!r}"
+            )
+
+        # Anchor bbox coherence: if given, must be (x1, y1, x2, y2) with x2>x1, y2>y1.
+        if self.ANCHOR_BBOX is not None:
+            if len(self.ANCHOR_BBOX) != 4:
+                raise ConfigError(f"ANCHOR_BBOX must have 4 elements, got {self.ANCHOR_BBOX}")
+            x1, y1, x2, y2 = self.ANCHOR_BBOX
+            if x2 <= x1 or y2 <= y1:
+                raise ConfigError(
+                    f"ANCHOR_BBOX must satisfy x2>x1 and y2>y1, got {self.ANCHOR_BBOX}"
+                )
 
 
 # -- Presets --

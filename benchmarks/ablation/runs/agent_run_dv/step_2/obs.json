@@ -1,0 +1,28 @@
+{
+  "step": 2,
+  "action_label": "type('review PR') + Enter",
+  "obs_type": "delta",
+  "transition": "delta",
+  "diff_ratio": 0.045,
+  "phash_distance": 8,
+  "t1_path": "benchmarks/ablation/runs/agent_run_dv/step_2/t1.png",
+  "thumbnail_path": "benchmarks/ablation/runs/agent_run_dv/step_2/thumbnail.png",
+  "crops": [
+    {
+      "index": 0,
+      "bbox": [
+        447,
+        244,
+        593,
+        251
+      ],
+      "change_magnitude": 0.12,
+      "crop_after_path": "benchmarks/ablation/runs/agent_run_dv/step_2/crop_0_after.png"
+    }
+  ],
+  "step_ff_tokens": 1600,
+  "step_dv_tokens": 240,
+  "ff_tokens_cumul": 4800,
+  "dv_tokens_cumul": 2260,
+  "agent_decision": "Crop shows 'review PR' + '2 items left!' \u2192 continue adding"
+}

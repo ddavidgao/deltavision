@@ -1,0 +1,17 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - heading "todos" [level=1] [ref=e4]
+      - generic [ref=e5]:
+        - textbox "New Todo Input" [active] [ref=e6]:
+          - /placeholder: What needs to be done?
+        - generic [ref=e7]: New Todo Input
+    - main [ref=e8]:
+      - list
+  - contentinfo [ref=e9]:
+    - paragraph [ref=e10]: Double-click to edit a todo
+    - paragraph [ref=e11]: Created by the TodoMVC Team
+    - paragraph [ref=e12]:
+      - text: Part of
+      - link "TodoMVC" [ref=e13] [cursor=pointer]:
+        - /url: http://todomvc.com

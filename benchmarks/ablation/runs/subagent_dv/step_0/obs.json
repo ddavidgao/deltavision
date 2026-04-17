@@ -1,0 +1,17 @@
+{
+  "step": 0,
+  "obs_type": "full_frame",
+  "transition": "initial",
+  "diff_ratio": 0,
+  "crops": [],
+  "action": "navigate",
+  "action_label": "Initial page load",
+  "t0_path": "benchmarks/ablation/runs/subagent_dv/step_0/t0.png",
+  "t1_path": "benchmarks/ablation/runs/subagent_dv/step_0/t0.png",
+  "reasoning": "Initial full frame — both modes identical at step 0",
+  "step_ff_tokens": 1600,
+  "step_dv_tokens": 1600,
+  "ff_tokens_cumul": 1600,
+  "dv_tokens_cumul": 1600,
+  "done": false
+}

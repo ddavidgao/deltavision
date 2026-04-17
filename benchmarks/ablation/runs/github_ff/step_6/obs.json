@@ -1,0 +1,18 @@
+{
+  "step": 6,
+  "obs_type": "full_frame",
+  "transition": "full_frame",
+  "diff_ratio": null,
+  "crops": [],
+  "action": "scrollBy(0, 1500) again + snapshot for comment check",
+  "action_label": "confirm no comments via accessibility snapshot",
+  "reasoning": "Snapshot shows Activity region has only one event (label added by Strernd). No comment thread nodes. Issue has 0 comments. The 'Sign up for free' link confirms we're at the bottom.",
+  "t0_path": "step_5/t1.png",
+  "t1_path": "step_6/t1.png",
+  "url": "https://github.com/vercel/next.js/issues/92877",
+  "step_ff_tokens": 1600,
+  "step_dv_tokens": 1600,
+  "ff_tokens_cumul": 9600,
+  "dv_tokens_cumul": 9600,
+  "done": false
+}

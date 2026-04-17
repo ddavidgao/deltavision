@@ -1,0 +1,18 @@
+{
+  "step": 3,
+  "obs_type": "full_frame",
+  "transition": "full_frame",
+  "diff_ratio": null,
+  "crops": [],
+  "action": "navigate to https://github.com/vercel/next.js/issues?q=is%3Aopen+label%3Abug",
+  "action_label": "filter issues by 'bug' label",
+  "reasoning": "Full screenshot shows bug-filtered issues. Header reads 'Open 813'. Most recent bug issue: #92877 '@vercel/otel fetch instrumentation stripped after HMR...' opened yesterday by Strernd.",
+  "t0_path": "step_2/t1.png",
+  "t1_path": "step_3/t1.png",
+  "url": "https://github.com/vercel/next.js/issues?q=is%3Aopen+label%3Abug",
+  "step_ff_tokens": 1600,
+  "step_dv_tokens": 1600,
+  "ff_tokens_cumul": 4800,
+  "dv_tokens_cumul": 4800,
+  "done": false
+}

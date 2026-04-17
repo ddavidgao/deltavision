@@ -1,0 +1,1084 @@
+- generic [ref=e2]:
+  - region
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner [ref=e6]:
+      - heading "Navigation Menu" [level=2] [ref=e7]
+      - generic [ref=e8]:
+        - link "Homepage" [ref=e10] [cursor=pointer]:
+          - /url: /
+          - img [ref=e11]
+        - generic [ref=e13]:
+          - navigation "Global" [ref=e16]:
+            - list [ref=e17]:
+              - listitem [ref=e18]:
+                - button "Platform" [ref=e20] [cursor=pointer]:
+                  - text: Platform
+                  - img [ref=e21]
+              - listitem [ref=e23]:
+                - button "Solutions" [ref=e25] [cursor=pointer]:
+                  - text: Solutions
+                  - img [ref=e26]
+              - listitem [ref=e28]:
+                - button "Resources" [ref=e30] [cursor=pointer]:
+                  - text: Resources
+                  - img [ref=e31]
+              - listitem [ref=e33]:
+                - button "Open Source" [ref=e35] [cursor=pointer]:
+                  - text: Open Source
+                  - img [ref=e36]
+              - listitem [ref=e38]:
+                - button "Enterprise" [ref=e40] [cursor=pointer]:
+                  - text: Enterprise
+                  - img [ref=e41]
+              - listitem [ref=e43]:
+                - link "Pricing" [ref=e44] [cursor=pointer]:
+                  - /url: https://github.com/pricing
+                  - generic [ref=e45]: Pricing
+          - generic [ref=e46]:
+            - button "Search or jump to…" [ref=e49] [cursor=pointer]:
+              - img [ref=e51]
+            - link "Sign in" [ref=e54] [cursor=pointer]:
+              - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Fissues%3Fq%3Dis%253Amerged%2Bsort%253Acreated-desc-desc
+            - link "Sign up" [ref=e55] [cursor=pointer]:
+              - /url: /signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E%2Fissues%2Findex&source=header-repo&source_repo=vercel%2Fnext.js
+            - button "Appearance settings" [disabled] [ref=e58]:
+              - img
+  - main [ref=e62]:
+    - generic [ref=e63]:
+      - generic [ref=e64]:
+        - generic [ref=e66]:
+          - img [ref=e67]
+          - link "vercel" [ref=e70] [cursor=pointer]:
+            - /url: /vercel
+          - generic [ref=e71]: /
+          - strong [ref=e72]:
+            - link "next.js" [ref=e73] [cursor=pointer]:
+              - /url: /vercel/next.js
+          - generic [ref=e74]: Public
+        - generic [ref=e75]:
+          - list:
+            - listitem [ref=e76]:
+              - link "You must be signed in to change notification settings" [ref=e77] [cursor=pointer]:
+                - /url: /login?return_to=%2Fvercel%2Fnext.js
+                - img [ref=e78]
+                - text: Notifications
+            - listitem [ref=e80]:
+              - link "Fork 30.9k" [ref=e81] [cursor=pointer]:
+                - /url: /login?return_to=%2Fvercel%2Fnext.js
+                - img [ref=e82]
+                - text: Fork
+                - generic "30,927" [ref=e84]: 30.9k
+            - listitem [ref=e85]:
+              - link "You must be signed in to star a repository" [ref=e87] [cursor=pointer]:
+                - /url: /login?return_to=%2Fvercel%2Fnext.js
+                - img [ref=e88]
+                - text: Star
+                - generic "138974 users starred this repository" [ref=e90]: 139k
+      - navigation "Repository" [ref=e91]:
+        - list [ref=e92]:
+          - listitem [ref=e93]:
+            - link "Code" [ref=e94] [cursor=pointer]:
+              - /url: /vercel/next.js
+              - img [ref=e95]
+              - generic [ref=e97]: Code
+          - listitem [ref=e98]:
+            - link "Issues 2.1k" [ref=e99] [cursor=pointer]:
+              - /url: /vercel/next.js/issues
+              - img [ref=e100]
+              - generic [ref=e103]: Issues
+              - generic "2,112" [ref=e104]: 2.1k
+          - listitem [ref=e105]:
+            - link "Pull requests 1.6k" [ref=e106] [cursor=pointer]:
+              - /url: /vercel/next.js/pulls
+              - img [ref=e107]
+              - generic [ref=e109]: Pull requests
+              - generic "1,646" [ref=e110]: 1.6k
+          - listitem [ref=e111]:
+            - link "Discussions" [ref=e112] [cursor=pointer]:
+              - /url: /vercel/next.js/discussions
+              - img [ref=e113]
+              - generic [ref=e115]: Discussions
+          - listitem [ref=e116]:
+            - link "Actions" [ref=e117] [cursor=pointer]:
+              - /url: /vercel/next.js/actions
+              - img [ref=e118]
+              - generic [ref=e120]: Actions
+          - listitem [ref=e121]:
+            - link "Security and quality 37" [ref=e122] [cursor=pointer]:
+              - /url: /vercel/next.js/security
+              - img [ref=e123]
+              - generic [ref=e125]: Security and quality
+              - generic "37" [ref=e126]
+          - listitem [ref=e127]:
+            - link "Insights" [ref=e128] [cursor=pointer]:
+              - /url: /vercel/next.js/pulse
+              - img [ref=e129]
+              - generic [ref=e131]: Insights
+    - generic [ref=e144]:
+      - heading "Issues" [level=1] [ref=e145]
+      - generic [ref=e146]:
+        - generic [ref=e148]:
+          - form "Search Issues" [ref=e150]:
+            - generic [ref=e151]: Search Issues
+            - generic [ref=e153]:
+              - generic [ref=e155]:
+                - generic [ref=e156]:
+                  - generic [ref=e157]:
+                    - text: "is:"
+                    - generic [ref=e158]: merged
+                  - generic [ref=e160]:
+                    - text: "sort:"
+                    - generic [ref=e161]: created-desc-desc
+                - combobox "Search Issues" [ref=e163]: is:merged sort:created-desc-desc
+              - button "Search" [ref=e164] [cursor=pointer]:
+                - img [ref=e165]
+          - generic [ref=e167]:
+            - link "Labels" [ref=e168] [cursor=pointer]:
+              - /url: /vercel/next.js/labels
+              - generic [ref=e169]:
+                - generic:
+                  - img
+                - generic [ref=e170]: Labels
+            - link "Milestones" [ref=e171] [cursor=pointer]:
+              - /url: /vercel/next.js/milestones
+              - generic [ref=e172]:
+                - generic:
+                  - img
+                - generic [ref=e173]: Milestones
+            - link "New issue" [ref=e174] [cursor=pointer]:
+              - /url: /login?return_to=https://github.com/vercel/next.js/issues?q=is%3Amerged+sort%3Acreated-desc-desc
+              - generic [ref=e176]: New issue
+          - region "Filter contains 1 issue:" [ref=e178]:
+            - img [ref=e180]
+            - generic [ref=e183]:
+              - heading "Filter contains 1 issue:" [level=2] [ref=e184]
+              - list [ref=e186]:
+                - listitem [ref=e187]:
+                  - generic [ref=e188]: Invalid value created-desc-desc for sort
+        - generic [ref=e189]:
+          - generic [ref=e192]:
+            - heading "Search results" [level=2] [ref=e193]
+            - generic [ref=e194]:
+              - generic [ref=e195]:
+                - link "Open" [ref=e196] [cursor=pointer]:
+                  - /url: ""
+                  - generic [ref=e197]: Open
+                - link "Closed" [ref=e199] [cursor=pointer]:
+                  - /url: ""
+                  - generic [ref=e200]: Closed
+              - toolbar "Actions" [ref=e202]:
+                - generic [ref=e203]:
+                  - button "Filter by author" [ref=e205] [cursor=pointer]:
+                    - generic [ref=e206]:
+                      - generic [ref=e207]: Author
+                      - generic:
+                        - img
+                  - button "Filter by label" [ref=e209] [cursor=pointer]:
+                    - generic [ref=e210]:
+                      - generic [ref=e211]: Labels
+                      - generic:
+                        - img
+                  - button "Filter by project" [ref=e213] [cursor=pointer]:
+                    - generic [ref=e214]:
+                      - generic [ref=e215]: Projects
+                      - generic:
+                        - img
+                  - button "Filter by milestone" [ref=e217] [cursor=pointer]:
+                    - generic [ref=e218]:
+                      - generic [ref=e219]: Milestones
+                      - generic:
+                        - img
+                  - button "Filter by assignees" [ref=e221] [cursor=pointer]:
+                    - generic [ref=e222]:
+                      - generic [ref=e223]: Assignees
+                      - generic:
+                        - img
+                  - button "Filter by issue type" [ref=e225] [cursor=pointer]:
+                    - generic [ref=e226]:
+                      - generic [ref=e227]: Types
+                      - generic:
+                        - img
+                  - button "Sort by Newest , descending" [ref=e229] [cursor=pointer]:
+                    - generic [ref=e230]:
+                      - generic:
+                        - img
+                      - generic [ref=e231]:
+                        - generic [ref=e232]: Sort by
+                        - text: Newest
+                        - generic [ref=e233]: ", descending"
+                    - generic:
+                      - img
+            - list "Search results" [ref=e234]:
+              - 'listitem "[ci]: fix backport sync script: Status: Merged (completed). vercel/next.jsnumber 92942 #92942 In vercel/next.js;· by ztanner was closed on Apr 17, 2026. More information available below." [ref=e237]':
+                - generic [ref=e238]:
+                  - 'heading "[ci]: fix backport sync script" [level=3] [ref=e239]':
+                    - 'link "[ci]: fix backport sync script" [ref=e240] [cursor=pointer]':
+                      - /url: /vercel/next.js/pull/92942
+                      - generic [ref=e241]: "[ci]: fix backport sync script"
+                  - 'link "created-by: Next.js team PRs by the Next.js team." [ref=e245] [cursor=pointer]':
+                    - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22created-by%3A%20Next.js%20team%22
+                    - generic [ref=e247]: "created-by: Next.js team"
+                    - generic [ref=e248]: PRs by the Next.js team.
+                - generic [ref=e252]:
+                  - img [ref=e253]
+                  - generic [ref=e255]: "Status: Merged (completed)."
+                - generic [ref=e259]:
+                  - generic [ref=e260]:
+                    - text: vercel/next.js
+                    - generic [ref=e261]: number 92942
+                  - generic [ref=e262]:
+                    - generic [ref=e263]: "#92942"
+                    - generic [ref=e264]: In vercel/next.js;
+                  - generic [ref=e265]:
+                    - text: · by
+                    - link "ztanner" [ref=e266] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20author%3Aztanner
+                    - text: was closed
+                    - generic "Apr 17, 2026, 11:43 AM EDT" [ref=e267]: on Apr 17, 20261 hour ago
+              - 'listitem "Turbopack: optimize SelfTimeTree performance, memory usage, and fix range query boundaries: Status: Merged (completed). vercel/next.jsnumber 92931 #92931 In vercel/next.js;· by sokra was closed on Apr 17, 2026. More information available below." [ref=e275]':
+                - generic [ref=e276]:
+                  - 'heading "Turbopack: optimize SelfTimeTree performance, memory usage, and fix range query boundaries" [level=3] [ref=e277]':
+                    - 'link "Turbopack: optimize SelfTimeTree performance, memory usage, and fix range query boundaries" [ref=e278] [cursor=pointer]':
+                      - /url: /vercel/next.js/pull/92931
+                      - generic [ref=e279]: "Turbopack: optimize SelfTimeTree performance, memory usage, and fix range query boundaries"
+                  - generic [ref=e281]:
+                    - 'link "created-by: Turbopack team PRs by the Turbopack team." [ref=e283] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22created-by%3A%20Turbopack%20team%22
+                      - generic [ref=e285]: "created-by: Turbopack team"
+                      - generic [ref=e286]: PRs by the Turbopack team.
+                    - link "Turbopack Related to Turbopack with Next.js." [ref=e288] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3ATurbopack
+                      - generic [ref=e290]: Turbopack
+                      - generic [ref=e291]: Related to Turbopack with Next.js.
+                - generic [ref=e295]:
+                  - img [ref=e296]
+                  - generic [ref=e298]: "Status: Merged (completed)."
+                - generic [ref=e302]:
+                  - generic [ref=e303]:
+                    - text: vercel/next.js
+                    - generic [ref=e304]: number 92931
+                  - generic [ref=e305]:
+                    - generic [ref=e306]: "#92931"
+                    - generic [ref=e307]: In vercel/next.js;
+                  - generic [ref=e308]:
+                    - text: · by
+                    - link "sokra" [ref=e309] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20author%3Asokra
+                    - text: was closed
+                    - generic "Apr 17, 2026, 8:36 AM EDT" [ref=e310]: on Apr 17, 20264 hours ago
+              - 'listitem "remove flag guarding unstable_io: Status: Merged (completed). vercel/next.jsnumber 92923 #92923 In vercel/next.js;· by gnoff was closed on Apr 17, 2026. More information available below." [ref=e318]':
+                - generic [ref=e319]:
+                  - heading "remove flag guarding unstable_io" [level=3] [ref=e320]:
+                    - link "remove flag guarding unstable_io" [ref=e321] [cursor=pointer]:
+                      - /url: /vercel/next.js/pull/92923
+                      - generic [ref=e323]:
+                        - text: remove flag guarding
+                        - code [ref=e324]: unstable_io
+                  - generic [ref=e326]:
+                    - 'link "created-by: Next.js team PRs by the Next.js team." [ref=e328] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22created-by%3A%20Next.js%20team%22
+                      - generic [ref=e330]: "created-by: Next.js team"
+                      - generic [ref=e331]: PRs by the Next.js team.
+                    - link "Documentation Related to Next.js' official documentation." [ref=e333] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3ADocumentation
+                      - generic [ref=e335]: Documentation
+                      - generic [ref=e336]: Related to Next.js' official documentation.
+                    - link "tests" [ref=e338] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3Atests
+                      - generic [ref=e340]: tests
+                    - 'link "type: next" [ref=e343] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22type%3A%20next%22
+                      - generic [ref=e345]: "type: next"
+                - generic [ref=e350]:
+                  - img [ref=e351]
+                  - generic [ref=e353]: "Status: Merged (completed)."
+                - generic [ref=e357]:
+                  - generic [ref=e358]:
+                    - text: vercel/next.js
+                    - generic [ref=e359]: number 92923
+                  - generic [ref=e360]:
+                    - generic [ref=e361]: "#92923"
+                    - generic [ref=e362]: In vercel/next.js;
+                  - generic [ref=e363]:
+                    - text: · by
+                    - link "gnoff" [ref=e364] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20author%3Agnoff
+                    - text: was closed
+                    - generic "Apr 17, 2026, 10:54 AM EDT" [ref=e365]: on Apr 17, 20262 hours ago
+              - 'listitem "fix accidental test duplication: Status: Merged (completed). vercel/next.jsnumber 92922 #92922 In vercel/next.js;· by ztanner was closed on Apr 16, 2026. More information available below." [ref=e373]':
+                - generic [ref=e374]:
+                  - heading "fix accidental test duplication" [level=3] [ref=e375]:
+                    - link "fix accidental test duplication" [ref=e376] [cursor=pointer]:
+                      - /url: /vercel/next.js/pull/92922
+                      - generic [ref=e377]: fix accidental test duplication
+                  - generic [ref=e379]:
+                    - 'link "created-by: Next.js team PRs by the Next.js team." [ref=e381] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22created-by%3A%20Next.js%20team%22
+                      - generic [ref=e383]: "created-by: Next.js team"
+                      - generic [ref=e384]: PRs by the Next.js team.
+                    - link "tests" [ref=e386] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3Atests
+                      - generic [ref=e388]: tests
+                - generic [ref=e393]:
+                  - img [ref=e394]
+                  - generic [ref=e396]: "Status: Merged (completed)."
+                - generic [ref=e400]:
+                  - generic [ref=e401]:
+                    - text: vercel/next.js
+                    - generic [ref=e402]: number 92922
+                  - generic [ref=e403]:
+                    - generic [ref=e404]: "#92922"
+                    - generic [ref=e405]: In vercel/next.js;
+                  - generic [ref=e406]:
+                    - text: · by
+                    - link "ztanner" [ref=e407] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20author%3Aztanner
+                    - text: was closed
+                    - generic "Apr 16, 2026, 8:45 PM EDT" [ref=e408]: on Apr 16, 202616 hours ago
+              - 'listitem "fix(next/image): ensure images.maximumResponseBody applies to local images too: Status: Merged (completed). vercel/next.jsnumber 92920 #92920 In vercel/next.js;· by styfle was closed on Apr 16, 2026. More information available below." [ref=e416]':
+                - generic [ref=e417]:
+                  - 'heading "fix(next/image): ensure images.maximumResponseBody applies to local images too" [level=3] [ref=e418]':
+                    - 'link "fix(next/image): ensure images.maximumResponseBody applies to local images too" [ref=e419] [cursor=pointer]':
+                      - /url: /vercel/next.js/pull/92920
+                      - generic [ref=e421]:
+                        - text: "fix(next/image): ensure"
+                        - code [ref=e422]: images.maximumResponseBody
+                        - text: applies to local images too
+                  - generic [ref=e424]:
+                    - 'link "created-by: Next.js team PRs by the Next.js team." [ref=e426] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22created-by%3A%20Next.js%20team%22
+                      - generic [ref=e428]: "created-by: Next.js team"
+                      - generic [ref=e429]: PRs by the Next.js team.
+                    - link "tests" [ref=e431] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3Atests
+                      - generic [ref=e433]: tests
+                    - 'link "type: next" [ref=e436] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22type%3A%20next%22
+                      - generic [ref=e438]: "type: next"
+                - generic [ref=e443]:
+                  - img [ref=e444]
+                  - generic [ref=e446]: "Status: Merged (completed)."
+                - generic [ref=e450]:
+                  - generic [ref=e451]:
+                    - text: vercel/next.js
+                    - generic [ref=e452]: number 92920
+                  - generic [ref=e453]:
+                    - generic [ref=e454]: "#92920"
+                    - generic [ref=e455]: In vercel/next.js;
+                  - generic [ref=e456]:
+                    - text: · by
+                    - link "styfle" [ref=e457] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20author%3Astyfle
+                    - text: was closed
+                    - generic "Apr 16, 2026, 7:36 PM EDT" [ref=e458]: on Apr 16, 202617 hours ago
+              - 'listitem "rename MagicAny: Status: Merged (completed). vercel/next.jsnumber 92918 #92918 In vercel/next.js;· by lukesandberg was closed on Apr 16, 2026. More information available below." [ref=e466]':
+                - generic [ref=e467]:
+                  - heading "rename MagicAny" [level=3] [ref=e468]:
+                    - link "rename MagicAny" [ref=e469] [cursor=pointer]:
+                      - /url: /vercel/next.js/pull/92918
+                      - generic [ref=e470]: rename MagicAny
+                  - generic [ref=e472]:
+                    - 'link "created-by: Turbopack team PRs by the Turbopack team." [ref=e474] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22created-by%3A%20Turbopack%20team%22
+                      - generic [ref=e476]: "created-by: Turbopack team"
+                      - generic [ref=e477]: PRs by the Turbopack team.
+                    - link "Turbopack Related to Turbopack with Next.js." [ref=e479] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3ATurbopack
+                      - generic [ref=e481]: Turbopack
+                      - generic [ref=e482]: Related to Turbopack with Next.js.
+                - generic [ref=e486]:
+                  - img [ref=e487]
+                  - generic [ref=e489]: "Status: Merged (completed)."
+                - generic [ref=e493]:
+                  - generic [ref=e494]:
+                    - text: vercel/next.js
+                    - generic [ref=e495]: number 92918
+                  - generic [ref=e496]:
+                    - generic [ref=e497]: "#92918"
+                    - generic [ref=e498]: In vercel/next.js;
+                  - generic [ref=e499]:
+                    - text: · by
+                    - link "lukesandberg" [ref=e500] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20author%3Alukesandberg
+                    - text: was closed
+                    - generic "Apr 16, 2026, 8:51 PM EDT" [ref=e501]: on Apr 16, 202616 hours ago
+              - 'listitem "Turbopack: Use an async lock in the filesystem watcher: Status: Merged (completed). vercel/next.jsnumber 92906 #92906 In vercel/next.js;· by bgw was closed on Apr 16, 2026. More information available below." [ref=e509]':
+                - generic [ref=e510]:
+                  - 'heading "Turbopack: Use an async lock in the filesystem watcher" [level=3] [ref=e511]':
+                    - 'link "Turbopack: Use an async lock in the filesystem watcher" [ref=e512] [cursor=pointer]':
+                      - /url: /vercel/next.js/pull/92906
+                      - generic [ref=e513]: "Turbopack: Use an async lock in the filesystem watcher"
+                  - generic [ref=e515]:
+                    - 'link "created-by: Turbopack team PRs by the Turbopack team." [ref=e517] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22created-by%3A%20Turbopack%20team%22
+                      - generic [ref=e519]: "created-by: Turbopack team"
+                      - generic [ref=e520]: PRs by the Turbopack team.
+                    - link "Turbopack Related to Turbopack with Next.js." [ref=e522] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3ATurbopack
+                      - generic [ref=e524]: Turbopack
+                      - generic [ref=e525]: Related to Turbopack with Next.js.
+                - generic [ref=e529]:
+                  - img [ref=e530]
+                  - generic [ref=e532]: "Status: Merged (completed)."
+                - generic [ref=e536]:
+                  - generic [ref=e537]:
+                    - text: vercel/next.js
+                    - generic [ref=e538]: number 92906
+                  - generic [ref=e539]:
+                    - generic [ref=e540]: "#92906"
+                    - generic [ref=e541]: In vercel/next.js;
+                  - generic [ref=e542]:
+                    - text: · by
+                    - link "bgw" [ref=e543] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20author%3Abgw
+                    - text: was closed
+                    - generic "Apr 16, 2026, 3:54 PM EDT" [ref=e544]: on Apr 16, 2026yesterday
+              - 'listitem "turbopack: reduce EffectStateStorage memory by storing u128 content hashes: Status: Merged (completed). vercel/next.jsnumber 92902 #92902 In vercel/next.js;· by sokra was closed on Apr 17, 2026. More information available below." [ref=e552]':
+                - generic [ref=e553]:
+                  - 'heading "turbopack: reduce EffectStateStorage memory by storing u128 content hashes" [level=3] [ref=e554]':
+                    - 'link "turbopack: reduce EffectStateStorage memory by storing u128 content hashes" [ref=e555] [cursor=pointer]':
+                      - /url: /vercel/next.js/pull/92902
+                      - generic [ref=e556]: "turbopack: reduce EffectStateStorage memory by storing u128 content hashes"
+                  - generic [ref=e558]:
+                    - 'link "created-by: Turbopack team PRs by the Turbopack team." [ref=e560] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22created-by%3A%20Turbopack%20team%22
+                      - generic [ref=e562]: "created-by: Turbopack team"
+                      - generic [ref=e563]: PRs by the Turbopack team.
+                    - link "Turbopack Related to Turbopack with Next.js." [ref=e565] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3ATurbopack
+                      - generic [ref=e567]: Turbopack
+                      - generic [ref=e568]: Related to Turbopack with Next.js.
+                - generic [ref=e572]:
+                  - img [ref=e573]
+                  - generic [ref=e575]: "Status: Merged (completed)."
+                - generic [ref=e579]:
+                  - generic [ref=e580]:
+                    - text: vercel/next.js
+                    - generic [ref=e581]: number 92902
+                  - generic [ref=e582]:
+                    - generic [ref=e583]: "#92902"
+                    - generic [ref=e584]: In vercel/next.js;
+                  - generic [ref=e585]:
+                    - text: · by
+                    - link "sokra" [ref=e586] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20author%3Asokra
+                    - text: was closed
+                    - generic "Apr 17, 2026, 3:14 AM EDT" [ref=e587]: on Apr 17, 20269 hours ago
+              - 'listitem "turbo-trace-server: reduce allocation overhead when loading large trace files: Status: Merged (completed). vercel/next.jsnumber 92896 #92896 In vercel/next.js;· by sokra was closed on Apr 17, 2026. More information available below." [ref=e595]':
+                - generic [ref=e596]:
+                  - 'heading "turbo-trace-server: reduce allocation overhead when loading large trace files" [level=3] [ref=e597]':
+                    - 'link "turbo-trace-server: reduce allocation overhead when loading large trace files" [ref=e598] [cursor=pointer]':
+                      - /url: /vercel/next.js/pull/92896
+                      - generic [ref=e599]: "turbo-trace-server: reduce allocation overhead when loading large trace files"
+                  - generic [ref=e601]:
+                    - 'link "created-by: Turbopack team PRs by the Turbopack team." [ref=e603] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22created-by%3A%20Turbopack%20team%22
+                      - generic [ref=e605]: "created-by: Turbopack team"
+                      - generic [ref=e606]: PRs by the Turbopack team.
+                    - link "Turbopack Related to Turbopack with Next.js." [ref=e608] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3ATurbopack
+                      - generic [ref=e610]: Turbopack
+                      - generic [ref=e611]: Related to Turbopack with Next.js.
+                - generic [ref=e615]:
+                  - img [ref=e616]
+                  - generic [ref=e618]: "Status: Merged (completed)."
+                - generic [ref=e622]:
+                  - generic [ref=e623]:
+                    - text: vercel/next.js
+                    - generic [ref=e624]: number 92896
+                  - generic [ref=e625]:
+                    - generic [ref=e626]: "#92896"
+                    - generic [ref=e627]: In vercel/next.js;
+                  - generic [ref=e628]:
+                    - text: · by
+                    - link "sokra" [ref=e629] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20author%3Asokra
+                    - text: was closed
+                    - generic "Apr 17, 2026, 7:39 AM EDT" [ref=e630]: on Apr 17, 20265 hours ago
+              - 'listitem "[partial fallbacks]: include prefetch requests in shell upgrade handling: Status: Merged (completed). vercel/next.jsnumber 92894 #92894 In vercel/next.js;· by ztanner was closed on Apr 17, 2026. More information available below." [ref=e638]':
+                - generic [ref=e639]:
+                  - 'heading "[partial fallbacks]: include prefetch requests in shell upgrade handling" [level=3] [ref=e640]':
+                    - 'link "[partial fallbacks]: include prefetch requests in shell upgrade handling" [ref=e641] [cursor=pointer]':
+                      - /url: /vercel/next.js/pull/92894
+                      - generic [ref=e642]: "[partial fallbacks]: include prefetch requests in shell upgrade handling"
+                  - generic [ref=e644]:
+                    - 'link "created-by: Next.js team PRs by the Next.js team." [ref=e646] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22created-by%3A%20Next.js%20team%22
+                      - generic [ref=e648]: "created-by: Next.js team"
+                      - generic [ref=e649]: PRs by the Next.js team.
+                    - link "tests" [ref=e651] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3Atests
+                      - generic [ref=e653]: tests
+                    - 'link "type: next" [ref=e656] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22type%3A%20next%22
+                      - generic [ref=e658]: "type: next"
+                - generic [ref=e663]:
+                  - img [ref=e664]
+                  - generic [ref=e666]: "Status: Merged (completed)."
+                - generic [ref=e670]:
+                  - generic [ref=e671]:
+                    - text: vercel/next.js
+                    - generic [ref=e672]: number 92894
+                  - generic [ref=e673]:
+                    - generic [ref=e674]: "#92894"
+                    - generic [ref=e675]: In vercel/next.js;
+                  - generic [ref=e676]:
+                    - text: · by
+                    - link "ztanner" [ref=e677] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20author%3Aztanner
+                    - text: was closed
+                    - generic "Apr 17, 2026, 12:35 PM EDT" [ref=e678]: on Apr 17, 202623 minutes ago
+              - 'listitem "[ci] Skip Playwright system deps install on subsequent self-hosted runs: Status: Merged (completed). vercel/next.jsnumber 92893 #92893 In vercel/next.js;· by mmastrac was closed on Apr 16, 2026. More information available below." [ref=e686]':
+                - generic [ref=e687]:
+                  - heading "[ci] Skip Playwright system deps install on subsequent self-hosted runs" [level=3] [ref=e688]:
+                    - link "[ci] Skip Playwright system deps install on subsequent self-hosted runs" [ref=e689] [cursor=pointer]:
+                      - /url: /vercel/next.js/pull/92893
+                      - generic [ref=e690]: "[ci] Skip Playwright system deps install on subsequent self-hosted runs"
+                  - 'link "created-by: Turbopack team PRs by the Turbopack team." [ref=e694] [cursor=pointer]':
+                    - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22created-by%3A%20Turbopack%20team%22
+                    - generic [ref=e696]: "created-by: Turbopack team"
+                    - generic [ref=e697]: PRs by the Turbopack team.
+                - generic [ref=e701]:
+                  - img [ref=e702]
+                  - generic [ref=e704]: "Status: Merged (completed)."
+                - generic [ref=e708]:
+                  - generic [ref=e709]:
+                    - text: vercel/next.js
+                    - generic [ref=e710]: number 92893
+                  - generic [ref=e711]:
+                    - generic [ref=e712]: "#92893"
+                    - generic [ref=e713]: In vercel/next.js;
+                  - generic [ref=e714]:
+                    - text: · by
+                    - link "mmastrac" [ref=e715] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20author%3Ammastrac
+                    - text: was closed
+                    - generic "Apr 16, 2026, 4:14 PM EDT" [ref=e716]: on Apr 16, 202620 hours ago
+              - 'listitem "Fix dev mode hydration failure when page is served from HTTP cache: Status: Merged (completed). vercel/next.jsnumber 92892 #92892 In vercel/next.js;· by unstubbable was closed on Apr 16, 2026. More information available below." [ref=e724]':
+                - generic [ref=e725]:
+                  - heading "Fix dev mode hydration failure when page is served from HTTP cache" [level=3] [ref=e726]:
+                    - link "Fix dev mode hydration failure when page is served from HTTP cache" [ref=e727] [cursor=pointer]:
+                      - /url: /vercel/next.js/pull/92892
+                      - generic [ref=e728]: Fix dev mode hydration failure when page is served from HTTP cache
+                  - generic [ref=e730]:
+                    - 'link "created-by: Next.js team PRs by the Next.js team." [ref=e732] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22created-by%3A%20Next.js%20team%22
+                      - generic [ref=e734]: "created-by: Next.js team"
+                      - generic [ref=e735]: PRs by the Next.js team.
+                    - link "tests" [ref=e737] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3Atests
+                      - generic [ref=e739]: tests
+                    - 'link "type: next" [ref=e742] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22type%3A%20next%22
+                      - generic [ref=e744]: "type: next"
+                - generic [ref=e749]:
+                  - img [ref=e750]
+                  - generic [ref=e752]: "Status: Merged (completed)."
+                - generic [ref=e756]:
+                  - generic [ref=e757]:
+                    - text: vercel/next.js
+                    - generic [ref=e758]: number 92892
+                  - generic [ref=e759]:
+                    - generic [ref=e760]: "#92892"
+                    - generic [ref=e761]: In vercel/next.js;
+                  - generic [ref=e762]:
+                    - text: · by
+                    - link "unstubbable" [ref=e763] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20author%3Aunstubbable
+                    - text: was closed
+                    - generic "Apr 16, 2026, 12:36 PM EDT" [ref=e764]: on Apr 16, 2026yesterday
+              - 'listitem "turbo-tasks: add info_span for blocking waits during task restore: Status: Merged (completed). vercel/next.jsnumber 92878 #92878 In vercel/next.js;· by sokra was closed on Apr 16, 2026. More information available below." [ref=e772]':
+                - generic [ref=e773]:
+                  - 'heading "turbo-tasks: add info_span for blocking waits during task restore" [level=3] [ref=e774]':
+                    - 'link "turbo-tasks: add info_span for blocking waits during task restore" [ref=e775] [cursor=pointer]':
+                      - /url: /vercel/next.js/pull/92878
+                      - generic [ref=e776]: "turbo-tasks: add info_span for blocking waits during task restore"
+                  - generic [ref=e778]:
+                    - 'link "created-by: Turbopack team PRs by the Turbopack team." [ref=e780] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22created-by%3A%20Turbopack%20team%22
+                      - generic [ref=e782]: "created-by: Turbopack team"
+                      - generic [ref=e783]: PRs by the Turbopack team.
+                    - link "Turbopack Related to Turbopack with Next.js." [ref=e785] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3ATurbopack
+                      - generic [ref=e787]: Turbopack
+                      - generic [ref=e788]: Related to Turbopack with Next.js.
+                - generic [ref=e792]:
+                  - img [ref=e793]
+                  - generic [ref=e795]: "Status: Merged (completed)."
+                - generic [ref=e799]:
+                  - generic [ref=e800]:
+                    - text: vercel/next.js
+                    - generic [ref=e801]: number 92878
+                  - generic [ref=e802]:
+                    - generic [ref=e803]: "#92878"
+                    - generic [ref=e804]: In vercel/next.js;
+                  - generic [ref=e805]:
+                    - text: · by
+                    - link "sokra" [ref=e806] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20author%3Asokra
+                    - text: was closed
+                    - generic "Apr 16, 2026, 11:43 AM EDT" [ref=e807]: on Apr 16, 2026yesterday
+              - 'listitem "Refactor trace server sort to SortMode enum (execution order / value / name): Status: Merged (completed). vercel/next.jsnumber 92873 #92873 In vercel/next.js;· by sokra was closed on Apr 17, 2026. More information available below." [ref=e815]':
+                - generic [ref=e816]:
+                  - heading "Refactor trace server sort to SortMode enum (execution order / value / name)" [level=3] [ref=e817]:
+                    - link "Refactor trace server sort to SortMode enum (execution order / value / name)" [ref=e818] [cursor=pointer]:
+                      - /url: /vercel/next.js/pull/92873
+                      - generic [ref=e819]: Refactor trace server sort to SortMode enum (execution order / value / name)
+                  - generic [ref=e821]:
+                    - 'link "created-by: Turbopack team PRs by the Turbopack team." [ref=e823] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22created-by%3A%20Turbopack%20team%22
+                      - generic [ref=e825]: "created-by: Turbopack team"
+                      - generic [ref=e826]: PRs by the Turbopack team.
+                    - link "tests" [ref=e828] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3Atests
+                      - generic [ref=e830]: tests
+                    - link "Turbopack Related to Turbopack with Next.js." [ref=e833] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3ATurbopack
+                      - generic [ref=e835]: Turbopack
+                      - generic [ref=e836]: Related to Turbopack with Next.js.
+                    - 'link "type: next" [ref=e838] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22type%3A%20next%22
+                      - generic [ref=e840]: "type: next"
+                - generic [ref=e845]:
+                  - img [ref=e846]
+                  - generic [ref=e848]: "Status: Merged (completed)."
+                - generic [ref=e852]:
+                  - generic [ref=e853]:
+                    - text: vercel/next.js
+                    - generic [ref=e854]: number 92873
+                  - generic [ref=e855]:
+                    - generic [ref=e856]: "#92873"
+                    - generic [ref=e857]: In vercel/next.js;
+                  - generic [ref=e858]:
+                    - text: · by
+                    - link "sokra" [ref=e859] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20author%3Asokra
+                    - text: was closed
+                    - generic "Apr 17, 2026, 3:44 AM EDT" [ref=e860]: on Apr 17, 20269 hours ago
+              - 'listitem "Enable prefetchInlining by default: Status: Merged (completed). vercel/next.jsnumber 92863 #92863 In vercel/next.js;· by acdlite was closed on Apr 16, 2026. More information available below." [ref=e868]':
+                - generic [ref=e869]:
+                  - heading "Enable prefetchInlining by default" [level=3] [ref=e870]:
+                    - link "Enable prefetchInlining by default" [ref=e871] [cursor=pointer]:
+                      - /url: /vercel/next.js/pull/92863
+                      - generic [ref=e872]: Enable prefetchInlining by default
+                  - generic [ref=e874]:
+                    - 'link "created-by: Next.js team PRs by the Next.js team." [ref=e876] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22created-by%3A%20Next.js%20team%22
+                      - generic [ref=e878]: "created-by: Next.js team"
+                      - generic [ref=e879]: PRs by the Next.js team.
+                    - link "tests" [ref=e881] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3Atests
+                      - generic [ref=e883]: tests
+                    - 'link "type: next" [ref=e886] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22type%3A%20next%22
+                      - generic [ref=e888]: "type: next"
+                - generic [ref=e893]:
+                  - img [ref=e894]
+                  - generic [ref=e896]: "Status: Merged (completed)."
+                - generic [ref=e900]:
+                  - generic [ref=e901]:
+                    - text: vercel/next.js
+                    - generic [ref=e902]: number 92863
+                  - generic [ref=e903]:
+                    - generic [ref=e904]: "#92863"
+                    - generic [ref=e905]: In vercel/next.js;
+                  - generic [ref=e906]:
+                    - text: · by
+                    - link "acdlite" [ref=e907] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20author%3Aacdlite
+                    - text: was closed
+                    - generic "Apr 16, 2026, 2:20 PM EDT" [ref=e908]: on Apr 16, 2026yesterday
+              - 'listitem "Turbopack: Use lld again on ARM64 glibc Linux: Status: Merged (completed). vercel/next.jsnumber 92860 #92860 In vercel/next.js;· by bgw was closed on Apr 15, 2026. More information available below." [ref=e916]':
+                - generic [ref=e917]:
+                  - 'heading "Turbopack: Use lld again on ARM64 glibc Linux" [level=3] [ref=e918]':
+                    - 'link "Turbopack: Use lld again on ARM64 glibc Linux" [ref=e919] [cursor=pointer]':
+                      - /url: /vercel/next.js/pull/92860
+                      - generic [ref=e920]: "Turbopack: Use lld again on ARM64 glibc Linux"
+                  - 'link "created-by: Turbopack team PRs by the Turbopack team." [ref=e924] [cursor=pointer]':
+                    - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22created-by%3A%20Turbopack%20team%22
+                    - generic [ref=e926]: "created-by: Turbopack team"
+                    - generic [ref=e927]: PRs by the Turbopack team.
+                - generic [ref=e931]:
+                  - img [ref=e932]
+                  - generic [ref=e934]: "Status: Merged (completed)."
+                - generic [ref=e938]:
+                  - generic [ref=e939]:
+                    - text: vercel/next.js
+                    - generic [ref=e940]: number 92860
+                  - generic [ref=e941]:
+                    - generic [ref=e942]: "#92860"
+                    - generic [ref=e943]: In vercel/next.js;
+                  - generic [ref=e944]:
+                    - text: · by
+                    - link "bgw" [ref=e945] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20author%3Abgw
+                    - text: was closed
+                    - generic "Apr 15, 2026, 7:33 PM EDT" [ref=e946]: on Apr 15, 20262 days ago
+              - 'listitem "Support more prefetch configuration options: Status: Merged (completed). vercel/next.jsnumber 92859 #92859 In vercel/next.js;· by gnoff was closed on Apr 17, 2026. More information available below." [ref=e954]':
+                - generic [ref=e955]:
+                  - heading "Support more prefetch configuration options" [level=3] [ref=e956]:
+                    - link "Support more prefetch configuration options" [ref=e957] [cursor=pointer]:
+                      - /url: /vercel/next.js/pull/92859
+                      - generic [ref=e958]: Support more prefetch configuration options
+                  - generic [ref=e960]:
+                    - 'link "created-by: Next.js team PRs by the Next.js team." [ref=e962] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22created-by%3A%20Next.js%20team%22
+                      - generic [ref=e964]: "created-by: Next.js team"
+                      - generic [ref=e965]: PRs by the Next.js team.
+                    - link "Documentation Related to Next.js' official documentation." [ref=e967] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3ADocumentation
+                      - generic [ref=e969]: Documentation
+                      - generic [ref=e970]: Related to Next.js' official documentation.
+                    - link "tests" [ref=e972] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3Atests
+                      - generic [ref=e974]: tests
+                    - 'link "type: next" [ref=e977] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22type%3A%20next%22
+                      - generic [ref=e979]: "type: next"
+                - generic [ref=e984]:
+                  - img [ref=e985]
+                  - generic [ref=e987]: "Status: Merged (completed)."
+                - generic [ref=e991]:
+                  - generic [ref=e992]:
+                    - text: vercel/next.js
+                    - generic [ref=e993]: number 92859
+                  - generic [ref=e994]:
+                    - generic [ref=e995]: "#92859"
+                    - generic [ref=e996]: In vercel/next.js;
+                  - generic [ref=e997]:
+                    - text: · by
+                    - link "gnoff" [ref=e998] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20author%3Agnoff
+                    - text: was closed
+                    - generic "Apr 17, 2026, 12:28 PM EDT" [ref=e999]: on Apr 17, 202629 minutes ago
+              - 'listitem "Allow overriding outputHashSalt in modifyConfig: Status: Merged (completed). vercel/next.jsnumber 92856 #92856 In vercel/next.js;· by mischnic was closed on Apr 16, 2026. More information available below." [ref=e1007]':
+                - generic [ref=e1008]:
+                  - heading "Allow overriding outputHashSalt in modifyConfig" [level=3] [ref=e1009]:
+                    - link "Allow overriding outputHashSalt in modifyConfig" [ref=e1010] [cursor=pointer]:
+                      - /url: /vercel/next.js/pull/92856
+                      - generic [ref=e1011]: Allow overriding outputHashSalt in modifyConfig
+                  - generic [ref=e1013]:
+                    - 'link "created-by: Turbopack team PRs by the Turbopack team." [ref=e1015] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22created-by%3A%20Turbopack%20team%22
+                      - generic [ref=e1017]: "created-by: Turbopack team"
+                      - generic [ref=e1018]: PRs by the Turbopack team.
+                    - link "tests" [ref=e1020] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3Atests
+                      - generic [ref=e1022]: tests
+                    - link "Turbopack Related to Turbopack with Next.js." [ref=e1025] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3ATurbopack
+                      - generic [ref=e1027]: Turbopack
+                      - generic [ref=e1028]: Related to Turbopack with Next.js.
+                    - 'link "type: next" [ref=e1030] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22type%3A%20next%22
+                      - generic [ref=e1032]: "type: next"
+                - generic [ref=e1037]:
+                  - img [ref=e1038]
+                  - generic [ref=e1040]: "Status: Merged (completed)."
+                - generic [ref=e1044]:
+                  - generic [ref=e1045]:
+                    - text: vercel/next.js
+                    - generic [ref=e1046]: number 92856
+                  - generic [ref=e1047]:
+                    - generic [ref=e1048]: "#92856"
+                    - generic [ref=e1049]: In vercel/next.js;
+                  - generic [ref=e1050]:
+                    - text: · by
+                    - link "mischnic" [ref=e1051] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20author%3Amischnic
+                    - text: was closed
+                    - generic "Apr 16, 2026, 6:43 AM EDT" [ref=e1052]: on Apr 16, 2026yesterday
+              - 'listitem "[ci] Skip sccache on Windows runners: Status: Merged (completed). vercel/next.jsnumber 92847 #92847 In vercel/next.js;· by mmastrac was closed on Apr 15, 2026. More information available below." [ref=e1060]':
+                - generic [ref=e1061]:
+                  - heading "[ci] Skip sccache on Windows runners" [level=3] [ref=e1062]:
+                    - link "[ci] Skip sccache on Windows runners" [ref=e1063] [cursor=pointer]:
+                      - /url: /vercel/next.js/pull/92847
+                      - generic [ref=e1064]: "[ci] Skip sccache on Windows runners"
+                  - 'link "created-by: Turbopack team PRs by the Turbopack team." [ref=e1068] [cursor=pointer]':
+                    - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22created-by%3A%20Turbopack%20team%22
+                    - generic [ref=e1070]: "created-by: Turbopack team"
+                    - generic [ref=e1071]: PRs by the Turbopack team.
+                - generic [ref=e1075]:
+                  - img [ref=e1076]
+                  - generic [ref=e1078]: "Status: Merged (completed)."
+                - generic [ref=e1082]:
+                  - generic [ref=e1083]:
+                    - text: vercel/next.js
+                    - generic [ref=e1084]: number 92847
+                  - generic [ref=e1085]:
+                    - generic [ref=e1086]: "#92847"
+                    - generic [ref=e1087]: In vercel/next.js;
+                  - generic [ref=e1088]:
+                    - text: · by
+                    - link "mmastrac" [ref=e1089] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20author%3Ammastrac
+                    - text: was closed
+                    - generic "Apr 15, 2026, 2:48 PM EDT" [ref=e1090]: on Apr 15, 20262 days ago
+              - 'listitem "Revert \"Node.js streams: Add forkpoint for prerenderToStream\": Status: Merged (completed). vercel/next.jsnumber 92845 #92845 In vercel/next.js;· by timneutkens was closed on Apr 15, 2026. More information available below." [ref=e1098]':
+                - generic [ref=e1099]:
+                  - 'heading "Revert \"Node.js streams: Add forkpoint for prerenderToStream\"" [level=3] [ref=e1100]':
+                    - 'link "Revert \"Node.js streams: Add forkpoint for prerenderToStream\"" [ref=e1101] [cursor=pointer]':
+                      - /url: /vercel/next.js/pull/92845
+                      - generic [ref=e1102]: "Revert \"Node.js streams: Add forkpoint for prerenderToStream\""
+                  - generic [ref=e1104]:
+                    - 'link "created-by: Turbopack team PRs by the Turbopack team." [ref=e1106] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22created-by%3A%20Turbopack%20team%22
+                      - generic [ref=e1108]: "created-by: Turbopack team"
+                      - generic [ref=e1109]: PRs by the Turbopack team.
+                    - 'link "type: next" [ref=e1111] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22type%3A%20next%22
+                      - generic [ref=e1113]: "type: next"
+                - generic [ref=e1118]:
+                  - img [ref=e1119]
+                  - generic [ref=e1121]: "Status: Merged (completed)."
+                - generic [ref=e1125]:
+                  - generic [ref=e1126]:
+                    - text: vercel/next.js
+                    - generic [ref=e1127]: number 92845
+                  - generic [ref=e1128]:
+                    - generic [ref=e1129]: "#92845"
+                    - generic [ref=e1130]: In vercel/next.js;
+                  - generic [ref=e1131]:
+                    - text: · by
+                    - link "timneutkens" [ref=e1132] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20author%3Atimneutkens
+                    - text: was closed
+                    - generic "Apr 15, 2026, 2:18 PM EDT" [ref=e1133]: on Apr 15, 20262 days ago
+              - 'listitem "turbopack: cache TransformPlugin in narrow-scoped turbo-tasks functions: Status: Merged (completed). vercel/next.jsnumber 92842 #92842 In vercel/next.js;· by sokra was closed on Apr 16, 2026. More information available below." [ref=e1141]':
+                - generic [ref=e1142]:
+                  - 'heading "turbopack: cache TransformPlugin in narrow-scoped turbo-tasks functions" [level=3] [ref=e1143]':
+                    - 'link "turbopack: cache TransformPlugin in narrow-scoped turbo-tasks functions" [ref=e1144] [cursor=pointer]':
+                      - /url: /vercel/next.js/pull/92842
+                      - generic [ref=e1145]: "turbopack: cache TransformPlugin in narrow-scoped turbo-tasks functions"
+                  - generic [ref=e1147]:
+                    - 'link "created-by: Turbopack team PRs by the Turbopack team." [ref=e1149] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22created-by%3A%20Turbopack%20team%22
+                      - generic [ref=e1151]: "created-by: Turbopack team"
+                      - generic [ref=e1152]: PRs by the Turbopack team.
+                    - link "Font (next/font) Related to Next.js Font Optimization." [ref=e1154] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22Font%20(next%2Ffont)%22
+                      - generic [ref=e1156]: Font (next/font)
+                      - generic [ref=e1157]: Related to Next.js Font Optimization.
+                    - link "Turbopack Related to Turbopack with Next.js." [ref=e1159] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3ATurbopack
+                      - generic [ref=e1161]: Turbopack
+                      - generic [ref=e1162]: Related to Turbopack with Next.js.
+                - generic [ref=e1166]:
+                  - img [ref=e1167]
+                  - generic [ref=e1169]: "Status: Merged (completed)."
+                - generic [ref=e1173]:
+                  - generic [ref=e1174]:
+                    - text: vercel/next.js
+                    - generic [ref=e1175]: number 92842
+                  - generic [ref=e1176]:
+                    - generic [ref=e1177]: "#92842"
+                    - generic [ref=e1178]: In vercel/next.js;
+                  - generic [ref=e1179]:
+                    - text: · by
+                    - link "sokra" [ref=e1180] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20author%3Asokra
+                    - text: was closed
+                    - generic "Apr 16, 2026, 2:17 AM EDT" [ref=e1181]: on Apr 16, 2026yesterday
+              - 'listitem "Support type cast expressions in page static info extractor: Status: Merged (completed). vercel/next.jsnumber 92837 #92837 In vercel/next.js;· by mischnic was closed on Apr 16, 2026. More information available below." [ref=e1189]':
+                - generic [ref=e1190]:
+                  - heading "Support type cast expressions in page static info extractor" [level=3] [ref=e1191]:
+                    - link "Support type cast expressions in page static info extractor" [ref=e1192] [cursor=pointer]:
+                      - /url: /vercel/next.js/pull/92837
+                      - generic [ref=e1193]: Support type cast expressions in page static info extractor
+                  - generic [ref=e1195]:
+                    - 'link "created-by: Turbopack team PRs by the Turbopack team." [ref=e1197] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22created-by%3A%20Turbopack%20team%22
+                      - generic [ref=e1199]: "created-by: Turbopack team"
+                      - generic [ref=e1200]: PRs by the Turbopack team.
+                    - link "tests" [ref=e1202] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3Atests
+                      - generic [ref=e1204]: tests
+                    - link "Turbopack Related to Turbopack with Next.js." [ref=e1207] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3ATurbopack
+                      - generic [ref=e1209]: Turbopack
+                      - generic [ref=e1210]: Related to Turbopack with Next.js.
+                    - 'link "type: next" [ref=e1212] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22type%3A%20next%22
+                      - generic [ref=e1214]: "type: next"
+                - generic [ref=e1219]:
+                  - img [ref=e1220]
+                  - generic [ref=e1222]: "Status: Merged (completed)."
+                - generic [ref=e1226]:
+                  - generic [ref=e1227]:
+                    - text: vercel/next.js
+                    - generic [ref=e1228]: number 92837
+                  - generic [ref=e1229]:
+                    - generic [ref=e1230]: "#92837"
+                    - generic [ref=e1231]: In vercel/next.js;
+                  - generic [ref=e1232]:
+                    - text: · by
+                    - link "mischnic" [ref=e1233] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20author%3Amischnic
+                    - text: was closed
+                    - generic "Apr 16, 2026, 9:52 AM EDT" [ref=e1234]: on Apr 16, 2026yesterday
+              - 'listitem "Turbopack: move assignment_scopes computation into ImportMap: Status: Merged (completed). vercel/next.jsnumber 92835 #92835 In vercel/next.js;· by mischnic was closed on Apr 15, 2026. More information available below." [ref=e1242]':
+                - generic [ref=e1243]:
+                  - 'heading "Turbopack: move assignment_scopes computation into ImportMap" [level=3] [ref=e1244]':
+                    - 'link "Turbopack: move assignment_scopes computation into ImportMap" [ref=e1245] [cursor=pointer]':
+                      - /url: /vercel/next.js/pull/92835
+                      - generic [ref=e1246]: "Turbopack: move assignment_scopes computation into ImportMap"
+                  - generic [ref=e1248]:
+                    - 'link "created-by: Turbopack team PRs by the Turbopack team." [ref=e1250] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22created-by%3A%20Turbopack%20team%22
+                      - generic [ref=e1252]: "created-by: Turbopack team"
+                      - generic [ref=e1253]: PRs by the Turbopack team.
+                    - link "Turbopack Related to Turbopack with Next.js." [ref=e1255] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3ATurbopack
+                      - generic [ref=e1257]: Turbopack
+                      - generic [ref=e1258]: Related to Turbopack with Next.js.
+                - generic [ref=e1262]:
+                  - img [ref=e1263]
+                  - generic [ref=e1265]: "Status: Merged (completed)."
+                - generic [ref=e1269]:
+                  - generic [ref=e1270]:
+                    - text: vercel/next.js
+                    - generic [ref=e1271]: number 92835
+                  - generic [ref=e1272]:
+                    - generic [ref=e1273]: "#92835"
+                    - generic [ref=e1274]: In vercel/next.js;
+                  - generic [ref=e1275]:
+                    - text: · by
+                    - link "mischnic" [ref=e1276] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20author%3Amischnic
+                    - text: was closed
+                    - generic "Apr 15, 2026, 5:35 PM EDT" [ref=e1277]: on Apr 15, 20262 days ago
+              - 'listitem "Turbopack: analyzer improvement followups: Status: Merged (completed). vercel/next.jsnumber 92834 #92834 In vercel/next.js;· by mischnic was closed on Apr 15, 2026. More information available below." [ref=e1285]':
+                - generic [ref=e1286]:
+                  - 'heading "Turbopack: analyzer improvement followups" [level=3] [ref=e1287]':
+                    - 'link "Turbopack: analyzer improvement followups" [ref=e1288] [cursor=pointer]':
+                      - /url: /vercel/next.js/pull/92834
+                      - generic [ref=e1289]: "Turbopack: analyzer improvement followups"
+                  - generic [ref=e1291]:
+                    - 'link "created-by: Turbopack team PRs by the Turbopack team." [ref=e1293] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22created-by%3A%20Turbopack%20team%22
+                      - generic [ref=e1295]: "created-by: Turbopack team"
+                      - generic [ref=e1296]: PRs by the Turbopack team.
+                    - link "Turbopack Related to Turbopack with Next.js." [ref=e1298] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3ATurbopack
+                      - generic [ref=e1300]: Turbopack
+                      - generic [ref=e1301]: Related to Turbopack with Next.js.
+                - generic [ref=e1305]:
+                  - img [ref=e1306]
+                  - generic [ref=e1308]: "Status: Merged (completed)."
+                - generic [ref=e1312]:
+                  - generic [ref=e1313]:
+                    - text: vercel/next.js
+                    - generic [ref=e1314]: number 92834
+                  - generic [ref=e1315]:
+                    - generic [ref=e1316]: "#92834"
+                    - generic [ref=e1317]: In vercel/next.js;
+                  - generic [ref=e1318]:
+                    - text: · by
+                    - link "mischnic" [ref=e1319] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20author%3Amischnic
+                    - text: was closed
+                    - generic "Apr 15, 2026, 4:23 PM EDT" [ref=e1320]: on Apr 15, 20262 days ago
+              - 'listitem "[ci] Cache passing test results so CI retries skip them: Status: Merged (completed). vercel/next.jsnumber 92832 #92832 In vercel/next.js;· by mmastrac was closed on Apr 16, 2026. More information available below." [ref=e1328]':
+                - generic [ref=e1329]:
+                  - heading "[ci] Cache passing test results so CI retries skip them" [level=3] [ref=e1330]:
+                    - link "[ci] Cache passing test results so CI retries skip them" [ref=e1331] [cursor=pointer]:
+                      - /url: /vercel/next.js/pull/92832
+                      - generic [ref=e1332]: "[ci] Cache passing test results so CI retries skip them"
+                  - 'link "created-by: Turbopack team PRs by the Turbopack team." [ref=e1336] [cursor=pointer]':
+                    - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20label%3A%22created-by%3A%20Turbopack%20team%22
+                    - generic [ref=e1338]: "created-by: Turbopack team"
+                    - generic [ref=e1339]: PRs by the Turbopack team.
+                - generic [ref=e1343]:
+                  - img [ref=e1344]
+                  - generic [ref=e1346]: "Status: Merged (completed)."
+                - generic [ref=e1350]:
+                  - generic [ref=e1351]:
+                    - text: vercel/next.js
+                    - generic [ref=e1352]: number 92832
+                  - generic [ref=e1353]:
+                    - generic [ref=e1354]: "#92832"
+                    - generic [ref=e1355]: In vercel/next.js;
+                  - generic [ref=e1356]:
+                    - text: · by
+                    - link "mmastrac" [ref=e1357] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Amerged%20sort%3Acreated-desc-desc%20author%3Ammastrac
+                    - text: was closed
+                    - generic "Apr 16, 2026, 7:39 PM EDT" [ref=e1358]: on Apr 16, 202617 hours ago
+          - navigation "Pagination" [ref=e1364]:
+            - generic [ref=e1365]:
+              - generic [ref=e1366]:
+                - img [ref=e1367]
+                - text: Previous
+              - link "Page 1" [ref=e1369] [cursor=pointer]:
+                - /url: /vercel/next.js/issues?q=is%3Amerged+sort%3Acreated-desc-desc&page=1
+                - text: "1"
+              - link "Page 2" [ref=e1370] [cursor=pointer]:
+                - /url: /vercel/next.js/issues?q=is%3Amerged+sort%3Acreated-desc-desc&page=2
+                - text: "2"
+              - link "Page 3" [ref=e1371] [cursor=pointer]:
+                - /url: /vercel/next.js/issues?q=is%3Amerged+sort%3Acreated-desc-desc&page=3
+                - text: "3"
+              - link "Page 4" [ref=e1372] [cursor=pointer]:
+                - /url: /vercel/next.js/issues?q=is%3Amerged+sort%3Acreated-desc-desc&page=4
+                - text: "4"
+              - link "Page 5" [ref=e1373] [cursor=pointer]:
+                - /url: /vercel/next.js/issues?q=is%3Amerged+sort%3Acreated-desc-desc&page=5
+                - text: "5"
+              - link "Page 6" [ref=e1374] [cursor=pointer]:
+                - /url: /vercel/next.js/issues?q=is%3Amerged+sort%3Acreated-desc-desc&page=6
+                - text: "6"
+              - link "Page 7" [ref=e1375] [cursor=pointer]:
+                - /url: /vercel/next.js/issues?q=is%3Amerged+sort%3Acreated-desc-desc&page=7
+                - text: "7"
+              - link "Page 8..." [ref=e1376] [cursor=pointer]:
+                - /url: /vercel/next.js/issues?q=is%3Amerged+sort%3Acreated-desc-desc&page=8
+                - text: "8"
+              - text: …
+              - link "Page 39" [ref=e1377] [cursor=pointer]:
+                - /url: /vercel/next.js/issues?q=is%3Amerged+sort%3Acreated-desc-desc&page=39
+                - text: "39"
+              - link "Page 40" [ref=e1378] [cursor=pointer]:
+                - /url: /vercel/next.js/issues?q=is%3Amerged+sort%3Acreated-desc-desc&page=40
+                - text: "40"
+              - link "Next Page" [ref=e1379] [cursor=pointer]:
+                - /url: /vercel/next.js/issues?q=is%3Amerged+sort%3Acreated-desc-desc&page=2
+                - text: Next
+                - img [ref=e1380]
+  - contentinfo [ref=e1382]:
+    - heading "Footer" [level=2] [ref=e1383]
+    - generic [ref=e1384]:
+      - generic [ref=e1385]:
+        - link "GitHub Homepage" [ref=e1386] [cursor=pointer]:
+          - /url: https://github.com
+          - img [ref=e1387]
+        - generic [ref=e1389]: © 2026 GitHub, Inc.
+      - navigation "Footer" [ref=e1390]:
+        - heading "Footer navigation" [level=3] [ref=e1391]
+        - list "Footer navigation" [ref=e1392]:
+          - listitem [ref=e1393]:
+            - link "Terms" [ref=e1394] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/github-terms/github-terms-of-service
+          - listitem [ref=e1395]:
+            - link "Privacy" [ref=e1396] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/privacy-policies/github-privacy-statement
+          - listitem [ref=e1397]:
+            - link "Security" [ref=e1398] [cursor=pointer]:
+              - /url: https://github.com/security
+          - listitem [ref=e1399]:
+            - link "Status" [ref=e1400] [cursor=pointer]:
+              - /url: https://www.githubstatus.com/
+          - listitem [ref=e1401]:
+            - link "Community" [ref=e1402] [cursor=pointer]:
+              - /url: https://github.community/
+          - listitem [ref=e1403]:
+            - link "Docs" [ref=e1404] [cursor=pointer]:
+              - /url: https://docs.github.com/
+          - listitem [ref=e1405]:
+            - link "Contact" [ref=e1406] [cursor=pointer]:
+              - /url: https://support.github.com?tags=dotcom-footer
+          - listitem [ref=e1407]:
+            - button "Manage cookies" [ref=e1409] [cursor=pointer]
+          - listitem [ref=e1410]:
+            - button "Do not share my personal information" [ref=e1412] [cursor=pointer]

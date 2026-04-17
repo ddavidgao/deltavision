@@ -1,0 +1,18 @@
+{
+  "step": 10,
+  "obs_type": "full_frame",
+  "transition": "full_frame",
+  "diff_ratio": null,
+  "crops": [],
+  "action": "re-navigate to releases, scroll to find Latest tag",
+  "action_label": "confirm latest stable release version",
+  "reasoning": "Full screenshot shows v16.2.4 with 'Latest' badge, published 2 days ago. This is the latest stable release. The canary v16.3.0-canary.0 is a pre-release. All questions answered.",
+  "t0_path": "step_9/t1.png",
+  "t1_path": "step_10/t1.png",
+  "url": "https://github.com/vercel/next.js/releases",
+  "step_ff_tokens": 1600,
+  "step_dv_tokens": 1600,
+  "ff_tokens_cumul": 16000,
+  "dv_tokens_cumul": 16000,
+  "done": true
+}

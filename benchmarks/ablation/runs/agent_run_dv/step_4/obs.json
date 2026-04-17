@@ -1,0 +1,28 @@
+{
+  "step": 4,
+  "action_label": "type('update docs') + Enter",
+  "obs_type": "delta",
+  "transition": "delta",
+  "diff_ratio": 0.049,
+  "phash_distance": 8,
+  "t1_path": "benchmarks/ablation/runs/agent_run_dv/step_4/t1.png",
+  "crops": [
+    {
+      "index": 0,
+      "bbox": [
+        447,
+        363,
+        593,
+        252
+      ],
+      "change_magnitude": 0.12,
+      "crop_after_path": "benchmarks/ablation/runs/agent_run_dv/step_4/crop_0_after.png"
+    }
+  ],
+  "thumbnail_path": "benchmarks/ablation/runs/agent_run_dv/step_4/thumbnail.png",
+  "step_ff_tokens": 1600,
+  "step_dv_tokens": 240,
+  "ff_tokens_cumul": 8000,
+  "dv_tokens_cumul": 2740,
+  "agent_decision": "Crop shows 'update docs' + '4 items left!' \u2192 add last item"
+}

@@ -10,6 +10,7 @@ from io import BytesIO
 from PIL import Image
 
 from .base import BaseModel, ModelResponse
+from ._response_parser import extract_json, normalize_response, get_confidence
 from agent.actions import parse_action
 from model.claude import SYSTEM_PROMPT  # same prompt works
 
@@ -88,27 +89,7 @@ class OpenAIModel(BaseModel):
         response = self.client.chat.completions.create(**kwargs)
 
         raw_text = response.choices[0].message.content
-
-        # Robust JSON parsing: local VLMs sometimes wrap output in markdown
-        # code fences or prose preamble. Fall back to brace-extraction.
-        try:
-            parsed = json.loads(raw_text)
-        except json.JSONDecodeError:
-            start = raw_text.find("{")
-            end = raw_text.rfind("}") + 1
-            if start >= 0 and end > start:
-                try:
-                    parsed = json.loads(raw_text[start:end])
-                except json.JSONDecodeError:
-                    parsed = {"reasoning": raw_text, "action": None, "done": True, "confidence": 0.0}
-            else:
-                parsed = {"reasoning": raw_text, "action": None, "done": True, "confidence": 0.0}
-
-        # Some local VLMs (MAI-UI-8B observed) nest confidence inside action.
-        # Hoist it to top level for consistent ModelResponse.
-        confidence = parsed.get("confidence")
-        if confidence is None and isinstance(parsed.get("action"), dict):
-            confidence = parsed["action"].get("confidence", 0.0)
+        parsed = normalize_response(extract_json(raw_text))
 
         action = parse_action(parsed.get("action")) if not parsed.get("done") else None
 
@@ -116,7 +97,7 @@ class OpenAIModel(BaseModel):
             action=action,
             done=parsed.get("done", False),
             reasoning=parsed.get("reasoning", ""),
-            confidence=confidence or 0.0,
+            confidence=get_confidence(parsed),
             raw_response=parsed,
         )
 

@@ -1,0 +1,18 @@
+{
+  "step": 10,
+  "obs_type": "full_frame",
+  "transition": "new_page",
+  "diff_ratio": 0.0,
+  "crops": [],
+  "action": "navigate",
+  "action_label": "navigate to releases page",
+  "reasoning": "URL changed → full_frame. Releases page showing latest: v16.3.0-canary.0 (Pre-release, published 49 minutes ago by nextjs-bot). This is the latest release version.",
+  "t0_path": "benchmarks/ablation/runs/github_dv/step_9/t1.png",
+  "t1_path": "benchmarks/ablation/runs/github_dv/step_10/t1.png",
+  "url": "https://github.com/vercel/next.js/releases",
+  "step_ff_tokens": 1600,
+  "step_dv_tokens": 1600,
+  "ff_tokens_cumul": 17600,
+  "dv_tokens_cumul": 15240,
+  "done": true
+}

@@ -1,0 +1,18 @@
+{
+  "step": 5,
+  "obs_type": "full_frame",
+  "transition": "new_page",
+  "diff_ratio": 0.3228,
+  "crops": [],
+  "action": "navigate",
+  "action_label": "navigate back to bug issues sorted newest",
+  "reasoning": "Full frame. Can see: Open 813 bug issues. Most recent bug: '#92877 @vercel/otel fetch instrumentation stripped after HMR in dev mode - resetFetch() restores pre-instrumentation fetch' (opened yesterday). Need to click this issue to check for comments.",
+  "t0_path": "benchmarks/ablation/runs/github_dv/step_4/t1.png",
+  "t1_path": "benchmarks/ablation/runs/github_dv/step_5/t1.png",
+  "url": "https://github.com/vercel/next.js/issues?q=is%3Aopen+label%3Abug&sort=created-desc",
+  "step_ff_tokens": 1600,
+  "step_dv_tokens": 1600,
+  "ff_tokens_cumul": 9600,
+  "dv_tokens_cumul": 9600,
+  "done": false
+}

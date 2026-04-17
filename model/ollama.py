@@ -27,6 +27,7 @@ import requests
 from PIL import Image
 
 from .base import BaseModel, ModelResponse
+from ._response_parser import extract_json, normalize_response, get_confidence
 from agent.actions import parse_action
 from model.claude import SYSTEM_PROMPT
 
@@ -60,33 +61,38 @@ class OllamaModel(BaseModel):
         if images:
             payload["images"] = images
 
+        # Retry on ANY transient failure: HTTP 5xx, connection reset, timeout.
+        # This layer is what keeps a run alive when Ollama GCs a model or
+        # the VRAM allocator briefly blocks.
+        import logging
+        import time as _time
+        log = logging.getLogger(__name__)
+
+        last_err: Optional[Exception] = None
         for attempt in range(3):
             try:
                 resp = requests.post(f"{self.host}/api/generate", json=payload, timeout=120)
                 resp.raise_for_status()
+                last_err = None
                 break
-            except requests.exceptions.HTTPError as e:
-                import logging
-                logging.getLogger(__name__).warning(
-                    "Ollama error (attempt %d/3): %s — %s",
-                    attempt + 1, resp.status_code, resp.text[:300],
+            except (requests.exceptions.HTTPError,
+                    requests.exceptions.ConnectionError,
+                    requests.exceptions.Timeout) as e:
+                last_err = e
+                status = getattr(getattr(e, "response", None), "status_code", "no-status")
+                body = getattr(getattr(e, "response", None), "text", "") or ""
+                log.warning(
+                    "Ollama error (attempt %d/3): %s %s — %s",
+                    attempt + 1, type(e).__name__, status, body[:300],
                 )
                 if attempt < 2:
-                    import time as _time
-                    _time.sleep(3)
+                    _time.sleep(3 * (attempt + 1))  # backoff: 3s, 6s
                     continue
-                raise
-        raw_text = resp.json()["response"]
+        if last_err is not None:
+            raise last_err
 
-        try:
-            parsed = json.loads(raw_text)
-        except json.JSONDecodeError:
-            start = raw_text.find("{")
-            end = raw_text.rfind("}") + 1
-            if start >= 0 and end > start:
-                parsed = json.loads(raw_text[start:end])
-            else:
-                parsed = {"reasoning": raw_text, "action": None, "done": True, "confidence": 0.0}
+        raw_text = resp.json()["response"]
+        parsed = normalize_response(extract_json(raw_text))
 
         action = parse_action(parsed.get("action")) if not parsed.get("done") else None
 
@@ -94,7 +100,7 @@ class OllamaModel(BaseModel):
             action=action,
             done=parsed.get("done", False),
             reasoning=parsed.get("reasoning", ""),
-            confidence=parsed.get("confidence", 0.0),
+            confidence=get_confidence(parsed),
             raw_response=parsed,
         )
 

@@ -1,0 +1,18 @@
+{
+  "step": 1,
+  "obs_type": "delta",
+  "transition": "delta",
+  "diff_ratio": 0.0622,
+  "crops": [{"index": 0, "bbox": [447, 140, 593, 432]}, {"index": 1, "bbox": [652, 583, 183, 57]}],
+  "thumbnail_path": "benchmarks/ablation/runs/subagent_dv/step_1/thumbnail.png",
+  "action": "type_enter",
+  "action_label": "type all 5 todos sequentially + Enter each",
+  "reasoning": "Thumbnail and crop_0_after clearly show all 5 todos added to the list: write report, review PR, send invoice, update docs, schedule meeting. 5 items left confirmed. Delta crop was sufficient to verify all items without needing full frame — the green box highlighted the entire todo list region.",
+  "t0_path": "benchmarks/ablation/runs/subagent_dv/step_0/t0.png",
+  "t1_path": "benchmarks/ablation/runs/subagent_dv/step_1/t1.png",
+  "step_ff_tokens": 1600,
+  "step_dv_tokens": 420,
+  "ff_tokens_cumul": 3200,
+  "dv_tokens_cumul": 2020,
+  "done": false
+}

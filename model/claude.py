@@ -17,6 +17,7 @@ import anthropic
 from PIL import Image
 
 from .base import BaseModel, ModelResponse
+from ._response_parser import extract_json, normalize_response, get_confidence
 from agent.actions import parse_action
 
 SYSTEM_PROMPT = """You are a GUI automation agent operating in DeltaVision mode.
@@ -79,16 +80,7 @@ class ClaudeModel(BaseModel):
         )
 
         raw_text = response.content[0].text
-        try:
-            parsed = json.loads(raw_text)
-        except json.JSONDecodeError:
-            # Claude sometimes wraps JSON in markdown or adds preamble
-            start = raw_text.find("{")
-            end = raw_text.rfind("}") + 1
-            if start >= 0 and end > start:
-                parsed = json.loads(raw_text[start:end])
-            else:
-                parsed = {"reasoning": raw_text, "action": None, "done": True, "confidence": 0.0}
+        parsed = normalize_response(extract_json(raw_text))
 
         action = parse_action(parsed.get("action")) if not parsed.get("done") else None
 
@@ -96,7 +88,7 @@ class ClaudeModel(BaseModel):
             action=action,
             done=parsed.get("done", False),
             reasoning=parsed.get("reasoning", ""),
-            confidence=parsed.get("confidence", 0.0),
+            confidence=get_confidence(parsed),
             raw_response=parsed,
         )
 

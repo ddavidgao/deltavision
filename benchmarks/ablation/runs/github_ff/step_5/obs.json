@@ -1,0 +1,18 @@
+{
+  "step": 5,
+  "obs_type": "full_frame",
+  "transition": "full_frame",
+  "diff_ratio": null,
+  "crops": [],
+  "action": "scrollBy(0, 1500) on issue #92877",
+  "action_label": "scroll down issue to check for comments",
+  "reasoning": "Full screenshot after scroll shows end of issue body with suggested fix. No comment threads visible. Page ends at the 'Sign up/Sign in to comment' prompt. Accessibility snapshot confirms only a label-added event in Activity, no comment nodes.",
+  "t0_path": "step_4/t1.png",
+  "t1_path": "step_5/t1.png",
+  "url": "https://github.com/vercel/next.js/issues/92877",
+  "step_ff_tokens": 1600,
+  "step_dv_tokens": 1600,
+  "ff_tokens_cumul": 8000,
+  "dv_tokens_cumul": 8000,
+  "done": false
+}

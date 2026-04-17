@@ -1,0 +1,18 @@
+{
+  "mode": "full_frame",
+  "obs_type": "full_frame",
+  "step": 10,
+  "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/project_task/full_frame/step_10/t1.png",
+  "last_action": "click_filter",
+  "trigger_reason": "full_frame_ablation",
+  "action": "click_filter",
+  "payload": "All",
+  "action_label": "click filter: All",
+  "t0_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/project_task/full_frame/step_9/t1.png",
+  "t1_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/project_task/full_frame/step_10/t1.png",
+  "elapsed_ms": 540,
+  "step_ff_tokens": 1600,
+  "step_dv_tokens": 1600,
+  "ff_tokens_cumul": 17600,
+  "dv_tokens_cumul": 17600
+}

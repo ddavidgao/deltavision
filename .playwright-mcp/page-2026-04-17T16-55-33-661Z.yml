@@ -1,0 +1,1050 @@
+- generic [ref=e2]:
+  - region
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner [ref=e6]:
+      - heading "Navigation Menu" [level=2] [ref=e7]
+      - generic [ref=e8]:
+        - link "Homepage" [ref=e10] [cursor=pointer]:
+          - /url: /
+          - img [ref=e11]
+        - generic [ref=e13]:
+          - navigation "Global" [ref=e16]:
+            - list [ref=e17]:
+              - listitem [ref=e18]:
+                - button "Platform" [ref=e20] [cursor=pointer]:
+                  - text: Platform
+                  - img [ref=e21]
+              - listitem [ref=e23]:
+                - button "Solutions" [ref=e25] [cursor=pointer]:
+                  - text: Solutions
+                  - img [ref=e26]
+              - listitem [ref=e28]:
+                - button "Resources" [ref=e30] [cursor=pointer]:
+                  - text: Resources
+                  - img [ref=e31]
+              - listitem [ref=e33]:
+                - button "Open Source" [ref=e35] [cursor=pointer]:
+                  - text: Open Source
+                  - img [ref=e36]
+              - listitem [ref=e38]:
+                - button "Enterprise" [ref=e40] [cursor=pointer]:
+                  - text: Enterprise
+                  - img [ref=e41]
+              - listitem [ref=e43]:
+                - link "Pricing" [ref=e44] [cursor=pointer]:
+                  - /url: https://github.com/pricing
+                  - generic [ref=e45]: Pricing
+          - generic [ref=e46]:
+            - button "Search or jump to…" [ref=e49] [cursor=pointer]:
+              - img [ref=e51]
+            - link "Sign in" [ref=e54] [cursor=pointer]:
+              - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Fpulls%3Fq%3Dis%253Amerged%2Bsort%253Aupdated-desc
+            - link "Sign up" [ref=e55] [cursor=pointer]:
+              - /url: /signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E%2Fpull_requests%2Findex&source=header-repo&source_repo=vercel%2Fnext.js
+            - button "Appearance settings" [ref=e58] [cursor=pointer]:
+              - img
+  - main [ref=e62]:
+    - generic [ref=e63]:
+      - generic [ref=e64]:
+        - generic [ref=e66]:
+          - img [ref=e67]
+          - link "vercel" [ref=e70] [cursor=pointer]:
+            - /url: /vercel
+          - generic [ref=e71]: /
+          - strong [ref=e72]:
+            - link "next.js" [ref=e73] [cursor=pointer]:
+              - /url: /vercel/next.js
+          - generic [ref=e74]: Public
+        - generic [ref=e75]:
+          - list:
+            - listitem [ref=e76]:
+              - link "You must be signed in to change notification settings" [ref=e77] [cursor=pointer]:
+                - /url: /login?return_to=%2Fvercel%2Fnext.js
+                - img [ref=e78]
+                - text: Notifications
+            - listitem [ref=e80]:
+              - link "Fork 30.9k" [ref=e81] [cursor=pointer]:
+                - /url: /login?return_to=%2Fvercel%2Fnext.js
+                - img [ref=e82]
+                - text: Fork
+                - generic "30,927" [ref=e84]: 30.9k
+            - listitem [ref=e85]:
+              - link "You must be signed in to star a repository" [ref=e87] [cursor=pointer]:
+                - /url: /login?return_to=%2Fvercel%2Fnext.js
+                - img [ref=e88]
+                - text: Star
+                - generic "138974 users starred this repository" [ref=e90]: 139k
+      - navigation "Repository" [ref=e91]:
+        - list [ref=e92]:
+          - listitem [ref=e93]:
+            - link "Code" [ref=e94] [cursor=pointer]:
+              - /url: /vercel/next.js
+              - img [ref=e95]
+              - generic [ref=e97]: Code
+          - listitem [ref=e98]:
+            - link "Issues 2.1k" [ref=e99] [cursor=pointer]:
+              - /url: /vercel/next.js/issues
+              - img [ref=e100]
+              - generic [ref=e103]: Issues
+              - generic "2,112" [ref=e104]: 2.1k
+          - listitem [ref=e105]:
+            - link "Pull requests 1.6k" [ref=e106] [cursor=pointer]:
+              - /url: /vercel/next.js/pulls
+              - img [ref=e107]
+              - generic [ref=e109]: Pull requests
+              - generic "1,646" [ref=e110]: 1.6k
+          - listitem [ref=e111]:
+            - link "Discussions" [ref=e112] [cursor=pointer]:
+              - /url: /vercel/next.js/discussions
+              - img [ref=e113]
+              - generic [ref=e115]: Discussions
+          - listitem [ref=e116]:
+            - link "Actions" [ref=e117] [cursor=pointer]:
+              - /url: /vercel/next.js/actions
+              - img [ref=e118]
+              - generic [ref=e120]: Actions
+          - listitem [ref=e121]:
+            - link "Security and quality 37" [ref=e122] [cursor=pointer]:
+              - /url: /vercel/next.js/security
+              - img [ref=e123]
+              - generic [ref=e125]: Security and quality
+              - generic "37" [ref=e126]
+          - listitem [ref=e127]:
+            - link "Insights" [ref=e128] [cursor=pointer]:
+              - /url: /vercel/next.js/pulse
+              - img [ref=e129]
+              - generic [ref=e131]: Insights
+    - generic [ref=e134]:
+      - 'heading "Pull requests: vercel/next.js" [level=1] [ref=e135]'
+      - generic [ref=e136]:
+        - search [ref=e137]:
+          - search "Issues" [ref=e138]:
+            - textbox "Search all issues" [ref=e139]: is:merged sort:updated-desc
+            - img
+          - navigation "Issue" [ref=e141]:
+            - link "Labels 86" [ref=e142] [cursor=pointer]:
+              - /url: /vercel/next.js/labels
+              - img [ref=e143]
+              - text: Labels 86
+            - link "Milestones 1" [ref=e145] [cursor=pointer]:
+              - /url: /vercel/next.js/milestones
+              - img [ref=e146]
+              - text: Milestones 1
+        - link "New pull request" [ref=e150] [cursor=pointer]:
+          - /url: /vercel/next.js/compare
+          - generic [ref=e153]: New pull request
+      - link "Clear current search query, filters, and sorts" [ref=e155] [cursor=pointer]:
+        - /url: /vercel/next.js/pulls?q=is%3Apr+is%3Aopen
+        - img [ref=e156]
+        - text: Clear current search query, filters, and sorts
+      - generic [ref=e158]:
+        - generic [ref=e160]:
+          - link "10,000 Total" [ref=e163] [cursor=pointer]:
+            - /url: /vercel/next.js/pulls?q=sort%3Aupdated-desc+is%3Amerged
+            - img [ref=e164]
+            - text: 10,000 Total
+          - generic [ref=e166]:
+            - group [ref=e167]:
+              - button "Author" [ref=e168] [cursor=pointer]: Author
+            - group [ref=e170]:
+              - button "Label" [ref=e171] [cursor=pointer]: Label
+            - generic [ref=e173]:
+              - group [ref=e174]:
+                - button "Projects" [ref=e175] [cursor=pointer]: Projects
+              - group [ref=e177]:
+                - button "Milestones" [ref=e178] [cursor=pointer]: Milestones
+              - group [ref=e180]:
+                - button "Reviews" [ref=e181] [cursor=pointer]: Reviews
+            - group [ref=e183]:
+              - button "Assignee" [ref=e184] [cursor=pointer]: Assignee
+            - group [ref=e186]:
+              - button "Sort" [ref=e187] [cursor=pointer]: Sort
+        - heading "Pull requests list" [level=2] [ref=e189]
+        - group "Issues" [ref=e190]:
+          - generic [ref=e191]:
+            - generic [ref=e193]:
+              - generic "Merged Pull Request" [ref=e195]:
+                - img [ref=e196]
+              - generic [ref=e198]:
+                - link "Redesign blocking route dev overlay and build errors" [ref=e199] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92638
+                - generic [ref=e200]:
+                  - 'link "created-by: Next.js DevEx team" [ref=e201] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22created-by%3A+Next.js+DevEx+team%22
+                  - link "tests" [ref=e202] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3Atests
+                  - 'link "type: next" [ref=e203] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22type%3A+next%22
+                - generic [ref=e204]:
+                  - generic [ref=e205]:
+                    - text: "#92638 by"
+                    - link "aurorascharff" [ref=e206] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Apr+author%3Aaurorascharff
+                    - generic "This user is a member of the vercel organization." [ref=e207]:
+                      - generic [ref=e208]: Member
+                    - text: was merged Apr 17, 202611 minutes ago
+                  - generic [ref=e209]:
+                    - generic [ref=e211]: Loading…
+                    - generic [ref=e212]:
+                      - img [ref=e213]
+                      - text: updated Apr 17, 202610 minutes ago
+              - generic [ref=e215]:
+                - generic [ref=e218]:
+                  - generic "Assigned to"
+                - link "23 comments" [ref=e220] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92638
+                  - img [ref=e221]
+                  - text: "23"
+            - generic [ref=e224]:
+              - generic "Merged Pull Request" [ref=e226]:
+                - img [ref=e227]
+              - generic [ref=e229]:
+                - 'link "[partial fallbacks]: include prefetch requests in shell upgrade handling" [ref=e230] [cursor=pointer]':
+                  - /url: /vercel/next.js/pull/92894
+                - generic [ref=e231]:
+                  - 'link "created-by: Next.js team" [ref=e232] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22created-by%3A+Next.js+team%22
+                  - link "tests" [ref=e233] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3Atests
+                  - 'link "type: next" [ref=e234] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22type%3A+next%22
+                - generic [ref=e235]:
+                  - generic [ref=e236]:
+                    - text: "#92894 by"
+                    - link "ztanner" [ref=e237] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Apr+author%3Aztanner
+                    - generic "This user is a member of the vercel organization." [ref=e238]:
+                      - generic [ref=e239]: Member
+                    - text: was merged Apr 17, 202619 minutes ago
+                  - generic [ref=e240]:
+                    - generic [ref=e242]: Loading…
+                    - generic [ref=e243]:
+                      - img [ref=e244]
+                      - text: updated Apr 17, 202619 minutes ago
+              - generic [ref=e246]:
+                - generic [ref=e249]:
+                  - generic "Assigned to"
+                - link "3 comments" [ref=e251] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92894
+                  - img [ref=e252]
+                  - text: "3"
+            - generic [ref=e255]:
+              - generic "Merged Pull Request" [ref=e257]:
+                - img [ref=e258]
+              - generic [ref=e260]:
+                - link "Improve deduping of concurrent 'use cache' invocations" [ref=e261] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/91830
+                  - text: Improve deduping of concurrent
+                  - code [ref=e262]: "'use cache'"
+                  - text: invocations
+                - generic [ref=e263]:
+                  - 'link "created-by: Next.js team" [ref=e264] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22created-by%3A+Next.js+team%22
+                  - link "tests" [ref=e265] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3Atests
+                  - 'link "type: next" [ref=e266] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22type%3A+next%22
+                - generic [ref=e267]:
+                  - generic [ref=e268]:
+                    - text: "#91830 by"
+                    - link "unstubbable" [ref=e269] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Apr+author%3Aunstubbable
+                    - generic "This user has previously committed to the next.js repository." [ref=e270]:
+                      - generic [ref=e271]: Contributor
+                    - text: was merged Apr 17, 202624 minutes ago
+                  - generic [ref=e272]:
+                    - generic [ref=e274]: Loading…
+                    - generic [ref=e275]:
+                      - img [ref=e276]
+                      - text: updated Apr 17, 202624 minutes ago
+              - generic [ref=e278]:
+                - generic [ref=e281]:
+                  - generic "Assigned to"
+                - link "6 comments" [ref=e283] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/91830
+                  - img [ref=e284]
+                  - text: "6"
+            - generic [ref=e287]:
+              - generic "Merged Pull Request" [ref=e289]:
+                - img [ref=e290]
+              - generic [ref=e292]:
+                - link "Support more prefetch configuration options" [ref=e293] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92859
+                - generic [ref=e294]:
+                  - 'link "created-by: Next.js team" [ref=e295] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22created-by%3A+Next.js+team%22
+                  - link "Documentation" [ref=e296] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3ADocumentation
+                  - link "tests" [ref=e297] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3Atests
+                  - 'link "type: next" [ref=e298] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22type%3A+next%22
+                - generic [ref=e299]:
+                  - generic [ref=e300]:
+                    - text: "#92859 by"
+                    - link "gnoff" [ref=e301] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Apr+author%3Agnoff
+                    - generic "This user has previously committed to the next.js repository." [ref=e302]:
+                      - generic [ref=e303]: Contributor
+                    - text: was merged Apr 17, 202626 minutes ago
+                  - generic [ref=e304]:
+                    - generic [ref=e306]: Loading…
+                    - generic [ref=e307]:
+                      - img [ref=e308]
+                      - text: updated Apr 17, 202626 minutes ago
+              - generic [ref=e310]:
+                - generic [ref=e313]:
+                  - generic "Assigned to"
+                - link "4 comments" [ref=e315] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92859
+                  - img [ref=e316]
+                  - text: "4"
+            - generic [ref=e319]:
+              - generic "Merged Pull Request" [ref=e321]:
+                - img [ref=e322]
+              - generic [ref=e324]:
+                - 'link "[ci]: fix backport sync script" [ref=e325] [cursor=pointer]':
+                  - /url: /vercel/next.js/pull/92942
+                - 'link "created-by: Next.js team" [ref=e327] [cursor=pointer]':
+                  - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22created-by%3A+Next.js+team%22
+                - generic [ref=e328]:
+                  - generic [ref=e329]:
+                    - text: "#92942 by"
+                    - link "ztanner" [ref=e330] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Apr+author%3Aztanner
+                    - generic "This user is a member of the vercel organization." [ref=e331]:
+                      - generic [ref=e332]: Member
+                    - text: was merged Apr 17, 20261 hour ago
+                  - generic [ref=e333]:
+                    - generic [ref=e335]: Loading…
+                    - generic [ref=e336]:
+                      - img [ref=e337]
+                      - text: updated Apr 17, 20261 hour ago
+              - generic [ref=e339]:
+                - generic [ref=e342]:
+                  - generic "Assigned to"
+                - link "6 comments" [ref=e344] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92942
+                  - img [ref=e345]
+                  - text: "6"
+            - generic [ref=e348]:
+              - generic "Merged Pull Request" [ref=e350]:
+                - img [ref=e351]
+              - generic [ref=e353]:
+                - link "remove flag guarding unstable_io" [ref=e354] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92923
+                  - text: remove flag guarding
+                  - code [ref=e355]: unstable_io
+                - generic [ref=e356]:
+                  - 'link "created-by: Next.js team" [ref=e357] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22created-by%3A+Next.js+team%22
+                  - link "Documentation" [ref=e358] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3ADocumentation
+                  - link "tests" [ref=e359] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3Atests
+                  - 'link "type: next" [ref=e360] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22type%3A+next%22
+                - generic [ref=e361]:
+                  - generic [ref=e362]:
+                    - text: "#92923 by"
+                    - link "gnoff" [ref=e363] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Apr+author%3Agnoff
+                    - generic "This user has previously committed to the next.js repository." [ref=e364]:
+                      - generic [ref=e365]: Contributor
+                    - text: was merged Apr 17, 20262 hours ago
+                  - generic [ref=e366]:
+                    - generic [ref=e368]: Loading…
+                    - generic [ref=e369]:
+                      - img [ref=e370]
+                      - text: updated Apr 17, 20261 hour ago
+              - generic [ref=e372]:
+                - generic [ref=e375]:
+                  - generic "Assigned to"
+                - link "3 comments" [ref=e377] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92923
+                  - img [ref=e378]
+                  - text: "3"
+            - generic [ref=e381]:
+              - generic "Merged Pull Request" [ref=e383]:
+                - img [ref=e384]
+              - generic [ref=e386]:
+                - 'link "Turbopack: optimize SelfTimeTree performance, memory usage, and fix range query boundaries" [ref=e387] [cursor=pointer]':
+                  - /url: /vercel/next.js/pull/92931
+                - generic [ref=e388]:
+                  - 'link "created-by: Turbopack team" [ref=e389] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22created-by%3A+Turbopack+team%22
+                  - link "Turbopack" [ref=e390] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3ATurbopack
+                - generic [ref=e391]:
+                  - generic [ref=e392]:
+                    - text: "#92931 by"
+                    - link "sokra" [ref=e393] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Apr+author%3Asokra
+                    - generic "This user is a member of the vercel organization." [ref=e394]:
+                      - generic [ref=e395]: Member
+                    - text: was merged Apr 17, 20264 hours ago
+                  - generic [ref=e396]:
+                    - generic [ref=e398]: Loading…
+                    - generic [ref=e399]:
+                      - img [ref=e400]
+                      - text: updated Apr 17, 20264 hours ago
+              - generic [ref=e402]:
+                - generic [ref=e405]:
+                  - generic "Assigned to"
+                - link "7 comments" [ref=e407] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92931
+                  - img [ref=e408]
+                  - text: "7"
+            - generic [ref=e411]:
+              - generic "Merged Pull Request" [ref=e413]:
+                - img [ref=e414]
+              - generic [ref=e416]:
+                - 'link "turbo-tasks-backend: stability fixes for task cancellation and error handling" [ref=e417] [cursor=pointer]':
+                  - /url: /vercel/next.js/pull/92254
+                - generic [ref=e418]:
+                  - 'link "created-by: Turbopack team" [ref=e419] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22created-by%3A+Turbopack+team%22
+                  - link "locked" [ref=e420] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3Alocked
+                  - link "Turbopack" [ref=e421] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3ATurbopack
+                - generic [ref=e422]:
+                  - generic [ref=e423]:
+                    - text: "#92254 by"
+                    - link "sokra" [ref=e424] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Apr+author%3Asokra
+                    - generic "This user is a member of the vercel organization." [ref=e425]:
+                      - generic [ref=e426]: Member
+                    - text: was merged Apr 3, 20262 weeks ago
+                  - generic [ref=e427]:
+                    - generic [ref=e429]: Loading…
+                    - generic [ref=e430]:
+                      - img [ref=e431]
+                      - text: updated Apr 17, 20264 hours ago
+              - generic [ref=e433]:
+                - generic [ref=e436]:
+                  - generic "Assigned to"
+                - link "7 comments" [ref=e438] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92254
+                  - img [ref=e439]
+                  - text: "7"
+            - generic [ref=e442]:
+              - generic "Merged Pull Request" [ref=e444]:
+                - img [ref=e445]
+              - generic [ref=e447]:
+                - 'link "turbo-trace-server: reduce allocation overhead when loading large trace files" [ref=e448] [cursor=pointer]':
+                  - /url: /vercel/next.js/pull/92896
+                - generic [ref=e449]:
+                  - 'link "created-by: Turbopack team" [ref=e450] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22created-by%3A+Turbopack+team%22
+                  - link "Turbopack" [ref=e451] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3ATurbopack
+                - generic [ref=e452]:
+                  - generic [ref=e453]:
+                    - text: "#92896 by"
+                    - link "sokra" [ref=e454] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Apr+author%3Asokra
+                    - generic "This user is a member of the vercel organization." [ref=e455]:
+                      - generic [ref=e456]: Member
+                    - text: was merged Apr 17, 20265 hours ago
+                  - generic [ref=e457]:
+                    - generic [ref=e459]: Loading…
+                    - generic [ref=e460]:
+                      - img [ref=e461]
+                      - text: updated Apr 17, 20265 hours ago
+              - generic [ref=e463]:
+                - generic [ref=e466]:
+                  - generic "Assigned to"
+                - link "25 comments" [ref=e468] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92896
+                  - img [ref=e469]
+                  - text: "25"
+            - generic [ref=e472]:
+              - generic "Merged Pull Request" [ref=e474]:
+                - img [ref=e475]
+              - generic [ref=e477]:
+                - 'link "Perf: Simplify static metadata handling" [ref=e478] [cursor=pointer]':
+                  - /url: /vercel/next.js/pull/92630
+                - generic [ref=e479]:
+                  - 'link "created-by: Turbopack team" [ref=e480] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22created-by%3A+Turbopack+team%22
+                  - link "tests" [ref=e481] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3Atests
+                  - link "Turbopack" [ref=e482] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3ATurbopack
+                  - 'link "type: next" [ref=e483] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22type%3A+next%22
+                - generic [ref=e484]:
+                  - generic [ref=e485]:
+                    - text: "#92630 by"
+                    - link "timneutkens" [ref=e486] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Apr+author%3Atimneutkens
+                    - generic "This user is a member of the vercel organization." [ref=e487]:
+                      - generic [ref=e488]: Member
+                    - text: was merged Apr 17, 20268 hours ago
+                  - generic [ref=e489]:
+                    - generic [ref=e491]: Loading…
+                    - generic [ref=e492]:
+                      - img [ref=e493]
+                      - text: updated Apr 17, 20268 hours ago
+              - generic [ref=e495]:
+                - generic [ref=e498]:
+                  - generic "Assigned to"
+                - link "9 comments" [ref=e500] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92630
+                  - img [ref=e501]
+                  - text: "9"
+            - generic [ref=e504]:
+              - generic "Merged Pull Request" [ref=e506]:
+                - img [ref=e507]
+              - generic [ref=e509]:
+                - link "Refactor trace server sort to SortMode enum (execution order / value / name)" [ref=e510] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92873
+                - generic [ref=e511]:
+                  - 'link "created-by: Turbopack team" [ref=e512] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22created-by%3A+Turbopack+team%22
+                  - link "tests" [ref=e513] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3Atests
+                  - link "Turbopack" [ref=e514] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3ATurbopack
+                  - 'link "type: next" [ref=e515] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22type%3A+next%22
+                - generic [ref=e516]:
+                  - generic [ref=e517]:
+                    - text: "#92873 by"
+                    - link "sokra" [ref=e518] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Apr+author%3Asokra
+                    - generic "This user is a member of the vercel organization." [ref=e519]:
+                      - generic [ref=e520]: Member
+                    - text: was merged Apr 17, 20269 hours ago
+                  - generic [ref=e521]:
+                    - generic [ref=e523]: Loading…
+                    - generic [ref=e524]:
+                      - img [ref=e525]
+                      - text: updated Apr 17, 20269 hours ago
+              - generic [ref=e527]:
+                - generic [ref=e530]:
+                  - generic "Assigned to"
+                - link "3 comments" [ref=e532] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92873
+                  - img [ref=e533]
+                  - text: "3"
+            - generic [ref=e536]:
+              - generic "Merged Pull Request" [ref=e538]:
+                - img [ref=e539]
+              - generic [ref=e541]:
+                - 'link "turbopack: reduce EffectStateStorage memory by storing u128 content hashes" [ref=e542] [cursor=pointer]':
+                  - /url: /vercel/next.js/pull/92902
+                - generic [ref=e543]:
+                  - 'link "created-by: Turbopack team" [ref=e544] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22created-by%3A+Turbopack+team%22
+                  - link "Turbopack" [ref=e545] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3ATurbopack
+                - generic [ref=e546]:
+                  - generic [ref=e547]:
+                    - text: "#92902 by"
+                    - link "sokra" [ref=e548] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Apr+author%3Asokra
+                    - generic "This user is a member of the vercel organization." [ref=e549]:
+                      - generic [ref=e550]: Member
+                    - text: was merged Apr 17, 20269 hours ago
+                  - generic [ref=e551]:
+                    - generic [ref=e553]: Loading…
+                    - generic [ref=e554]:
+                      - img [ref=e555]
+                      - text: updated Apr 17, 20269 hours ago
+              - generic [ref=e557]:
+                - generic [ref=e560]:
+                  - generic "Assigned to"
+                - link "6 comments" [ref=e562] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92902
+                  - img [ref=e563]
+                  - text: "6"
+            - generic [ref=e566]:
+              - generic "Merged Pull Request" [ref=e568]:
+                - img [ref=e569]
+              - generic [ref=e571]:
+                - link "fix accidental test duplication" [ref=e572] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92922
+                - generic [ref=e573]:
+                  - 'link "created-by: Next.js team" [ref=e574] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22created-by%3A+Next.js+team%22
+                  - link "tests" [ref=e575] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3Atests
+                - generic [ref=e576]:
+                  - generic [ref=e577]:
+                    - text: "#92922 by"
+                    - link "ztanner" [ref=e578] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Apr+author%3Aztanner
+                    - generic "This user is a member of the vercel organization." [ref=e579]:
+                      - generic [ref=e580]: Member
+                    - text: was merged Apr 17, 202616 hours ago
+                  - generic [ref=e581]:
+                    - generic [ref=e583]: Loading…
+                    - generic [ref=e584]:
+                      - img [ref=e585]
+                      - text: updated Apr 17, 202616 hours ago
+              - generic [ref=e587]:
+                - generic [ref=e590]:
+                  - generic "Assigned to"
+                - link "2 comments" [ref=e592] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92922
+                  - img [ref=e593]
+                  - text: "2"
+            - generic [ref=e596]:
+              - generic "Merged Pull Request" [ref=e598]:
+                - img [ref=e599]
+              - generic [ref=e601]:
+                - link "rename MagicAny" [ref=e602] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92918
+                - generic [ref=e603]:
+                  - 'link "created-by: Turbopack team" [ref=e604] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22created-by%3A+Turbopack+team%22
+                  - link "Turbopack" [ref=e605] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3ATurbopack
+                - generic [ref=e606]:
+                  - generic [ref=e607]:
+                    - text: "#92918 by"
+                    - link "lukesandberg" [ref=e608] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Apr+author%3Alukesandberg
+                    - generic "This user has previously committed to the next.js repository." [ref=e609]:
+                      - generic [ref=e610]: Contributor
+                    - text: was merged Apr 17, 202616 hours ago
+                  - generic [ref=e611]:
+                    - generic [ref=e613]: Loading…
+                    - generic [ref=e614]:
+                      - img [ref=e615]
+                      - text: updated Apr 17, 202616 hours ago
+              - generic [ref=e617]:
+                - generic [ref=e620]:
+                  - generic "Assigned to"
+                - link "4 comments" [ref=e622] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92918
+                  - img [ref=e623]
+                  - text: "4"
+            - generic [ref=e626]:
+              - generic "Merged Pull Request" [ref=e628]:
+                - img [ref=e629]
+              - generic [ref=e631]:
+                - 'link "docs: vt demo guide" [ref=e632] [cursor=pointer]':
+                  - /url: /vercel/next.js/pull/92249
+                - generic [ref=e633]:
+                  - 'link "created-by: Next.js DevEx team" [ref=e634] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22created-by%3A+Next.js+DevEx+team%22
+                  - link "Documentation" [ref=e635] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3ADocumentation
+                  - link "locked" [ref=e636] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3Alocked
+                - generic [ref=e637]:
+                  - generic [ref=e638]:
+                    - text: "#92249 by"
+                    - link "icyJoseph" [ref=e639] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Apr+author%3AicyJoseph
+                    - generic "This user is a member of the vercel organization." [ref=e640]:
+                      - generic [ref=e641]: Member
+                    - text: was merged Apr 2, 20262 weeks ago
+                  - generic [ref=e642]:
+                    - generic [ref=e644]: Loading…
+                    - generic [ref=e645]:
+                      - img [ref=e646]
+                      - text: updated Apr 17, 202616 hours ago
+              - generic [ref=e648]:
+                - generic [ref=e651]:
+                  - generic "Assigned to"
+                - link "19 comments" [ref=e653] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92249
+                  - img [ref=e654]
+                  - text: "19"
+            - generic [ref=e657]:
+              - generic "Merged Pull Request" [ref=e659]:
+                - img [ref=e660]
+              - generic [ref=e662]:
+                - link "Remove unnecessary ALS re-exports from entry-base.ts" [ref=e663] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/91527
+                  - text: Remove unnecessary ALS re-exports from
+                  - code [ref=e664]: entry-base.ts
+                - generic [ref=e665]:
+                  - 'link "created-by: Next.js team" [ref=e666] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22created-by%3A+Next.js+team%22
+                  - link "locked" [ref=e667] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3Alocked
+                  - 'link "type: next" [ref=e668] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22type%3A+next%22
+                - generic [ref=e669]:
+                  - generic [ref=e670]:
+                    - text: "#91527 by"
+                    - link "unstubbable" [ref=e671] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Apr+author%3Aunstubbable
+                    - generic "This user has previously committed to the next.js repository." [ref=e672]:
+                      - generic [ref=e673]: Contributor
+                    - text: was merged Apr 2, 20262 weeks ago
+                  - generic [ref=e674]:
+                    - generic [ref=e676]: Loading…
+                    - generic [ref=e677]:
+                      - img [ref=e678]
+                      - text: updated Apr 17, 202616 hours ago
+              - generic [ref=e680]:
+                - generic [ref=e683]:
+                  - generic "Assigned to"
+                - link "2 comments" [ref=e685] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/91527
+                  - img [ref=e686]
+                  - text: "2"
+            - generic [ref=e689]:
+              - generic "Merged Pull Request" [ref=e691]:
+                - img [ref=e692]
+              - generic [ref=e694]:
+                - link "Allow multi-level .localhost subdomains in dev origin check" [ref=e695] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92262
+                - generic [ref=e696]:
+                  - link "CI approved" [ref=e697] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22CI+approved%22
+                  - link "locked" [ref=e698] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3Alocked
+                  - link "tests" [ref=e699] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3Atests
+                  - 'link "type: next" [ref=e700] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22type%3A+next%22
+                - generic [ref=e701]:
+                  - generic [ref=e702]:
+                    - text: "#92262 by"
+                    - link "ctate" [ref=e703] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Apr+author%3Actate
+                    - generic "This user is a member of the vercel organization." [ref=e704]:
+                      - generic [ref=e705]: Member
+                    - text: was merged Apr 2, 20262 weeks ago
+                  - generic [ref=e706]:
+                    - generic [ref=e708]: Loading…
+                    - generic [ref=e709]:
+                      - img [ref=e710]
+                      - text: updated Apr 17, 202616 hours ago
+              - generic [ref=e712]:
+                - generic [ref=e715]:
+                  - generic "Assigned to"
+                - link "3 comments" [ref=e717] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92262
+                  - img [ref=e718]
+                  - text: "3"
+            - generic [ref=e721]:
+              - generic "Merged Pull Request" [ref=e723]:
+                - img [ref=e724]
+              - generic [ref=e726]:
+                - 'link "Backport: new view-transitions guide, update and fixes" [ref=e727] [cursor=pointer]':
+                  - /url: /vercel/next.js/pull/92264
+                - generic [ref=e728]:
+                  - 'link "created-by: Next.js DevEx team" [ref=e729] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22created-by%3A+Next.js+DevEx+team%22
+                  - link "Documentation" [ref=e730] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3ADocumentation
+                  - link "locked" [ref=e731] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3Alocked
+                - generic [ref=e732]:
+                  - generic [ref=e733]:
+                    - text: "#92264 by"
+                    - link "icyJoseph" [ref=e734] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Apr+author%3AicyJoseph
+                    - generic "This user is a member of the vercel organization." [ref=e735]:
+                      - generic [ref=e736]: Member
+                    - text: was merged Apr 2, 20262 weeks ago
+                  - generic [ref=e737]:
+                    - generic [ref=e739]: Loading…
+                    - generic [ref=e740]:
+                      - img [ref=e741]
+                      - text: updated Apr 17, 202616 hours ago
+              - generic [ref=e746]:
+                - generic "Assigned to"
+            - generic [ref=e749]:
+              - generic "Merged Pull Request" [ref=e751]:
+                - img [ref=e752]
+              - generic [ref=e754]:
+                - 'link "fix: preserve HTTP access fallbacks during prerender recovery" [ref=e755] [cursor=pointer]':
+                  - /url: /vercel/next.js/pull/92231
+                - generic [ref=e756]:
+                  - 'link "created-by: Next.js team" [ref=e757] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22created-by%3A+Next.js+team%22
+                  - link "locked" [ref=e758] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3Alocked
+                  - link "tests" [ref=e759] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3Atests
+                  - 'link "type: next" [ref=e760] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22type%3A+next%22
+                - generic [ref=e761]:
+                  - generic [ref=e762]:
+                    - text: "#92231 by"
+                    - link "ztanner" [ref=e763] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Apr+author%3Aztanner
+                    - generic "This user is a member of the vercel organization." [ref=e764]:
+                      - generic [ref=e765]: Member
+                    - text: was merged Apr 2, 20262 weeks ago
+                  - generic [ref=e766]:
+                    - generic [ref=e768]: Loading…
+                    - generic [ref=e769]:
+                      - img [ref=e770]
+                      - text: updated Apr 17, 202616 hours ago
+              - generic [ref=e772]:
+                - generic "2 linked issues" [ref=e774]:
+                  - generic "2 issues" [ref=e775]:
+                    - img [ref=e776]
+                    - text: "2"
+                - generic [ref=e780]:
+                  - generic "Assigned to"
+                - link "4 comments" [ref=e782] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92231
+                  - img [ref=e783]
+                  - text: "4"
+            - generic [ref=e786]:
+              - generic "Merged Pull Request" [ref=e788]:
+                - img [ref=e789]
+              - generic [ref=e791]:
+                - link "[ci] Cache passing test results so CI retries skip them" [ref=e792] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92832
+                - 'link "created-by: Turbopack team" [ref=e794] [cursor=pointer]':
+                  - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22created-by%3A+Turbopack+team%22
+                - generic [ref=e795]:
+                  - generic [ref=e796]:
+                    - text: "#92832 by"
+                    - link "mmastrac" [ref=e797] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Apr+author%3Ammastrac
+                    - generic "This user has previously committed to the next.js repository." [ref=e798]:
+                      - generic [ref=e799]: Contributor
+                    - text: was merged Apr 16, 202617 hours ago
+                  - generic [ref=e800]:
+                    - generic [ref=e802]: Loading…
+                    - generic [ref=e803]:
+                      - img [ref=e804]
+                      - text: updated Apr 16, 202617 hours ago
+              - generic [ref=e806]:
+                - generic [ref=e809]:
+                  - generic "Assigned to"
+                - link "11 comments" [ref=e811] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92832
+                  - img [ref=e812]
+                  - text: "11"
+            - generic [ref=e815]:
+              - generic "Merged Pull Request" [ref=e817]:
+                - img [ref=e818]
+              - generic [ref=e820]:
+                - 'link "fix(next/image): ensure images.maximumResponseBody applies to local images too" [ref=e821] [cursor=pointer]':
+                  - /url: /vercel/next.js/pull/92920
+                  - text: "fix(next/image): ensure"
+                  - code [ref=e822]: images.maximumResponseBody
+                  - text: applies to local images too
+                - generic [ref=e823]:
+                  - 'link "created-by: Next.js team" [ref=e824] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22created-by%3A+Next.js+team%22
+                  - link "tests" [ref=e825] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3Atests
+                  - 'link "type: next" [ref=e826] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22type%3A+next%22
+                - generic [ref=e827]:
+                  - generic [ref=e828]:
+                    - text: "#92920 by"
+                    - link "styfle" [ref=e829] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Apr+author%3Astyfle
+                    - generic "This user is a member of the vercel organization." [ref=e830]:
+                      - generic [ref=e831]: Member
+                    - text: was merged Apr 16, 202617 hours ago
+                  - generic [ref=e832]:
+                    - generic [ref=e834]: Loading…
+                    - generic [ref=e835]:
+                      - img [ref=e836]
+                      - text: updated Apr 16, 202617 hours ago
+              - generic [ref=e838]:
+                - generic [ref=e841]:
+                  - generic "Assigned to"
+                - link "2 comments" [ref=e843] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92920
+                  - img [ref=e844]
+                  - text: "2"
+            - generic [ref=e847]:
+              - generic "Merged Pull Request" [ref=e849]:
+                - img [ref=e850]
+              - generic [ref=e852]:
+                - 'link "CI: Remove dead yarn support from next-stats-action" [ref=e853] [cursor=pointer]':
+                  - /url: /vercel/next.js/pull/92587
+                - 'link "created-by: Turbopack team" [ref=e855] [cursor=pointer]':
+                  - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22created-by%3A+Turbopack+team%22
+                - generic [ref=e856]:
+                  - generic [ref=e857]:
+                    - text: "#92587 by"
+                    - link "bgw" [ref=e858] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Apr+author%3Abgw
+                    - generic "This user is a member of the vercel organization." [ref=e859]:
+                      - generic [ref=e860]: Member
+                    - text: was merged Apr 16, 202617 hours ago
+                  - generic [ref=e861]:
+                    - generic [ref=e863]: Loading…
+                    - generic [ref=e864]:
+                      - img [ref=e865]
+                      - text: updated Apr 16, 202617 hours ago
+              - generic [ref=e867]:
+                - generic [ref=e870]:
+                  - generic "Assigned to"
+                - link "2 comments" [ref=e872] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92587
+                  - img [ref=e873]
+                  - text: "2"
+            - generic [ref=e876]:
+              - generic "Merged Pull Request" [ref=e878]:
+                - img [ref=e879]
+              - generic [ref=e881]:
+                - 'link "turbo-tasks: Reduce allocations on cache hits" [ref=e882] [cursor=pointer]':
+                  - /url: /vercel/next.js/pull/92756
+                - generic [ref=e883]:
+                  - 'link "created-by: Turbopack team" [ref=e884] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22created-by%3A+Turbopack+team%22
+                  - link "Turbopack" [ref=e885] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3ATurbopack
+                - generic [ref=e886]:
+                  - generic [ref=e887]:
+                    - text: "#92756 by"
+                    - link "lukesandberg" [ref=e888] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Apr+author%3Alukesandberg
+                    - generic "This user has previously committed to the next.js repository." [ref=e889]:
+                      - generic [ref=e890]: Contributor
+                    - text: was merged Apr 16, 202619 hours ago
+                  - generic [ref=e891]:
+                    - generic [ref=e893]: Loading…
+                    - generic [ref=e894]:
+                      - img [ref=e895]
+                      - text: updated Apr 16, 202619 hours ago
+              - generic [ref=e897]:
+                - generic [ref=e900]:
+                  - generic "Assigned to"
+                - link "49 comments" [ref=e902] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92756
+                  - img [ref=e903]
+                  - text: "49"
+            - generic [ref=e906]:
+              - generic "Merged Pull Request" [ref=e908]:
+                - img [ref=e909]
+              - generic [ref=e911]:
+                - 'link "Replace deprecated moduleResolution: \"node\"" [ref=e912] [cursor=pointer]':
+                  - /url: /vercel/next.js/pull/92654
+                  - text: Replace deprecated
+                  - code [ref=e913]: "moduleResolution: \"node\""
+                - generic [ref=e914]:
+                  - 'link "created-by: Next.js team" [ref=e915] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22created-by%3A+Next.js+team%22
+                  - link "Turbopack" [ref=e916] [cursor=pointer]:
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3ATurbopack
+                  - 'link "type: next" [ref=e917] [cursor=pointer]':
+                    - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22type%3A+next%22
+                - generic [ref=e918]:
+                  - generic [ref=e919]:
+                    - text: "#92654 by"
+                    - link "eps1lon" [ref=e920] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Apr+author%3Aeps1lon
+                    - generic "This user is a member of the vercel organization." [ref=e921]:
+                      - generic [ref=e922]: Member
+                    - text: was merged Apr 16, 202620 hours ago
+                  - generic [ref=e923]:
+                    - generic [ref=e925]: Loading…
+                    - generic [ref=e926]:
+                      - img [ref=e927]
+                      - text: updated Apr 16, 202620 hours ago
+              - generic [ref=e929]:
+                - generic [ref=e932]:
+                  - generic "Assigned to"
+                - link "4 comments" [ref=e934] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92654
+                  - img [ref=e935]
+                  - text: "4"
+            - generic [ref=e938]:
+              - generic "Merged Pull Request" [ref=e940]:
+                - img [ref=e941]
+              - generic [ref=e943]:
+                - link "[ci] Skip Playwright system deps install on subsequent self-hosted runs" [ref=e944] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92893
+                - 'link "created-by: Turbopack team" [ref=e946] [cursor=pointer]':
+                  - /url: /vercel/next.js/pulls?q=is%3Amerged+sort%3Aupdated-desc+label%3A%22created-by%3A+Turbopack+team%22
+                - generic [ref=e947]:
+                  - generic [ref=e948]:
+                    - text: "#92893 by"
+                    - link "mmastrac" [ref=e949] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Apr+author%3Ammastrac
+                    - generic "This user has previously committed to the next.js repository." [ref=e950]:
+                      - generic [ref=e951]: Contributor
+                    - text: was merged Apr 16, 202620 hours ago
+                  - generic [ref=e952]:
+                    - generic [ref=e954]: Loading…
+                    - generic [ref=e955]:
+                      - img [ref=e956]
+                      - text: updated Apr 16, 202620 hours ago
+              - generic [ref=e958]:
+                - generic [ref=e961]:
+                  - generic "Assigned to"
+                - link "4 comments" [ref=e963] [cursor=pointer]:
+                  - /url: /vercel/next.js/pull/92893
+                  - img [ref=e964]
+                  - text: "4"
+      - navigation "Pagination" [ref=e967]:
+        - generic "Previous page" [ref=e968]: Previous
+        - emphasis [ref=e969] [cursor=pointer]: "1"
+        - link "Page 2" [ref=e970] [cursor=pointer]:
+          - /url: /vercel/next.js/pulls?page=2&q=is%3Amerged+sort%3Aupdated-desc
+          - text: "2"
+        - link "Page 3" [ref=e971] [cursor=pointer]:
+          - /url: /vercel/next.js/pulls?page=3&q=is%3Amerged+sort%3Aupdated-desc
+          - text: "3"
+        - link "Page 4" [ref=e972] [cursor=pointer]:
+          - /url: /vercel/next.js/pulls?page=4&q=is%3Amerged+sort%3Aupdated-desc
+          - text: "4"
+        - link "Page 5" [ref=e973] [cursor=pointer]:
+          - /url: /vercel/next.js/pulls?page=5&q=is%3Amerged+sort%3Aupdated-desc
+          - text: "5"
+        - generic [ref=e974]: …
+        - link "Page 399" [ref=e975] [cursor=pointer]:
+          - /url: /vercel/next.js/pulls?page=399&q=is%3Amerged+sort%3Aupdated-desc
+          - text: "399"
+        - link "Page 400" [ref=e976] [cursor=pointer]:
+          - /url: /vercel/next.js/pulls?page=400&q=is%3Amerged+sort%3Aupdated-desc
+          - text: "400"
+        - link "Next page" [ref=e977] [cursor=pointer]:
+          - /url: /vercel/next.js/pulls?page=2&q=is%3Amerged+sort%3Aupdated-desc
+          - text: Next
+      - generic [ref=e978]:
+        - img [ref=e979]
+        - strong [ref=e981]: ProTip!
+        - text: Follow long discussions with
+        - link "comments:>50" [ref=e982] [cursor=pointer]:
+          - /url: /vercel/next.js/issues?q=is%3Amerged+sort%3Aupdated-desc+comments%3A%3E50
+        - text: .
+  - contentinfo [ref=e983]:
+    - heading "Footer" [level=2] [ref=e984]
+    - generic [ref=e985]:
+      - generic [ref=e986]:
+        - link "GitHub Homepage" [ref=e987] [cursor=pointer]:
+          - /url: https://github.com
+          - img [ref=e988]
+        - generic [ref=e990]: © 2026 GitHub, Inc.
+      - navigation "Footer" [ref=e991]:
+        - heading "Footer navigation" [level=3] [ref=e992]
+        - list "Footer navigation" [ref=e993]:
+          - listitem [ref=e994]:
+            - link "Terms" [ref=e995] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/github-terms/github-terms-of-service
+          - listitem [ref=e996]:
+            - link "Privacy" [ref=e997] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/privacy-policies/github-privacy-statement
+          - listitem [ref=e998]:
+            - link "Security" [ref=e999] [cursor=pointer]:
+              - /url: https://github.com/security
+          - listitem [ref=e1000]:
+            - link "Status" [ref=e1001] [cursor=pointer]:
+              - /url: https://www.githubstatus.com/
+          - listitem [ref=e1002]:
+            - link "Community" [ref=e1003] [cursor=pointer]:
+              - /url: https://github.community/
+          - listitem [ref=e1004]:
+            - link "Docs" [ref=e1005] [cursor=pointer]:
+              - /url: https://docs.github.com/
+          - listitem [ref=e1006]:
+            - link "Contact" [ref=e1007] [cursor=pointer]:
+              - /url: https://support.github.com?tags=dotcom-footer
+          - listitem [ref=e1008]:
+            - button "Manage cookies" [ref=e1010] [cursor=pointer]
+          - listitem [ref=e1011]:
+            - button "Do not share my personal information" [ref=e1013] [cursor=pointer]

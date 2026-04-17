@@ -1,0 +1,17 @@
+{
+  "step": 2,
+  "obs_type": "full_frame",
+  "transition": "full_frame",
+  "diff_ratio": null,
+  "crops": [],
+  "action": "type('review PR', 'send invoice', 'update docs', 'schedule meeting') + Enter x4",
+  "action_label": "Add remaining 4 todos: review PR, send invoice, update docs, schedule meeting",
+  "reasoning": "Full screenshot shows all 5 todos listed: write report, review PR, send invoice, update docs, schedule meeting. Counter shows '5 items left!'. All todos are unchecked. Filter bar shows All/Active/Completed. Next action: check 'write report' checkbox.",
+  "t0_path": "benchmarks/ablation/runs/subagent_ff/step_1/t1.png",
+  "t1_path": "benchmarks/ablation/runs/subagent_ff/step_2/t1.png",
+  "step_ff_tokens": 1600,
+  "step_dv_tokens": 1600,
+  "ff_tokens_cumul": 4800,
+  "dv_tokens_cumul": 4800,
+  "done": false
+}

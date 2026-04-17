@@ -1,0 +1,1142 @@
+- generic [ref=e2]:
+  - region
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner [ref=e6]:
+      - heading "Navigation Menu" [level=2] [ref=e7]
+      - generic [ref=e8]:
+        - link "Homepage" [ref=e10] [cursor=pointer]:
+          - /url: /
+          - img [ref=e11]
+        - generic [ref=e13]:
+          - navigation "Global" [ref=e16]:
+            - list [ref=e17]:
+              - listitem [ref=e18]:
+                - button "Platform" [ref=e20] [cursor=pointer]:
+                  - text: Platform
+                  - img [ref=e21]
+              - listitem [ref=e23]:
+                - button "Solutions" [ref=e25] [cursor=pointer]:
+                  - text: Solutions
+                  - img [ref=e26]
+              - listitem [ref=e28]:
+                - button "Resources" [ref=e30] [cursor=pointer]:
+                  - text: Resources
+                  - img [ref=e31]
+              - listitem [ref=e33]:
+                - button "Open Source" [ref=e35] [cursor=pointer]:
+                  - text: Open Source
+                  - img [ref=e36]
+              - listitem [ref=e38]:
+                - button "Enterprise" [ref=e40] [cursor=pointer]:
+                  - text: Enterprise
+                  - img [ref=e41]
+              - listitem [ref=e43]:
+                - link "Pricing" [ref=e44] [cursor=pointer]:
+                  - /url: https://github.com/pricing
+                  - generic [ref=e45]: Pricing
+          - generic [ref=e46]:
+            - button "Search or jump to…" [ref=e49] [cursor=pointer]:
+              - img [ref=e51]
+            - link "Sign in" [ref=e54] [cursor=pointer]:
+              - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Fissues
+            - link "Sign up" [ref=e55] [cursor=pointer]:
+              - /url: /signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E%2Fissues%2Findex&source=header-repo&source_repo=vercel%2Fnext.js
+            - button "Appearance settings" [ref=e58] [cursor=pointer]:
+              - img
+  - main [ref=e62]:
+    - generic [ref=e63]:
+      - generic [ref=e64]:
+        - generic [ref=e66]:
+          - img [ref=e67]
+          - link "vercel" [ref=e70] [cursor=pointer]:
+            - /url: /vercel
+          - generic [ref=e71]: /
+          - strong [ref=e72]:
+            - link "next.js" [ref=e73] [cursor=pointer]:
+              - /url: /vercel/next.js
+          - generic [ref=e74]: Public
+        - generic [ref=e75]:
+          - list:
+            - listitem [ref=e76]:
+              - link "You must be signed in to change notification settings" [ref=e77] [cursor=pointer]:
+                - /url: /login?return_to=%2Fvercel%2Fnext.js
+                - img [ref=e78]
+                - text: Notifications
+            - listitem [ref=e80]:
+              - link "Fork 30.9k" [ref=e81] [cursor=pointer]:
+                - /url: /login?return_to=%2Fvercel%2Fnext.js
+                - img [ref=e82]
+                - text: Fork
+                - generic "30,927" [ref=e84]: 30.9k
+            - listitem [ref=e85]:
+              - link "You must be signed in to star a repository" [ref=e87] [cursor=pointer]:
+                - /url: /login?return_to=%2Fvercel%2Fnext.js
+                - img [ref=e88]
+                - text: Star
+                - generic "138974 users starred this repository" [ref=e90]: 139k
+      - navigation "Repository" [ref=e91]:
+        - list [ref=e92]:
+          - listitem [ref=e93]:
+            - link "Code" [ref=e94] [cursor=pointer]:
+              - /url: /vercel/next.js
+              - img [ref=e95]
+              - generic [ref=e97]: Code
+          - listitem [ref=e98]:
+            - link "Issues 2.1k" [ref=e99] [cursor=pointer]:
+              - /url: /vercel/next.js/issues
+              - img [ref=e100]
+              - generic [ref=e103]: Issues
+              - generic "2,112" [ref=e104]: 2.1k
+          - listitem [ref=e105]:
+            - link "Pull requests 1.6k" [ref=e106] [cursor=pointer]:
+              - /url: /vercel/next.js/pulls
+              - img [ref=e107]
+              - generic [ref=e109]: Pull requests
+              - generic "1,646" [ref=e110]: 1.6k
+          - listitem [ref=e111]:
+            - link "Discussions" [ref=e112] [cursor=pointer]:
+              - /url: /vercel/next.js/discussions
+              - img [ref=e113]
+              - generic [ref=e115]: Discussions
+          - listitem [ref=e116]:
+            - link "Actions" [ref=e117] [cursor=pointer]:
+              - /url: /vercel/next.js/actions
+              - img [ref=e118]
+              - generic [ref=e120]: Actions
+          - listitem [ref=e121]:
+            - link "Security and quality 37" [ref=e122] [cursor=pointer]:
+              - /url: /vercel/next.js/security
+              - img [ref=e123]
+              - generic [ref=e125]: Security and quality
+              - generic "37" [ref=e126]
+          - listitem [ref=e127]:
+            - link "Insights" [ref=e128] [cursor=pointer]:
+              - /url: /vercel/next.js/pulse
+              - img [ref=e129]
+              - generic [ref=e131]: Insights
+    - generic [ref=e144]:
+      - heading "Issues" [level=1] [ref=e145]
+      - generic [ref=e146]:
+        - generic [ref=e148]:
+          - form "Search Issues" [ref=e150]:
+            - generic [ref=e151]: Search Issues
+            - generic [ref=e153]:
+              - generic [ref=e155]:
+                - generic [ref=e156]:
+                  - generic [ref=e157]:
+                    - text: "is:"
+                    - generic [ref=e158]: issue
+                  - generic [ref=e160]:
+                    - text: "state:"
+                    - generic [ref=e161]: open
+                - combobox "Search Issues" [ref=e164]: is:issue state:open
+              - button "Search" [ref=e165] [cursor=pointer]:
+                - img [ref=e166]
+          - generic [ref=e168]:
+            - link "Labels" [ref=e169] [cursor=pointer]:
+              - /url: /vercel/next.js/labels
+              - generic [ref=e170]:
+                - generic:
+                  - img
+                - generic [ref=e171]: Labels
+            - link "Milestones" [ref=e172] [cursor=pointer]:
+              - /url: /vercel/next.js/milestones
+              - generic [ref=e173]:
+                - generic:
+                  - img
+                - generic [ref=e174]: Milestones
+            - link "New issue" [ref=e175] [cursor=pointer]:
+              - /url: /login?return_to=https://github.com/vercel/next.js/issues
+              - generic [ref=e177]: New issue
+        - generic [ref=e178]:
+          - generic [ref=e181]:
+            - heading "Search results" [level=2] [ref=e182]
+            - generic [ref=e183]:
+              - list [ref=e185]:
+                - listitem [ref=e186]:
+                  - link "Open (2,111)" [ref=e187] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues
+                    - generic [ref=e188]: Open
+                    - generic [ref=e189]: 2,111
+                    - generic [ref=e190]: (2,111)
+                - listitem [ref=e191]:
+                  - link "Closed (22,434)" [ref=e192] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aclosed
+                    - generic [ref=e193]: Closed
+                    - generic [ref=e194]: 22,434
+                    - generic [ref=e195]: (22,434)
+              - toolbar "Actions" [ref=e196]:
+                - generic [ref=e197]:
+                  - button "Filter by author" [ref=e199] [cursor=pointer]:
+                    - generic [ref=e200]:
+                      - generic [ref=e201]: Author
+                      - generic:
+                        - img
+                  - button "Filter by label" [ref=e203] [cursor=pointer]:
+                    - generic [ref=e204]:
+                      - generic [ref=e205]: Labels
+                      - generic:
+                        - img
+                  - button "Filter by project" [ref=e207] [cursor=pointer]:
+                    - generic [ref=e208]:
+                      - generic [ref=e209]: Projects
+                      - generic:
+                        - img
+                  - button "Filter by milestone" [ref=e211] [cursor=pointer]:
+                    - generic [ref=e212]:
+                      - generic [ref=e213]: Milestones
+                      - generic:
+                        - img
+                  - button "Filter by assignees" [ref=e215] [cursor=pointer]:
+                    - generic [ref=e216]:
+                      - generic [ref=e217]: Assignees
+                      - generic:
+                        - img
+                  - button "Filter by issue type" [ref=e219] [cursor=pointer]:
+                    - generic [ref=e220]:
+                      - generic [ref=e221]: Types
+                      - generic:
+                        - img
+                  - button "Sort by Newest , descending" [ref=e223] [cursor=pointer]:
+                    - generic [ref=e224]:
+                      - generic:
+                        - img
+                      - generic [ref=e225]:
+                        - generic [ref=e226]: Sort by
+                        - text: Newest
+                        - generic [ref=e227]: ", descending"
+                    - generic:
+                      - img
+            - list "Search results" [ref=e228]:
+              - 'listitem "next build crashes on Node 24.15+ and 25.7+ under Yarn PnP: require.extensions undefined in next-config-ts/require-hook.js: Status: Open. #92935 In vercel/next.js;· kabo opened on Apr 17, 2026. More information available below." [ref=e231]':
+                - generic [ref=e232]:
+                  - 'heading "next build crashes on Node 24.15+ and 25.7+ under Yarn PnP: require.extensions undefined in next-config-ts/require-hook.js" [level=3] [ref=e233]':
+                    - 'link "next build crashes on Node 24.15+ and 25.7+ under Yarn PnP: require.extensions undefined in next-config-ts/require-hook.js" [ref=e234] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues/92935
+                      - generic [ref=e235]: "next build crashes on Node 24.15+ and 25.7+ under Yarn PnP: require.extensions undefined in next-config-ts/require-hook.js"
+                  - link "Module Resolution Module resolution (CJS / ESM, module resolving)." [ref=e239] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Module%20Resolution%22
+                    - generic [ref=e241]: Module Resolution
+                    - generic [ref=e242]: Module resolution (CJS / ESM, module resolving).
+                - generic [ref=e246]:
+                  - img [ref=e247]
+                  - generic [ref=e250]: "Status: Open."
+                - generic [ref=e253]:
+                  - link "Bug" [ref=e256] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20type%3ABug
+                    - generic [ref=e258]: Bug
+                  - generic [ref=e259]:
+                    - generic [ref=e260]:
+                      - generic [ref=e261]: "#92935"
+                      - generic [ref=e262]: In vercel/next.js;
+                    - generic [ref=e263]:
+                      - text: ·
+                      - link "kabo" [ref=e264] [cursor=pointer]:
+                        - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20author%3Akabo
+                      - text: opened
+                      - generic "Apr 17, 2026, 6:50 AM EDT" [ref=e265]: on Apr 17, 20266 hours ago
+              - 'listitem "Docs: No description of how to access POST data in page.js/page.ts: Status: Open. #92919 In vercel/next.js;· Xananax opened on Apr 16, 2026. More information available below." [ref=e272]':
+                - 'heading "Docs: No description of how to access POST data in page.js/page.ts" [level=3] [ref=e274]':
+                  - 'link "Docs: No description of how to access POST data in page.js/page.ts" [ref=e275] [cursor=pointer]':
+                    - /url: /vercel/next.js/issues/92919
+                    - generic [ref=e276]: "Docs: No description of how to access POST data in page.js/page.ts"
+                - generic [ref=e281]:
+                  - img [ref=e282]
+                  - generic [ref=e285]: "Status: Open."
+                - generic [ref=e288]:
+                  - link "Documentation" [ref=e291] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20type%3ADocumentation
+                    - generic [ref=e293]: Documentation
+                  - generic [ref=e294]:
+                    - generic [ref=e295]:
+                      - generic [ref=e296]: "#92919"
+                      - generic [ref=e297]: In vercel/next.js;
+                    - generic [ref=e298]:
+                      - text: ·
+                      - link "Xananax" [ref=e299] [cursor=pointer]:
+                        - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20author%3AXananax
+                      - text: opened
+                      - generic "Apr 16, 2026, 6:57 PM EDT" [ref=e300]: on Apr 16, 202618 hours ago
+                - generic [ref=e301]:
+                  - generic "3 comments;" [ref=e303]:
+                    - generic [ref=e304]:
+                      - img [ref=e305]
+                      - generic [ref=e307]: "3"
+                      - generic [ref=e308]: comments
+                  - link "icyJoseph is assigned" [ref=e312] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20assignee%3AicyJoseph
+                    - img "icyJoseph" [ref=e313]
+              - 'listitem "[v16.2+] Router state header was sent but could not be parsed on soft navigation with dynamic rendering: Status: Open. #92907 In vercel/next.js;· abdonrd opened on Apr 16, 2026. More information available below." [ref=e316]':
+                - generic [ref=e317]:
+                  - heading "[v16.2+] Router state header was sent but could not be parsed on soft navigation with dynamic rendering" [level=3] [ref=e318]:
+                    - link "[v16.2+] Router state header was sent but could not be parsed on soft navigation with dynamic rendering" [ref=e319] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues/92907
+                      - generic [ref=e320]: "[v16.2+] Router state header was sent but could not be parsed on soft navigation with dynamic rendering"
+                  - generic [ref=e322]:
+                    - link "Cookies Related to the async cookies() function." [ref=e324] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3ACookies
+                      - generic [ref=e326]: Cookies
+                      - generic [ref=e327]: Related to the async cookies() function.
+                    - link "Headers Related to the async headers() function." [ref=e329] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3AHeaders
+                      - generic [ref=e331]: Headers
+                      - generic [ref=e332]: Related to the async headers() function.
+                    - link "Linking and Navigating Related to Next.js linking (e.g., <Link>) and navigation." [ref=e334] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Linking%20and%20Navigating%22
+                      - generic [ref=e336]: Linking and Navigating
+                      - generic [ref=e337]: Related to Next.js linking (e.g., <Link>) and navigation.
+                - generic [ref=e341]:
+                  - img [ref=e342]
+                  - generic [ref=e345]: "Status: Open."
+                - generic [ref=e348]:
+                  - link "Bug" [ref=e351] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20type%3ABug
+                    - generic [ref=e353]: Bug
+                  - generic [ref=e354]:
+                    - generic [ref=e355]:
+                      - generic [ref=e356]: "#92907"
+                      - generic [ref=e357]: In vercel/next.js;
+                    - generic [ref=e358]:
+                      - text: ·
+                      - link "abdonrd" [ref=e359] [cursor=pointer]:
+                        - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20author%3Aabdonrd
+                      - text: opened
+                      - generic "Apr 16, 2026, 3:38 PM EDT" [ref=e360]: on Apr 16, 2026yesterday
+                - button "1 linked PR" [ref=e363] [cursor=pointer]:
+                  - generic [ref=e364]:
+                    - generic:
+                      - img
+                    - generic [ref=e365]: "1"
+              - 'listitem "Route groups in chunk paths not encoded: Status: Open. #92890 In vercel/next.js;· Netail opened on Apr 16, 2026. More information available below." [ref=e370]':
+                - generic [ref=e371]:
+                  - heading "Route groups in chunk paths not encoded" [level=3] [ref=e372]:
+                    - link "Route groups in chunk paths not encoded" [ref=e373] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues/92890
+                      - generic [ref=e374]: Route groups in chunk paths not encoded
+                  - link "Route Handlers Related to Route Handlers." [ref=e378] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Route%20Handlers%22
+                    - generic [ref=e380]: Route Handlers
+                    - generic [ref=e381]: Related to Route Handlers.
+                - generic [ref=e385]:
+                  - img [ref=e386]
+                  - generic [ref=e389]: "Status: Open."
+                - generic [ref=e392]:
+                  - link "Bug" [ref=e395] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20type%3ABug
+                    - generic [ref=e397]: Bug
+                  - generic [ref=e398]:
+                    - generic [ref=e399]:
+                      - generic [ref=e400]: "#92890"
+                      - generic [ref=e401]: In vercel/next.js;
+                    - generic [ref=e402]:
+                      - text: ·
+                      - link "Netail" [ref=e403] [cursor=pointer]:
+                        - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20author%3ANetail
+                      - text: opened
+                      - generic "Apr 16, 2026, 9:14 AM EDT" [ref=e404]: on Apr 16, 2026yesterday
+              - 'listitem "Next.js Server Action redirects send 3xx responses with bodies framed only by Transfer-Encoding, which some proxies/CDNs strip: Status: Open. #92882 In vercel/next.js;· philwolstenholme opened on Apr 16, 2026. More information available below." [ref=e411]':
+                - generic [ref=e412]:
+                  - heading "Next.js Server Action redirects send 3xx responses with bodies framed only by Transfer-Encoding, which some proxies/CDNs strip" [level=3] [ref=e413]:
+                    - link "Next.js Server Action redirects send 3xx responses with bodies framed only by Transfer-Encoding, which some proxies/CDNs strip" [ref=e414] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues/92882
+                      - generic [ref=e416]:
+                        - text: Next.js Server Action redirects send 3xx responses with bodies framed only by
+                        - code [ref=e417]: Transfer-Encoding
+                        - text: ", which some proxies/CDNs strip"
+                  - link "Server Actions Related to Server Actions." [ref=e421] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Server%20Actions%22
+                    - generic [ref=e423]: Server Actions
+                    - generic [ref=e424]: Related to Server Actions.
+                - generic [ref=e428]:
+                  - img [ref=e429]
+                  - generic [ref=e432]: "Status: Open."
+                - generic [ref=e435]:
+                  - link "Bug" [ref=e438] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20type%3ABug
+                    - generic [ref=e440]: Bug
+                  - generic [ref=e441]:
+                    - generic [ref=e442]:
+                      - generic [ref=e443]: "#92882"
+                      - generic [ref=e444]: In vercel/next.js;
+                    - generic [ref=e445]:
+                      - text: ·
+                      - link "philwolstenholme" [ref=e446] [cursor=pointer]:
+                        - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20author%3Aphilwolstenholme
+                      - text: opened
+                      - generic "Apr 16, 2026, 7:24 AM EDT" [ref=e447]: on Apr 16, 2026yesterday
+                - generic "2 comments;" [ref=e450]:
+                  - generic [ref=e451]:
+                    - img [ref=e452]
+                    - generic [ref=e454]: "2"
+                    - generic [ref=e455]: comments
+              - 'listitem "@vercel/otel fetch instrumentation stripped after HMR in dev mode — resetFetch() restores pre-instrumentation fetch: Status: Open. #92877 In vercel/next.js;· Strernd opened on Apr 16, 2026. More information available below." [ref=e459]':
+                - generic [ref=e460]:
+                  - heading "@vercel/otel fetch instrumentation stripped after HMR in dev mode — resetFetch() restores pre-instrumentation fetch" [level=3] [ref=e461]:
+                    - link "@vercel/otel fetch instrumentation stripped after HMR in dev mode — resetFetch() restores pre-instrumentation fetch" [ref=e462] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues/92877
+                      - generic [ref=e464]:
+                        - code [ref=e465]: "@vercel/otel"
+                        - text: fetch instrumentation stripped after HMR in dev mode —
+                        - code [ref=e466]: resetFetch()
+                        - text: restores pre-instrumentation fetch
+                  - generic [ref=e468]:
+                    - link "bug Issue was opened via the bug report template." [ref=e470] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3Abug
+                      - generic [ref=e472]: bug
+                      - generic [ref=e473]: Issue was opened via the bug report template.
+                    - link "Instrumentation Related to Next.js Instrumentation." [ref=e475] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3AInstrumentation
+                      - generic [ref=e477]: Instrumentation
+                      - generic [ref=e478]: Related to Next.js Instrumentation.
+                    - link "Turbopack Related to Turbopack with Next.js." [ref=e480] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3ATurbopack
+                      - generic [ref=e482]: Turbopack
+                      - generic [ref=e483]: Related to Turbopack with Next.js.
+                - generic [ref=e487]:
+                  - img [ref=e488]
+                  - generic [ref=e491]: "Status: Open."
+                - generic [ref=e495]:
+                  - generic [ref=e496]:
+                    - generic [ref=e497]: "#92877"
+                    - generic [ref=e498]: In vercel/next.js;
+                  - generic [ref=e499]:
+                    - text: ·
+                    - link "Strernd" [ref=e500] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20author%3AStrernd
+                    - text: opened
+                    - generic "Apr 16, 2026, 5:14 AM EDT" [ref=e501]: on Apr 16, 2026yesterday
+              - 'listitem "Turbopack: path-based glob in turbopack.rules doesn''t match files in require.context; module type ''raw'' not recognized: Status: Open. #92867 In vercel/next.js;· xusd320 opened on Apr 15, 2026. More information available below." [ref=e508]':
+                - generic [ref=e509]:
+                  - 'heading "Turbopack: path-based glob in turbopack.rules doesn''t match files in require.context; module type ''raw'' not recognized" [level=3] [ref=e510]':
+                    - 'link "Turbopack: path-based glob in turbopack.rules doesn''t match files in require.context; module type ''raw'' not recognized" [ref=e511] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues/92867
+                      - generic [ref=e512]: "Turbopack: path-based glob in turbopack.rules doesn't match files in require.context; module type 'raw' not recognized"
+                  - link "Turbopack Related to Turbopack with Next.js." [ref=e516] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3ATurbopack
+                    - generic [ref=e518]: Turbopack
+                    - generic [ref=e519]: Related to Turbopack with Next.js.
+                - generic [ref=e523]:
+                  - img [ref=e524]
+                  - generic [ref=e527]: "Status: Open."
+                - generic [ref=e530]:
+                  - link "Bug" [ref=e533] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20type%3ABug
+                    - generic [ref=e535]: Bug
+                  - generic [ref=e536]:
+                    - generic [ref=e537]:
+                      - generic [ref=e538]: "#92867"
+                      - generic [ref=e539]: In vercel/next.js;
+                    - generic [ref=e540]:
+                      - text: ·
+                      - link "xusd320" [ref=e541] [cursor=pointer]:
+                        - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20author%3Axusd320
+                      - text: opened
+                      - generic "Apr 15, 2026, 11:54 PM EDT" [ref=e542]: on Apr 15, 20262 days ago
+              - 'listitem "Sentry Spotlight sourcemaps work with Webpack but fail under Turbopack in Next.js (Next.js 16 + @sentry/nextjs): Status: Open. #92857 In vercel/next.js;· amscu-dev opened on Apr 15, 2026. More information available below." [ref=e549]':
+                - generic [ref=e550]:
+                  - heading "Sentry Spotlight sourcemaps work with Webpack but fail under Turbopack in Next.js (Next.js 16 + @sentry/nextjs)" [level=3] [ref=e551]:
+                    - link "Sentry Spotlight sourcemaps work with Webpack but fail under Turbopack in Next.js (Next.js 16 + @sentry/nextjs)" [ref=e552] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues/92857
+                      - generic [ref=e553]: Sentry Spotlight sourcemaps work with Webpack but fail under Turbopack in Next.js (Next.js 16 + @sentry/nextjs)
+                  - link "Turbopack Related to Turbopack with Next.js." [ref=e557] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3ATurbopack
+                    - generic [ref=e559]: Turbopack
+                    - generic [ref=e560]: Related to Turbopack with Next.js.
+                - generic [ref=e564]:
+                  - img [ref=e565]
+                  - generic [ref=e568]: "Status: Open."
+                - generic [ref=e571]:
+                  - link "Bug" [ref=e574] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20type%3ABug
+                    - generic [ref=e576]: Bug
+                  - generic [ref=e577]:
+                    - generic [ref=e578]:
+                      - generic [ref=e579]: "#92857"
+                      - generic [ref=e580]: In vercel/next.js;
+                    - generic [ref=e581]:
+                      - text: ·
+                      - link "amscu-dev" [ref=e582] [cursor=pointer]:
+                        - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20author%3Aamscu-dev
+                      - text: opened
+                      - generic "Apr 15, 2026, 5:53 PM EDT" [ref=e583]: on Apr 15, 20262 days ago
+              - 'listitem "jest-worker: \"TypeError: Unexpected response from worker: undefined\" when using dynamic Routes: Status: Open. #92836 In vercel/next.js;· ale-grosselle opened on Apr 15, 2026. More information available below." [ref=e590]':
+                - generic [ref=e591]:
+                  - 'heading "jest-worker: \"TypeError: Unexpected response from worker: undefined\" when using dynamic Routes" [level=3] [ref=e592]':
+                    - 'link "jest-worker: \"TypeError: Unexpected response from worker: undefined\" when using dynamic Routes" [ref=e593] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues/92836
+                      - generic [ref=e594]: "jest-worker: \"TypeError: Unexpected response from worker: undefined\" when using dynamic Routes"
+                  - link "Dynamic Routes Related to dynamic routes." [ref=e598] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Dynamic%20Routes%22
+                    - generic [ref=e600]: Dynamic Routes
+                    - generic [ref=e601]: Related to dynamic routes.
+                - generic [ref=e605]:
+                  - img [ref=e606]
+                  - generic [ref=e609]: "Status: Open."
+                - generic [ref=e612]:
+                  - link "Bug" [ref=e615] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20type%3ABug
+                    - generic [ref=e617]: Bug
+                  - generic [ref=e618]:
+                    - generic [ref=e619]:
+                      - generic [ref=e620]: "#92836"
+                      - generic [ref=e621]: In vercel/next.js;
+                    - generic [ref=e622]:
+                      - text: ·
+                      - link "ale-grosselle" [ref=e623] [cursor=pointer]:
+                        - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20author%3Aale-grosselle
+                      - text: opened
+                      - generic "Apr 15, 2026, 12:33 PM EDT" [ref=e624]: on Apr 15, 20262 days ago
+                - generic [ref=e625]:
+                  - button "1 linked PR" [ref=e627] [cursor=pointer]:
+                    - generic [ref=e628]:
+                      - generic:
+                        - img
+                      - generic [ref=e629]: "1"
+                  - generic "2 comments;" [ref=e630]:
+                    - generic [ref=e631]:
+                      - img [ref=e632]
+                      - generic [ref=e634]: "2"
+                      - generic [ref=e635]: comments
+              - 'listitem "Docs and runtime disagree on Partytown package name for nextScriptWorkers: Status: Open. #92827 In vercel/next.js;· KrzysztofKarol opened on Apr 15, 2026. More information available below." [ref=e639]':
+                - generic [ref=e640]:
+                  - heading "Docs and runtime disagree on Partytown package name for nextScriptWorkers" [level=3] [ref=e641]:
+                    - link "Docs and runtime disagree on Partytown package name for nextScriptWorkers" [ref=e642] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues/92827
+                      - generic [ref=e644]:
+                        - text: Docs and runtime disagree on Partytown package name for
+                        - code [ref=e645]: nextScriptWorkers
+                  - link "Script (next/script) Related to Next.js Script Optimization." [ref=e649] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Script%20(next%2Fscript)%22
+                    - generic [ref=e651]: Script (next/script)
+                    - generic [ref=e652]: Related to Next.js Script Optimization.
+                - generic [ref=e656]:
+                  - img [ref=e657]
+                  - generic [ref=e660]: "Status: Open."
+                - generic [ref=e663]:
+                  - link "Bug" [ref=e666] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20type%3ABug
+                    - generic [ref=e668]: Bug
+                  - generic [ref=e669]:
+                    - generic [ref=e670]:
+                      - generic [ref=e671]: "#92827"
+                      - generic [ref=e672]: In vercel/next.js;
+                    - generic [ref=e673]:
+                      - text: ·
+                      - link "KrzysztofKarol" [ref=e674] [cursor=pointer]:
+                        - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20author%3AKrzysztofKarol
+                      - text: opened
+                      - generic "Apr 15, 2026, 10:06 AM EDT" [ref=e675]: on Apr 15, 20262 days ago
+                - button "1 linked PR" [ref=e678] [cursor=pointer]:
+                  - generic [ref=e679]:
+                    - generic:
+                      - img
+                    - generic [ref=e680]: "1"
+              - 'listitem "next/dynamic preloads missing crossOrigin setting: Status: Open. #92797 In vercel/next.js;· wvanrensselaer opened on Apr 14, 2026. More information available below." [ref=e685]':
+                - generic [ref=e686]:
+                  - heading "next/dynamic preloads missing crossOrigin setting" [level=3] [ref=e687]:
+                    - link "next/dynamic preloads missing crossOrigin setting" [ref=e688] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues/92797
+                      - generic [ref=e689]: next/dynamic preloads missing crossOrigin setting
+                  - link "Lazy Loading Related to Next.js Lazy Loading (e.g., next/dynamic or React.lazy)." [ref=e693] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Lazy%20Loading%22
+                    - generic [ref=e695]: Lazy Loading
+                    - generic [ref=e696]: Related to Next.js Lazy Loading (e.g., next/dynamic or React.lazy).
+                - generic [ref=e700]:
+                  - img [ref=e701]
+                  - generic [ref=e704]: "Status: Open."
+                - generic [ref=e707]:
+                  - link "Bug" [ref=e710] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20type%3ABug
+                    - generic [ref=e712]: Bug
+                  - generic [ref=e713]:
+                    - generic [ref=e714]:
+                      - generic [ref=e715]: "#92797"
+                      - generic [ref=e716]: In vercel/next.js;
+                    - generic [ref=e717]:
+                      - text: ·
+                      - link "wvanrensselaer" [ref=e718] [cursor=pointer]:
+                        - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20author%3Awvanrensselaer
+                      - text: opened
+                      - generic "Apr 14, 2026, 3:39 PM EDT" [ref=e719]: on Apr 14, 20263 days ago
+                - generic [ref=e720]:
+                  - button "3 linked PRs" [ref=e722] [cursor=pointer]:
+                    - generic [ref=e723]:
+                      - generic:
+                        - img
+                      - generic [ref=e724]: "3"
+                  - generic "1 comment;" [ref=e725]:
+                    - generic [ref=e726]:
+                      - img [ref=e727]
+                      - generic [ref=e729]: "1"
+                      - generic [ref=e730]: comment
+              - 'listitem "Object.fromEntries(URLSearchParams) drops duplicate keys → stale UI on navigation: Status: Open. #92787 In vercel/next.js;· krivcikfilip opened on Apr 14, 2026. More information available below." [ref=e734]':
+                - generic [ref=e735]:
+                  - heading "Object.fromEntries(URLSearchParams) drops duplicate keys → stale UI on navigation" [level=3] [ref=e736]:
+                    - link "Object.fromEntries(URLSearchParams) drops duplicate keys → stale UI on navigation" [ref=e737] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues/92787
+                      - generic [ref=e738]: Object.fromEntries(URLSearchParams) drops duplicate keys → stale UI on navigation
+                  - link "Linking and Navigating Related to Next.js linking (e.g., <Link>) and navigation." [ref=e742] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Linking%20and%20Navigating%22
+                    - generic [ref=e744]: Linking and Navigating
+                    - generic [ref=e745]: Related to Next.js linking (e.g., <Link>) and navigation.
+                - generic [ref=e749]:
+                  - img [ref=e750]
+                  - generic [ref=e753]: "Status: Open."
+                - generic [ref=e756]:
+                  - link "Bug" [ref=e759] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20type%3ABug
+                    - generic [ref=e761]: Bug
+                  - generic [ref=e762]:
+                    - generic [ref=e763]:
+                      - generic [ref=e764]: "#92787"
+                      - generic [ref=e765]: In vercel/next.js;
+                    - generic [ref=e766]:
+                      - text: ·
+                      - link "krivcikfilip" [ref=e767] [cursor=pointer]:
+                        - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20author%3Akrivcikfilip
+                      - text: opened
+                      - generic "Apr 14, 2026, 12:31 PM EDT" [ref=e768]: on Apr 14, 20263 days ago
+                - button "2 linked PRs" [ref=e771] [cursor=pointer]:
+                  - generic [ref=e772]:
+                    - generic:
+                      - img
+                    - generic [ref=e773]: "2"
+              - 'listitem "Memory leak in Next.js SSR under bun --bun next start: Status: Open. #92778 In vercel/next.js;· Playys228 opened on Apr 14, 2026. More information available below." [ref=e778]':
+                - heading "Memory leak in Next.js SSR under bun --bun next start" [level=3] [ref=e780]:
+                  - link "Memory leak in Next.js SSR under bun --bun next start" [ref=e781] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues/92778
+                    - generic [ref=e782]: Memory leak in Next.js SSR under bun --bun next start
+                - generic [ref=e787]:
+                  - img [ref=e788]
+                  - generic [ref=e791]: "Status: Open."
+                - generic [ref=e794]:
+                  - link "Bug" [ref=e797] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20type%3ABug
+                    - generic [ref=e799]: Bug
+                  - generic [ref=e800]:
+                    - generic [ref=e801]:
+                      - generic [ref=e802]: "#92778"
+                      - generic [ref=e803]: In vercel/next.js;
+                    - generic [ref=e804]:
+                      - text: ·
+                      - link "Playys228" [ref=e805] [cursor=pointer]:
+                        - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20author%3APlayys228
+                      - text: opened
+                      - generic "Apr 14, 2026, 8:12 AM EDT" [ref=e806]: on Apr 14, 20263 days ago
+              - 'listitem "Hidden preserved route replays stale RedirectBoundary redirect on forward navigation when cacheComponents is enabled: Status: Open. #92767 In vercel/next.js;· pigeon2gugu opened on Apr 14, 2026. More information available below." [ref=e813]':
+                - generic [ref=e814]:
+                  - heading "Hidden preserved route replays stale RedirectBoundary redirect on forward navigation when cacheComponents is enabled" [level=3] [ref=e815]:
+                    - link "Hidden preserved route replays stale RedirectBoundary redirect on forward navigation when cacheComponents is enabled" [ref=e816] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues/92767
+                      - generic [ref=e817]: Hidden preserved route replays stale RedirectBoundary redirect on forward navigation when cacheComponents is enabled
+                  - generic [ref=e819]:
+                    - 'link "Cache Components Related to the `cacheComponents`, `useCache`, or `ppr` experimental flags." [ref=e821] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Cache%20Components%22
+                      - generic [ref=e823]: Cache Components
+                      - generic [ref=e824]: "Related to the `cacheComponents`, `useCache`, or `ppr` experimental flags."
+                    - link "Redirects Related to redirecting." [ref=e826] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3ARedirects
+                      - generic [ref=e828]: Redirects
+                      - generic [ref=e829]: Related to redirecting.
+                - generic [ref=e833]:
+                  - img [ref=e834]
+                  - generic [ref=e837]: "Status: Open."
+                - generic [ref=e840]:
+                  - link "Bug" [ref=e843] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20type%3ABug
+                    - generic [ref=e845]: Bug
+                  - generic [ref=e846]:
+                    - generic [ref=e847]:
+                      - generic [ref=e848]: "#92767"
+                      - generic [ref=e849]: In vercel/next.js;
+                    - generic [ref=e850]:
+                      - text: ·
+                      - link "pigeon2gugu" [ref=e851] [cursor=pointer]:
+                        - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20author%3Apigeon2gugu
+                      - text: opened
+                      - generic "Apr 14, 2026, 1:48 AM EDT" [ref=e852]: on Apr 14, 20263 days ago
+                - generic [ref=e853]:
+                  - generic "2 comments;" [ref=e855]:
+                    - generic [ref=e856]:
+                      - img [ref=e857]
+                      - generic [ref=e859]: "2"
+                      - generic [ref=e860]: comments
+                  - link "icyJoseph is assigned" [ref=e864] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20assignee%3AicyJoseph
+                    - img "icyJoseph" [ref=e865]
+              - 'listitem "Docs: Add full blog article text to the rss feed: Status: Open. #92748 In vercel/next.js;· matthewruzzi opened on Apr 13, 2026. More information available below." [ref=e868]':
+                - generic [ref=e869]:
+                  - 'heading "Docs: Add full blog article text to the rss feed" [level=3] [ref=e870]':
+                    - 'link "Docs: Add full blog article text to the rss feed" [ref=e871] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues/92748
+                      - generic [ref=e872]: "Docs: Add full blog article text to the rss feed"
+                  - link "Improvement Report possible improvements to make in our documentation" [ref=e876] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3AImprovement
+                    - generic [ref=e878]: Improvement
+                    - generic [ref=e879]: Report possible improvements to make in our documentation
+                - generic [ref=e883]:
+                  - img [ref=e884]
+                  - generic [ref=e887]: "Status: Open."
+                - generic [ref=e890]:
+                  - link "Documentation" [ref=e893] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20type%3ADocumentation
+                    - generic [ref=e895]: Documentation
+                  - generic [ref=e896]:
+                    - generic [ref=e897]:
+                      - generic [ref=e898]: "#92748"
+                      - generic [ref=e899]: In vercel/next.js;
+                    - generic [ref=e900]:
+                      - text: ·
+                      - link "matthewruzzi" [ref=e901] [cursor=pointer]:
+                        - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20author%3Amatthewruzzi
+                      - text: opened
+                      - generic "Apr 13, 2026, 6:00 PM EDT" [ref=e902]: on Apr 13, 20264 days ago
+                - generic [ref=e903]:
+                  - generic "1 comment;" [ref=e905]:
+                    - generic [ref=e906]:
+                      - img [ref=e907]
+                      - generic [ref=e909]: "1"
+                      - generic [ref=e910]: comment
+                  - link "icyJoseph is assigned" [ref=e914] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20assignee%3AicyJoseph
+                    - img "icyJoseph" [ref=e915]
+              - 'listitem "Malformed Origin header in Next.js Server Actions returns HTTP 500 instead of 400: Status: Open. #92703 In vercel/next.js;· FJRG2007 opened on Apr 12, 2026. More information available below." [ref=e918]':
+                - generic [ref=e919]:
+                  - heading "Malformed Origin header in Next.js Server Actions returns HTTP 500 instead of 400" [level=3] [ref=e920]:
+                    - link "Malformed Origin header in Next.js Server Actions returns HTTP 500 instead of 400" [ref=e921] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues/92703
+                      - generic [ref=e922]: Malformed Origin header in Next.js Server Actions returns HTTP 500 instead of 400
+                  - generic [ref=e924]:
+                    - link "Pages Router Related to Pages Router." [ref=e926] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Pages%20Router%22
+                      - generic [ref=e928]: Pages Router
+                      - generic [ref=e929]: Related to Pages Router.
+                    - link "Server Actions Related to Server Actions." [ref=e931] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Server%20Actions%22
+                      - generic [ref=e933]: Server Actions
+                      - generic [ref=e934]: Related to Server Actions.
+                - generic [ref=e938]:
+                  - img [ref=e939]
+                  - generic [ref=e942]: "Status: Open."
+                - generic [ref=e945]:
+                  - link "Bug" [ref=e948] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20type%3ABug
+                    - generic [ref=e950]: Bug
+                  - generic [ref=e951]:
+                    - generic [ref=e952]:
+                      - generic [ref=e953]: "#92703"
+                      - generic [ref=e954]: In vercel/next.js;
+                    - generic [ref=e955]:
+                      - text: ·
+                      - link "FJRG2007" [ref=e956] [cursor=pointer]:
+                        - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20author%3AFJRG2007
+                      - text: opened
+                      - generic "Apr 12, 2026, 7:05 PM EDT" [ref=e957]: on Apr 12, 20265 days ago
+                - generic [ref=e958]:
+                  - button "4 linked PRs" [ref=e960] [cursor=pointer]:
+                    - generic [ref=e961]:
+                      - generic:
+                        - img
+                      - generic [ref=e962]: "4"
+                  - generic "6 comments;" [ref=e963]:
+                    - generic [ref=e964]:
+                      - img [ref=e965]
+                      - generic [ref=e967]: "6"
+                      - generic [ref=e968]: comments
+              - 'listitem "Twice requesting the same route-specific client chunk with different initiators during App Router production navigation (Doubles Network Traffic!!!): Status: Open. #92689 In vercel/next.js;· gurkerl83 opened on Apr 12, 2026. More information available below." [ref=e972]':
+                - generic [ref=e973]:
+                  - heading "Twice requesting the same route-specific client chunk with different initiators during App Router production navigation (Doubles Network Traffic!!!)" [level=3] [ref=e974]:
+                    - link "Twice requesting the same route-specific client chunk with different initiators during App Router production navigation (Doubles Network Traffic!!!)" [ref=e975] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues/92689
+                      - generic [ref=e976]: Twice requesting the same route-specific client chunk with different initiators during App Router production navigation (Doubles Network Traffic!!!)
+                  - generic [ref=e978]:
+                    - link "Performance Anything with regards to Next.js performance." [ref=e980] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3APerformance
+                      - generic [ref=e982]: Performance
+                      - generic [ref=e983]: Anything with regards to Next.js performance.
+                    - link "Turbopack Related to Turbopack with Next.js." [ref=e985] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3ATurbopack
+                      - generic [ref=e987]: Turbopack
+                      - generic [ref=e988]: Related to Turbopack with Next.js.
+                - generic [ref=e992]:
+                  - img [ref=e993]
+                  - generic [ref=e996]: "Status: Open."
+                - generic [ref=e999]:
+                  - link "Bug" [ref=e1002] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20type%3ABug
+                    - generic [ref=e1004]: Bug
+                  - generic [ref=e1005]:
+                    - generic [ref=e1006]:
+                      - generic [ref=e1007]: "#92689"
+                      - generic [ref=e1008]: In vercel/next.js;
+                    - generic [ref=e1009]:
+                      - text: ·
+                      - link "gurkerl83" [ref=e1010] [cursor=pointer]:
+                        - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20author%3Agurkerl83
+                      - text: opened
+                      - generic "Apr 12, 2026, 1:13 PM EDT" [ref=e1011]: on Apr 12, 20265 days ago
+                - generic [ref=e1012]:
+                  - button "1 linked PR" [ref=e1014] [cursor=pointer]:
+                    - generic [ref=e1015]:
+                      - generic:
+                        - img
+                      - generic [ref=e1016]: "1"
+                  - generic "1 comment;" [ref=e1017]:
+                    - generic [ref=e1018]:
+                      - img [ref=e1019]
+                      - generic [ref=e1021]: "1"
+                      - generic [ref=e1022]: comment
+              - 'listitem "Fail to load worker-entrypoint.js in Next.js 16.2+ when COEP is ''require-corp'': Status: Open. #92676 In vercel/next.js;· lucach opened on Apr 12, 2026. More information available below." [ref=e1026]':
+                - generic [ref=e1027]:
+                  - heading "Fail to load worker-entrypoint.js in Next.js 16.2+ when COEP is 'require-corp'" [level=3] [ref=e1028]:
+                    - link "Fail to load worker-entrypoint.js in Next.js 16.2+ when COEP is 'require-corp'" [ref=e1029] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues/92676
+                      - generic [ref=e1030]: Fail to load worker-entrypoint.js in Next.js 16.2+ when COEP is 'require-corp'
+                  - link "Turbopack Related to Turbopack with Next.js." [ref=e1034] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3ATurbopack
+                    - generic [ref=e1036]: Turbopack
+                    - generic [ref=e1037]: Related to Turbopack with Next.js.
+                - generic [ref=e1041]:
+                  - img [ref=e1042]
+                  - generic [ref=e1045]: "Status: Open."
+                - generic [ref=e1048]:
+                  - link "Bug" [ref=e1051] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20type%3ABug
+                    - generic [ref=e1053]: Bug
+                  - generic [ref=e1054]:
+                    - generic [ref=e1055]:
+                      - generic [ref=e1056]: "#92676"
+                      - generic [ref=e1057]: In vercel/next.js;
+                    - generic [ref=e1058]:
+                      - text: ·
+                      - link "lucach" [ref=e1059] [cursor=pointer]:
+                        - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20author%3Alucach
+                      - text: opened
+                      - generic "Apr 12, 2026, 6:11 AM EDT" [ref=e1060]: on Apr 12, 20265 days ago
+                - generic [ref=e1061]:
+                  - button "1 linked PR" [ref=e1063] [cursor=pointer]:
+                    - generic [ref=e1064]:
+                      - generic:
+                        - img
+                      - generic [ref=e1065]: "1"
+                  - generic "1 comment;" [ref=e1066]:
+                    - generic [ref=e1067]:
+                      - img [ref=e1068]
+                      - generic [ref=e1070]: "1"
+                      - generic [ref=e1071]: comment
+              - 'listitem "localFont function from next/font isn''t taking array of strings: Status: Open. #92675 In vercel/next.js;· codayon opened on Apr 12, 2026. More information available below." [ref=e1075]':
+                - generic [ref=e1076]:
+                  - heading "localFont function from next/font isn't taking array of strings" [level=3] [ref=e1077]:
+                    - link "localFont function from next/font isn't taking array of strings" [ref=e1078] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues/92675
+                      - generic [ref=e1079]: localFont function from next/font isn't taking array of strings
+                  - link "Font (next/font) Related to Next.js Font Optimization." [ref=e1083] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Font%20(next%2Ffont)%22
+                    - generic [ref=e1085]: Font (next/font)
+                    - generic [ref=e1086]: Related to Next.js Font Optimization.
+                - generic [ref=e1090]:
+                  - img [ref=e1091]
+                  - generic [ref=e1094]: "Status: Open."
+                - generic [ref=e1097]:
+                  - link "Bug" [ref=e1100] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20type%3ABug
+                    - generic [ref=e1102]: Bug
+                  - generic [ref=e1103]:
+                    - generic [ref=e1104]:
+                      - generic [ref=e1105]: "#92675"
+                      - generic [ref=e1106]: In vercel/next.js;
+                    - generic [ref=e1107]:
+                      - text: ·
+                      - link "codayon" [ref=e1108] [cursor=pointer]:
+                        - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20author%3Acodayon
+                      - text: opened
+                      - generic "Apr 12, 2026, 4:22 AM EDT" [ref=e1109]: on Apr 12, 20265 days ago
+                - generic "2 comments;" [ref=e1112]:
+                  - generic [ref=e1113]:
+                    - img [ref=e1114]
+                    - generic [ref=e1116]: "2"
+                    - generic [ref=e1117]: comments
+              - 'listitem "[Error Overlay] Dev server aborts: next-code-frame panic on multi-byte source (terminal width): Status: Open. #92641 In vercel/next.js;· mugi-uno opened on Apr 11, 2026. More information available below." [ref=e1121]':
+                - generic [ref=e1122]:
+                  - 'heading "[Error Overlay] Dev server aborts: next-code-frame panic on multi-byte source (terminal width)" [level=3] [ref=e1123]':
+                    - 'link "[Error Overlay] Dev server aborts: next-code-frame panic on multi-byte source (terminal width)" [ref=e1124] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues/92641
+                      - generic [ref=e1125]: "[Error Overlay] Dev server aborts: next-code-frame panic on multi-byte source (terminal width)"
+                  - generic [ref=e1127]:
+                    - link "Error Handling Related to handling errors (e.g., error.tsx, global-error.tsx)." [ref=e1129] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Error%20Handling%22
+                      - generic [ref=e1131]: Error Handling
+                      - generic [ref=e1132]: Related to handling errors (e.g., error.tsx, global-error.tsx).
+                    - link "Error Overlay Related to Next.js's error overlay." [ref=e1134] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Error%20Overlay%22
+                      - generic [ref=e1136]: Error Overlay
+                      - generic [ref=e1137]: Related to Next.js's error overlay.
+                - generic [ref=e1141]:
+                  - img [ref=e1142]
+                  - generic [ref=e1145]: "Status: Open."
+                - generic [ref=e1148]:
+                  - link "Bug" [ref=e1151] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20type%3ABug
+                    - generic [ref=e1153]: Bug
+                  - generic [ref=e1154]:
+                    - generic [ref=e1155]:
+                      - generic [ref=e1156]: "#92641"
+                      - generic [ref=e1157]: In vercel/next.js;
+                    - generic [ref=e1158]:
+                      - text: ·
+                      - link "mugi-uno" [ref=e1159] [cursor=pointer]:
+                        - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20author%3Amugi-uno
+                      - text: opened
+                      - generic "Apr 11, 2026, 2:08 AM EDT" [ref=e1160]: on Apr 11, 2026last week
+                - button "1 linked PR" [ref=e1163] [cursor=pointer]:
+                  - generic [ref=e1164]:
+                    - generic:
+                      - img
+                    - generic [ref=e1165]: "1"
+              - 'listitem "[Next.js 16] [App Router] searchParams empty on statically generated pages when Draft Mode is enabled (Vercel only): Status: Open. #92562 In vercel/next.js;· illiakovalenko opened on Apr 9, 2026. More information available below." [ref=e1170]':
+                - generic [ref=e1171]:
+                  - heading "[Next.js 16] [App Router] searchParams empty on statically generated pages when Draft Mode is enabled (Vercel only)" [level=3] [ref=e1172]:
+                    - link "[Next.js 16] [App Router] searchParams empty on statically generated pages when Draft Mode is enabled (Vercel only)" [ref=e1173] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues/92562
+                      - generic [ref=e1174]: "[Next.js 16] [App Router] searchParams empty on statically generated pages when Draft Mode is enabled (Vercel only)"
+                  - generic [ref=e1176]:
+                    - link "Draft Mode Related to Draft Mode." [ref=e1178] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Draft%20Mode%22
+                      - generic [ref=e1180]: Draft Mode
+                      - generic [ref=e1181]: Related to Draft Mode.
+                    - link "Dynamic Routes Related to dynamic routes." [ref=e1183] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Dynamic%20Routes%22
+                      - generic [ref=e1185]: Dynamic Routes
+                      - generic [ref=e1186]: Related to dynamic routes.
+                - generic [ref=e1190]:
+                  - img [ref=e1191]
+                  - generic [ref=e1194]: "Status: Open."
+                - generic [ref=e1197]:
+                  - link "Bug" [ref=e1200] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20type%3ABug
+                    - generic [ref=e1202]: Bug
+                  - generic [ref=e1203]:
+                    - generic [ref=e1204]:
+                      - generic [ref=e1205]: "#92562"
+                      - generic [ref=e1206]: In vercel/next.js;
+                    - generic [ref=e1207]:
+                      - text: ·
+                      - link "illiakovalenko" [ref=e1208] [cursor=pointer]:
+                        - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20author%3Ailliakovalenko
+                      - text: opened
+                      - generic "Apr 9, 2026, 4:15 AM EDT" [ref=e1209]: on Apr 9, 2026last week
+                - generic "6 comments;" [ref=e1212]:
+                  - generic [ref=e1213]:
+                    - img [ref=e1214]
+                    - generic [ref=e1216]: "6"
+                    - generic [ref=e1217]: comments
+              - 'listitem "Turbopack panic loop on Windows with pnpm: Next.js package not found + ChunkLoadError on /dashboard: Status: Open. #92534 In vercel/next.js;· mirraman opened on Apr 8, 2026. More information available below." [ref=e1221]':
+                - generic [ref=e1222]:
+                  - 'heading "Turbopack panic loop on Windows with pnpm: Next.js package not found + ChunkLoadError on /dashboard" [level=3] [ref=e1223]':
+                    - 'link "Turbopack panic loop on Windows with pnpm: Next.js package not found + ChunkLoadError on /dashboard" [ref=e1224] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues/92534
+                      - generic [ref=e1225]: "Turbopack panic loop on Windows with pnpm: Next.js package not found + ChunkLoadError on /dashboard"
+                  - link "Turbopack Related to Turbopack with Next.js." [ref=e1229] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3ATurbopack
+                    - generic [ref=e1231]: Turbopack
+                    - generic [ref=e1232]: Related to Turbopack with Next.js.
+                - generic [ref=e1236]:
+                  - img [ref=e1237]
+                  - generic [ref=e1240]: "Status: Open."
+                - generic [ref=e1243]:
+                  - link "Bug" [ref=e1246] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20type%3ABug
+                    - generic [ref=e1248]: Bug
+                  - generic [ref=e1249]:
+                    - generic [ref=e1250]:
+                      - generic [ref=e1251]: "#92534"
+                      - generic [ref=e1252]: In vercel/next.js;
+                    - generic [ref=e1253]:
+                      - text: ·
+                      - link "mirraman" [ref=e1254] [cursor=pointer]:
+                        - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20author%3Amirraman
+                      - text: opened
+                      - generic "Apr 8, 2026, 2:53 PM EDT" [ref=e1255]: on Apr 8, 2026last week
+              - 'listitem "dynamic segments with un-decodable entities → error 400 in dev, 500 in prod: Status: Open. #92527 In vercel/next.js;· neptunus opened on Apr 8, 2026. More information available below." [ref=e1262]':
+                - generic [ref=e1263]:
+                  - heading "dynamic segments with un-decodable entities → error 400 in dev, 500 in prod" [level=3] [ref=e1264]:
+                    - link "dynamic segments with un-decodable entities → error 400 in dev, 500 in prod" [ref=e1265] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues/92527
+                      - generic [ref=e1266]: dynamic segments with un-decodable entities → error 400 in dev, 500 in prod
+                  - generic [ref=e1268]:
+                    - link "Dynamic Routes Related to dynamic routes." [ref=e1270] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Dynamic%20Routes%22
+                      - generic [ref=e1272]: Dynamic Routes
+                      - generic [ref=e1273]: Related to dynamic routes.
+                    - link "Error Handling Related to handling errors (e.g., error.tsx, global-error.tsx)." [ref=e1275] [cursor=pointer]:
+                      - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Error%20Handling%22
+                      - generic [ref=e1277]: Error Handling
+                      - generic [ref=e1278]: Related to handling errors (e.g., error.tsx, global-error.tsx).
+                - generic [ref=e1282]:
+                  - img [ref=e1283]
+                  - generic [ref=e1286]: "Status: Open."
+                - generic [ref=e1289]:
+                  - link "Bug" [ref=e1292] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20type%3ABug
+                    - generic [ref=e1294]: Bug
+                  - generic [ref=e1295]:
+                    - generic [ref=e1296]:
+                      - generic [ref=e1297]: "#92527"
+                      - generic [ref=e1298]: In vercel/next.js;
+                    - generic [ref=e1299]:
+                      - text: ·
+                      - link "neptunus" [ref=e1300] [cursor=pointer]:
+                        - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20author%3Aneptunus
+                      - text: opened
+                      - generic "Apr 8, 2026, 1:13 PM EDT" [ref=e1301]: on Apr 8, 2026last week
+                - button "1 linked PR" [ref=e1304] [cursor=pointer]:
+                  - generic [ref=e1305]:
+                    - generic:
+                      - img
+                    - generic [ref=e1306]: "1"
+              - 'listitem "TypeError: Cannot redefine property: default when running next dev on fresh app (Next.js canary + pnpm): Status: Open. #92497 In vercel/next.js;· Akash504-ai opened on Apr 8, 2026. More information available below." [ref=e1311]':
+                - generic [ref=e1312]:
+                  - 'heading "TypeError: Cannot redefine property: default when running next dev on fresh app (Next.js canary + pnpm)" [level=3] [ref=e1313]':
+                    - 'link "TypeError: Cannot redefine property: default when running next dev on fresh app (Next.js canary + pnpm)" [ref=e1314] [cursor=pointer]':
+                      - /url: /vercel/next.js/issues/92497
+                      - generic [ref=e1316]:
+                        - text: "TypeError: Cannot redefine property: default when running"
+                        - code [ref=e1317]: next dev
+                        - text: on fresh app (Next.js canary + pnpm)
+                  - link "Turbopack Related to Turbopack with Next.js." [ref=e1321] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20label%3ATurbopack
+                    - generic [ref=e1323]: Turbopack
+                    - generic [ref=e1324]: Related to Turbopack with Next.js.
+                - generic [ref=e1328]:
+                  - img [ref=e1329]
+                  - generic [ref=e1332]: "Status: Open."
+                - generic [ref=e1335]:
+                  - link "Bug" [ref=e1338] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20type%3ABug
+                    - generic [ref=e1340]: Bug
+                  - generic [ref=e1341]:
+                    - generic [ref=e1342]:
+                      - generic [ref=e1343]: "#92497"
+                      - generic [ref=e1344]: In vercel/next.js;
+                    - generic [ref=e1345]:
+                      - text: ·
+                      - link "Akash504-ai" [ref=e1346] [cursor=pointer]:
+                        - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20author%3AAkash504-ai
+                      - text: opened
+                      - generic "Apr 8, 2026, 2:04 AM EDT" [ref=e1347]: on Apr 8, 2026last week
+                - generic [ref=e1348]:
+                  - button "1 linked PR" [ref=e1350] [cursor=pointer]:
+                    - generic [ref=e1351]:
+                      - generic:
+                        - img
+                      - generic [ref=e1352]: "1"
+                  - generic "8 comments;" [ref=e1353]:
+                    - generic [ref=e1354]:
+                      - img [ref=e1355]
+                      - generic [ref=e1357]: "8"
+                      - generic [ref=e1358]: comments
+              - 'listitem "Exclude test files from TypeScript type checking: Status: Open. #92408 In vercel/next.js;· donkeyote opened on Apr 6, 2026. More information available below." [ref=e1362]':
+                - heading "Exclude test files from TypeScript type checking" [level=3] [ref=e1364]:
+                  - link "Exclude test files from TypeScript type checking" [ref=e1365] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues/92408
+                    - generic [ref=e1366]: Exclude test files from TypeScript type checking
+                - generic [ref=e1371]:
+                  - img [ref=e1372]
+                  - generic [ref=e1375]: "Status: Open."
+                - generic [ref=e1378]:
+                  - link "Bug" [ref=e1381] [cursor=pointer]:
+                    - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20type%3ABug
+                    - generic [ref=e1383]: Bug
+                  - generic [ref=e1384]:
+                    - generic [ref=e1385]:
+                      - generic [ref=e1386]: "#92408"
+                      - generic [ref=e1387]: In vercel/next.js;
+                    - generic [ref=e1388]:
+                      - text: ·
+                      - link "donkeyote" [ref=e1389] [cursor=pointer]:
+                        - /url: /vercel/next.js/issues?q=is%3Aissue%20state%3Aopen%20author%3Adonkeyote
+                      - text: opened
+                      - generic "Apr 6, 2026, 12:51 PM EDT" [ref=e1390]: on Apr 6, 20262 weeks ago
+                - button "1 linked PR" [ref=e1393] [cursor=pointer]:
+                  - generic [ref=e1394]:
+                    - generic:
+                      - img
+                    - generic [ref=e1395]: "1"
+          - navigation "Pagination" [ref=e1398]:
+            - generic [ref=e1399]:
+              - generic [ref=e1400]:
+                - img [ref=e1401]
+                - text: Previous
+              - link "Page 1" [ref=e1403] [cursor=pointer]:
+                - /url: /vercel/next.js/issues?page=1
+                - text: "1"
+              - link "Page 2" [ref=e1404] [cursor=pointer]:
+                - /url: /vercel/next.js/issues?page=2
+                - text: "2"
+              - link "Page 3" [ref=e1405] [cursor=pointer]:
+                - /url: /vercel/next.js/issues?page=3
+                - text: "3"
+              - link "Page 4" [ref=e1406] [cursor=pointer]:
+                - /url: /vercel/next.js/issues?page=4
+                - text: "4"
+              - link "Page 5" [ref=e1407] [cursor=pointer]:
+                - /url: /vercel/next.js/issues?page=5
+                - text: "5"
+              - link "Page 6" [ref=e1408] [cursor=pointer]:
+                - /url: /vercel/next.js/issues?page=6
+                - text: "6"
+              - link "Page 7" [ref=e1409] [cursor=pointer]:
+                - /url: /vercel/next.js/issues?page=7
+                - text: "7"
+              - link "Page 8..." [ref=e1410] [cursor=pointer]:
+                - /url: /vercel/next.js/issues?page=8
+                - text: "8"
+              - text: …
+              - link "Page 39" [ref=e1411] [cursor=pointer]:
+                - /url: /vercel/next.js/issues?page=39
+                - text: "39"
+              - link "Page 40" [ref=e1412] [cursor=pointer]:
+                - /url: /vercel/next.js/issues?page=40
+                - text: "40"
+              - link "Next Page" [ref=e1413] [cursor=pointer]:
+                - /url: /vercel/next.js/issues?page=2
+                - text: Next
+                - img [ref=e1414]
+  - contentinfo [ref=e1416]:
+    - heading "Footer" [level=2] [ref=e1417]
+    - generic [ref=e1418]:
+      - generic [ref=e1419]:
+        - link "GitHub Homepage" [ref=e1420] [cursor=pointer]:
+          - /url: https://github.com
+          - img [ref=e1421]
+        - generic [ref=e1423]: © 2026 GitHub, Inc.
+      - navigation "Footer" [ref=e1424]:
+        - heading "Footer navigation" [level=3] [ref=e1425]
+        - list "Footer navigation" [ref=e1426]:
+          - listitem [ref=e1427]:
+            - link "Terms" [ref=e1428] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/github-terms/github-terms-of-service
+          - listitem [ref=e1429]:
+            - link "Privacy" [ref=e1430] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/privacy-policies/github-privacy-statement
+          - listitem [ref=e1431]:
+            - link "Security" [ref=e1432] [cursor=pointer]:
+              - /url: https://github.com/security
+          - listitem [ref=e1433]:
+            - link "Status" [ref=e1434] [cursor=pointer]:
+              - /url: https://www.githubstatus.com/
+          - listitem [ref=e1435]:
+            - link "Community" [ref=e1436] [cursor=pointer]:
+              - /url: https://github.community/
+          - listitem [ref=e1437]:
+            - link "Docs" [ref=e1438] [cursor=pointer]:
+              - /url: https://docs.github.com/
+          - listitem [ref=e1439]:
+            - link "Contact" [ref=e1440] [cursor=pointer]:
+              - /url: https://support.github.com?tags=dotcom-footer
+          - listitem [ref=e1441]:
+            - button "Manage cookies" [ref=e1443] [cursor=pointer]
+          - listitem [ref=e1444]:
+            - button "Do not share my personal information" [ref=e1446] [cursor=pointer]
