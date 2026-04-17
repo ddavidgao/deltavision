@@ -10,7 +10,6 @@ Install:
   pip install torch torchvision transformers accelerate qwen-vl-utils bitsandbytes
 """
 
-import json
 import base64
 from io import BytesIO
 from typing import Optional
@@ -18,6 +17,7 @@ from typing import Optional
 from PIL import Image
 
 from .base import BaseModel, ModelResponse
+from ._response_parser import extract_json, normalize_response, get_confidence
 from agent.actions import parse_action
 
 # Same structured output contract as Claude backend
@@ -116,24 +116,14 @@ class LocalModel(BaseModel):
         generated = output_ids[0][inputs.input_ids.shape[1]:]
         raw_text = self._processor.decode(generated, skip_special_tokens=True)
 
-        try:
-            parsed = json.loads(raw_text)
-        except json.JSONDecodeError:
-            # Try to extract JSON from mixed output
-            start = raw_text.find("{")
-            end = raw_text.rfind("}") + 1
-            if start >= 0 and end > start:
-                parsed = json.loads(raw_text[start:end])
-            else:
-                parsed = {"reasoning": raw_text, "action": None, "done": True, "confidence": 0.0}
-
+        parsed = normalize_response(extract_json(raw_text))
         action = parse_action(parsed.get("action")) if not parsed.get("done") else None
 
         return ModelResponse(
             action=action,
             done=parsed.get("done", False),
             reasoning=parsed.get("reasoning", ""),
-            confidence=parsed.get("confidence", 0.0),
+            confidence=get_confidence(parsed),
             raw_response=parsed,
         )
 
