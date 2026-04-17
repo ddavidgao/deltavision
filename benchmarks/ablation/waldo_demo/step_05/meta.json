@@ -1,0 +1,14 @@
+{
+  "step": 5,
+  "action_label": "Type todo 3",
+  "obs_type": "delta",
+  "trigger": "none",
+  "transition": "delta",
+  "diff_ratio": 0.03833072916666667,
+  "phash_distance": 14,
+  "anchor_score": 1.0,
+  "num_crops": 2,
+  "ff_tokens": 1600,
+  "dv_tokens": 600,
+  "url": "https://todomvc.com/examples/react/dist/"
+}

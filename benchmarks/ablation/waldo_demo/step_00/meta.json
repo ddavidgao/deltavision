@@ -1,0 +1,12 @@
+{
+  "step": 0,
+  "action_label": "navigate + focus input",
+  "obs_type": "full_frame",
+  "trigger": "initial",
+  "diff_ratio": 0.0,
+  "phash_distance": 0,
+  "anchor_score": 1.0,
+  "ff_tokens": 1600,
+  "dv_tokens": 1600,
+  "url": "https://todomvc.com/examples/react/dist/"
+}

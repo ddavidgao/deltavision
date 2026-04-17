@@ -1,0 +1,212 @@
+{
+  "baseline": [
+    {
+      "step": 0,
+      "action": "navigate",
+      "obs_type": "ff_baseline",
+      "trigger": "initial",
+      "diff_ratio": 0.0,
+      "phash": 0,
+      "num_images": 1,
+      "payload_bytes": 106276,
+      "estimated_tokens": 1536
+    },
+    {
+      "step": 1,
+      "action": "type(buy groceries)",
+      "obs_type": "ff_baseline",
+      "trigger": "full_frame",
+      "diff_ratio": 0.0,
+      "phash": 0,
+      "num_images": 1,
+      "payload_bytes": 104432,
+      "estimated_tokens": 1536
+    },
+    {
+      "step": 2,
+      "action": "key(Enter)",
+      "obs_type": "ff_baseline",
+      "trigger": "full_frame",
+      "diff_ratio": 0.0,
+      "phash": 0,
+      "num_images": 1,
+      "payload_bytes": 117152,
+      "estimated_tokens": 1536
+    },
+    {
+      "step": 3,
+      "action": "type(write report)",
+      "obs_type": "ff_baseline",
+      "trigger": "full_frame",
+      "diff_ratio": 0.0,
+      "phash": 0,
+      "num_images": 1,
+      "payload_bytes": 114688,
+      "estimated_tokens": 1536
+    },
+    {
+      "step": 4,
+      "action": "key(Enter)",
+      "obs_type": "ff_baseline",
+      "trigger": "full_frame",
+      "diff_ratio": 0.0,
+      "phash": 0,
+      "num_images": 1,
+      "payload_bytes": 121888,
+      "estimated_tokens": 1536
+    },
+    {
+      "step": 5,
+      "action": "type(review PR)",
+      "obs_type": "ff_baseline",
+      "trigger": "full_frame",
+      "diff_ratio": 0.0,
+      "phash": 0,
+      "num_images": 1,
+      "payload_bytes": 118556,
+      "estimated_tokens": 1536
+    },
+    {
+      "step": 6,
+      "action": "key(Enter)",
+      "obs_type": "ff_baseline",
+      "trigger": "full_frame",
+      "diff_ratio": 0.0,
+      "phash": 0,
+      "num_images": 1,
+      "payload_bytes": 126764,
+      "estimated_tokens": 1536
+    },
+    {
+      "step": 7,
+      "action": "click(ul.todo-list li:nth-child(1) input.toggle)",
+      "obs_type": "ff_baseline",
+      "trigger": "full_frame",
+      "diff_ratio": 0.0,
+      "phash": 0,
+      "num_images": 1,
+      "payload_bytes": 127108,
+      "estimated_tokens": 1536
+    },
+    {
+      "step": 8,
+      "action": "click(ul.filters li:nth-child(2) a)",
+      "obs_type": "ff_baseline",
+      "trigger": "full_frame",
+      "diff_ratio": 0.0,
+      "phash": 0,
+      "num_images": 1,
+      "payload_bytes": 120792,
+      "estimated_tokens": 1536
+    }
+  ],
+  "observer": [
+    {
+      "step": 0,
+      "action": "navigate",
+      "obs_type": "full_frame",
+      "trigger": "initial",
+      "diff_ratio": 0.0,
+      "phash": 0,
+      "num_images": 1,
+      "payload_bytes": 115400,
+      "estimated_tokens": 1536
+    },
+    {
+      "step": 1,
+      "action": "type(buy groceries)",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.002814236111111111,
+      "phash": 0,
+      "num_images": 2,
+      "payload_bytes": 25300,
+      "estimated_tokens": 225
+    },
+    {
+      "step": 2,
+      "action": "key(Enter)",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.032966145833333335,
+      "phash": 10,
+      "num_images": 3,
+      "payload_bytes": 53132,
+      "estimated_tokens": 417
+    },
+    {
+      "step": 3,
+      "action": "type(write report)",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.035666666666666666,
+      "phash": 10,
+      "num_images": 3,
+      "payload_bytes": 49412,
+      "estimated_tokens": 424
+    },
+    {
+      "step": 4,
+      "action": "key(Enter)",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.03564930555555555,
+      "phash": 14,
+      "num_images": 3,
+      "payload_bytes": 59140,
+      "estimated_tokens": 463
+    },
+    {
+      "step": 5,
+      "action": "type(review PR)",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.03833072916666667,
+      "phash": 14,
+      "num_images": 3,
+      "payload_bytes": 54832,
+      "estimated_tokens": 470
+    },
+    {
+      "step": 6,
+      "action": "key(Enter)",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.037582465277777775,
+      "phash": 12,
+      "num_images": 3,
+      "payload_bytes": 64516,
+      "estimated_tokens": 512
+    },
+    {
+      "step": 7,
+      "action": "click(ul.todo-list li:nth-child(1) input.toggle)",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.044497395833333335,
+      "phash": 10,
+      "num_images": 3,
+      "payload_bytes": 65632,
+      "estimated_tokens": 550
+    },
+    {
+      "step": 8,
+      "action": "click(ul.filters li:nth-child(2) a)",
+      "obs_type": "full_frame",
+      "trigger": "url_change",
+      "diff_ratio": 0.0,
+      "phash": 0,
+      "num_images": 1,
+      "payload_bytes": 131540,
+      "estimated_tokens": 1536
+    }
+  ],
+  "totals": {
+    "baseline_bytes": 1057656,
+    "observer_bytes": 618904,
+    "baseline_tokens": 13824,
+    "observer_tokens": 6133,
+    "byte_savings_pct": 41.48343128578668,
+    "token_savings_pct": 55.63512731481482
+  }
+}
