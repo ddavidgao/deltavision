@@ -1,0 +1,566 @@
+[
+  {
+    "run_idx": 2,
+    "mode": "deltavision",
+    "task": "todomvc_basic",
+    "steps": 4,
+    "done": true,
+    "full_frames_sent": 1,
+    "deltas_sent": 4,
+    "new_page_count": 0,
+    "delta_ratio": 0.8,
+    "estimated_image_tokens": 3200,
+    "steps_log": [
+      {
+        "step": 0,
+        "obs": {
+          "mode": "full_frame",
+          "obs_type": "full_frame",
+          "step": 0,
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run2/step_0/t0.png",
+          "last_action": "",
+          "trigger_reason": "full_frame_ablation"
+        }
+      },
+      {
+        "step": 1,
+        "obs": {
+          "mode": "delta",
+          "step": 1,
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.0412,
+          "phash_distance": 12,
+          "anchor_score": 0.9038,
+          "action_had_effect": true,
+          "no_change_count": 0,
+          "last_action": "type('buy milk')+key(Enter)",
+          "crops": [
+            {
+              "index": 0,
+              "bbox": [
+                494,
+                141,
+                594,
+                196
+              ],
+              "change_magnitude": 0.1263,
+              "crop_before_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run2/step_1/crop_0_before.png",
+              "crop_after_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run2/step_1/crop_0_after.png"
+            },
+            {
+              "index": 1,
+              "bbox": [
+                699,
+                344,
+                184,
+                92
+              ],
+              "change_magnitude": 0.0184,
+              "crop_before_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run2/step_1/crop_1_before.png",
+              "crop_after_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run2/step_1/crop_1_after.png"
+            }
+          ],
+          "obs_type": "delta",
+          "thumbnail_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run2/step_1/thumbnail.png",
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run2/step_1/t1.png"
+        },
+        "elapsed_ms": 934
+      },
+      {
+        "step": 2,
+        "obs": {
+          "mode": "delta",
+          "step": 2,
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.0441,
+          "phash_distance": 16,
+          "anchor_score": 0.8813,
+          "action_had_effect": true,
+          "no_change_count": 0,
+          "last_action": "type('feed cat')+key(Enter)",
+          "crops": [
+            {
+              "index": 0,
+              "bbox": [
+                494,
+                141,
+                594,
+                252
+              ],
+              "change_magnitude": 0.1624,
+              "crop_before_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run2/step_2/crop_0_before.png",
+              "crop_after_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run2/step_2/crop_0_after.png"
+            },
+            {
+              "index": 1,
+              "bbox": [
+                699,
+                404,
+                184,
+                92
+              ],
+              "change_magnitude": 0.0184,
+              "crop_before_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run2/step_2/crop_1_before.png",
+              "crop_after_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run2/step_2/crop_1_after.png"
+            }
+          ],
+          "obs_type": "delta",
+          "thumbnail_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run2/step_2/thumbnail.png",
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run2/step_2/t1.png"
+        },
+        "elapsed_ms": 636
+      },
+      {
+        "step": 3,
+        "obs": {
+          "mode": "delta",
+          "step": 3,
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.0462,
+          "phash_distance": 12,
+          "anchor_score": 0.8641,
+          "action_had_effect": true,
+          "no_change_count": 0,
+          "last_action": "type('pay rent')+key(Enter)",
+          "crops": [
+            {
+              "index": 0,
+              "bbox": [
+                494,
+                141,
+                594,
+                311
+              ],
+              "change_magnitude": 0.2004,
+              "crop_before_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run2/step_3/crop_0_before.png",
+              "crop_after_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run2/step_3/crop_0_after.png"
+            },
+            {
+              "index": 1,
+              "bbox": [
+                699,
+                463,
+                184,
+                92
+              ],
+              "change_magnitude": 0.0184,
+              "crop_before_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run2/step_3/crop_1_before.png",
+              "crop_after_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run2/step_3/crop_1_after.png"
+            }
+          ],
+          "obs_type": "delta",
+          "thumbnail_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run2/step_3/thumbnail.png",
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run2/step_3/t1.png"
+        },
+        "elapsed_ms": 622
+      },
+      {
+        "step": 4,
+        "obs": {
+          "mode": "delta",
+          "step": 4,
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.0554,
+          "phash_distance": 12,
+          "anchor_score": 0.8254,
+          "action_had_effect": true,
+          "no_change_count": 0,
+          "last_action": "click_toggle('feed cat')",
+          "crops": [
+            {
+              "index": 0,
+              "bbox": [
+                493,
+                109,
+                596,
+                343
+              ],
+              "change_magnitude": 0.2218,
+              "crop_before_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run2/step_4/crop_0_before.png",
+              "crop_after_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run2/step_4/crop_0_after.png"
+            },
+            {
+              "index": 1,
+              "bbox": [
+                699,
+                463,
+                184,
+                92
+              ],
+              "change_magnitude": 0.0184,
+              "crop_before_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run2/step_4/crop_1_before.png",
+              "crop_after_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run2/step_4/crop_1_after.png"
+            }
+          ],
+          "obs_type": "delta",
+          "thumbnail_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run2/step_4/thumbnail.png",
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run2/step_4/t1.png"
+        },
+        "elapsed_ms": 772
+      }
+    ],
+    "wall_time_s": 5.2,
+    "error": null
+  },
+  {
+    "run_idx": 2,
+    "mode": "full_frame",
+    "task": "todomvc_basic",
+    "steps": 4,
+    "done": true,
+    "full_frames_sent": 5,
+    "deltas_sent": 0,
+    "new_page_count": 0,
+    "delta_ratio": 0.0,
+    "estimated_image_tokens": 8000,
+    "steps_log": [
+      {
+        "step": 0,
+        "obs": {
+          "mode": "full_frame",
+          "obs_type": "full_frame",
+          "step": 0,
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_full_frame/run2/step_0/t0.png",
+          "last_action": "",
+          "trigger_reason": "full_frame_ablation"
+        }
+      },
+      {
+        "step": 1,
+        "obs": {
+          "mode": "full_frame",
+          "obs_type": "full_frame",
+          "step": 1,
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_full_frame/run2/step_1/t1.png",
+          "last_action": "type('buy milk')+key(Enter)",
+          "trigger_reason": "full_frame_ablation"
+        },
+        "elapsed_ms": 437
+      },
+      {
+        "step": 2,
+        "obs": {
+          "mode": "full_frame",
+          "obs_type": "full_frame",
+          "step": 2,
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_full_frame/run2/step_2/t1.png",
+          "last_action": "type('feed cat')+key(Enter)",
+          "trigger_reason": "full_frame_ablation"
+        },
+        "elapsed_ms": 417
+      },
+      {
+        "step": 3,
+        "obs": {
+          "mode": "full_frame",
+          "obs_type": "full_frame",
+          "step": 3,
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_full_frame/run2/step_3/t1.png",
+          "last_action": "type('pay rent')+key(Enter)",
+          "trigger_reason": "full_frame_ablation"
+        },
+        "elapsed_ms": 429
+      },
+      {
+        "step": 4,
+        "obs": {
+          "mode": "full_frame",
+          "obs_type": "full_frame",
+          "step": 4,
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_full_frame/run2/step_4/t1.png",
+          "last_action": "click_toggle('feed cat')",
+          "trigger_reason": "full_frame_ablation"
+        },
+        "elapsed_ms": 434
+      }
+    ],
+    "wall_time_s": 2.5,
+    "error": null
+  },
+  {
+    "run_idx": 3,
+    "mode": "deltavision",
+    "task": "todomvc_basic",
+    "steps": 4,
+    "done": true,
+    "full_frames_sent": 1,
+    "deltas_sent": 4,
+    "new_page_count": 0,
+    "delta_ratio": 0.8,
+    "estimated_image_tokens": 3200,
+    "steps_log": [
+      {
+        "step": 0,
+        "obs": {
+          "mode": "full_frame",
+          "obs_type": "full_frame",
+          "step": 0,
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run3/step_0/t0.png",
+          "last_action": "",
+          "trigger_reason": "full_frame_ablation"
+        }
+      },
+      {
+        "step": 1,
+        "obs": {
+          "mode": "delta",
+          "step": 1,
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.0412,
+          "phash_distance": 12,
+          "anchor_score": 0.9038,
+          "action_had_effect": true,
+          "no_change_count": 0,
+          "last_action": "type('buy milk')+key(Enter)",
+          "crops": [
+            {
+              "index": 0,
+              "bbox": [
+                494,
+                141,
+                594,
+                196
+              ],
+              "change_magnitude": 0.1263,
+              "crop_before_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run3/step_1/crop_0_before.png",
+              "crop_after_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run3/step_1/crop_0_after.png"
+            },
+            {
+              "index": 1,
+              "bbox": [
+                699,
+                344,
+                184,
+                92
+              ],
+              "change_magnitude": 0.0184,
+              "crop_before_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run3/step_1/crop_1_before.png",
+              "crop_after_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run3/step_1/crop_1_after.png"
+            }
+          ],
+          "obs_type": "delta",
+          "thumbnail_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run3/step_1/thumbnail.png",
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run3/step_1/t1.png"
+        },
+        "elapsed_ms": 646
+      },
+      {
+        "step": 2,
+        "obs": {
+          "mode": "delta",
+          "step": 2,
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.0441,
+          "phash_distance": 16,
+          "anchor_score": 0.8813,
+          "action_had_effect": true,
+          "no_change_count": 0,
+          "last_action": "type('feed cat')+key(Enter)",
+          "crops": [
+            {
+              "index": 0,
+              "bbox": [
+                494,
+                141,
+                594,
+                252
+              ],
+              "change_magnitude": 0.1624,
+              "crop_before_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run3/step_2/crop_0_before.png",
+              "crop_after_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run3/step_2/crop_0_after.png"
+            },
+            {
+              "index": 1,
+              "bbox": [
+                699,
+                404,
+                184,
+                92
+              ],
+              "change_magnitude": 0.0184,
+              "crop_before_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run3/step_2/crop_1_before.png",
+              "crop_after_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run3/step_2/crop_1_after.png"
+            }
+          ],
+          "obs_type": "delta",
+          "thumbnail_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run3/step_2/thumbnail.png",
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run3/step_2/t1.png"
+        },
+        "elapsed_ms": 632
+      },
+      {
+        "step": 3,
+        "obs": {
+          "mode": "delta",
+          "step": 3,
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.0462,
+          "phash_distance": 12,
+          "anchor_score": 0.8641,
+          "action_had_effect": true,
+          "no_change_count": 0,
+          "last_action": "type('pay rent')+key(Enter)",
+          "crops": [
+            {
+              "index": 0,
+              "bbox": [
+                494,
+                141,
+                594,
+                311
+              ],
+              "change_magnitude": 0.2004,
+              "crop_before_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run3/step_3/crop_0_before.png",
+              "crop_after_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run3/step_3/crop_0_after.png"
+            },
+            {
+              "index": 1,
+              "bbox": [
+                699,
+                463,
+                184,
+                92
+              ],
+              "change_magnitude": 0.0184,
+              "crop_before_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run3/step_3/crop_1_before.png",
+              "crop_after_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run3/step_3/crop_1_after.png"
+            }
+          ],
+          "obs_type": "delta",
+          "thumbnail_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run3/step_3/thumbnail.png",
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run3/step_3/t1.png"
+        },
+        "elapsed_ms": 628
+      },
+      {
+        "step": 4,
+        "obs": {
+          "mode": "delta",
+          "step": 4,
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.0554,
+          "phash_distance": 12,
+          "anchor_score": 0.825,
+          "action_had_effect": true,
+          "no_change_count": 0,
+          "last_action": "click_toggle('feed cat')",
+          "crops": [
+            {
+              "index": 0,
+              "bbox": [
+                493,
+                109,
+                596,
+                343
+              ],
+              "change_magnitude": 0.2218,
+              "crop_before_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run3/step_4/crop_0_before.png",
+              "crop_after_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run3/step_4/crop_0_after.png"
+            },
+            {
+              "index": 1,
+              "bbox": [
+                699,
+                463,
+                184,
+                92
+              ],
+              "change_magnitude": 0.0184,
+              "crop_before_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run3/step_4/crop_1_before.png",
+              "crop_after_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run3/step_4/crop_1_after.png"
+            }
+          ],
+          "obs_type": "delta",
+          "thumbnail_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run3/step_4/thumbnail.png",
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_deltavision/run3/step_4/t1.png"
+        },
+        "elapsed_ms": 668
+      }
+    ],
+    "wall_time_s": 3.3,
+    "error": null
+  },
+  {
+    "run_idx": 3,
+    "mode": "full_frame",
+    "task": "todomvc_basic",
+    "steps": 4,
+    "done": true,
+    "full_frames_sent": 5,
+    "deltas_sent": 0,
+    "new_page_count": 0,
+    "delta_ratio": 0.0,
+    "estimated_image_tokens": 8000,
+    "steps_log": [
+      {
+        "step": 0,
+        "obs": {
+          "mode": "full_frame",
+          "obs_type": "full_frame",
+          "step": 0,
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_full_frame/run3/step_0/t0.png",
+          "last_action": "",
+          "trigger_reason": "full_frame_ablation"
+        }
+      },
+      {
+        "step": 1,
+        "obs": {
+          "mode": "full_frame",
+          "obs_type": "full_frame",
+          "step": 1,
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_full_frame/run3/step_1/t1.png",
+          "last_action": "type('buy milk')+key(Enter)",
+          "trigger_reason": "full_frame_ablation"
+        },
+        "elapsed_ms": 409
+      },
+      {
+        "step": 2,
+        "obs": {
+          "mode": "full_frame",
+          "obs_type": "full_frame",
+          "step": 2,
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_full_frame/run3/step_2/t1.png",
+          "last_action": "type('feed cat')+key(Enter)",
+          "trigger_reason": "full_frame_ablation"
+        },
+        "elapsed_ms": 386
+      },
+      {
+        "step": 3,
+        "obs": {
+          "mode": "full_frame",
+          "obs_type": "full_frame",
+          "step": 3,
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_full_frame/run3/step_3/t1.png",
+          "last_action": "type('pay rent')+key(Enter)",
+          "trigger_reason": "full_frame_ablation"
+        },
+        "elapsed_ms": 394
+      },
+      {
+        "step": 4,
+        "obs": {
+          "mode": "full_frame",
+          "obs_type": "full_frame",
+          "step": 4,
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/todomvc_full_frame/run3/step_4/t1.png",
+          "last_action": "click_toggle('feed cat')",
+          "trigger_reason": "full_frame_ablation"
+        },
+        "elapsed_ms": 414
+      }
+    ],
+    "wall_time_s": 2.4,
+    "error": null
+  }
+]

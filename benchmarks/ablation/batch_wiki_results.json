@@ -1,0 +1,154 @@
+[
+  {
+    "run_idx": 1,
+    "mode": "deltavision",
+    "task": "wikipedia_multihop",
+    "steps": 3,
+    "done": true,
+    "final_url": "https://en.wikipedia.org/wiki/Deep_learning",
+    "full_frames_sent": 4,
+    "deltas_sent": 0,
+    "new_page_count": 3,
+    "delta_ratio": 0.0,
+    "estimated_image_tokens": 6400,
+    "steps_log": [
+      {
+        "step": 0,
+        "obs": {
+          "mode": "full_frame",
+          "obs_type": "full_frame",
+          "step": 0,
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/wiki_multihop_deltavision/run1/step_0/t0.png",
+          "last_action": "",
+          "trigger_reason": "full_frame_ablation"
+        }
+      },
+      {
+        "step": 1,
+        "obs": {
+          "mode": "delta",
+          "step": 1,
+          "transition": "new_page",
+          "trigger": "url_change",
+          "diff_ratio": 0.0,
+          "phash_distance": 0,
+          "anchor_score": 1.0,
+          "action_had_effect": true,
+          "no_change_count": 0,
+          "last_action": "search('computer vision')",
+          "crops": [],
+          "obs_type": "full_frame",
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/wiki_multihop_deltavision/run1/step_1/t1.png",
+          "trigger_reason": "url_change"
+        },
+        "elapsed_ms": 822
+      },
+      {
+        "step": 2,
+        "obs": {
+          "mode": "delta",
+          "step": 2,
+          "transition": "new_page",
+          "trigger": "url_change",
+          "diff_ratio": 0.0,
+          "phash_distance": 0,
+          "anchor_score": 1.0,
+          "action_had_effect": true,
+          "no_change_count": 0,
+          "last_action": "click_link('Machine learning')",
+          "crops": [],
+          "obs_type": "full_frame",
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/wiki_multihop_deltavision/run1/step_2/t1.png",
+          "trigger_reason": "url_change"
+        },
+        "elapsed_ms": 914
+      },
+      {
+        "step": 3,
+        "obs": {
+          "mode": "delta",
+          "step": 3,
+          "transition": "new_page",
+          "trigger": "url_change",
+          "diff_ratio": 0.0,
+          "phash_distance": 0,
+          "anchor_score": 1.0,
+          "action_had_effect": true,
+          "no_change_count": 0,
+          "last_action": "click_link('Deep learning')",
+          "crops": [],
+          "obs_type": "full_frame",
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/wiki_multihop_deltavision/run1/step_3/t1.png",
+          "trigger_reason": "url_change"
+        },
+        "elapsed_ms": 937
+      }
+    ],
+    "wall_time_s": 4.0,
+    "error": null
+  },
+  {
+    "run_idx": 1,
+    "mode": "full_frame",
+    "task": "wikipedia_multihop",
+    "steps": 3,
+    "done": true,
+    "final_url": "https://en.wikipedia.org/wiki/Deep_learning",
+    "full_frames_sent": 4,
+    "deltas_sent": 0,
+    "new_page_count": 0,
+    "delta_ratio": 0.0,
+    "estimated_image_tokens": 6400,
+    "steps_log": [
+      {
+        "step": 0,
+        "obs": {
+          "mode": "full_frame",
+          "obs_type": "full_frame",
+          "step": 0,
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/wiki_multihop_full_frame/run1/step_0/t0.png",
+          "last_action": "",
+          "trigger_reason": "full_frame_ablation"
+        }
+      },
+      {
+        "step": 1,
+        "obs": {
+          "mode": "full_frame",
+          "obs_type": "full_frame",
+          "step": 1,
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/wiki_multihop_full_frame/run1/step_1/t1.png",
+          "last_action": "search('computer vision')",
+          "trigger_reason": "full_frame_ablation"
+        },
+        "elapsed_ms": 747
+      },
+      {
+        "step": 2,
+        "obs": {
+          "mode": "full_frame",
+          "obs_type": "full_frame",
+          "step": 2,
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/wiki_multihop_full_frame/run1/step_2/t1.png",
+          "last_action": "click_link('Machine learning')",
+          "trigger_reason": "full_frame_ablation"
+        },
+        "elapsed_ms": 865
+      },
+      {
+        "step": 3,
+        "obs": {
+          "mode": "full_frame",
+          "obs_type": "full_frame",
+          "step": 3,
+          "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/wiki_multihop_full_frame/run1/step_3/t1.png",
+          "last_action": "click_link('Deep learning')",
+          "trigger_reason": "full_frame_ablation"
+        },
+        "elapsed_ms": 853
+      }
+    ],
+    "wall_time_s": 2.8,
+    "error": null
+  }
+]

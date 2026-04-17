@@ -15,10 +15,26 @@ from model.claude import SYSTEM_PROMPT  # same prompt works
 
 
 class OpenAIModel(BaseModel):
-    def __init__(self, api_key: str, model: str = "gpt-4o"):
+    def __init__(
+        self,
+        api_key: str = "sk-no-key-required",
+        model: str = "gpt-4o",
+        base_url: str = None,
+    ):
+        """OpenAI-compatible backend.
+
+        base_url: optional override for OpenAI-compatible servers
+            (e.g. llama-server, vLLM, SGLang).
+            Default None → OpenAI official API.
+            Example local: base_url="http://localhost:8080/v1"
+        """
         import openai
-        self.client = openai.OpenAI(api_key=api_key)
+        kwargs = {"api_key": api_key}
+        if base_url:
+            kwargs["base_url"] = base_url
+        self.client = openai.OpenAI(**kwargs)
         self.model = model
+        self.is_local = base_url is not None
 
     async def predict(self, observation, state) -> ModelResponse:
         messages = [
@@ -26,15 +42,73 @@ class OpenAIModel(BaseModel):
             {"role": "user", "content": self._build_content(observation)},
         ]
 
-        response = self.client.chat.completions.create(
-            model=self.model,
-            max_tokens=1024,
-            messages=messages,
-            response_format={"type": "json_object"},
-        )
+        kwargs = {
+            "model": self.model,
+            "max_tokens": 1024,
+            "messages": messages,
+        }
+
+        if self.is_local:
+            # Strict JSON schema for local VLMs (llama.cpp supports this via b4xxx+).
+            # Forces schema compliance — prevents common failures like dropping key names
+            # or emitting two values under one key (observed with MAI-UI-8B).
+            kwargs["response_format"] = {
+                "type": "json_schema",
+                "json_schema": {
+                    "name": "deltavision_action",
+                    "strict": True,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "reasoning": {"type": "string"},
+                            "action": {
+                                "type": ["object", "null"],
+                                "properties": {
+                                    "type": {"type": "string", "enum": ["click", "type", "scroll", "key", "wait", "done"]},
+                                    "x": {"type": "integer"},
+                                    "y": {"type": "integer"},
+                                    "text": {"type": "string"},
+                                    "direction": {"type": "string"},
+                                    "amount": {"type": "integer"},
+                                    "key": {"type": "string"},
+                                    "duration_ms": {"type": "integer"},
+                                },
+                            },
+                            "done": {"type": "boolean"},
+                            "confidence": {"type": "number"},
+                        },
+                        "required": ["reasoning", "action", "done"],
+                    },
+                },
+            }
+        else:
+            # Cloud OpenAI — standard json_object mode is reliable.
+            kwargs["response_format"] = {"type": "json_object"}
+
+        response = self.client.chat.completions.create(**kwargs)
 
         raw_text = response.choices[0].message.content
-        parsed = json.loads(raw_text)
+
+        # Robust JSON parsing: local VLMs sometimes wrap output in markdown
+        # code fences or prose preamble. Fall back to brace-extraction.
+        try:
+            parsed = json.loads(raw_text)
+        except json.JSONDecodeError:
+            start = raw_text.find("{")
+            end = raw_text.rfind("}") + 1
+            if start >= 0 and end > start:
+                try:
+                    parsed = json.loads(raw_text[start:end])
+                except json.JSONDecodeError:
+                    parsed = {"reasoning": raw_text, "action": None, "done": True, "confidence": 0.0}
+            else:
+                parsed = {"reasoning": raw_text, "action": None, "done": True, "confidence": 0.0}
+
+        # Some local VLMs (MAI-UI-8B observed) nest confidence inside action.
+        # Hoist it to top level for consistent ModelResponse.
+        confidence = parsed.get("confidence")
+        if confidence is None and isinstance(parsed.get("action"), dict):
+            confidence = parsed["action"].get("confidence", 0.0)
 
         action = parse_action(parsed.get("action")) if not parsed.get("done") else None
 
@@ -42,7 +116,7 @@ class OpenAIModel(BaseModel):
             action=action,
             done=parsed.get("done", False),
             reasoning=parsed.get("reasoning", ""),
-            confidence=parsed.get("confidence", 0.0),
+            confidence=confidence or 0.0,
             raw_response=parsed,
         )
 
