@@ -184,28 +184,63 @@ All results stored in `results/deltavision.db` (SQLite). Query:
 python -c "from results.store import ResultStore; ResultStore().summary()"
 ```
 
-### Measured integration benchmark (honest numbers)
+### Measured savings depend heavily on the workload
 
-**Multi-site, 40 real Playwright steps across 5 tasks**, all using the same
-Anthropic `tool_result` format — the only difference is whether screenshots
-pass through `DeltaVisionObserver`. Raw data: `examples/multi_site_results.json`.
+Two benchmarks, both same Anthropic `tool_result` format, both real Playwright,
+same `DeltaVisionObserver` wrapping — nothing else changes between baseline
+and DV. Savings vary by task type; here's the honest shape:
 
-| Task | Steps | Tokens saved |
+**SPA + mixed browser tasks (5 tasks, 40 steps)** — reproduce: `python examples/multi_site_benchmark.py`
+
+| Task | Steps | Token savings |
 |---|---|---|
-| TodoMVC: add 3 + filter | 9 | 55.6% |
-| TodoMVC: add 3, check 2, clear | 10 | 63.6% |
+| TodoMVC: add 3 + filter | 9 | **55.6%** |
+| TodoMVC: add 3, check 2, clear | 10 | **63.6%** |
 | Wikipedia: search + navigate + scroll | 9 | 47.6% |
 | Hacker News: browse + scroll + open thread | 7 | 26.2% |
 | example.com idle | 5 | 72.6% |
 | **Aggregate** | **40** | **52.8%** |
 
-Reproduce: `python examples/multi_site_benchmark.py`.
+**Scroll-dominated media exploration (10 WebVoyager sites, 70 steps)** — reproduce: `python examples/webvoyager_subset.py`
 
-Worst case (Hacker News, 26%) is scroll-heavy — scrolling generates large
-pixel diffs that the classifier correctly keeps as DELTAs, but the resulting
-crops are near-full-size so savings shrink. Best case (idle / static /
-tiny-delta) exceeds 70%. SPA tasks with small-region changes typically sit
-55-65%.
+| Site | Steps | Token savings |
+|---|---|---|
+| huggingface | 7 | 33.2% |
+| wolfram | 7 | 23.2% |
+| cambridge | 7 | 18.7% |
+| github | 7 | 18.2% |
+| apple | 7 | 12.7% |
+| allrecipes | 7 | 12.6% |
+| bbc_news | 7 | 10.3% |
+| coursera | 7 | 7.4% |
+| arxiv | 7 | 6.2% |
+| espn | 7 | 4.7% |
+| **Aggregate** | **70** | **14.7%** |
+
+#### What the two benchmarks tell you
+
+- **DV excels on SPA / mixed-interaction tasks** (55-65% savings). These are
+  the real CU-agent workloads: click buttons, type in inputs, navigate
+  with URL changes. Small region changes compress well into crops.
+- **DV's savings shrink on pure-scroll exploration** (5-33% savings). The
+  `scroll_bypass` gate correctly classifies scrolled frames as DELTAs, but
+  the resulting delta crops are near-full-viewport because each scroll
+  exposes a large band of new content. Token savings stay positive but the
+  wire-byte savings can go slightly negative (PNG-of-thumbnail + PNG-of-
+  large-crop can exceed a single PNG-of-full-frame).
+- **Best case** (idle, static, tiny local change): 70%+ savings.
+- **Worst case** (ESPN, full-page scrolling media): 4.7% token savings.
+
+This is a fundamental property of the technique, not a bug: DeltaVision is
+an **observation-level optimization for sticky-context workflows.** On
+sites where every scroll reveals mostly-new pixels, there's less redundant
+observation to strip.
+
+**Practical takeaway for CU agent builders:** if your workflow is mostly
+typing / clicking / form interactions, expect 40-70% token savings. If it's
+mostly scrolling through long feeds, expect 5-20%. Real agents do both, so
+a typical run lands between those endpoints (20-40% is a reasonable
+expectation for a mixed agent workload).
 
 ### Multi-step ablation on Wikipedia (Qwen2.5-VL-7B)
 
