@@ -28,18 +28,19 @@ from PIL import Image
 
 from browser_use import Agent
 from browser_use.browser.session import BrowserSession
-from browser_use.llm.ollama.chat import ChatOllama
+# IMPORTANT: we use ChatOpenAI pointed at Ollama's OpenAI-compat /v1 endpoint
+# instead of Browser Use's native ChatOllama. Native ChatOllama crashes
+# Ollama's model runner (HTTP 500) on Browser Use's large state payloads —
+# orthogonal to DeltaVision. The /v1 path works reliably.
+from browser_use.llm.openai.chat import ChatOpenAI
 
 from observer import DeltaVisionObserver
 
 
 # ------------------------------------------------------------ config
 
-# UI-TARS-1.5-7B is F16 = 15GB, tight fit in the 5080 Laptop's 16GB VRAM.
-# qwen2.5vl:7b Q4_K_M is 6GB and also GUI-capable — verified working earlier
-# in this session. Swap here if you want to try UI-TARS after clearing VRAM.
 MODEL = "qwen2.5vl:7b"
-OLLAMA_HOST = "http://127.0.0.1:11434"  # SSH tunnel to Windows 5080
+OLLAMA_OPENAI_ENDPOINT = "http://127.0.0.1:11434/v1"  # SSH tunnel to Windows 5080
 
 TASK = (
     "Go to https://todomvc.com/examples/react/dist/ and add a single todo "
@@ -123,7 +124,17 @@ def install_payload_sniffer() -> callable:
 async def run_once(label: str, install_hook) -> dict:
     print(f"\n--- RUN: {label} ---")
     uninstall = install_hook()
-    llm = ChatOllama(model=MODEL, host=OLLAMA_HOST, timeout=180.0)
+    llm = ChatOpenAI(
+        model=MODEL,
+        base_url=OLLAMA_OPENAI_ENDPOINT,
+        api_key="ollama-no-auth",
+        temperature=0.1,
+        max_completion_tokens=512,   # keep response small — the model's
+        reasoning_effort="none",       # thinking should be quick
+        dont_force_structured_output=True,
+        add_schema_to_system_prompt=True,
+        timeout=300.0,                 # qwen on a 5080 via tunnel can take a minute
+    )
 
     t0 = time.time()
     agent = Agent(task=TASK, llm=llm)
@@ -155,8 +166,8 @@ async def run_once(label: str, install_hook) -> dict:
 
 
 async def main():
-    print(f"Model: {MODEL}")
-    print(f"Ollama:  {OLLAMA_HOST}")
+    print(f"Model:    {MODEL}")
+    print(f"Endpoint: {OLLAMA_OPENAI_ENDPOINT}")
     print(f"Task:    {TASK}")
 
     # 1. Baseline: plain Browser Use, just sniff payload sizes

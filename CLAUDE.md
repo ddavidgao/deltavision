@@ -8,13 +8,13 @@ Delta-first computer use agent framework. The model's primary observation is the
 
 **Results so far:**
 
-| Benchmark | DeltaVision | Full-Frame Baseline | Savings |
+| Benchmark | DeltaVision | Full-Frame Baseline | Notes |
 |-----------|-------------|---------------------|---------|
-| Wikipedia search (3-step) | **3 steps, 4k tokens** | 50 steps, 81.6k tokens (FAILED) | **95% tokens** |
-| Wikipedia multi-step (3-article) | **5 steps, 4.8k tokens** | 12 steps, 20.8k tokens | **77% tokens** |
-| Reaction time (best) | **74ms** | Claude CU: 13,491ms | **182x faster** |
-| Reaction time (avg) | **100ms** | Human median: 273ms | **2.7x faster than human** |
-| Classifier generalization | **17/17 (100%)** | 7 sites, default config | - |
+| TodoMVC 9-step (measured integration) | 6,133 img tokens | 13,824 img tokens | **55.6% savings** — same task, same format, same agent |
+| Wikipedia search | Completed in 3 steps | Hit 50-step limit, did not complete | Task-outcome comparison (not a direct % since FF did not complete) |
+| Wikipedia multi-step (3-article) | 5 steps, ~4.8k tokens | 12 steps, ~20.8k tokens | ~77% fewer tokens, both completed |
+| Reaction time (best, CV-only) | 74ms | Claude CU (n=1): 13,491ms | Unfair comparison (CV vs full agent), but shows pure-CV ceiling |
+| Classifier generalization | 17/17 (100%) | 8 sites, default config | No site-specific tuning |
 
 | Ablation Detail | DeltaVision | Full-Frame Only |
 |-----------------|-------------|-----------------|

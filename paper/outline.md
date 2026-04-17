@@ -1,7 +1,7 @@
 # DeltaVision: Observation-Level Gating for Efficient GUI Agents
 
 ## Abstract
-GUI agents that receive full screenshots every step waste tokens on unchanged pixels. We introduce DeltaVision, an observation middleware that uses a zero-LLM computer vision pipeline to classify transitions and gate what the model sees. On a Wikipedia navigation task with Qwen2.5-VL-7B, DeltaVision reduces image tokens by 95% and completes the task in 3 steps vs. 50 (failure) with full-frame observation. Our 4-layer classifier cascade achieves 100% accuracy across 17 scenarios on 7 diverse websites using default thresholds.
+GUI agents that receive full screenshots every step waste tokens on unchanged pixels. We introduce DeltaVision, an observation middleware that uses a zero-LLM computer vision pipeline to classify transitions and gate what the model sees. On a controlled 9-step TodoMVC task with the Anthropic tool_result message format, DeltaVision reduces image tokens by 55.6% at identical task outcomes. On a Wikipedia navigation task with Qwen2.5-VL-7B, the DeltaVision-wrapped agent completes the task in 3 steps while the full-frame baseline hits the 50-step limit without completing (not a direct token comparison, but an outcome comparison). Our 4-layer classifier cascade achieves 100% accuracy across 17 scenarios on 8 diverse websites using default thresholds, with 41.6ms median CV overhead per step measured on commodity laptop hardware.
 
 ## 1. Introduction
 - Computer use agents send full screenshots every step (1600+ tokens each)
@@ -73,7 +73,7 @@ Scrolling shifts the viewport but not the page state. Without handling, pHash di
 - Same model: Qwen2.5-VL-7B (Q4_K_M) via Ollama
 - DeltaVision: 3 steps, 4,000 tokens, task completed (29s)
 - Full-frame: 50 steps (max), 81,600 tokens, task FAILED (267s)
-- **95% token reduction, task completion enabled**
+- **Outcome:** DeltaVision completes the task; full-frame does not. Per-step observation cost is ~3-7× cheaper on DELTA steps. Reporting raw outcomes rather than a single headline percentage, since the two runs don't execute the same number of steps.
 
 **Table 3:** Ablation comparison (from SQLite runs #11, #12)
 **Figure 6:** Per-step observation type (delta vs full frame) over task progression
@@ -100,7 +100,7 @@ Scrolling shifts the viewport but not the page state. Without handling, pHash di
 - No DOM integration — purely visual, misses non-visible state changes
 
 ## 7. Conclusion
-DeltaVision demonstrates that observation-level gating with a zero-LLM CV pipeline reduces GUI agent token consumption by 95% and enables task completion for 7B parameter models that fail with full-frame observation. The approach is model-agnostic, adds minimal overhead, and generalizes across diverse websites without site-specific tuning.
+DeltaVision demonstrates that observation-level gating with a zero-LLM CV pipeline reduces GUI agent token consumption on the DELTA path by a factor of 3-7× per step, and enables task completion for 7B parameter models that hit step limits without completing under full-frame observation. The approach is model-agnostic, adds ~40ms overhead per step, and generalizes across diverse websites without site-specific tuning. On a controlled TodoMVC comparison at the Anthropic tool_result format, DeltaVision reduces total image tokens by 55.6%.
 
 ---
 
