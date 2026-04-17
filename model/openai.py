@@ -6,7 +6,6 @@ Also covers any OpenAI-compatible endpoint (llama-server, vLLM, SGLang) via
 the base_url parameter — same retry behavior applies.
 """
 
-import json
 import base64
 import logging
 import time
