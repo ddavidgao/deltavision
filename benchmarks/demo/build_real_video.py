@@ -16,15 +16,32 @@ DIM = (80, 80, 95)
 CALLOUT_BG = (22, 28, 50)
 
 
+# Cross-platform font lookup: macOS Helvetica, Windows Segoe UI, Linux DejaVu.
+# Previously shipped Segoe TTFs inline (1.9MB). Now use system fonts with
+# graceful fallback chain so the repo stays small.
+_BOLD_PATHS = [
+    "/System/Library/Fonts/HelveticaNeue.ttc",     # macOS
+    "/System/Library/Fonts/Helvetica.ttc",         # macOS fallback
+    "C:/Windows/Fonts/segoeuib.ttf",               # Windows
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",  # Linux
+]
+_REG_PATHS = [
+    "/System/Library/Fonts/HelveticaNeue.ttc",
+    "/System/Library/Fonts/Helvetica.ttc",
+    "C:/Windows/Fonts/segoeui.ttf",
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+]
+
+
 def _b(sz):
-    for p in ["benchmarks/demo/segoeuib.ttf"]:
+    for p in _BOLD_PATHS:
         try: return ImageFont.truetype(p, sz)
         except: pass
     return ImageFont.load_default()
 
 
 def _r(sz):
-    for p in ["benchmarks/demo/segoeui.ttf"]:
+    for p in _REG_PATHS:
         try: return ImageFont.truetype(p, sz)
         except: pass
     return ImageFont.load_default()

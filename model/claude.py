@@ -6,11 +6,14 @@ Key decisions:
 - Model is explicitly told it does NOT decide transition types
 - Crop images sent in order of change_magnitude (largest first)
 - Text deltas (Level 1) sent as pure text, no images
+- Transient API errors (429, 503, connection reset) retry with exponential backoff
 """
 
 import json
 import base64
+import logging
 import os
+import time
 from io import BytesIO
 
 import anthropic
@@ -19,6 +22,16 @@ from PIL import Image
 from .base import BaseModel, ModelResponse
 from ._response_parser import extract_json, normalize_response, get_confidence
 from agent.actions import parse_action
+
+log = logging.getLogger(__name__)
+
+# Anthropic API errors that are worth retrying vs permanent failures
+_RETRYABLE = (
+    anthropic.APIConnectionError,
+    anthropic.APITimeoutError,
+    anthropic.RateLimitError,
+    anthropic.InternalServerError,
+)
 
 SYSTEM_PROMPT = """You are a GUI automation agent operating in DeltaVision mode.
 
@@ -72,12 +85,28 @@ class ClaudeModel(BaseModel):
     async def predict(self, observation, state) -> ModelResponse:
         messages = self._build_messages(observation, state)
 
-        response = self.client.messages.create(
-            model=self.model,
-            max_tokens=1024,
-            system=SYSTEM_PROMPT,
-            messages=messages,
-        )
+        # Retry transient errors. Permanent errors (auth, bad request) bubble up.
+        last_err = None
+        for attempt in range(3):
+            try:
+                response = self.client.messages.create(
+                    model=self.model,
+                    max_tokens=1024,
+                    system=SYSTEM_PROMPT,
+                    messages=messages,
+                )
+                last_err = None
+                break
+            except _RETRYABLE as e:
+                last_err = e
+                log.warning(
+                    "Claude API transient error (attempt %d/3): %s — %s",
+                    attempt + 1, type(e).__name__, str(e)[:200],
+                )
+                if attempt < 2:
+                    time.sleep(2 ** attempt)  # 1s, 2s
+        if last_err is not None:
+            raise last_err
 
         raw_text = response.content[0].text
         parsed = normalize_response(extract_json(raw_text))

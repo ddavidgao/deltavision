@@ -18,6 +18,12 @@ venv/
 .DS_Store
 Thumbs.db
 
+# Browser automation caches
+.playwright-mcp/
+
+# Local-only DB snapshots (keep only results/deltavision.db)
+results/deltavision_snapshot_*.db
+
 # Run outputs
 run_*.json
 

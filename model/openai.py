@@ -1,10 +1,15 @@
 """
 OpenAI GPT-4o / GPT-4V backend.
 Same observation format as Claude — just different API.
+
+Also covers any OpenAI-compatible endpoint (llama-server, vLLM, SGLang) via
+the base_url parameter — same retry behavior applies.
 """
 
 import json
 import base64
+import logging
+import time
 from io import BytesIO
 
 from PIL import Image
@@ -13,6 +18,8 @@ from .base import BaseModel, ModelResponse
 from ._response_parser import extract_json, normalize_response, get_confidence
 from agent.actions import parse_action
 from model.claude import SYSTEM_PROMPT  # same prompt works
+
+log = logging.getLogger(__name__)
 
 
 class OpenAIModel(BaseModel):
@@ -86,7 +93,31 @@ class OpenAIModel(BaseModel):
             # Cloud OpenAI — standard json_object mode is reliable.
             kwargs["response_format"] = {"type": "json_object"}
 
-        response = self.client.chat.completions.create(**kwargs)
+        # Retryable errors across both cloud OpenAI and local OpenAI-compat servers.
+        import openai
+        retryable = (
+            openai.APIConnectionError,
+            openai.APITimeoutError,
+            openai.RateLimitError,
+            openai.InternalServerError,
+        )
+
+        last_err = None
+        for attempt in range(3):
+            try:
+                response = self.client.chat.completions.create(**kwargs)
+                last_err = None
+                break
+            except retryable as e:
+                last_err = e
+                log.warning(
+                    "OpenAI-compat API transient error (attempt %d/3, is_local=%s): %s — %s",
+                    attempt + 1, self.is_local, type(e).__name__, str(e)[:200],
+                )
+                if attempt < 2:
+                    time.sleep(2 ** attempt)
+        if last_err is not None:
+            raise last_err
 
         raw_text = response.choices[0].message.content
         parsed = normalize_response(extract_json(raw_text))

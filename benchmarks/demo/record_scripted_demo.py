@@ -42,10 +42,25 @@ DIM = (85, 85, 100)
 CALLOUT_BG = (25, 30, 55)
 
 
+# Cross-platform font lookup: macOS > Windows > Linux, system fonts only.
+# See build_real_video.py for the same pattern — keeps the repo small.
+_BOLD_PATHS = [
+    "/System/Library/Fonts/HelveticaNeue.ttc",
+    "/System/Library/Fonts/Helvetica.ttc",
+    "C:/Windows/Fonts/segoeuib.ttf",
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+]
+_REG_PATHS = [
+    "/System/Library/Fonts/HelveticaNeue.ttc",
+    "/System/Library/Fonts/Helvetica.ttc",
+    "C:/Windows/Fonts/segoeui.ttf",
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+]
+
+
 def _b(sz):
     """Bold font."""
-    for p in ["benchmarks/demo/segoeuib.ttf", "benchmarks/demo/calibrib.ttf",
-              "benchmarks/demo/arialbd.ttf"]:
+    for p in _BOLD_PATHS:
         try:
             return ImageFont.truetype(p, sz)
         except (OSError, IOError):
@@ -55,8 +70,7 @@ def _b(sz):
 
 def _r(sz):
     """Regular font."""
-    for p in ["benchmarks/demo/segoeui.ttf", "benchmarks/demo/calibri.ttf",
-              "benchmarks/demo/arial.ttf"]:
+    for p in _REG_PATHS:
         try:
             return ImageFont.truetype(p, sz)
         except (OSError, IOError):
