@@ -184,7 +184,31 @@ All results stored in `results/deltavision.db` (SQLite). Query:
 python -c "from results.store import ResultStore; ResultStore().summary()"
 ```
 
-### Measured savings depend heavily on the workload
+### V2 (OS-level): matched-trajectory ablation — 68.2% savings
+
+The sibling repo `deltavision-os` (mss + pyautogui for OS-level desktop agents)
+published its own independent ablation:
+
+- **Same 10-step trajectory run twice** on a real Mac desktop, natural
+  Qwen2.5-VL behavior. No cherry-picking — exact same actions each time.
+- Forced full-frame: 17,600 image tokens
+- Delta-gated: 5,600 image tokens
+- **68.2% savings, zero difference in task outcome.**
+
+Plus a threshold sweep (3 trajectories × 3 values of `NEW_PAGE_DIFF_THRESHOLD`)
+empirically confirmed that the pHash layer dominates: diff-threshold in
+[0.30, 0.75] produced identical classifications. Paper-grade finding.
+
+Raw data: `deltavision-os/benchmarks/ablation_result.json` and
+`ablation_sweep_result.json`. Plus a smoke-test run on the **ScreenSpot-v2**
+community benchmark (Qwen2.5-VL-7B, 80% desktop accuracy on n=15) proves the
+V2 stack works end-to-end with a real VLM.
+
+Repo: https://github.com/ddavidgao/deltavision-os
+
+---
+
+### Browser side: savings depend heavily on the workload
 
 Two benchmarks, both same Anthropic `tool_result` format, both real Playwright,
 same `DeltaVisionObserver` wrapping — nothing else changes between baseline
