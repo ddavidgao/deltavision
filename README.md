@@ -4,24 +4,39 @@
 
 The model still reasons — it just reasons about less.
 
+```bash
+pip install deltavision
+```
+
+On PyPI: [deltavision 1.0.0](https://pypi.org/project/deltavision/1.0.0/). OS-level companion (V2, alpha): [deltavision-os](https://pypi.org/project/deltavision-os/).
+
 ## Why This Matters
 
 Standard computer use agents send a full 1280x900 screenshot (~1600 tokens) on every step, whether 1 pixel changed or the entire page swapped. DeltaVision puts a 4-layer CV classifier in front of the model that decides: did the page change, or just a region? Send accordingly.
 
-**Measured token savings on a real 9-step TodoMVC agent run** (Playwright +
-Anthropic tool_result format, same task both ways — only the observation
-pipeline differs):
+**Two headline benchmarks, both reproducible, both checked in:**
 
-| | Baseline (full-frame) | With DeltaVision |
+| Benchmark | Steps | FF tokens | DV tokens | Savings | Reproduce |
+|---|---|---|---|---|---|
+| Spreadsheet data entry (deterministic, local HTML mock) | 25 | 34,125 | 7,780 | **77.2%** | `python examples/spreadsheet_observation_cost.py` |
+| TodoMVC 9-step (real Playwright + Anthropic `tool_result`) | 9 | 13,824 | 6,133 | **55.6%** | `python examples/observer_integration_proof.py` |
+
+The first produces **identical numbers on any machine** — no agent, no trajectory variance, no auth. The second runs a real browser agent against the real TodoMVC app. Together they cover "per-observation ceiling" and "real-agent floor."
+
+Savings grow with task length. On long SPA workflows with sticky page structure, DV stays on the DELTA path for 80%+ of steps, each of which costs 3-7× less than a full frame.
+
+## Integration tests
+
+Every adapter claim is covered by a runnable script. Reproduce with `python examples/integration_tests.py`:
+
+| Framework | What's verified | Proof |
 |---|---|---|
-| Image tokens | 13,824 | **6,133** (−55.6%) |
-| Wire bytes | 1,033 KB | **604 KB** (−41.5%) |
+| **Anthropic `tool_result`** | Live API call via `claude-sonnet-4-20250514` ingests DV's content blocks without error | 1,762 in / 50 out tokens, real response |
+| **OpenAI CUA (Operator)** | `to_openai_computer_call_output()` matches the [computer-use spec](https://platform.openai.com/docs/guides/tools-computer-use) | data URL decodes to valid PNG, `type=computer_call_output` |
+| **Browser Use** | `pip install browser-use` + 5-line monkey-patch wires DV in; `to_browser_use_screenshot_b64()` returns a valid base64 PNG | Patches `BrowserSession.get_browser_state_summary`, see [`examples/browser_use_integration/`](examples/browser_use_integration/) |
+| **Stagehand** | `to_stagehand_middleware_parts()` returns a valid list of typed content parts | See [`examples/openclaw_integration/deltavision-adapter.ts`](examples/openclaw_integration/deltavision-adapter.ts) for the TS side |
 
-Reproducible: `python examples/observer_integration_proof.py`. Raw metrics:
-`examples/observer_proof_results.json`. The savings grow with task length —
-on longer SPA workflows where the page structure is sticky across steps,
-DeltaVision tends to stay on the DELTA path for 80%+ of steps, each of which
-costs ~3-7× less than a full frame.
+Artifact: [`examples/integration_test_results.json`](examples/integration_test_results.json) (commit-tracked; 4/5 pass, Skyvern skipped — not on PyPI).
 
 ## How It Works
 
@@ -57,20 +72,34 @@ Browser Action
 
 ## Quick Start
 
+**From PyPI (recommended):**
+
+```bash
+pip install deltavision
+# Backends are optional extras:
+pip install "deltavision[claude]"   # Anthropic
+pip install "deltavision[openai]"   # OpenAI
+pip install "deltavision[ollama]"   # local Ollama VLMs
+pip install "deltavision[all]"      # everything
+```
+
+**From source (for development or to run benchmarks):**
+
 ```bash
 git clone https://github.com/ddavidgao/deltavision.git
 cd deltavision
 python -m venv .venv && source .venv/bin/activate  # Windows: .venv\Scripts\activate
-
-# Install as an editable package (recommended for development)
-pip install -e ".[claude]"      # or [openai], [ollama], [all], [dev]
+pip install -e ".[dev,all]"
 playwright install chromium
 
-# Or plain requirements.txt (legacy)
-pip install -r requirements.txt
-
-# Run tests (no API keys needed) — 217 total, 210 pass offline
+# Run tests (no API keys needed) — 224 total, offline
 pytest tests/ -q --ignore=tests/test_e2e_live.py --ignore=tests/test_live_capture.py
+
+# The reproducible spreadsheet benchmark — no API key, no auth, deterministic
+python examples/spreadsheet_observation_cost.py      # → 77.2% savings, same every run
+
+# Integration tests against 4 CU frameworks (Anthropic live if ANTHROPIC_API_KEY set)
+python examples/integration_tests.py
 
 # Reaction time benchmark (pure CV, no model)
 python benchmarks/reaction/run_reaction.py --rounds 5 --headless
@@ -143,10 +172,10 @@ See [TESTS.md](TESTS.md) for a per-module table of what every test verifies.
 | Integration | 15 | observation builder, action parser, agent state, simulated pipeline |
 | Observer API | 34 | lifecycle + 5 format adapters (Anthropic/OpenAI/Browser Use/Skyvern/Stagehand) |
 | Live (CI-skipped) | 7 | browser E2E, live capture |
-| **Total** | **217** | |
+| **Total** | **224** | |
 
 ```bash
-pytest tests/ -q                    # full offline suite (183 pass)
+pytest tests/ -q                    # full offline suite (224 collected, all pass)
 pytest tests/test_safety.py -v      # single module
 pytest tests/ --cov=. --cov-report=term-missing  # coverage
 ```
@@ -311,15 +340,17 @@ Data sources: DeltaVision values from DB Run 10 (5 clean rounds of 10, fixed sta
 
 Note: This measures CV pipeline speed (screenshot + color detect + click). The comparison to Claude CU is unfair — Claude runs full model inference per step — and the Claude baseline is n=1, so the "avg" cell repeats the single measurement. The reaction benchmark demonstrates that simple visual tasks don't need a model at all.
 
-## Demo Video
+## Launch video
 
-Pre-recorded comparison video in `benchmarks/demo/`:
+A 74-second narrated walkthrough of DeltaVision — the problem, the pipeline, and the deterministic benchmark that produces these numbers:
 
 | File | Content |
 |------|---------|
-| `deltavision_final_demo.mp4` | Complete side-by-side comparison: DeltaVision vs full-frame on Wikipedia search (multi-step) |
+| [`benchmarks/ablation/video_frames/deltavision_v1_launch.mp4`](benchmarks/ablation/video_frames/deltavision_v1_launch.mp4) | 1080p60, 8 scenes: title / problem / task setup / **DV pipeline internals on one real observation** / side-by-side **showing what FF sends vs what DV actually sends** (thumbnail + crop snippets) / savings range / 73% headline / install |
 
-Record your own:
+Older per-benchmark clips in the same directory: `honest_numbers.mp4` (summary), `waldo_comparison.mp4` (TodoMVC side-by-side), `github_comparison.mp4`, `real_comparison.mp4`.
+
+Record your own agent session:
 ```bash
 # Needs Ollama running with a VLM
 ollama serve
@@ -354,7 +385,7 @@ Videos are recorded by Playwright at 60fps. ffmpeg combines them side-by-side wi
 
 ## V1 vs V2
 
-This is **V1 (browser-focused)**. If you need OS-level or OSWorld-VM observation, see [`deltavision-os`](https://github.com/ddavidgao/deltavision-os) (active development). V1 is frozen at the paper-artifact version for reproducibility.
+This is **V1 (browser-focused)** — on PyPI as [`deltavision`](https://pypi.org/project/deltavision/). If you need OS-level or OSWorld-VM observation, see [`deltavision-os`](https://github.com/ddavidgao/deltavision-os) (on PyPI as [`deltavision-os`](https://pypi.org/project/deltavision-os/), currently `0.1.0a0` alpha). V1 is the stable browser middleware; V2 extends the same CV pipeline to the full OS desktop via `mss` + `pyautogui`.
 
 ## License
 
