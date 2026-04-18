@@ -12,8 +12,10 @@ After DV finishes at step 2, left shows COMPLETE while FF keeps going.
 Every action shown. Every observation shown.
 """
 
-import sys, json, numpy as np
+import json
 from pathlib import Path
+
+import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 BASE    = Path(__file__).parent
@@ -156,7 +158,7 @@ def make_frame(
         tx(draw, LP_X + 4, HEAD_H + 24, f"Action: {dv_action}", F_SM, WHITE)
         tx(draw, LP_X + 4, HEAD_H + 40, dv_obs_label, F_XS, dv_col)
     else:
-        tx(draw, LP_X + 4, HEAD_H + 24, f"Finished at step 2  |  3,620 tokens total", F_SM, GREEN)
+        tx(draw, LP_X + 4, HEAD_H + 24, "Finished at step 2  |  3,620 tokens total", F_SM, GREEN)
 
     # ── FF panel label ───────────────────────────────────────────────
     ff_col = ORANGE if not ff_done else GREEN
@@ -167,7 +169,7 @@ def make_frame(
         tx(draw, RP_X + 4, HEAD_H + 24, f"Action: {ff_action}", F_SM, WHITE)
         tx(draw, RP_X + 4, HEAD_H + 40, ff_obs_label, F_XS, ff_col)
     else:
-        tx(draw, RP_X + 4, HEAD_H + 24, f"Finished at step 5  |  9,600 tokens total", F_SM, GREEN)
+        tx(draw, RP_X + 4, HEAD_H + 24, "Finished at step 5  |  9,600 tokens total", F_SM, GREEN)
 
     # ── DV image area ────────────────────────────────────────────────
     if dv_done:
@@ -294,13 +296,13 @@ def summary_card():
     COLS = [PAD, 90, 260, 450, 720, 1000, 1200, 1420]
     def row(y, vals, colors, bg):
         bx(draw, PAD, y, CW-PAD, y+28, fill=bg)
-        for x, v, c in zip(COLS, vals, colors):
+        for x, v, c in zip(COLS, vals, colors, strict=False):
             tx(draw, x+4, y+7, str(v), F_SM, c)
 
     y = 114
     bx(draw, PAD, y, CW-PAD, y+28, fill=DARK3)
     headers = ["#", "Agent", "Obs type", "Action", "What model saw", "DV tok", "FF tok", "Cumul"]
-    for x, h in zip(COLS, headers):
+    for x, h in zip(COLS, headers, strict=False):
         tx(draw, x+4, y+8, h, F_SM, GRAY)
     y += 30
 
@@ -493,6 +495,7 @@ dur = len(all_np) / FPS
 print(f"Frames: {len(all_np)}  |  Duration: {dur:.1f}s  |  Steps: {len(FRAMES)-2}")
 
 from moviepy import ImageSequenceClip
+
 clip = ImageSequenceClip(all_np, fps=FPS)
 clip.write_videofile(
     str(OUT_MP4), fps=FPS, codec="libx264", audio=False, logger=None,

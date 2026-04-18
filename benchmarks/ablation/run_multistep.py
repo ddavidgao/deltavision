@@ -6,16 +6,16 @@ Compare DeltaVision (delta gating) vs full-frame on the same task.
 """
 
 import asyncio
-import time
 import json
 import sys
+import time
 from pathlib import Path
 
 from playwright.async_api import async_playwright
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
-from config import DeltaVisionConfig
 from agent.loop import run_agent
+from config import DeltaVisionConfig
 from model.ollama import OllamaModel
 from results.store import ResultStore
 

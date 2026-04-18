@@ -13,21 +13,18 @@ Measures wall clock, screenshot payload bytes, and task completion.
 """
 
 import asyncio
-import base64
-import io
 import json
 import sys
 import time
 from pathlib import Path
-from types import MethodType
 
 # Let the script find the parent deltavision package
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
 
-from PIL import Image
 
 from browser_use import Agent
 from browser_use.browser.session import BrowserSession
+
 # IMPORTANT: we use ChatOpenAI pointed at Ollama's OpenAI-compat /v1 endpoint
 # instead of Browser Use's native ChatOllama. Native ChatOllama crashes
 # Ollama's model runner (HTTP 500) on Browser Use's large state payloads —
@@ -35,7 +32,6 @@ from browser_use.browser.session import BrowserSession
 from browser_use.llm.openai.chat import ChatOpenAI
 
 from observer import DeltaVisionObserver
-
 
 # ------------------------------------------------------------ config
 
@@ -203,7 +199,7 @@ async def main():
         "with_deltavision": dv_run,
     }
     Path("hermes_vs_dv_results.json").write_text(json.dumps(out, indent=2, default=str))
-    print(f"\nSaved results to hermes_vs_dv_results.json")
+    print("\nSaved results to hermes_vs_dv_results.json")
 
 
 if __name__ == "__main__":

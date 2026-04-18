@@ -20,15 +20,15 @@ Requires: ollama running locally (ollama serve)
 
 import base64
 from io import BytesIO
-from typing import Optional
 
 import requests
 from PIL import Image
 
-from .base import BaseModel, ModelResponse
-from ._response_parser import extract_json, normalize_response, get_confidence
 from agent.actions import parse_action
 from model.claude import SYSTEM_PROMPT
+
+from ._response_parser import extract_json, get_confidence, normalize_response
+from .base import BaseModel, ModelResponse
 
 
 class OllamaModel(BaseModel):
@@ -67,7 +67,7 @@ class OllamaModel(BaseModel):
         import time as _time
         log = logging.getLogger(__name__)
 
-        last_err: Optional[Exception] = None
+        last_err: Exception | None = None
         for attempt in range(3):
             try:
                 resp = requests.post(f"{self.host}/api/generate", json=payload, timeout=120)
@@ -158,7 +158,7 @@ class OllamaModel(BaseModel):
             )
 
         parts = [
-            f"DELTA observation (text-only mode).",
+            "DELTA observation (text-only mode).",
             f"Task: {observation.task}",
             f"Step: {observation.step}",
             f"Last action: {observation.last_action}",

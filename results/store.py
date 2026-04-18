@@ -9,12 +9,10 @@ Usage:
     db.query("SELECT * FROM runs WHERE benchmark='reaction' ORDER BY timestamp DESC")
 """
 
-import sqlite3
 import json
+import sqlite3
 from datetime import datetime
 from pathlib import Path
-from typing import Optional
-
 
 DB_PATH = Path(__file__).parent / "deltavision.db"
 
@@ -125,7 +123,7 @@ class ResultStore:
             date = r["timestamp"][:10]
             print(f"{'':>3} {r['benchmark']:<25} {r['backend']:<22} {best:>8} {avg:>8} {dr:>7} {date}")
 
-    def best(self, benchmark: str) -> Optional[dict]:
+    def best(self, benchmark: str) -> dict | None:
         """Get the best run for a benchmark (lowest avg_ms or best_ms)."""
         row = self.conn.execute(
             """SELECT * FROM runs WHERE benchmark = ?

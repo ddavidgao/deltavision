@@ -25,8 +25,11 @@ Task: 10-step project workflow on TodoMVC (React SPA)
   Steps 8-10: filter Active → Completed → All       [URL hash changes → NEW_PAGE]
 """
 
-import json, sys, numpy as np
+import json
+import sys
 from pathlib import Path
+
+import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 sys.path.insert(0, str(Path(__file__).parents[2]))
@@ -202,8 +205,8 @@ def render_step(obs: dict, step_num: int) -> Image.Image:
                          f"DV sends: thumbnail + {n_crops} crop{'' if n_crops==1 else 's'}")
             cls_color  = GREEN
         else:
-            cls_label = (f"DV → NEW_PAGE  ·  URL hash changed  ·  "
-                         f"DV also sends full frame (same as FF)")
+            cls_label = ("DV → NEW_PAGE  ·  URL hash changed  ·  "
+                         "DV also sends full frame (same as FF)")
             cls_color  = PURPLE
 
     txt(draw, (PAD, 14),  step_label,  F_LG, WHITE)
@@ -345,7 +348,7 @@ def render_step(obs: dict, step_num: int) -> Image.Image:
                 col  = PURPLE
             txt(draw, (RP_X, img_start_y + dh3 + 4), note, F_XS, col)
         txt(draw, (RP_X, img_start_y + max_img_h + 4),
-            f"DV total this step: 1,600 tokens  =  FF: 1,600 tokens  (no savings on navigation)",
+            "DV total this step: 1,600 tokens  =  FF: 1,600 tokens  (no savings on navigation)",
             F_SM, PURPLE if step_num > 0 else TEAL)
 
     # ── Bottom token bar ─────────────────────────────────────────────
@@ -380,7 +383,7 @@ def render_step(obs: dict, step_num: int) -> Image.Image:
     type_y = BAR_Y + 56
     if obs_type == "delta":
         box(draw, (PAD, type_y), (PAD+10, type_y+10), fill=GREEN)
-        txt(draw, (PAD+14, type_y-1), f"DELTA  ·  SPA change detected, crops sent", F_XS, GREEN)
+        txt(draw, (PAD+14, type_y-1), "DELTA  ·  SPA change detected, crops sent", F_XS, GREEN)
     else:
         tag = "ANCHOR" if step_num == 0 else "NEW_PAGE"
         col = TEAL if step_num == 0 else PURPLE
@@ -506,7 +509,7 @@ hold(intro_frame, HOLD_TIMES["intro"])
 
 # Steps
 prev = intro_frame
-for obs, frame in zip(STEPS, step_frames):
+for obs, frame in zip(STEPS, step_frames, strict=False):
     sn = obs.get("step", 0)
     fade(prev, frame)
     hold(frame, HOLD_TIMES.get(sn, 4.0))
@@ -525,6 +528,7 @@ print(f"Total frames: {len(all_np)}  |  Duration: {total_s:.1f}s at {FPS}fps")
 
 # ── Export ───────────────────────────────────────────────────────────
 from moviepy import ImageSequenceClip
+
 clip = ImageSequenceClip(all_np, fps=FPS)
 clip.write_videofile(str(OUT_MP4), fps=FPS, codec="libx264",
                      audio=False, logger=None,

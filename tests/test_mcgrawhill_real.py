@@ -12,18 +12,17 @@ All share the same URL: learning.mheducation.com/static/awd/index.html#/
 Nav bar ("McGraw Hill Recharge" + "Exit Recharge") persists across all states.
 """
 
-import os
 from pathlib import Path
-from PIL import Image
-import pytest
 
-from config import DeltaVisionConfig, MCGRAWHILL_CONFIG
-from vision.diff import compute_diff, extract_crops
+import pytest
+from PIL import Image
+
+from config import MCGRAWHILL_CONFIG
 from vision.classifier import (
     classify_transition,
     extract_anchor,
-    TransitionType,
 )
+from vision.diff import compute_diff, extract_crops
 from vision.phash import compute_phash, hamming_distance
 
 FIXTURES = Path(__file__).parent / "fixtures" / "mcgrawhill"
@@ -133,7 +132,7 @@ class TestRealPHash:
         d_q3_rd = hamming_distance(h_q3, h_rd)
         d_fb_rd = hamming_distance(h_fb, h_rd)
 
-        print(f"\npHash distances (real screenshots):")
+        print("\npHash distances (real screenshots):")
         print(f"  Feedback→Question: {d_fb_q3}")
         print(f"  Question→Reading:  {d_q3_rd}")
         print(f"  Feedback→Reading:  {d_fb_rd}")
@@ -156,7 +155,7 @@ class TestRealAnchor:
         score_q3 = match_anchor(q3_question, anchor, config)
         score_rd = match_anchor(reading_mode, anchor, config)
 
-        print(f"\nAnchor match scores (anchor from Q2 feedback):")
+        print("\nAnchor match scores (anchor from Q2 feedback):")
         print(f"  vs Q3 question: {score_q3:.3f}")
         print(f"  vs Reading mode: {score_rd:.3f}")
 

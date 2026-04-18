@@ -33,9 +33,8 @@ from playwright.async_api import async_playwright
 
 from config import DeltaVisionConfig
 from vision.capture import capture_screenshot
+from vision.classifier import TransitionType, classify_transition, extract_anchor
 from vision.diff import compute_diff, extract_crops
-from vision.classifier import classify_transition, extract_anchor, TransitionType
-
 
 # A scripted sequence that exercises DELTA and NEW_PAGE paths on TodoMVC.
 SEQUENCE = [

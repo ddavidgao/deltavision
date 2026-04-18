@@ -6,7 +6,6 @@ All actions are typed — no free-form strings.
 import asyncio
 from dataclasses import dataclass
 from enum import Enum
-from typing import Optional
 
 
 class ActionType(Enum):
@@ -21,13 +20,13 @@ class ActionType(Enum):
 @dataclass
 class Action:
     type: ActionType
-    x: Optional[int] = None
-    y: Optional[int] = None
-    text: Optional[str] = None
-    direction: Optional[str] = None
-    amount: Optional[int] = None
-    key: Optional[str] = None
-    duration_ms: Optional[int] = None
+    x: int | None = None
+    y: int | None = None
+    text: str | None = None
+    direction: str | None = None
+    amount: int | None = None
+    key: str | None = None
+    duration_ms: int | None = None
 
     def __str__(self):
         match self.type:
@@ -46,7 +45,7 @@ class Action:
         return f"unknown({self.type})"
 
 
-def parse_action(action_dict: Optional[dict]) -> Optional[Action]:
+def parse_action(action_dict: dict | None) -> Action | None:
     """Parse model JSON output into a typed Action.
 
     Supports two formats:

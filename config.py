@@ -8,8 +8,7 @@ much later — e.g. a negative PHASH_DISTANCE_THRESHOLD would make every frame
 classify as NEW_PAGE, wasting tokens silently.
 """
 
-from dataclasses import dataclass, field
-from typing import Optional, Tuple
+from dataclasses import dataclass
 
 
 class ConfigError(ValueError):
@@ -35,7 +34,7 @@ class DeltaVisionConfig:
     ANCHOR_HEIGHT_FRACTION: float = 0.08
 
     # Override with specific (x1, y1, x2, y2) bbox for anchor
-    ANCHOR_BBOX: Optional[Tuple[int, int, int, int]] = None
+    ANCHOR_BBOX: tuple[int, int, int, int] | None = None
 
     # -- Diff Engine Parameters --
 
@@ -102,7 +101,7 @@ class DeltaVisionConfig:
     LOCAL_MODEL: str = "Qwen/Qwen2.5-VL-7B-Instruct"
 
     # Local model quantization: None, "4bit", "8bit"
-    LOCAL_QUANTIZATION: Optional[str] = None
+    LOCAL_QUANTIZATION: str | None = None
 
     def __post_init__(self):
         # Fractions must live in [0, 1].

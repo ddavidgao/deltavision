@@ -5,7 +5,7 @@ a bad config silently propagates into CV behavior that's hard to debug.
 
 import pytest
 
-from config import DeltaVisionConfig, ConfigError, MCGRAWHILL_CONFIG
+from config import MCGRAWHILL_CONFIG, ConfigError, DeltaVisionConfig
 
 
 class TestDefaults:

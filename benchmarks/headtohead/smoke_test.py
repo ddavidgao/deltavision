@@ -7,7 +7,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(REPO))
 
-from benchmarks.headtohead.run_head_to_head import run_trial, TASKS
+from benchmarks.headtohead.run_head_to_head import TASKS, run_trial
 
 
 async def main():

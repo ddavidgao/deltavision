@@ -17,8 +17,10 @@ Video structure:
   [Research complete] → Summary
 """
 
-import sys, json, numpy as np
+import json
 from pathlib import Path
+
+import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 BASE    = Path(__file__).parent
@@ -291,14 +293,14 @@ def summary_card() -> Image.Image:
     ]
     COLS = [PAD, 80, 170, 400, 600, 800]
     bx(draw, PAD, y, CW//2-PAD, y+22, fill=DARK3)
-    for c, h in zip(COLS, ["Step","Type","Action","DV tok","FF tok","DV cumul"]):
+    for c, h in zip(COLS, ["Step","Type","Action","DV tok","FF tok","DV cumul"], strict=False):
         tx(draw, c+2, y+5, h, F_XS, GRAY)
     y += 22
     for (sn, otype, act, dv_t, dv_c) in dv_steps:
         col = TEAL if otype == "DELTA" else BLUE
         bx(draw, PAD, y, CW//2-PAD, y+20, fill=DARK2 if int(sn[0])%2==0 else DARK)
         for c, v, vc in zip(COLS, [sn, otype, act, str(dv_t), "1600", str(dv_c)],
-                                   [WHITE, col, WHITE, col, GRAY, col]):
+                                   [WHITE, col, WHITE, col, GRAY, col], strict=False):
             tx(draw, c+2, y+4, v, F_XS, vc)
         y += 20
 
@@ -441,6 +443,7 @@ dur = len(all_np) / FPS
 print(f"Frames: {len(all_np)}  |  Duration: {dur:.1f}s")
 
 from moviepy import ImageSequenceClip
+
 clip = ImageSequenceClip(all_np, fps=FPS)
 clip.write_videofile(str(OUT_MP4), fps=FPS, codec="libx264", audio=False, logger=None,
                      ffmpeg_params=["-crf", "17", "-preset", "slow", "-pix_fmt", "yuv420p"])

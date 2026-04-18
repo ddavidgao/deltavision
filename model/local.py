@@ -10,15 +10,13 @@ Install:
   pip install torch torchvision transformers accelerate qwen-vl-utils bitsandbytes
 """
 
-import base64
-from io import BytesIO
-from typing import Optional
 
 from PIL import Image
 
-from .base import BaseModel, ModelResponse
-from ._response_parser import extract_json, normalize_response, get_confidence
 from agent.actions import parse_action
+
+from ._response_parser import extract_json, get_confidence, normalize_response
+from .base import BaseModel, ModelResponse
 
 # Same structured output contract as Claude backend
 SYSTEM_PROMPT = """You are a GUI automation agent operating in DeltaVision mode.
@@ -58,7 +56,7 @@ class LocalModel(BaseModel):
     Lazy-loads on first predict() call to avoid slow imports at startup.
     """
 
-    def __init__(self, model_name: str = "Qwen/Qwen2.5-VL-7B-Instruct", quantization: Optional[str] = None):
+    def __init__(self, model_name: str = "Qwen/Qwen2.5-VL-7B-Instruct", quantization: str | None = None):
         self.model_name = model_name
         self.quantization = quantization
         self._model = None
@@ -69,7 +67,7 @@ class LocalModel(BaseModel):
         if self._model is not None:
             return
 
-        from transformers import Qwen2_5_VLForConditionalGeneration, AutoProcessor
+        from transformers import AutoProcessor, Qwen2_5_VLForConditionalGeneration
 
         load_kwargs = {"device_map": "auto", "torch_dtype": "auto"}
 

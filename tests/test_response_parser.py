@@ -7,10 +7,9 @@ import pytest
 
 from model._response_parser import (
     extract_json,
-    normalize_response,
     get_confidence,
+    normalize_response,
 )
-
 
 # ------------------------------------------------------------------ extract_json
 

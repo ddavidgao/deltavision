@@ -9,11 +9,10 @@ Usage: python benchmarks/reaction/run_reaction.py [--rounds 5]
 
 import asyncio
 import time
-import sys
-import numpy as np
-from PIL import Image
 from io import BytesIO
 
+import numpy as np
+from PIL import Image
 from playwright.async_api import async_playwright
 
 
@@ -60,10 +59,10 @@ async def run_reaction_test(rounds: int = 5, headless: bool = False):
                     break
                 print(f"  Setup: got {state}, clicking again... (attempt {attempt+1})")
             else:
-                print(f"  Could not reach red state after 10 attempts, skipping round")
+                print("  Could not reach red state after 10 attempts, skipping round")
                 continue
 
-            print(f"  In red/waiting state")
+            print("  In red/waiting state")
 
             # TIGHT POLLING LOOP — the DeltaVision core
             poll_count = 0
@@ -155,21 +154,21 @@ async def run_reaction_test(rounds: int = 5, headless: bool = False):
         print("DELTAVISION REACTION TIME RESULTS")
         print("=" * 60)
         print(f"Rounds completed: {len(results)}")
-        print(f"")
+        print("")
         print(f"Site-reported reaction times: {site_times}")
         print(f"  Average: {sum(site_times) / len(site_times):.0f}ms")
         print(f"  Best:    {min(site_times)}ms")
         print(f"  Worst:   {max(site_times)}ms")
-        print(f"")
+        print("")
         print(f"Detection→click latency: {[f'{d:.1f}' for d in detect_times]}ms")
         print(f"  Average: {sum(detect_times) / len(detect_times):.1f}ms")
         print(f"Screenshot capture avg: {sum(capture_times) / len(capture_times):.0f}ms")
-        print(f"")
-        print(f"--- Comparison ---")
-        print(f"Human median:        273ms")
+        print("")
+        print("--- Comparison ---")
+        print("Human median:        273ms")
         avg = sum(site_times) / len(site_times)
         print(f"DeltaVision:         {avg:.0f}ms")
-        print(f"Claude standard CU:  13491ms")
+        print("Claude standard CU:  13491ms")
         print(f"Speedup vs CU:       {13491 / avg:.0f}x")
         print(f"vs Human:            {avg / 273:.1f}x slower")
 

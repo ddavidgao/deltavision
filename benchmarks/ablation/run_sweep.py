@@ -26,10 +26,9 @@ from pathlib import Path
 from playwright.async_api import async_playwright
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
-from config import DeltaVisionConfig
 from agent.loop import run_agent
+from config import DeltaVisionConfig
 from results.store import ResultStore
-
 
 FULL_FRAME_TOKENS = 1600
 DELTA_TOKENS_AVG = 400

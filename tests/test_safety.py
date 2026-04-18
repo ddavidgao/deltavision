@@ -6,11 +6,9 @@ Untested code in this layer = a bug here can expose credentials or navigate
 to malicious URLs. Every branch in safety.py needs coverage.
 """
 
-import pytest
 
 from agent.actions import Action, ActionType
-from safety import SafetyLayer, SafetyResult, PERMISSIVE, STRICT, EDUCATIONAL
-
+from safety import EDUCATIONAL, PERMISSIVE, STRICT, SafetyLayer, SafetyResult
 
 # ------------------------------------------------------------------- helpers
 

@@ -8,10 +8,9 @@ Critical for uncensored models (Hermes, etc.) that won't refuse dangerous
 actions on their own. DeltaVision enforces safety at the framework level.
 """
 
-import re
 import logging
+import re
 from dataclasses import dataclass
-from typing import Optional, Set
 from urllib.parse import urlparse
 
 from agent.actions import Action, ActionType
@@ -60,7 +59,7 @@ class SafetyLayer:
 
     def __init__(
         self,
-        allowed_domains: Optional[Set[str]] = None,
+        allowed_domains: set[str] | None = None,
         block_credential_entry: bool = True,
         block_url_shorteners: bool = True,
         max_type_length: int = 500,

@@ -19,7 +19,6 @@ import numpy as np
 from moviepy import ImageSequenceClip
 from PIL import Image, ImageDraw, ImageFont
 
-
 # ============================================================= layout
 
 W, H = 1680, 1000
@@ -65,7 +64,7 @@ def _font(sz):
     for p in _FONT_PATHS:
         try:
             return ImageFont.truetype(p, sz)
-        except (OSError, IOError):
+        except OSError:
             pass
     return ImageFont.load_default()
 

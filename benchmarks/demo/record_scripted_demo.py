@@ -9,19 +9,17 @@ Output: 1920x1080 step PNGs, stitched into video with ffmpeg.
 """
 
 import asyncio
-import time
 import sys
 from pathlib import Path
-from PIL import Image, ImageDraw, ImageFont
-from io import BytesIO
 
+from PIL import Image, ImageDraw, ImageFont
 from playwright.async_api import async_playwright
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 from config import DeltaVisionConfig
 from vision.capture import capture_screenshot
+from vision.classifier import TransitionType, classify_transition, extract_anchor
 from vision.diff import compute_diff, extract_crops
-from vision.classifier import classify_transition, extract_anchor, TransitionType
 from vision.phash import compute_phash, hamming_distance
 
 OUT_DIR = Path(__file__).parent / "pipeline_viz"
@@ -63,7 +61,7 @@ def _b(sz):
     for p in _BOLD_PATHS:
         try:
             return ImageFont.truetype(p, sz)
-        except (OSError, IOError):
+        except OSError:
             pass
     return ImageFont.load_default()
 
@@ -73,7 +71,7 @@ def _r(sz):
     for p in _REG_PATHS:
         try:
             return ImageFont.truetype(p, sz)
-        except (OSError, IOError):
+        except OSError:
             pass
     return ImageFont.load_default()
 
@@ -101,7 +99,7 @@ def build_delta_panel(diff_result, crops, w=460, h=580):
     if crops:
         draw.text((20, y), f"{len(crops)} cropped region(s):", font=_r(13), fill=GRAY)
         y += 20
-        for i, crop in enumerate(crops[:3]):
+        for _i, crop in enumerate(crops[:3]):
             if y > h - 70:
                 break
             cw = (w - 60) // 2

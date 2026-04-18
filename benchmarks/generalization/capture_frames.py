@@ -11,21 +11,19 @@ Output: benchmarks/generalization/frames/<site>/<scenario>/
 """
 
 import asyncio
-import time
 import json
-from pathlib import Path
-from PIL import Image
+import sys
 from io import BytesIO
+from pathlib import Path
 
+from PIL import Image
 from playwright.async_api import async_playwright
 
-import sys
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 from config import DeltaVisionConfig
 from vision.classifier import classify_transition, extract_anchor
 from vision.diff import compute_diff, extract_crops
 from vision.phash import compute_phash, hamming_distance
-
 
 SCENARIOS = [
     # Easy: URL change (Layer 1)
@@ -206,7 +204,7 @@ async def run_captures():
         await browser.close()
 
     print(f"\nAll frames saved to: {base_dir}")
-    print(f"Open any folder to see: t0.png, t1.png, diff.png, crop_*_before/after.png, meta.json")
+    print("Open any folder to see: t0.png, t1.png, diff.png, crop_*_before/after.png, meta.json")
 
 
 if __name__ == "__main__":

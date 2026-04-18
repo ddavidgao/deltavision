@@ -13,10 +13,11 @@ from io import BytesIO
 
 from PIL import Image
 
-from .base import BaseModel, ModelResponse
-from ._response_parser import extract_json, normalize_response, get_confidence
 from agent.actions import parse_action
 from model.claude import SYSTEM_PROMPT  # same prompt works
+
+from ._response_parser import extract_json, get_confidence, normalize_response
+from .base import BaseModel, ModelResponse
 
 log = logging.getLogger(__name__)
 

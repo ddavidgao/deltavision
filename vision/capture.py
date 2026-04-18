@@ -2,8 +2,9 @@
 Screenshot capture via Playwright.
 """
 
-from PIL import Image
 from io import BytesIO
+
+from PIL import Image
 
 
 async def capture_screenshot(page) -> Image.Image:

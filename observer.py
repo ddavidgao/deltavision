@@ -26,19 +26,18 @@ from __future__ import annotations
 import base64
 import io
 from dataclasses import dataclass, field
-from typing import Optional, Union
+from typing import Union
 
 from PIL import Image, ImageDraw
 
 from config import DeltaVisionConfig
-from vision.diff import compute_diff, extract_crops
 from vision.classifier import (
+    ClassificationResult,
+    TransitionType,
     classify_transition,
     extract_anchor,
-    TransitionType,
-    ClassificationResult,
 )
-
+from vision.diff import compute_diff, extract_crops
 
 ScreenshotInput = Union[Image.Image, bytes, str]
 
@@ -97,16 +96,16 @@ class DVObservation:
     action_had_effect: bool
 
     # Full-frame payload (populated when obs_type == "full_frame")
-    frame: Optional[Image.Image] = None
+    frame: Image.Image | None = None
 
     # Delta payload (populated when obs_type == "delta")
-    thumbnail: Optional[Image.Image] = None   # 320x225, green boxes on changed regions
+    thumbnail: Image.Image | None = None   # 320x225, green boxes on changed regions
     crops: list[Image.Image] = field(default_factory=list)  # detail crops, up to N
     crop_bboxes: list[tuple[int, int, int, int]] = field(default_factory=list)
 
     # Extras
-    url: Optional[str] = None
-    last_action: Optional[str] = None
+    url: str | None = None
+    last_action: str | None = None
 
     # -------------------------------------------------------------- accessors
 
@@ -315,7 +314,7 @@ class DVObservation:
 
     def _delta_header_text(self) -> str:
         parts = [
-            f"DELTA observation (same page, partial change).",
+            "DELTA observation (same page, partial change).",
             f"Trigger: {self.trigger}",
             f"Diff ratio: {self.diff_ratio:.3f}   pHash: {self.phash_distance}",
             f"Action had effect: {self.action_had_effect}",
@@ -380,19 +379,19 @@ class DeltaVisionObserver:
     your framework produces natively.
     """
 
-    def __init__(self, config: Optional[DeltaVisionConfig] = None):
+    def __init__(self, config: DeltaVisionConfig | None = None):
         self.config = config or DeltaVisionConfig()
-        self._t0: Optional[Image.Image] = None
-        self._url_t0: Optional[str] = None
-        self._anchor: Optional["np.ndarray"] = None  # noqa: F821
+        self._t0: Image.Image | None = None
+        self._url_t0: str | None = None
+        self._anchor: np.ndarray | None = None  # noqa: F821
         self._step = 0
-        self._last_classification: Optional[ClassificationResult] = None
+        self._last_classification: ClassificationResult | None = None
         self._no_change_streak = 0
 
     # ----------------------------------------------------------- properties
 
     @property
-    def last_classification(self) -> Optional[ClassificationResult]:
+    def last_classification(self) -> ClassificationResult | None:
         return self._last_classification
 
     @property
@@ -418,8 +417,8 @@ class DeltaVisionObserver:
         self,
         screenshot: ScreenshotInput,
         *,
-        url: Optional[str] = None,
-        last_action: Optional[str] = None,
+        url: str | None = None,
+        last_action: str | None = None,
     ) -> DVObservation:
         """
         Classify the transition since the last call; return the packaged
@@ -545,7 +544,7 @@ class DeltaVisionObserver:
         )
 
     @staticmethod
-    def _infer_action_type(last_action: Optional[str]) -> str:
+    def _infer_action_type(last_action: str | None) -> str:
         if not last_action:
             return ""
         s = last_action.lower().strip()

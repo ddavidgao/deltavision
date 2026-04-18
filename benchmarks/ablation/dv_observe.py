@@ -40,7 +40,7 @@ from PIL import Image
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from config import DeltaVisionConfig
-from vision.classifier import classify_transition, TransitionType
+from vision.classifier import TransitionType, classify_transition
 from vision.diff import compute_diff, extract_crops
 
 

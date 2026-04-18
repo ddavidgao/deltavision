@@ -11,15 +11,14 @@ when you have keys and the loop runs identically.
 Run: pytest tests/test_e2e_live.py -v -s
 """
 
-import asyncio
 import time
-import pytest
 
+import pytest
 from playwright.async_api import async_playwright
 
-from config import DeltaVisionConfig
-from agent.loop import run_agent
 from agent.actions import Action, ActionType
+from agent.loop import run_agent
+from config import DeltaVisionConfig
 from model.scripted import ScriptedModel
 from results.store import ResultStore
 
@@ -85,7 +84,7 @@ async def test_wikipedia_search_and_navigate(config):
     new_pages = [t for t in transitions if t["transition"] == "new_page"]
     deltas = [t for t in transitions if t["transition"] == "delta"]
 
-    print(f"\n--- Wikipedia E2E Results ---")
+    print("\n--- Wikipedia E2E Results ---")
     print(f"  Steps executed: {state.step}")
     print(f"  Total time: {elapsed:.1f}s")
     print(f"  NEW_PAGE transitions: {len(new_pages)}")
@@ -94,7 +93,7 @@ async def test_wikipedia_search_and_navigate(config):
     print(f"  Transition triggers: {[t['trigger'] for t in transitions]}")
 
     # Log observations the model received
-    print(f"\n  Observations sent to model:")
+    print("\n  Observations sent to model:")
     for obs in model.observation_log:
         obs_type = obs["type"]
         if obs_type == "full_frame":
@@ -160,7 +159,7 @@ async def test_humanbenchmark_aim_trainer(config):
 
         await browser.close()
 
-    print(f"\n--- Aim Trainer E2E Results ---")
+    print("\n--- Aim Trainer E2E Results ---")
     print(f"  Steps: {state.step}")
     print(f"  Delta ratio: {state.delta_ratio:.1%}")
 
@@ -178,9 +177,10 @@ async def test_pipeline_timing(config):
     Uses a simple page with a button click to generate one transition.
     """
     import time
+
     from vision.capture import capture_screenshot, get_current_url
-    from vision.diff import compute_diff
     from vision.classifier import classify_transition, extract_anchor
+    from vision.diff import compute_diff
 
     config.POST_ACTION_WAIT_MS = 200
 
@@ -232,7 +232,7 @@ async def test_pipeline_timing(config):
 
         await browser.close()
 
-    print(f"\n--- Pipeline Timing Breakdown ---")
+    print("\n--- Pipeline Timing Breakdown ---")
     print(f"  Screenshot capture: {capture_ms:.0f}ms / {capture_ms_1:.0f}ms")
     print(f"  Diff computation:  {diff_ms:.1f}ms")
     print(f"  Classification:    {classify_ms:.1f}ms")

@@ -9,8 +9,8 @@ Key decisions:
 - Transient API errors (429, 503, connection reset) retry with exponential backoff
 """
 
-import json
 import base64
+import json
 import logging
 import os
 import time
@@ -19,10 +19,11 @@ from io import BytesIO
 import anthropic
 from PIL import Image
 
-from .base import BaseModel, ModelResponse
-from ._response_parser import extract_json, normalize_response, get_confidence
 from agent.actions import parse_action
 from vision.elements import format_page_state_for_prompt
+
+from ._response_parser import extract_json, get_confidence, normalize_response
+from .base import BaseModel, ModelResponse
 
 log = logging.getLogger(__name__)
 
@@ -148,7 +149,7 @@ class ClaudeModel(BaseModel):
         obs_history = state.observations[-(max_history + 1):-1]  # exclude current
         resp_history = state.responses[-max_history:]
 
-        for prev_obs, prev_resp in zip(obs_history, resp_history):
+        for prev_obs, prev_resp in zip(obs_history, resp_history, strict=False):
             prev_content = []
 
             if prev_obs.obs_type == "full_frame" and prev_obs.frame:

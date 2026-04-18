@@ -3,7 +3,7 @@ Observation dataclasses. These are what the model receives as input.
 """
 
 from dataclasses import dataclass, field
-from typing import Optional, List
+
 from PIL import Image
 
 from agent.actions import Action
@@ -17,23 +17,23 @@ class Observation:
     obs_type: str  # "full_frame" or "delta"
     task: str
     step: int
-    last_action: Optional[Action]
+    last_action: Action | None
     # Clickable element list (DOM-extracted bboxes + labels). Gives the agent
     # structured targets instead of forcing it to guess coordinates from a
     # low-res thumbnail. Populated by agent/loop via vision.elements.
-    clickable_elements: List[dict] = field(default_factory=list)
+    clickable_elements: list[dict] = field(default_factory=list)
     # Current DOM focus state — ground truth for "where will typing go?"
     # Fills the gap that pure-CV can't: a 1 px cursor blinker is below the
     # diff threshold, so clicks on inputs falsely register as action_had_effect=False.
     # None = nothing focused (or body). Else: {tag, role, type, label, bbox, center, value, selection_start}.
-    focus: Optional[dict] = None
+    focus: dict | None = None
 
 
 @dataclass
 class FullFrameObservation(Observation):
     """Sent on initial load, navigation, or forced refresh."""
 
-    frame: Optional[Image.Image] = None
+    frame: Image.Image | None = None
     url: str = ""
     trigger_reason: str = ""  # "initial" | "url_change" | "diff_ratio" | "phash" | "anchor_loss" | "force_refresh_no_effect"
 
@@ -45,14 +45,14 @@ class FullFrameObservation(Observation):
 class DeltaObservation(Observation):
     """Sent when the page is the same but something changed (or didn't)."""
 
-    diff_result: Optional[DiffResult] = None
-    crops: List[dict] = field(default_factory=list)
+    diff_result: DiffResult | None = None
+    crops: list[dict] = field(default_factory=list)
     action_had_effect: bool = False
     no_change_count: int = 0
     # Level 1 optimization: text deltas extracted via OCR
-    text_deltas: List[dict] = field(default_factory=list)  # [{"bbox": ..., "before": str, "after": str}]
+    text_deltas: list[dict] = field(default_factory=list)  # [{"bbox": ..., "before": str, "after": str}]
     # Current frame for backends that want a single annotated screenshot
-    current_frame: Optional[Image.Image] = None
+    current_frame: Image.Image | None = None
 
     def __post_init__(self):
         self.obs_type = "delta"

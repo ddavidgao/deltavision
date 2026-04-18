@@ -20,7 +20,6 @@ from playwright.async_api import async_playwright
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from results.store import ResultStore
 
-
 # ── Constants ─────────────────────────────────────────────────────────
 FULL_FRAME_TOKENS = 1600
 DELTA_TOKENS_AVG  = 400

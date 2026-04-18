@@ -11,10 +11,10 @@ Usage:
     ])
 """
 
-from typing import List, Optional
+
+from agent.actions import Action
 
 from .base import BaseModel, ModelResponse
-from agent.actions import Action, ActionType
 
 
 class ScriptedModel(BaseModel):
@@ -24,7 +24,7 @@ class ScriptedModel(BaseModel):
     replaces the model reasoning step.
     """
 
-    def __init__(self, actions: List[Action], log_observations: bool = True):
+    def __init__(self, actions: list[Action], log_observations: bool = True):
         self.actions = actions
         self.current = 0
         self.log_observations = log_observations

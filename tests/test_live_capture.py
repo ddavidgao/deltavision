@@ -5,17 +5,13 @@ Requires: playwright install chromium
 Run with: pytest tests/test_live_capture.py -v -s
 """
 
-import asyncio
-import numpy as np
-from PIL import Image
 import pytest
-
 from playwright.async_api import async_playwright
 
 from config import DeltaVisionConfig
 from vision.capture import capture_screenshot, get_current_url
+from vision.classifier import TransitionType, classify_transition, extract_anchor
 from vision.diff import compute_diff, extract_crops
-from vision.classifier import classify_transition, extract_anchor, TransitionType
 
 
 @pytest.fixture

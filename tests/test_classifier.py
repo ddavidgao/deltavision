@@ -4,16 +4,15 @@ Each layer of the cascade tested in isolation.
 """
 
 import numpy as np
-from PIL import Image
 import pytest
+from PIL import Image
 
+from config import DeltaVisionConfig
 from vision.classifier import (
+    TransitionType,
     classify_transition,
     extract_anchor,
-    match_anchor,
-    TransitionType,
 )
-from config import DeltaVisionConfig
 
 
 @pytest.fixture

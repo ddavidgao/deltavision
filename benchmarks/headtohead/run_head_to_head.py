@@ -40,20 +40,20 @@ REPO = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(REPO))
 
 from dotenv import load_dotenv
+
 for _d in [Path.cwd(), REPO]:
     env = _d / ".env"
     if env.exists():
         load_dotenv(env, override=True)
 
-import anthropic
 from playwright.async_api import async_playwright
 
-from config import DeltaVisionConfig
-from model.claude import ClaudeModel
-from model.base import ModelResponse
-from model._response_parser import extract_json, normalize_response, get_confidence
 from agent.actions import parse_action
 from agent.loop import run_agent
+from config import DeltaVisionConfig
+from model._response_parser import extract_json, get_confidence, normalize_response
+from model.base import ModelResponse
+from model.claude import ClaudeModel
 
 log = logging.getLogger("head_to_head")
 
@@ -104,6 +104,7 @@ class TokenTrackingClaudeModel(ClaudeModel):
 
 # Import SYSTEM_PROMPT from claude.py (keeping it consistent)
 from model.claude import SYSTEM_PROMPT as _SYSTEM_PROMPT_FALLBACK
+
 TokenTrackingClaudeModel._system_prompt = _SYSTEM_PROMPT_FALLBACK
 
 

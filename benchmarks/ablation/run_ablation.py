@@ -16,20 +16,18 @@ Usage:
 """
 
 import asyncio
-import time
 import json
 import sys
+import time
 from pathlib import Path
-from datetime import datetime
 
 from playwright.async_api import async_playwright
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
-from config import DeltaVisionConfig
 from agent.loop import run_agent
+from config import DeltaVisionConfig
 from model.ollama import OllamaModel
 from results.store import ResultStore
-
 
 # Token estimation for Claude API pricing model
 # A 1280x900 screenshot ≈ 1600 tokens (base64 PNG)

@@ -10,14 +10,15 @@ Zero LLM involvement — all decisions are threshold-based CV.
   4. Anchor template (cv2 template matching)
 """
 
-from enum import Enum
 from dataclasses import dataclass
-from PIL import Image
+from enum import Enum
+
 import cv2
 import numpy as np
+from PIL import Image
 
+from .diff import DiffResult, compute_diff
 from .phash import compute_phash, hamming_distance
-from .diff import compute_diff, DiffResult
 
 
 class TransitionType(Enum):

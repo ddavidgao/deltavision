@@ -2,34 +2,35 @@
 Builds typed Observation objects from raw pipeline outputs.
 """
 
-from typing import Optional, List
+
 from PIL import Image
 
 from agent.actions import Action
 from vision.diff import DiffResult
-from .types import FullFrameObservation, DeltaObservation, Observation
+
+from .types import DeltaObservation, FullFrameObservation, Observation
 
 
 def build_observation(
     obs_type: str,
     task: str,
     step: int,
-    last_action: Optional[Action],
+    last_action: Action | None,
     # Full frame args
-    frame: Optional[Image.Image] = None,
+    frame: Image.Image | None = None,
     url: str = "",
     trigger_reason: str = "",
     # Delta args
-    diff_result: Optional[DiffResult] = None,
-    crops: Optional[List[dict]] = None,
+    diff_result: DiffResult | None = None,
+    crops: list[dict] | None = None,
     action_had_effect: bool = False,
     no_change_count: int = 0,
-    text_deltas: Optional[List[dict]] = None,
-    current_frame: Optional[Image.Image] = None,
+    text_deltas: list[dict] | None = None,
+    current_frame: Image.Image | None = None,
     # Common: DOM-extracted clickable elements (fixes small-UI targeting)
-    clickable_elements: Optional[List[dict]] = None,
+    clickable_elements: list[dict] | None = None,
     # Common: DOM-extracted focus state (fixes "click on input didn't register" failures)
-    focus: Optional[dict] = None,
+    focus: dict | None = None,
 ) -> Observation:
     """
     Factory for building the right observation type.

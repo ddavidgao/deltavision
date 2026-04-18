@@ -3,13 +3,13 @@ Extended cropping utilities.
 Core extract_crops lives in diff.py — this module adds context-aware cropping.
 """
 
+
 from PIL import Image
-from typing import List, Tuple
 
 
 def crop_with_context(
     frame: Image.Image,
-    bbox: Tuple[int, int, int, int],
+    bbox: tuple[int, int, int, int],
     context_factor: float = 1.5,
 ) -> Image.Image:
     """
@@ -32,8 +32,8 @@ def crop_with_context(
 
 
 def merge_overlapping_bboxes(
-    bboxes: List[Tuple[int, int, int, int]], overlap_threshold: float = 0.3
-) -> List[Tuple[int, int, int, int]]:
+    bboxes: list[tuple[int, int, int, int]], overlap_threshold: float = 0.3
+) -> list[tuple[int, int, int, int]]:
     """
     Merge bounding boxes that overlap significantly.
     Prevents sending redundant crops to the model.
@@ -69,7 +69,7 @@ def merge_overlapping_bboxes(
 
 
 def _iou(
-    a: Tuple[int, int, int, int], b: Tuple[int, int, int, int]
+    a: tuple[int, int, int, int], b: tuple[int, int, int, int]
 ) -> float:
     """Intersection over union of two (x, y, w, h) bboxes."""
     ax1, ay1, aw, ah = a
@@ -89,8 +89,8 @@ def _iou(
 
 
 def _union(
-    a: Tuple[int, int, int, int], b: Tuple[int, int, int, int]
-) -> Tuple[int, int, int, int]:
+    a: tuple[int, int, int, int], b: tuple[int, int, int, int]
+) -> tuple[int, int, int, int]:
     """Bounding box union."""
     x1 = min(a[0], b[0])
     y1 = min(a[1], b[1])

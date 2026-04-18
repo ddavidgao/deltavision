@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import List, Any
+from typing import Any
 
 
 @dataclass
@@ -9,9 +9,9 @@ class AgentState:
     done: bool = False
     no_change_streak: int = 0
     new_page_count: int = 0
-    observations: List[Any] = field(default_factory=list)
-    responses: List[Any] = field(default_factory=list)
-    transition_log: List[dict] = field(default_factory=list)
+    observations: list[Any] = field(default_factory=list)
+    responses: list[Any] = field(default_factory=list)
+    transition_log: list[dict] = field(default_factory=list)
 
     def add_observation(self, obs):
         self.observations.append(obs)

@@ -25,8 +25,6 @@ import base64
 import io
 import json
 import sys
-import time
-from dataclasses import dataclass, field
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -35,7 +33,6 @@ from PIL import Image
 from playwright.async_api import async_playwright
 
 from observer import DeltaVisionObserver
-
 
 # 10 diverse WebVoyager sites, hand-picked for breadth (static / SPA / media-rich
 # / scroll-heavy / form-driven).
@@ -252,7 +249,7 @@ async def main():
         "sites": results,
     }
     Path("examples/webvoyager_subset_results.json").write_text(json.dumps(out, indent=2))
-    print(f"\nWrote examples/webvoyager_subset_results.json")
+    print("\nWrote examples/webvoyager_subset_results.json")
 
 
 if __name__ == "__main__":

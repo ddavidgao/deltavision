@@ -10,20 +10,19 @@ Loop invariants:
 
 import asyncio
 import logging
-from PIL import Image
 
+from agent.actions import execute_action
+from agent.state import AgentState
+from observation.builder import build_observation
+from safety import SafetyLayer
 from vision.capture import capture_screenshot, get_current_url
-from vision.diff import compute_diff, extract_crops
 from vision.classifier import (
+    TransitionType,
     classify_transition,
     extract_anchor,
-    TransitionType,
 )
+from vision.diff import compute_diff, extract_crops
 from vision.elements import extract_page_state
-from observation.builder import build_observation
-from agent.state import AgentState
-from agent.actions import execute_action
-from safety import SafetyLayer
 
 logger = logging.getLogger(__name__)
 

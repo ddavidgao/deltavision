@@ -4,7 +4,6 @@ Tests for perceptual hashing.
 
 import numpy as np
 from PIL import Image
-import pytest
 
 from vision.phash import compute_phash, hamming_distance
 

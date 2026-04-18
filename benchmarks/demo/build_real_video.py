@@ -1,7 +1,7 @@
 """Build demo video from REAL model run artifacts."""
 
-import sys
 from pathlib import Path
+
 from PIL import Image, ImageDraw, ImageFont
 
 W, H = 1920, 1080

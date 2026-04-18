@@ -22,7 +22,7 @@ import base64
 import io
 import json
 import sys
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -30,7 +30,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from playwright.async_api import async_playwright
 
 from observer import DeltaVisionObserver
-
 
 # The script we'll run through twice.
 SEQUENCE = [

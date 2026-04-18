@@ -20,8 +20,7 @@ import numpy as np
 import pytest
 from PIL import Image
 
-from observer import DeltaVisionObserver, DVObservation, _load_screenshot
-
+from observer import DeltaVisionObserver, _load_screenshot
 
 # ============================================================= helpers
 

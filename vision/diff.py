@@ -3,11 +3,11 @@ Core frame differencing. No LLM. No external APIs.
 Uses OpenCV for all computation.
 """
 
+from dataclasses import dataclass
+
 import cv2
 import numpy as np
 from PIL import Image
-from dataclasses import dataclass
-from typing import List, Tuple
 
 
 @dataclass
@@ -15,7 +15,7 @@ class DiffResult:
     diff_ratio: float                     # fraction of pixels that changed
     diff_mask: np.ndarray                 # binary mask of changes
     diff_image: Image.Image               # visual diff heatmap (for model input)
-    changed_bboxes: List[Tuple[int, int, int, int]]  # (x, y, w, h) bounding boxes
+    changed_bboxes: list[tuple[int, int, int, int]]  # (x, y, w, h) bounding boxes
     largest_change_area: float            # area of largest region as fraction of screen
     action_had_effect: bool               # True if diff_ratio > MIN_EFFECT_THRESHOLD
 
@@ -53,7 +53,7 @@ def compute_diff(t0: Image.Image, t1: Image.Image, config) -> DiffResult:
     changed_pixels = int(np.count_nonzero(thresh))
     diff_ratio = changed_pixels / total_pixels
 
-    bboxes: List[Tuple[int, int, int, int]] = []
+    bboxes: list[tuple[int, int, int, int]] = []
     for c in contours:
         x, y, w, h = cv2.boundingRect(c)
         if w * h >= config.MIN_CONTOUR_AREA:
@@ -81,9 +81,9 @@ def compute_diff(t0: Image.Image, t1: Image.Image, config) -> DiffResult:
 def extract_crops(
     t0: Image.Image,
     t1: Image.Image,
-    bboxes: List[Tuple[int, int, int, int]],
+    bboxes: list[tuple[int, int, int, int]],
     padding: int = 10,
-) -> List[dict]:
+) -> list[dict]:
     """
     Extract before/after crops for each changed bounding box.
     Returns list of dicts with crop_before, crop_after, bbox, change_magnitude.

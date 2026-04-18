@@ -188,7 +188,7 @@ async def run_benchmark(examples_dir: Path) -> dict:
                 await snap_and_measure(step, f"header {chr(65 + col)}1 + Tab")
             else:
                 await page.keyboard.press("Enter")
-                await snap_and_measure(step, f"header F1 + Enter (wraps to A2)")
+                await snap_and_measure(step, "header F1 + Enter (wraps to A2)")
 
         # Fill 3 data rows (A2..F4). Tab between cells; Enter at row end.
         for r_idx, row in enumerate(ROWS):

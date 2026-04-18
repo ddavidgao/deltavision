@@ -9,8 +9,6 @@ and makes it unit-testable without spinning up an API client.
 
 import json
 import re
-from typing import Any, Optional
-
 
 # Markdown code fences: ```json ... ``` or ``` ... ```
 _FENCE_RE = re.compile(r"```(?:json)?\s*(.*?)```", re.DOTALL)

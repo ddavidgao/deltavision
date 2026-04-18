@@ -20,14 +20,15 @@ Usage:
 
 import argparse
 import asyncio
+import json
 import logging
 import os
 import sys
-import json
 from datetime import datetime
+from pathlib import Path
 
 from dotenv import load_dotenv
-from pathlib import Path
+
 # Load .env — check cwd, script dir, then walk up parents
 for _start in [Path.cwd(), Path(__file__).resolve().parent]:
     for _d in [_start, *_start.parents]:
@@ -38,8 +39,8 @@ for _start in [Path.cwd(), Path(__file__).resolve().parent]:
 
 from playwright.async_api import async_playwright
 
-from config import DeltaVisionConfig, MCGRAWHILL_CONFIG
 from agent.loop import run_agent
+from config import MCGRAWHILL_CONFIG, DeltaVisionConfig
 
 
 def get_model(backend: str, config: DeltaVisionConfig, model_override: str = None, base_url: str = None):
@@ -96,7 +97,7 @@ def get_model(backend: str, config: DeltaVisionConfig, model_override: str = Non
 def get_safety(safety_mode: str):
     if safety_mode == "none":
         return None
-    from safety import PERMISSIVE, STRICT, EDUCATIONAL
+    from safety import EDUCATIONAL, PERMISSIVE, STRICT
     modes = {"permissive": PERMISSIVE, "strict": STRICT, "educational": EDUCATIONAL}
     if safety_mode in modes:
         return modes[safety_mode]

@@ -39,7 +39,6 @@ from playwright.async_api import async_playwright
 
 from observer import DeltaVisionObserver
 
-
 # =========================================================== task definitions
 
 def _action(kind, **kw):
@@ -367,7 +366,7 @@ async def main():
         "tasks": [r.to_dict() for r in results],
     }
     Path("examples/multi_site_results.json").write_text(json.dumps(out, indent=2))
-    print(f"\nWrote examples/multi_site_results.json")
+    print("\nWrote examples/multi_site_results.json")
 
 
 if __name__ == "__main__":

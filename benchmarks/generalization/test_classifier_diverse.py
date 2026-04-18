@@ -11,23 +11,22 @@ Sites tested: Wikipedia, HumanBenchmark, Hacker News (static -> SPA -> minimal)
 """
 
 import asyncio
-import time
 import json
-from pathlib import Path
-from PIL import Image
-from io import BytesIO
-from dataclasses import dataclass, field, asdict
-
-from playwright.async_api import async_playwright
 
 # Project imports
 import sys
+import time
+from dataclasses import asdict, dataclass
+from io import BytesIO
+from pathlib import Path
+
+from PIL import Image
+from playwright.async_api import async_playwright
+
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 from config import DeltaVisionConfig
-from vision.classifier import classify_transition, extract_anchor, TransitionType
-from vision.diff import compute_diff
-from vision.phash import compute_phash, hamming_distance
 from results.store import ResultStore
+from vision.classifier import classify_transition, extract_anchor
 
 
 @dataclass

@@ -4,11 +4,11 @@ Uses synthetic images — no browser needed.
 """
 
 import numpy as np
-from PIL import Image
 import pytest
+from PIL import Image
 
-from vision.diff import compute_diff, extract_crops
 from config import DeltaVisionConfig
+from vision.diff import compute_diff, extract_crops
 
 
 @pytest.fixture

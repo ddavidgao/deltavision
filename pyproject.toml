@@ -96,4 +96,22 @@ select = ["E", "F", "W", "I", "N", "UP", "B"]
 ignore = [
     "E501",  # line-too-long; handled by formatter
     "B008",  # function call in argument defaults; we use this deliberately
+    "E741",  # ambiguous variable name; acceptable in tight generator expressions
+    "N806",  # lowercase variable in function; ML/CV code uses X, Y idiomatically
+    "N803",  # lowercase argument name; same reason
+    "E701",  # multiple statements on one line (colon); readable for 1-line if
+    "E702",  # multiple statements on one line (semicolon); same
 ]
+
+[tool.ruff.lint.per-file-ignores]
+# __init__.py files re-export module contents; the imports ARE the public API.
+"__init__.py" = ["F401", "I001"]
+# main.py does load_dotenv before other imports on purpose.
+"main.py" = ["E402"]
+# observer.py uses Union[] for backwards compat with older Python calls.
+"observer.py" = ["UP007"]
+# Benchmarks and examples are free-form scripts with experimental imports.
+"benchmarks/**" = ["F401", "F841", "E402", "I001", "UP007", "B007", "B023", "E722"]
+"examples/**" = ["F401", "F841", "E402", "I001", "UP007", "B007", "B023", "E722"]
+# Tests can re-import and leave debug bindings.
+"tests/**" = ["F401", "F841"]

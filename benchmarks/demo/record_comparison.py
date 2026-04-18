@@ -13,19 +13,18 @@ Usage:
 """
 
 import asyncio
+import json
 import sys
 import time
-import json
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
 
 from playwright.async_api import async_playwright
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
-from config import DeltaVisionConfig
 from agent.loop import run_agent
+from config import DeltaVisionConfig
 from model.ollama import OllamaModel
-
 
 VIDEO_DIR = Path(__file__).parent / "videos"
 
@@ -180,7 +179,7 @@ async def main():
     with open(meta_path, "w") as f:
         json.dump(results, f, indent=2)
     print(f"\nMetadata: {meta_path}")
-    print(f"\nTo create a side-by-side comparison, use ffmpeg:")
+    print("\nTo create a side-by-side comparison, use ffmpeg:")
     if len(results) == 2:
         print(f"  ffmpeg -i \"{results[0]['video_path']}\" -i \"{results[1]['video_path']}\" "
               f"-filter_complex hstack=inputs=2 \"demo_comparison_{args.task}.mp4\"")

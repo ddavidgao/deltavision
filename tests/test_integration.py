@@ -3,20 +3,17 @@ Integration tests — mock model + mock browser, real vision pipeline.
 Tests the full observation flow without network or API calls.
 """
 
-import asyncio
 import numpy as np
-from PIL import Image
-from unittest.mock import AsyncMock, MagicMock, PropertyMock
 import pytest
+from PIL import Image
 
-from config import DeltaVisionConfig
-from vision.diff import compute_diff, extract_crops
-from vision.classifier import classify_transition, extract_anchor, TransitionType
-from observation.builder import build_observation
-from observation.types import FullFrameObservation, DeltaObservation
-from agent.state import AgentState
 from agent.actions import Action, ActionType, parse_action
-from model.base import ModelResponse
+from agent.state import AgentState
+from config import DeltaVisionConfig
+from observation.builder import build_observation
+from observation.types import DeltaObservation, FullFrameObservation
+from vision.classifier import TransitionType, classify_transition, extract_anchor
+from vision.diff import compute_diff, extract_crops
 
 
 @pytest.fixture
