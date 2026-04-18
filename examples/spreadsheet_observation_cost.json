@@ -1,0 +1,787 @@
+{
+  "framing": "Deterministic scripted spreadsheet observation-cost benchmark. Drives a local HTML mock through a fixed trajectory. No agent, no trajectory variance. Reproducible on any machine.",
+  "trajectory_spec": {
+    "mock_url": "file:///Users/davidgao/Projects/deltavision/examples/assets/sheet_mock.html",
+    "headers": [
+      "Address",
+      "Price",
+      "Neighborhood",
+      "Amenities",
+      "URL",
+      "Notes"
+    ],
+    "n_rows": 3,
+    "n_cells": 24,
+    "total_steps": 25
+  },
+  "summary": {
+    "ff_total_tokens": 34125,
+    "dv_total_tokens": 7780,
+    "total_savings_pct": 77.2,
+    "per_step_avg_ff": 1365.0,
+    "per_step_avg_dv": 311.2,
+    "per_step_savings_pct": 77.2,
+    "trigger_counts": {
+      "initial": 1,
+      "none": 24
+    },
+    "obs_type_counts": {
+      "full_frame": 1,
+      "delta": 24
+    }
+  },
+  "steps": [
+    {
+      "step": 0,
+      "action": "load",
+      "obs_type": "full_frame",
+      "trigger": "initial",
+      "diff_ratio": 0.0,
+      "phash_distance": 0,
+      "anchor_score": 1.0,
+      "crop_bboxes": [],
+      "crop_files": [],
+      "thumbnail_file": null,
+      "ff_tokens": 1365,
+      "dv_tokens": 1365,
+      "savings_pct": 0.0
+    },
+    {
+      "step": 1,
+      "action": "header A1 + Tab",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.0131,
+      "phash_distance": 14,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          19,
+          85,
+          456,
+          73
+        ]
+      ],
+      "crop_files": [
+        "spreadsheet_obs/step_01/crop_00.png"
+      ],
+      "thumbnail_file": "spreadsheet_obs/step_01/thumbnail.png",
+      "ff_tokens": 1365,
+      "dv_tokens": 171,
+      "savings_pct": 87.5
+    },
+    {
+      "step": 2,
+      "action": "header B1 + Tab",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.0136,
+      "phash_distance": 10,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          19,
+          85,
+          285,
+          73
+        ],
+        [
+          432,
+          85,
+          250,
+          73
+        ]
+      ],
+      "crop_files": [
+        "spreadsheet_obs/step_02/crop_00.png",
+        "spreadsheet_obs/step_02/crop_01.png"
+      ],
+      "thumbnail_file": "spreadsheet_obs/step_02/thumbnail.png",
+      "ff_tokens": 1365,
+      "dv_tokens": 246,
+      "savings_pct": 82.0
+    },
+    {
+      "step": 3,
+      "action": "header C1 + Tab",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.0144,
+      "phash_distance": 10,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          19,
+          85,
+          285,
+          73
+        ],
+        [
+          639,
+          85,
+          250,
+          73
+        ]
+      ],
+      "crop_files": [
+        "spreadsheet_obs/step_03/crop_00.png",
+        "spreadsheet_obs/step_03/crop_01.png"
+      ],
+      "thumbnail_file": "spreadsheet_obs/step_03/thumbnail.png",
+      "ff_tokens": 1365,
+      "dv_tokens": 246,
+      "savings_pct": 82.0
+    },
+    {
+      "step": 4,
+      "action": "header D1 + Tab",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.0149,
+      "phash_distance": 10,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          19,
+          85,
+          285,
+          73
+        ],
+        [
+          846,
+          85,
+          249,
+          73
+        ]
+      ],
+      "crop_files": [
+        "spreadsheet_obs/step_04/crop_00.png",
+        "spreadsheet_obs/step_04/crop_01.png"
+      ],
+      "thumbnail_file": "spreadsheet_obs/step_04/thumbnail.png",
+      "ff_tokens": 1365,
+      "dv_tokens": 246,
+      "savings_pct": 82.0
+    },
+    {
+      "step": 5,
+      "action": "header E1 + Tab",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.0152,
+      "phash_distance": 14,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          19,
+          85,
+          285,
+          73
+        ],
+        [
+          1052,
+          85,
+          228,
+          73
+        ]
+      ],
+      "crop_files": [
+        "spreadsheet_obs/step_05/crop_00.png",
+        "spreadsheet_obs/step_05/crop_01.png"
+      ],
+      "thumbnail_file": "spreadsheet_obs/step_05/thumbnail.png",
+      "ff_tokens": 1365,
+      "dv_tokens": 246,
+      "savings_pct": 82.0
+    },
+    {
+      "step": 6,
+      "action": "header F1 + Enter (wraps to A2)",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.0156,
+      "phash_distance": 8,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          19,
+          85,
+          285,
+          105
+        ],
+        [
+          441,
+          95,
+          123,
+          53
+        ]
+      ],
+      "crop_files": [
+        "spreadsheet_obs/step_06/crop_00.png",
+        "spreadsheet_obs/step_06/crop_01.png"
+      ],
+      "thumbnail_file": "spreadsheet_obs/step_06/thumbnail.png",
+      "ff_tokens": 1365,
+      "dv_tokens": 246,
+      "savings_pct": 82.0
+    },
+    {
+      "step": 7,
+      "action": "row 2 col A + Tab",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.018,
+      "phash_distance": 14,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          19,
+          85,
+          545,
+          105
+        ],
+        [
+          647,
+          95,
+          98,
+          50
+        ]
+      ],
+      "crop_files": [
+        "spreadsheet_obs/step_07/crop_00.png",
+        "spreadsheet_obs/step_07/crop_01.png"
+      ],
+      "thumbnail_file": "spreadsheet_obs/step_07/thumbnail.png",
+      "ff_tokens": 1365,
+      "dv_tokens": 274,
+      "savings_pct": 79.9
+    },
+    {
+      "step": 8,
+      "action": "row 2 col B + Tab",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.0184,
+      "phash_distance": 16,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          432,
+          95,
+          313,
+          95
+        ],
+        [
+          19,
+          85,
+          285,
+          95
+        ]
+      ],
+      "crop_files": [
+        "spreadsheet_obs/step_08/crop_00.png",
+        "spreadsheet_obs/step_08/crop_01.png"
+      ],
+      "thumbnail_file": "spreadsheet_obs/step_08/thumbnail.png",
+      "ff_tokens": 1365,
+      "dv_tokens": 246,
+      "savings_pct": 82.0
+    },
+    {
+      "step": 9,
+      "action": "row 2 col C + Tab",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.0192,
+      "phash_distance": 10,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          19,
+          85,
+          285,
+          95
+        ],
+        [
+          639,
+          95,
+          281,
+          95
+        ]
+      ],
+      "crop_files": [
+        "spreadsheet_obs/step_09/crop_00.png",
+        "spreadsheet_obs/step_09/crop_01.png"
+      ],
+      "thumbnail_file": "spreadsheet_obs/step_09/thumbnail.png",
+      "ff_tokens": 1365,
+      "dv_tokens": 246,
+      "savings_pct": 82.0
+    },
+    {
+      "step": 10,
+      "action": "row 2 col D + Tab",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.0206,
+      "phash_distance": 8,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          647,
+          95,
+          488,
+          95
+        ],
+        [
+          19,
+          85,
+          285,
+          95
+        ]
+      ],
+      "crop_files": [
+        "spreadsheet_obs/step_10/crop_00.png",
+        "spreadsheet_obs/step_10/crop_01.png"
+      ],
+      "thumbnail_file": "spreadsheet_obs/step_10/thumbnail.png",
+      "ff_tokens": 1365,
+      "dv_tokens": 257,
+      "savings_pct": 81.2
+    },
+    {
+      "step": 11,
+      "action": "row 2 col E + Tab",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.0224,
+      "phash_distance": 10,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          854,
+          95,
+          426,
+          95
+        ],
+        [
+          19,
+          85,
+          285,
+          95
+        ]
+      ],
+      "crop_files": [
+        "spreadsheet_obs/step_11/crop_00.png",
+        "spreadsheet_obs/step_11/crop_01.png"
+      ],
+      "thumbnail_file": "spreadsheet_obs/step_11/thumbnail.png",
+      "ff_tokens": 1365,
+      "dv_tokens": 246,
+      "savings_pct": 82.0
+    },
+    {
+      "step": 12,
+      "action": "row 2 col F + Enter",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.0234,
+      "phash_distance": 12,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          19,
+          85,
+          285,
+          137
+        ],
+        [
+          854,
+          95,
+          354,
+          85
+        ]
+      ],
+      "crop_files": [
+        "spreadsheet_obs/step_12/crop_00.png",
+        "spreadsheet_obs/step_12/crop_01.png"
+      ],
+      "thumbnail_file": "spreadsheet_obs/step_12/thumbnail.png",
+      "ff_tokens": 1365,
+      "dv_tokens": 246,
+      "savings_pct": 82.0
+    },
+    {
+      "step": 13,
+      "action": "row 3 col A + Tab",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.0249,
+      "phash_distance": 12,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          19,
+          85,
+          545,
+          137
+        ],
+        [
+          854,
+          95,
+          354,
+          85
+        ]
+      ],
+      "crop_files": [
+        "spreadsheet_obs/step_13/crop_00.png",
+        "spreadsheet_obs/step_13/crop_01.png"
+      ],
+      "thumbnail_file": "spreadsheet_obs/step_13/thumbnail.png",
+      "ff_tokens": 1365,
+      "dv_tokens": 299,
+      "savings_pct": 78.1
+    },
+    {
+      "step": 14,
+      "action": "row 3 col B + Tab",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.0252,
+      "phash_distance": 14,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          432,
+          95,
+          419,
+          127
+        ],
+        [
+          19,
+          85,
+          285,
+          127
+        ]
+      ],
+      "crop_files": [
+        "spreadsheet_obs/step_14/crop_00.png",
+        "spreadsheet_obs/step_14/crop_01.png"
+      ],
+      "thumbnail_file": "spreadsheet_obs/step_14/thumbnail.png",
+      "ff_tokens": 1365,
+      "dv_tokens": 264,
+      "savings_pct": 80.7
+    },
+    {
+      "step": 15,
+      "action": "row 3 col C + Tab",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.0259,
+      "phash_distance": 12,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          639,
+          95,
+          569,
+          127
+        ],
+        [
+          19,
+          85,
+          285,
+          127
+        ]
+      ],
+      "crop_files": [
+        "spreadsheet_obs/step_15/crop_00.png",
+        "spreadsheet_obs/step_15/crop_01.png"
+      ],
+      "thumbnail_file": "spreadsheet_obs/step_15/thumbnail.png",
+      "ff_tokens": 1365,
+      "dv_tokens": 296,
+      "savings_pct": 78.3
+    },
+    {
+      "step": 16,
+      "action": "row 3 col D + Tab",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.0273,
+      "phash_distance": 14,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          647,
+          95,
+          561,
+          127
+        ],
+        [
+          19,
+          85,
+          285,
+          127
+        ]
+      ],
+      "crop_files": [
+        "spreadsheet_obs/step_16/crop_00.png",
+        "spreadsheet_obs/step_16/crop_01.png"
+      ],
+      "thumbnail_file": "spreadsheet_obs/step_16/thumbnail.png",
+      "ff_tokens": 1365,
+      "dv_tokens": 294,
+      "savings_pct": 78.5
+    },
+    {
+      "step": 17,
+      "action": "row 3 col E + Tab",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.029,
+      "phash_distance": 12,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          854,
+          95,
+          426,
+          127
+        ],
+        [
+          19,
+          85,
+          285,
+          127
+        ]
+      ],
+      "crop_files": [
+        "spreadsheet_obs/step_17/crop_00.png",
+        "spreadsheet_obs/step_17/crop_01.png"
+      ],
+      "thumbnail_file": "spreadsheet_obs/step_17/thumbnail.png",
+      "ff_tokens": 1365,
+      "dv_tokens": 263,
+      "savings_pct": 80.7
+    },
+    {
+      "step": 18,
+      "action": "row 3 col F + Enter",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.0301,
+      "phash_distance": 18,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          19,
+          85,
+          285,
+          169
+        ],
+        [
+          854,
+          95,
+          354,
+          117
+        ]
+      ],
+      "crop_files": [
+        "spreadsheet_obs/step_18/crop_00.png",
+        "spreadsheet_obs/step_18/crop_01.png"
+      ],
+      "thumbnail_file": "spreadsheet_obs/step_18/thumbnail.png",
+      "ff_tokens": 1365,
+      "dv_tokens": 254,
+      "savings_pct": 81.4
+    },
+    {
+      "step": 19,
+      "action": "row 4 col A + Tab",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.0314,
+      "phash_distance": 16,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          19,
+          85,
+          545,
+          169
+        ],
+        [
+          854,
+          95,
+          354,
+          117
+        ]
+      ],
+      "crop_files": [
+        "spreadsheet_obs/step_19/crop_00.png",
+        "spreadsheet_obs/step_19/crop_01.png"
+      ],
+      "thumbnail_file": "spreadsheet_obs/step_19/thumbnail.png",
+      "ff_tokens": 1365,
+      "dv_tokens": 323,
+      "savings_pct": 76.3
+    },
+    {
+      "step": 20,
+      "action": "row 4 col B + Tab",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.0317,
+      "phash_distance": 16,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          432,
+          95,
+          419,
+          159
+        ],
+        [
+          19,
+          85,
+          285,
+          159
+        ]
+      ],
+      "crop_files": [
+        "spreadsheet_obs/step_20/crop_00.png",
+        "spreadsheet_obs/step_20/crop_01.png"
+      ],
+      "thumbnail_file": "spreadsheet_obs/step_20/thumbnail.png",
+      "ff_tokens": 1365,
+      "dv_tokens": 288,
+      "savings_pct": 78.9
+    },
+    {
+      "step": 21,
+      "action": "row 4 col C + Tab",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.0326,
+      "phash_distance": 16,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          639,
+          95,
+          569,
+          159
+        ],
+        [
+          19,
+          85,
+          285,
+          159
+        ]
+      ],
+      "crop_files": [
+        "spreadsheet_obs/step_21/crop_00.png",
+        "spreadsheet_obs/step_21/crop_01.png"
+      ],
+      "thumbnail_file": "spreadsheet_obs/step_21/thumbnail.png",
+      "ff_tokens": 1365,
+      "dv_tokens": 325,
+      "savings_pct": 76.2
+    },
+    {
+      "step": 22,
+      "action": "row 4 col D + Tab",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.034,
+      "phash_distance": 14,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          647,
+          95,
+          561,
+          159
+        ],
+        [
+          19,
+          85,
+          285,
+          159
+        ]
+      ],
+      "crop_files": [
+        "spreadsheet_obs/step_22/crop_00.png",
+        "spreadsheet_obs/step_22/crop_01.png"
+      ],
+      "thumbnail_file": "spreadsheet_obs/step_22/thumbnail.png",
+      "ff_tokens": 1365,
+      "dv_tokens": 323,
+      "savings_pct": 76.3
+    },
+    {
+      "step": 23,
+      "action": "row 4 col E + Tab",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.0358,
+      "phash_distance": 14,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          854,
+          95,
+          426,
+          159
+        ],
+        [
+          19,
+          85,
+          285,
+          159
+        ]
+      ],
+      "crop_files": [
+        "spreadsheet_obs/step_23/crop_00.png",
+        "spreadsheet_obs/step_23/crop_01.png"
+      ],
+      "thumbnail_file": "spreadsheet_obs/step_23/thumbnail.png",
+      "ff_tokens": 1365,
+      "dv_tokens": 286,
+      "savings_pct": 79.0
+    },
+    {
+      "step": 24,
+      "action": "row 4 col F + Enter",
+      "obs_type": "delta",
+      "trigger": "none",
+      "diff_ratio": 0.0367,
+      "phash_distance": 20,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          19,
+          85,
+          285,
+          201
+        ],
+        [
+          854,
+          95,
+          354,
+          149
+        ]
+      ],
+      "crop_files": [
+        "spreadsheet_obs/step_24/crop_00.png",
+        "spreadsheet_obs/step_24/crop_01.png"
+      ],
+      "thumbnail_file": "spreadsheet_obs/step_24/thumbnail.png",
+      "ff_tokens": 1365,
+      "dv_tokens": 284,
+      "savings_pct": 79.2
+    }
+  ]
+}

@@ -87,9 +87,10 @@ ollama pull qwen2.5vl:7b
 python main.py --task "Search Wikipedia for 'computer vision'" \
     --url https://en.wikipedia.org --backend ollama --model qwen2.5vl:7b --headless
 
-# Claude API
+# Claude API (Sonnet 4.6 default; Opus 4.7 and newer models work via --model)
 export ANTHROPIC_API_KEY=sk-...
 python main.py --task "..." --url ... --backend claude
+python main.py --task "..." --url ... --backend claude --model claude-opus-4-7-20260417
 
 # OpenAI
 export OPENAI_API_KEY=sk-...
@@ -333,7 +334,7 @@ Videos are recorded by Playwright at 60fps. ffmpeg combines them side-by-side wi
 1. **The model never decides transition type.** The CV classifier is deterministic, sub-millisecond, and testable.
 2. **Speed comes from sending less, not skipping the model.** The model still reasons; it gets cropped regions instead of full screenshots.
 3. **Safety is framework-level.** Critical for uncensored local models that won't refuse dangerous actions.
-4. **Backend-agnostic.** Same observation format for Claude, GPT-4o, Qwen, or UI-TARS.
+4. **Backend-agnostic.** Same observation format for Claude (Sonnet 4.6, Opus 4.7), GPT-4o, Qwen, or UI-TARS. Add a backend in `model/` with `BaseModel`'s interface and DV's classifier output drops in unchanged.
 5. **Scroll-aware.** Scrolling shifts the viewport but doesn't change page state. The classifier knows this.
 6. **Animation-resistant.** Subtle animations (spinners, fades) don't trigger false page transitions.
 

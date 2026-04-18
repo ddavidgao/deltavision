@@ -7,7 +7,7 @@ name = "deltavision"
 version = "1.0.0"
 description = "Delta-first computer-use agent framework: observation-level gating with a zero-LLM CV pipeline"
 readme = "README.md"
-license = {text = "MIT"}
+license = {file = "LICENSE"}
 authors = [{name = "David Gao"}]
 requires-python = ">=3.11"
 keywords = ["computer-use", "vlm", "agent", "browser-automation", "playwright"]

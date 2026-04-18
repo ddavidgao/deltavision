@@ -56,6 +56,67 @@ log = logging.getLogger("dv-server")
 OBSERVER = DeltaVisionObserver()
 
 
+# ============================================================= multipart parser
+# Python 3.14 removed `cgi` (PEP 594), so we parse multipart/form-data manually.
+# The grammar we implement is the subset RFC 7578 requires for file uploads:
+# a sequence of parts each with a `Content-Disposition: form-data; name="..."`
+# header, optional `Content-Type`, and a body. No nested multipart, no quoted
+# CRLFs in headers. That covers every sane HTTP client.
+
+def _parse_multipart(content_type: str, body: bytes) -> dict[str, bytes]:
+    """Parse multipart/form-data body into {field_name: raw_bytes}.
+
+    For a file upload the raw_bytes are the file contents. For a plain text
+    field the raw_bytes are the UTF-8 encoded value (caller can decode).
+    """
+    # Extract boundary from Content-Type header.
+    marker = "boundary="
+    idx = content_type.lower().find(marker)
+    if idx < 0:
+        raise ValueError("multipart: missing boundary")
+    boundary = content_type[idx + len(marker):].split(";", 1)[0].strip()
+    # Boundaries may be quoted per RFC — strip quotes if present.
+    if boundary.startswith('"') and boundary.endswith('"'):
+        boundary = boundary[1:-1]
+    delim = b"--" + boundary.encode()
+
+    fields: dict[str, bytes] = {}
+    # Split on boundaries. First element is preamble (ignored), last is epilogue
+    # (after the closing `--boundary--`, also ignored).
+    parts = body.split(delim)
+    for part in parts[1:-1]:
+        # Each part starts with CRLF after the boundary marker; strip it.
+        if part.startswith(b"\r\n"):
+            part = part[2:]
+        if part.endswith(b"\r\n"):
+            part = part[:-2]
+        # Split headers from body on first empty line.
+        sep = part.find(b"\r\n\r\n")
+        if sep < 0:
+            continue
+        header_block = part[:sep].decode("utf-8", errors="replace")
+        content = part[sep + 4:]
+        # Find field name in Content-Disposition.
+        name = None
+        for line in header_block.split("\r\n"):
+            if line.lower().startswith("content-disposition:"):
+                for kv in line.split(";"):
+                    kv = kv.strip()
+                    if kv.lower().startswith("name="):
+                        name = kv[5:].strip().strip('"')
+                        break
+                break
+        if name:
+            fields[name] = content
+    return fields
+
+
+def _decode_field(raw: bytes | None) -> str | None:
+    if raw is None:
+        return None
+    return raw.decode("utf-8", errors="replace") or None
+
+
 # ============================================================= format dispatch
 
 def render_format(obs, fmt: str, call_id: str | None = None) -> dict:
@@ -164,7 +225,9 @@ class Handler(BaseHTTPRequestHandler):
     # -------- /observe body parsing --------
 
     def _handle_observe(self):
-        content_type = (self.headers.get("Content-Type") or "").lower()
+        # Preserve case — multipart boundaries are case-sensitive.
+        content_type = self.headers.get("Content-Type") or ""
+        content_type_lc = content_type.lower()
         body = self._read_body()
 
         screenshot = None
@@ -173,7 +236,7 @@ class Handler(BaseHTTPRequestHandler):
         fmt = "raw"
         call_id = None
 
-        if "application/json" in content_type:
+        if "application/json" in content_type_lc:
             try:
                 data = json.loads(body.decode() or "{}")
             except json.JSONDecodeError as e:
@@ -187,22 +250,19 @@ class Handler(BaseHTTPRequestHandler):
             fmt = data.get("format", "raw")
             call_id = data.get("call_id")
 
-        elif "multipart/form-data" in content_type:
-            # Minimal multipart parser — enough for a file upload + fields.
-            # For production traffic use a real ASGI/WSGI server. For local
-            # sidecar traffic this is fine.
-            import cgi  # noqa: E402  (stdlib)
-            env = {"REQUEST_METHOD": "POST", "CONTENT_TYPE": content_type}
-            fs = cgi.FieldStorage(
-                fp=io.BytesIO(body), environ=env, keep_blank_values=True,
-            )
-            if "file" not in fs:
+        elif "multipart/form-data" in content_type_lc:
+            # Manual multipart parser — the stdlib `cgi` module was removed in
+            # Python 3.14 (PEP 594), so we parse the body directly. For local
+            # sidecar traffic this is plenty; for production use a real
+            # ASGI/WSGI stack.
+            fields = _parse_multipart(content_type, body)
+            if "file" not in fields:
                 return self._respond_json(400, {"error": "missing file field"})
-            screenshot = fs["file"].file.read()
-            url = fs.getfirst("url") or None
-            last_action = fs.getfirst("last_action") or None
-            fmt = fs.getfirst("format") or "raw"
-            call_id = fs.getfirst("call_id") or None
+            screenshot = fields["file"]
+            url = _decode_field(fields.get("url"))
+            last_action = _decode_field(fields.get("last_action"))
+            fmt = _decode_field(fields.get("format")) or "raw"
+            call_id = _decode_field(fields.get("call_id"))
         else:
             return self._respond_json(415, {
                 "error": "use application/json or multipart/form-data"

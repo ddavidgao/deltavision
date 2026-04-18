@@ -1,0 +1,48 @@
+{
+  "total": 5,
+  "passed": 4,
+  "results": [
+    {
+      "name": "browser-use",
+      "ok": true,
+      "detail": "monkey-patch applied; adapter returns valid base64 PNG str",
+      "artifact": {
+        "patched_method": "BrowserSession.get_browser_state_summary",
+        "output_bytes": 6388
+      }
+    },
+    {
+      "name": "skyvern",
+      "ok": false,
+      "detail": "import failed: No module named 'skyvern'",
+      "artifact": {}
+    },
+    {
+      "name": "openai-cua",
+      "ok": true,
+      "detail": "payload matches OpenAI computer-use Response.tool_output spec",
+      "artifact": {
+        "call_id": "call_test_dv_1",
+        "image_url_bytes": 6410
+      }
+    },
+    {
+      "name": "stagehand",
+      "ok": true,
+      "detail": "adapter returns valid list[dict] of 1 parts (types: ['media'])",
+      "artifact": {
+        "num_parts": 1
+      }
+    },
+    {
+      "name": "anthropic-tool-result-live",
+      "ok": true,
+      "detail": "Claude accepted DV tool_result content; usage=1762 in / 50 out",
+      "artifact": {
+        "model": "claude-sonnet-4-20250514",
+        "input_tokens": 1762,
+        "output_tokens": 50
+      }
+    }
+  ]
+}
