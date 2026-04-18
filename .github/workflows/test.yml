@@ -1,0 +1,44 @@
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Cancel in-flight runs when a new commit lands on the same ref. Saves
+# minutes (not that it costs anything on a public repo, but it's polite).
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python: ['3.11', '3.12', '3.13']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+
+      - name: Install (with dev + model backends)
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e '.[claude,openai,ollama,dev]'
+
+      - name: Lint
+        run: ruff check .
+
+      - name: Run offline test suite
+        # Skip Playwright-backed tests in CI matrix — they're covered by
+        # benchmark-reproducibility.yml on a single runner.
+        run: pytest tests/ --ignore=tests/test_live_capture.py --ignore=tests/test_e2e_live.py -q

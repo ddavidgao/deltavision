@@ -1,0 +1,62 @@
+name: packaging
+
+# Catches the v1.0.0-class bug: setuptools py-modules list missing a file,
+# so the wheel ships without `observer.py` or similar. In-repo imports work
+# (cwd is on sys.path) but fresh-venv installs fail. This workflow installs
+# the built wheel in a clean /tmp venv and imports every public module from
+# outside the repo root.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-verify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Build wheel + sdist
+        run: |
+          python -m pip install --upgrade pip build twine
+          python -m build --wheel --sdist
+
+      - name: Validate distributions
+        run: twine check dist/*
+
+      - name: Fresh-venv install + import check (outside repo)
+        # This is the actual safety net. Move to /tmp so cwd has nothing
+        # on sys.path, install the wheel, verify every module the README
+        # advertises actually imports. If this passes, a real user's
+        # `pip install deltavision` will work.
+        run: |
+          python -m venv /tmp/fresh
+          /tmp/fresh/bin/pip install dist/*.whl
+          cd /tmp
+          /tmp/fresh/bin/python -c "
+          from observer import DeltaVisionObserver, compute_diff, classify_transition, extract_crops
+          from vision.elements import extract_page_state, format_page_state_for_prompt
+          import server
+          import agent, model, observation, vision, safety, config, main
+          print('OK: v1.0.x wheel installs + imports cleanly from a non-repo cwd')
+          "
+
+      - name: Upload wheel artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 14

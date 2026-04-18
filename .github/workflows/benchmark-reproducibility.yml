@@ -1,0 +1,99 @@
+name: benchmark-reproducibility
+
+# Runs the two deterministic benchmarks on a fresh Ubuntu runner every day.
+# Purpose: cross-machine reproducibility proof for the paper + drift detection.
+#   - 77.2% scripted spreadsheet (no LLM, no RNG, pure CV on a local mock)
+#   - 17/17 classifier generalization across 8 sites
+#
+# If either drifts significantly, something broke — either Playwright/Chrome
+# version bumped and shifted pixels, or a code change affected the classifier.
+
+on:
+  schedule:
+    - cron: '0 6 * * *'   # 6am UTC daily
+  workflow_dispatch: {}
+  # Also run on main pushes that touch the benchmark code itself, so
+  # regressions get caught in the PR rather than at 6am UTC the next day.
+  push:
+    branches: [main]
+    paths:
+      - 'examples/spreadsheet_observation_cost.py'
+      - 'examples/assets/sheet_mock.html'
+      - 'benchmarks/generalization/**'
+      - 'vision/**'
+      - 'observation/**'
+      - 'config.py'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  scripted-77:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install DV + Playwright
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e '.[dev]'
+          python -m playwright install chromium --with-deps
+
+      - name: Run reproducible spreadsheet benchmark
+        run: python examples/spreadsheet_observation_cost.py
+
+      - name: Assert 77.2% (within 1.0pp tolerance for cross-machine drift)
+        run: |
+          python -c "
+          import json
+          d = json.load(open('examples/spreadsheet_observation_cost.json'))
+          pct = d['summary']['total_savings_pct']
+          assert abs(pct - 77.2) < 1.0, f'drift on CI runner: expected ~77.2, got {pct}'
+          print(f'CI Ubuntu runner reproduces: {pct}% savings ({d[\"summary\"][\"dv_total_tokens\"]} / {d[\"summary\"][\"ff_total_tokens\"]} tok)')
+          "
+
+      - name: Upload frame artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: spreadsheet-frames
+          path: |
+            examples/spreadsheet_frames/
+            examples/spreadsheet_obs/
+            examples/spreadsheet_observation_cost.json
+          retention-days: 7
+
+  classifier-17:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install DV + Playwright
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e '.[dev]'
+          python -m playwright install chromium --with-deps
+
+      - name: Run classifier generalization
+        run: python benchmarks/generalization/test_classifier_diverse.py
+
+      - name: Assert 17/17 correct
+        run: |
+          python -c "
+          import json
+          r = json.load(open('benchmarks/generalization/results.json'))
+          wrong = [s for s in r if not s.get('correct')]
+          assert not wrong, f'classifier regression: {wrong}'
+          print(f'{len(r)}/{len(r)} scenarios classified correctly across {len(set(s[\"site\"] for s in r))} sites')
+          "

@@ -1,0 +1,41 @@
+name: stale
+
+# Auto-label + close stale issues and PRs. Free, runs daily, saves time on
+# triage for a single-maintainer OSS project.
+
+on:
+  schedule:
+    - cron: '0 3 * * *'   # 3am UTC daily
+  workflow_dispatch: {}
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/stale@v9
+        with:
+          # Issues: warn at 60 days, close at 74 days
+          days-before-issue-stale: 60
+          days-before-issue-close: 14
+          stale-issue-label: stale
+          stale-issue-message: |
+            This issue has been inactive for 60 days and is being marked as stale.
+            Comment within 14 days to keep it open, or it will be auto-closed.
+          close-issue-message: |
+            Auto-closed due to inactivity. Feel free to reopen if still relevant.
+          # PRs: shorter — stale PRs rot faster
+          days-before-pr-stale: 30
+          days-before-pr-close: 14
+          stale-pr-label: stale
+          stale-pr-message: |
+            This PR has been inactive for 30 days. Rebase and comment to keep open.
+          close-pr-message: |
+            Auto-closed due to inactivity. Reopen any time.
+          # Don't touch anything labeled important
+          exempt-issue-labels: 'pinned,security,help wanted,good first issue'
+          exempt-pr-labels: 'pinned,security,work-in-progress'
+          operations-per-run: 100

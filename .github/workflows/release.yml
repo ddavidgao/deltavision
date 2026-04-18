@@ -1,0 +1,99 @@
+name: release
+
+# Tag-triggered PyPI publish via Trusted Publishing (OIDC).
+# No PYPI_API_TOKEN secret required — PyPI trusts this workflow directly,
+# scoped to this exact repo + branch + workflow filename.
+#
+# To arm this for the first time:
+#   1. On https://pypi.org/manage/project/deltavision/settings/publishing/,
+#      add a "GitHub" trusted publisher:
+#        owner:    ddavidgao
+#        repo:     deltavision
+#        workflow: release.yml
+#        environment: pypi
+#   2. In this repo's Settings → Environments, create an env named `pypi`.
+#      (Optional: add branch protection / required reviewers for extra safety.)
+#   3. Tag a release:  git tag v1.0.3 && git push --tags
+#
+# See: https://docs.pypi.org/trusted-publishers/adding-a-publisher/
+
+on:
+  push:
+    tags: ['v*.*.*']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Build wheel + sdist
+        run: |
+          python -m pip install --upgrade pip build twine
+          python -m build --wheel --sdist
+
+      - name: Validate
+        run: twine check dist/*
+
+      - name: Fresh-venv install sanity check
+        run: |
+          python -m venv /tmp/fresh
+          /tmp/fresh/bin/pip install dist/*.whl
+          cd /tmp
+          /tmp/fresh/bin/python -c "
+          from observer import DeltaVisionObserver
+          from vision.elements import extract_page_state
+          import server, agent, model, observation, vision, safety, config, main
+          print('release candidate installs cleanly')
+          "
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish-pypi:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: pypi   # gates on environment protection rules if set
+    permissions:
+      id-token: write   # required for OIDC → PyPI trusted publishing
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        # No `with: password:` — OIDC handles auth.
+
+  github-release:
+    needs: publish-pypi
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # need full history for release notes
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true
+          body: |
+            Installed via `pip install deltavision==${{ github.ref_name }}`.
+
+            Full changelog below (auto-generated from commits since previous tag).
