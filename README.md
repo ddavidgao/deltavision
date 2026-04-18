@@ -153,7 +153,7 @@ deltavision/
     generalization/ # Classifier accuracy across diverse sites + visual frame capture
     ablation/       # DeltaVision vs full-frame controlled comparison
     sites/          # Benchmark site registry (7 sites, 3 difficulty tiers)
-  tests/            # 217 tests: unit, integration, live Playwright, real screenshots
+  tests/            # 224 tests: unit, integration, live Playwright, real screenshots
                     # See TESTS.md for a visual coverage map
   paper/            # Paper outline with figure/table mapping to data
 ```

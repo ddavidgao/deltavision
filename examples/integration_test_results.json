@@ -37,11 +37,11 @@
     {
       "name": "anthropic-tool-result-live",
       "ok": true,
-      "detail": "Claude accepted DV tool_result content; usage=1762 in / 48 out",
+      "detail": "Claude accepted DV tool_result content; usage=1762 in / 50 out",
       "artifact": {
         "model": "claude-sonnet-4-20250514",
         "input_tokens": 1762,
-        "output_tokens": 48
+        "output_tokens": 50
       }
     }
   ]
