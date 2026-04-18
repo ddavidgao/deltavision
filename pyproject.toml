@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "deltavision"
-version = "1.0.0"
+version = "1.0.1"
 description = "Delta-first computer-use agent framework: observation-level gating with a zero-LLM CV pipeline"
 readme = "README.md"
 license = {file = "LICENSE"}
@@ -77,7 +77,7 @@ packages = [
     "vision",
     "results",
 ]
-py-modules = ["config", "safety", "main"]
+py-modules = ["config", "safety", "main", "observer", "server"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
