@@ -22,6 +22,7 @@ from PIL import Image
 from .base import BaseModel, ModelResponse
 from ._response_parser import extract_json, normalize_response, get_confidence
 from agent.actions import parse_action
+from vision.elements import format_page_state_for_prompt
 
 log = logging.getLogger(__name__)
 
@@ -55,6 +56,21 @@ CRITICAL RULES:
   same failed action.
 - For DELTA observations: reason about what changed and what it means for your
   task. Do not re-describe the full page.
+- CLICKABLE ELEMENTS: when the observation includes a "Clickable elements" list,
+  those are the EXACT center coordinates of interactive elements on the page
+  (extracted from the DOM — ground truth, not guessed). Prefer clicking these
+  coordinates over estimating from the image. If your target is listed, use
+  its center coords directly. Only guess from pixels when the target is absent
+  from the list (e.g. canvas-rendered UI).
+- FOCUS: when the observation shows "[FOCUS] ..." that element is the one
+  currently receiving keyboard input. It is GROUND TRUTH — don't second-guess
+  it based on what you see in the image. Key implications:
+    * If you want to type into that element, just type. Do NOT click it again
+      (you'll blur focus by clicking the same spot twice in some browsers).
+    * If focus is on the wrong element, click the intended one.
+    * Action had_effect=False BUT focus changed = your click succeeded (the
+      cursor blinker is sub-pixel and doesn't trigger the diff threshold).
+      Don't retry the same click.
 
 Respond ONLY with valid JSON:
 {
@@ -145,6 +161,11 @@ class ClaudeModel(BaseModel):
                 # Delta history: TEXT ONLY — no screenshot needed.
                 # The model already has the full page from the last NEW_PAGE.
                 # Sending text-only delta history is where DeltaVision saves tokens.
+                # (Experiment: tried adding thumbnail+text-deltas in delta history.
+                # Result: success rate unchanged (2/3), token cost +17%. The
+                # surfaced failure mode is small-UI targeting (e.g. 20px checkbox
+                # invisible in 320x225 thumbnail), which needs a click-target
+                # detection layer, not just more visual context. See TODO.md.)
                 parts = [f"[Step {prev_obs.step}] After: {prev_obs.last_action}"]
                 if hasattr(prev_obs, 'action_had_effect'):
                     parts.append(f"Effect: {prev_obs.action_had_effect}")
@@ -181,6 +202,16 @@ class ClaudeModel(BaseModel):
                 }
             )
             content.append(self._img_block(observation.frame))
+            # DOM-extracted page state: clickable targets + current focus.
+            # Fixes two specific failure modes:
+            #   - small-UI targeting (checkbox invisible in thumbnail)
+            #   - "click on input didn't register" (cursor is sub-pixel)
+            state_text = format_page_state_for_prompt({
+                "elements": getattr(observation, 'clickable_elements', []) or [],
+                "focus": getattr(observation, 'focus', None),
+            })
+            if state_text:
+                content.append({"type": "text", "text": state_text})
 
         else:  # delta
             # Delta observation: send the CURRENT screenshot (one image)
@@ -211,6 +242,17 @@ class ClaudeModel(BaseModel):
                         parts.append(f"  Region {i+1}: ({x},{y}) {w}x{h}px, magnitude={crop['change_magnitude']:.3f}")
 
             content.append({"type": "text", "text": "\n".join(parts)})
+
+            # DOM-extracted page state: clickable targets + current focus.
+            # Fixes small-UI targeting AND the "click on input had no pixel
+            # diff so agent thinks it failed" mode — focus state is
+            # ground-truth from the DOM.
+            state_text = format_page_state_for_prompt({
+                "elements": getattr(observation, 'clickable_elements', []) or [],
+                "focus": getattr(observation, 'focus', None),
+            })
+            if state_text:
+                content.append({"type": "text", "text": state_text})
 
             # Video-compression-style delta observation:
             # 1. Low-res thumbnail of current page (spatial context, ~100 tokens)

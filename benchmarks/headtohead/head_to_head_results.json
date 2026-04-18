@@ -1,0 +1,976 @@
+{
+  "framing": "Head-to-head DV-wrapped vs FF-baseline Claude agent. Same task, same model, different observation pipeline. Measures UTILITY (does DV agent still succeed?) and TOKEN COST with REAL agent variance \u2014 complements the matched-trajectory 55.6% and scripted 77.2% compression numbers.",
+  "model": "claude-sonnet-4-20250514",
+  "n_trials_per_config": 3,
+  "results": [
+    {
+      "task": "todomvc_add_and_complete",
+      "config": "DV",
+      "trial": 0,
+      "steps": 7,
+      "done": true,
+      "delta_ratio": 1.0,
+      "new_page_count": 0,
+      "total_input_tokens": 23734,
+      "total_output_tokens": 952,
+      "n_api_calls": 8,
+      "wall_time_sec": 38.7,
+      "usage_log": [
+        {
+          "step": 0,
+          "obs_type": "full_frame",
+          "input_tokens": 2578,
+          "output_tokens": 124,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 0,
+          "obs_type": "delta",
+          "input_tokens": 2940,
+          "output_tokens": 89,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 1,
+          "obs_type": "delta",
+          "input_tokens": 3237,
+          "output_tokens": 101,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 2,
+          "obs_type": "delta",
+          "input_tokens": 3375,
+          "output_tokens": 99,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 3,
+          "obs_type": "delta",
+          "input_tokens": 3524,
+          "output_tokens": 104,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 4,
+          "obs_type": "delta",
+          "input_tokens": 3663,
+          "output_tokens": 103,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 5,
+          "obs_type": "delta",
+          "input_tokens": 2175,
+          "output_tokens": 155,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 6,
+          "obs_type": "delta",
+          "input_tokens": 2242,
+          "output_tokens": 177,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        }
+      ],
+      "transition_log": [
+        {
+          "step": 0,
+          "action": "type('Buy groceries')",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.0028368055555555555,
+          "phash_distance": 0,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 1,
+          "action": "key(Enter)",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.032967881944444444,
+          "phash_distance": 10,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 2,
+          "action": "type('Walk the dog')",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.03575954861111111,
+          "phash_distance": 10,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 3,
+          "action": "key(Enter)",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.03595399305555556,
+          "phash_distance": 14,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 4,
+          "action": "type('Call mom')",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.03857986111111111,
+          "phash_distance": 14,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 5,
+          "action": "key(Enter)",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.03780295138888889,
+          "phash_distance": 12,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 6,
+          "action": "click(790, 225)",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.03780295138888889,
+          "phash_distance": 12,
+          "anchor_score": 1.0
+        }
+      ]
+    },
+    {
+      "task": "todomvc_add_and_complete",
+      "config": "DV",
+      "trial": 1,
+      "steps": 7,
+      "done": true,
+      "delta_ratio": 1.0,
+      "new_page_count": 0,
+      "total_input_tokens": 23617,
+      "total_output_tokens": 882,
+      "n_api_calls": 8,
+      "wall_time_sec": 53.9,
+      "usage_log": [
+        {
+          "step": 0,
+          "obs_type": "full_frame",
+          "input_tokens": 2578,
+          "output_tokens": 117,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 0,
+          "obs_type": "delta",
+          "input_tokens": 2933,
+          "output_tokens": 88,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 1,
+          "obs_type": "delta",
+          "input_tokens": 3229,
+          "output_tokens": 101,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 2,
+          "obs_type": "delta",
+          "input_tokens": 3367,
+          "output_tokens": 78,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 3,
+          "obs_type": "delta",
+          "input_tokens": 3495,
+          "output_tokens": 110,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 4,
+          "obs_type": "delta",
+          "input_tokens": 3640,
+          "output_tokens": 80,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 5,
+          "obs_type": "delta",
+          "input_tokens": 2136,
+          "output_tokens": 160,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 6,
+          "obs_type": "delta",
+          "input_tokens": 2239,
+          "output_tokens": 148,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        }
+      ],
+      "transition_log": [
+        {
+          "step": 0,
+          "action": "type('Buy groceries')",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.0028368055555555555,
+          "phash_distance": 0,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 1,
+          "action": "key(Enter)",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.032967881944444444,
+          "phash_distance": 10,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 2,
+          "action": "type('Walk the dog')",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.03575954861111111,
+          "phash_distance": 10,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 3,
+          "action": "key(Enter)",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.03595399305555556,
+          "phash_distance": 14,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 4,
+          "action": "type('Call mom')",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.03857986111111111,
+          "phash_distance": 14,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 5,
+          "action": "key(Enter)",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.03780295138888889,
+          "phash_distance": 12,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 6,
+          "action": "click(540, 225)",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.04471527777777778,
+          "phash_distance": 10,
+          "anchor_score": 1.0
+        }
+      ]
+    },
+    {
+      "task": "todomvc_add_and_complete",
+      "config": "DV",
+      "trial": 2,
+      "steps": 7,
+      "done": true,
+      "delta_ratio": 1.0,
+      "new_page_count": 0,
+      "total_input_tokens": 23730,
+      "total_output_tokens": 871,
+      "n_api_calls": 8,
+      "wall_time_sec": 46.6,
+      "usage_log": [
+        {
+          "step": 0,
+          "obs_type": "full_frame",
+          "input_tokens": 2578,
+          "output_tokens": 128,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 0,
+          "obs_type": "delta",
+          "input_tokens": 2944,
+          "output_tokens": 82,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 1,
+          "obs_type": "delta",
+          "input_tokens": 3234,
+          "output_tokens": 103,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 2,
+          "obs_type": "delta",
+          "input_tokens": 3374,
+          "output_tokens": 97,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 3,
+          "obs_type": "delta",
+          "input_tokens": 3521,
+          "output_tokens": 107,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 4,
+          "obs_type": "delta",
+          "input_tokens": 3663,
+          "output_tokens": 100,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 5,
+          "obs_type": "delta",
+          "input_tokens": 2168,
+          "output_tokens": 131,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 6,
+          "obs_type": "delta",
+          "input_tokens": 2248,
+          "output_tokens": 123,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        }
+      ],
+      "transition_log": [
+        {
+          "step": 0,
+          "action": "type('Buy groceries')",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.0028368055555555555,
+          "phash_distance": 0,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 1,
+          "action": "key(Enter)",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.032967881944444444,
+          "phash_distance": 10,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 2,
+          "action": "type('Walk the dog')",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.03575954861111111,
+          "phash_distance": 10,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 3,
+          "action": "key(Enter)",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.03595399305555556,
+          "phash_distance": 14,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 4,
+          "action": "type('Call mom')",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.03857986111111111,
+          "phash_distance": 14,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 5,
+          "action": "key(Enter)",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.03780295138888889,
+          "phash_distance": 12,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 6,
+          "action": "click(538, 225)",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.04471527777777778,
+          "phash_distance": 10,
+          "anchor_score": 1.0
+        }
+      ]
+    },
+    {
+      "task": "todomvc_add_and_complete",
+      "config": "FF",
+      "trial": 0,
+      "steps": 7,
+      "done": true,
+      "delta_ratio": 1.0,
+      "new_page_count": 0,
+      "total_input_tokens": 62497,
+      "total_output_tokens": 969,
+      "n_api_calls": 8,
+      "wall_time_sec": 113.6,
+      "usage_log": [
+        {
+          "step": 0,
+          "obs_type": "full_frame",
+          "input_tokens": 2578,
+          "output_tokens": 128,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 0,
+          "obs_type": "full_frame",
+          "input_tokens": 4241,
+          "output_tokens": 90,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 1,
+          "obs_type": "full_frame",
+          "input_tokens": 5944,
+          "output_tokens": 121,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 2,
+          "obs_type": "full_frame",
+          "input_tokens": 7613,
+          "output_tokens": 93,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 3,
+          "obs_type": "full_frame",
+          "input_tokens": 9252,
+          "output_tokens": 118,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 4,
+          "obs_type": "full_frame",
+          "input_tokens": 10916,
+          "output_tokens": 117,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 5,
+          "obs_type": "full_frame",
+          "input_tokens": 10934,
+          "output_tokens": 159,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 6,
+          "obs_type": "full_frame",
+          "input_tokens": 11019,
+          "output_tokens": 143,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        }
+      ],
+      "transition_log": [
+        {
+          "step": 0,
+          "action": "type('Buy groceries')",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.0028368055555555555,
+          "phash_distance": 0,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 1,
+          "action": "key(Enter)",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.0358046875,
+          "phash_distance": 10,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 2,
+          "action": "type('Walk the dog')",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.0027916666666666667,
+          "phash_distance": 2,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 3,
+          "action": "key(Enter)",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.03512413194444444,
+          "phash_distance": 8,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 4,
+          "action": "type('Call mom')",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.0026258680555555558,
+          "phash_distance": 2,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 5,
+          "action": "key(Enter)",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.03463368055555555,
+          "phash_distance": 8,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 6,
+          "action": "click(538, 225)",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.010091145833333334,
+          "phash_distance": 2,
+          "anchor_score": 1.0
+        }
+      ]
+    },
+    {
+      "task": "todomvc_add_and_complete",
+      "config": "FF",
+      "trial": 1,
+      "steps": 7,
+      "done": true,
+      "delta_ratio": 1.0,
+      "new_page_count": 0,
+      "total_input_tokens": 62254,
+      "total_output_tokens": 917,
+      "n_api_calls": 8,
+      "wall_time_sec": 124.3,
+      "usage_log": [
+        {
+          "step": 0,
+          "obs_type": "full_frame",
+          "input_tokens": 2578,
+          "output_tokens": 120,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 0,
+          "obs_type": "full_frame",
+          "input_tokens": 4233,
+          "output_tokens": 77,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 1,
+          "obs_type": "full_frame",
+          "input_tokens": 5923,
+          "output_tokens": 94,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 2,
+          "obs_type": "full_frame",
+          "input_tokens": 7565,
+          "output_tokens": 106,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 3,
+          "obs_type": "full_frame",
+          "input_tokens": 9217,
+          "output_tokens": 105,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 4,
+          "obs_type": "full_frame",
+          "input_tokens": 10868,
+          "output_tokens": 109,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 5,
+          "obs_type": "full_frame",
+          "input_tokens": 10886,
+          "output_tokens": 159,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 6,
+          "obs_type": "full_frame",
+          "input_tokens": 10984,
+          "output_tokens": 147,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        }
+      ],
+      "transition_log": [
+        {
+          "step": 0,
+          "action": "type('Buy groceries')",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.0028368055555555555,
+          "phash_distance": 0,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 1,
+          "action": "key(Enter)",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.0358046875,
+          "phash_distance": 10,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 2,
+          "action": "type('Walk the dog')",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.0027916666666666667,
+          "phash_distance": 2,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 3,
+          "action": "key(Enter)",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.03512413194444444,
+          "phash_distance": 8,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 4,
+          "action": "type('Call mom')",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.0026258680555555558,
+          "phash_distance": 2,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 5,
+          "action": "key(Enter)",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.03463368055555555,
+          "phash_distance": 8,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 6,
+          "action": "click(538, 225)",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.010091145833333334,
+          "phash_distance": 2,
+          "anchor_score": 1.0
+        }
+      ]
+    },
+    {
+      "task": "todomvc_add_and_complete",
+      "config": "FF",
+      "trial": 2,
+      "steps": 7,
+      "done": true,
+      "delta_ratio": 1.0,
+      "new_page_count": 0,
+      "total_input_tokens": 62060,
+      "total_output_tokens": 835,
+      "n_api_calls": 8,
+      "wall_time_sec": 123.0,
+      "usage_log": [
+        {
+          "step": 0,
+          "obs_type": "full_frame",
+          "input_tokens": 2578,
+          "output_tokens": 120,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 0,
+          "obs_type": "full_frame",
+          "input_tokens": 4233,
+          "output_tokens": 74,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 1,
+          "obs_type": "full_frame",
+          "input_tokens": 5920,
+          "output_tokens": 98,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 2,
+          "obs_type": "full_frame",
+          "input_tokens": 7566,
+          "output_tokens": 75,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 3,
+          "obs_type": "full_frame",
+          "input_tokens": 9187,
+          "output_tokens": 101,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 4,
+          "obs_type": "full_frame",
+          "input_tokens": 10834,
+          "output_tokens": 76,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 5,
+          "obs_type": "full_frame",
+          "input_tokens": 10819,
+          "output_tokens": 162,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        },
+        {
+          "step": 6,
+          "obs_type": "full_frame",
+          "input_tokens": 10923,
+          "output_tokens": 129,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0
+        }
+      ],
+      "transition_log": [
+        {
+          "step": 0,
+          "action": "type('Buy groceries')",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.0028368055555555555,
+          "phash_distance": 0,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 1,
+          "action": "key(Enter)",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.0358046875,
+          "phash_distance": 10,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 2,
+          "action": "type('Walk the dog')",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.0027916666666666667,
+          "phash_distance": 2,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 3,
+          "action": "key(Enter)",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.03512413194444444,
+          "phash_distance": 8,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 4,
+          "action": "type('Call mom')",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.0026258680555555558,
+          "phash_distance": 2,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 5,
+          "action": "key(Enter)",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.03463368055555555,
+          "phash_distance": 8,
+          "anchor_score": 1.0
+        },
+        {
+          "step": 6,
+          "action": "click(538, 225)",
+          "transition": "delta",
+          "trigger": "none",
+          "diff_ratio": 0.010091145833333334,
+          "phash_distance": 2,
+          "anchor_score": 1.0
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "todomvc_add_and_complete/DV": {
+      "n_trials": 3,
+      "success_rate": "3/3",
+      "steps": {
+        "mean": 7,
+        "stdev": 0.0,
+        "min": 7,
+        "max": 7,
+        "values": [
+          7,
+          7,
+          7
+        ]
+      },
+      "input_tokens": {
+        "mean": 23693.7,
+        "stdev": 66.4,
+        "min": 23617,
+        "max": 23734,
+        "values": [
+          23734,
+          23617,
+          23730
+        ]
+      },
+      "output_tokens": {
+        "mean": 901.7,
+        "stdev": 43.9,
+        "min": 871,
+        "max": 952,
+        "values": [
+          952,
+          882,
+          871
+        ]
+      },
+      "wall_time_sec": {
+        "mean": 46.4,
+        "stdev": 7.6,
+        "min": 38.7,
+        "max": 53.9,
+        "values": [
+          38.7,
+          53.9,
+          46.6
+        ]
+      }
+    },
+    "todomvc_add_and_complete/FF": {
+      "n_trials": 3,
+      "success_rate": "3/3",
+      "steps": {
+        "mean": 7,
+        "stdev": 0.0,
+        "min": 7,
+        "max": 7,
+        "values": [
+          7,
+          7,
+          7
+        ]
+      },
+      "input_tokens": {
+        "mean": 62270.3,
+        "stdev": 219.0,
+        "min": 62060,
+        "max": 62497,
+        "values": [
+          62497,
+          62254,
+          62060
+        ]
+      },
+      "output_tokens": {
+        "mean": 907,
+        "stdev": 67.6,
+        "min": 835,
+        "max": 969,
+        "values": [
+          969,
+          917,
+          835
+        ]
+      },
+      "wall_time_sec": {
+        "mean": 120.3,
+        "stdev": 5.8,
+        "min": 113.6,
+        "max": 124.3,
+        "values": [
+          113.6,
+          124.3,
+          123.0
+        ]
+      }
+    },
+    "_per_task_delta": {
+      "todomvc_add_and_complete": {
+        "token_savings_pct": 62.0,
+        "step_reduction_pct": 0.0,
+        "wall_time_change_pct": 61.4
+      }
+    }
+  }
+}

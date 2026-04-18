@@ -1,0 +1,92 @@
+{
+  "n_trials": 3,
+  "dv": {
+    "n": 3,
+    "steps": {
+      "mean": 7.0,
+      "min": 7,
+      "max": 7,
+      "values": [
+        7,
+        7,
+        7
+      ]
+    },
+    "tokens_in": {
+      "mean": 23693.7,
+      "min": 23617,
+      "max": 23734,
+      "values": [
+        23734,
+        23617,
+        23730
+      ]
+    },
+    "tokens_out": {
+      "mean": 901.7,
+      "min": 871,
+      "max": 952,
+      "values": [
+        952,
+        882,
+        871
+      ]
+    },
+    "wall_time_sec": {
+      "mean": 46.4,
+      "min": 38.7,
+      "max": 53.9,
+      "values": [
+        38.7,
+        53.9,
+        46.6
+      ]
+    },
+    "success": "3/3"
+  },
+  "ff": {
+    "n": 3,
+    "steps": {
+      "mean": 7.0,
+      "min": 7,
+      "max": 7,
+      "values": [
+        7,
+        7,
+        7
+      ]
+    },
+    "tokens_in": {
+      "mean": 62270.3,
+      "min": 62060,
+      "max": 62497,
+      "values": [
+        62497,
+        62254,
+        62060
+      ]
+    },
+    "tokens_out": {
+      "mean": 907.0,
+      "min": 835,
+      "max": 969,
+      "values": [
+        969,
+        917,
+        835
+      ]
+    },
+    "wall_time_sec": {
+      "mean": 120.3,
+      "min": 113.6,
+      "max": 124.3,
+      "values": [
+        113.6,
+        124.3,
+        123.0
+      ]
+    },
+    "success": "3/3"
+  },
+  "token_savings_pct": 62.0
+}

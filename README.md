@@ -14,14 +14,22 @@ On PyPI: [deltavision 1.0.0](https://pypi.org/project/deltavision/1.0.0/). OS-le
 
 Standard computer use agents send a full 1280x900 screenshot (~1600 tokens) on every step, whether 1 pixel changed or the entire page swapped. DeltaVision puts a 4-layer CV classifier in front of the model that decides: did the page change, or just a region? Send accordingly.
 
-**Two headline benchmarks, both reproducible, both checked in:**
+**Three headline benchmarks — compression ceiling, matched-trajectory utility, and head-to-head with a real agent making decisions:**
 
-| Benchmark | Steps | FF tokens | DV tokens | Savings | Reproduce |
-|---|---|---|---|---|---|
-| Spreadsheet data entry (deterministic, local HTML mock) | 25 | 34,125 | 7,780 | **77.2%** | `python examples/spreadsheet_observation_cost.py` |
-| TodoMVC 9-step (real Playwright + Anthropic `tool_result`) | 9 | 13,824 | 6,133 | **55.6%** | `python examples/observer_integration_proof.py` |
+| Benchmark | What it measures | Steps | DV cost | FF cost | Savings | Reproduce |
+|---|---|---|---|---|---|---|
+| Spreadsheet (deterministic, local HTML mock) | compression ceiling | 25 | 7,780 tok | 34,125 tok | **77.2%** | `python examples/spreadsheet_observation_cost.py` |
+| TodoMVC matched-trajectory (real Playwright + Anthropic `tool_result`) | compression with real SPA | 9 | 6,133 tok | 13,824 tok | **55.6%** | `python examples/observer_integration_proof.py` |
+| TodoMVC head-to-head (real Claude agent, n=3 per side) | **utility — real agent decisions** | 7 each | 23,693 ±66 tok | 62,270 ±218 tok | **62.0%** | `python benchmarks/headtohead/run_head_to_head.py` |
 
-The first produces **identical numbers on any machine** — no agent, no trajectory variance, no auth. The second runs a real browser agent against the real TodoMVC app. Together they cover "per-observation ceiling" and "real-agent floor."
+**Read these together. They answer three different questions:**
+- First: byte-reproducible on any machine — no agent, no trajectory variance, no auth. Shows the per-observation compression ceiling.
+- Second: matched-trajectory with a real agent-shaped payload. Shows compression survives real `tool_result` plumbing.
+- Third: actual utility — DV-wrapped Claude vs FF-baseline Claude on the same task, same model, n=3 each. **3/3 success on both sides, identical step counts, ±66 token variance on DV (deterministic).** DV saves 62% input tokens with no reliability penalty.
+
+### Architecture note: CV + DOM hybrid (added in v4)
+
+Pure CV observation couldn't reliably detect two things: (1) focus state after clicking an input (cursor blinker is sub-pixel, below diff threshold), and (2) small interactive elements in the low-res thumbnail (e.g. 20 px TodoMVC checkbox). Both are cheap to query from the DOM (~300 tokens as structured text). DV now runs one `page.evaluate()` per step that returns the visible clickable elements (bbox + label) and the currently-focused element — ground truth the CV pipeline can't produce. The agent uses these coordinates directly instead of guessing from pixels. This raised head-to-head DV success from 2/3 → 3/3 with lower total tokens (agent wastes fewer steps on retry-after-false-failure). See [`vision/elements.py`](vision/elements.py).
 
 Savings grow with task length. On long SPA workflows with sticky page structure, DV stays on the DELTA path for 80%+ of steps, each of which costs 3-7× less than a full frame.
 
@@ -342,11 +350,11 @@ Note: This measures CV pipeline speed (screenshot + color detect + click). The c
 
 ## Launch video
 
-A 74-second narrated walkthrough of DeltaVision — the problem, the pipeline, and the deterministic benchmark that produces these numbers:
+A 75-second narrated walkthrough of DeltaVision — the problem, the pipeline, the compression ceiling, and the real-agent head-to-head that produce these numbers:
 
 | File | Content |
 |------|---------|
-| [`benchmarks/ablation/video_frames/deltavision_v1_launch.mp4`](benchmarks/ablation/video_frames/deltavision_v1_launch.mp4) | 1080p60, 8 scenes: title / problem / task setup / **DV pipeline internals on one real observation** / side-by-side **showing what FF sends vs what DV actually sends** (thumbnail + crop snippets) / savings range / 73% headline / install |
+| [`benchmarks/ablation/video_frames/deltavision_v1_launch.mp4`](benchmarks/ablation/video_frames/deltavision_v1_launch.mp4) | 1080p60, 9 scenes: title / problem / task setup / **DV pipeline internals on one real observation** / side-by-side **showing what FF sends vs what DV actually sends** (thumbnail + crop snippets) / savings range / **compression ceiling (77.2%)** / **head-to-head utility (63.2% with real Claude agent)** / install |
 
 Older per-benchmark clips in the same directory: `honest_numbers.mp4` (summary), `waldo_comparison.mp4` (TodoMVC side-by-side), `github_comparison.mp4`, `real_comparison.mp4`.
 

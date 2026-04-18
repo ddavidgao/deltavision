@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "deltavision"
-version = "1.0.1"
-description = "Delta-first computer-use agent framework: observation-level gating with a zero-LLM CV pipeline"
+version = "1.0.2"
+description = "Delta-first computer-use agent framework: CV + DOM hybrid observation with a zero-LLM gating pipeline"
 readme = "README.md"
 license = {file = "LICENSE"}
 authors = [{name = "David Gao"}]

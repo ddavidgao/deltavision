@@ -26,6 +26,10 @@ def build_observation(
     no_change_count: int = 0,
     text_deltas: Optional[List[dict]] = None,
     current_frame: Optional[Image.Image] = None,
+    # Common: DOM-extracted clickable elements (fixes small-UI targeting)
+    clickable_elements: Optional[List[dict]] = None,
+    # Common: DOM-extracted focus state (fixes "click on input didn't register" failures)
+    focus: Optional[dict] = None,
 ) -> Observation:
     """
     Factory for building the right observation type.
@@ -37,6 +41,8 @@ def build_observation(
             task=task,
             step=step,
             last_action=last_action,
+            clickable_elements=clickable_elements or [],
+            focus=focus,
             frame=frame,
             url=url,
             trigger_reason=trigger_reason,
@@ -47,6 +53,8 @@ def build_observation(
         task=task,
         step=step,
         last_action=last_action,
+        clickable_elements=clickable_elements or [],
+        focus=focus,
         diff_result=diff_result,
         crops=crops or [],
         action_had_effect=action_had_effect,

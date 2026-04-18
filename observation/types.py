@@ -18,6 +18,15 @@ class Observation:
     task: str
     step: int
     last_action: Optional[Action]
+    # Clickable element list (DOM-extracted bboxes + labels). Gives the agent
+    # structured targets instead of forcing it to guess coordinates from a
+    # low-res thumbnail. Populated by agent/loop via vision.elements.
+    clickable_elements: List[dict] = field(default_factory=list)
+    # Current DOM focus state — ground truth for "where will typing go?"
+    # Fills the gap that pure-CV can't: a 1 px cursor blinker is below the
+    # diff threshold, so clicks on inputs falsely register as action_had_effect=False.
+    # None = nothing focused (or body). Else: {tag, role, type, label, bbox, center, value, selection_start}.
+    focus: Optional[dict] = None
 
 
 @dataclass

@@ -19,6 +19,7 @@ from vision.classifier import (
     extract_anchor,
     TransitionType,
 )
+from vision.elements import extract_page_state
 from observation.builder import build_observation
 from agent.state import AgentState
 from agent.actions import execute_action
@@ -49,6 +50,7 @@ async def run_agent(task: str, start_url: str, model, browser_page, config, safe
     t0 = await capture_screenshot(browser_page)
     url_t0 = get_current_url(browser_page)
     anchor_template = extract_anchor(t0, config)
+    initial_state = await extract_page_state(browser_page)
 
     obs = build_observation(
         obs_type="full_frame",
@@ -58,6 +60,8 @@ async def run_agent(task: str, start_url: str, model, browser_page, config, safe
         frame=t0,
         url=url_t0,
         trigger_reason="initial",
+        clickable_elements=initial_state.get("elements", []),
+        focus=initial_state.get("focus"),
     )
     state.add_observation(obs)
 
@@ -86,6 +90,7 @@ async def run_agent(task: str, start_url: str, model, browser_page, config, safe
                 logger.warning("SAFETY BLOCK: %s", check.reason)
                 state.step += 1
                 # Tell model its action was blocked
+                sb_state = await extract_page_state(browser_page)
                 obs = build_observation(
                     obs_type="full_frame",
                     task=task,
@@ -94,6 +99,8 @@ async def run_agent(task: str, start_url: str, model, browser_page, config, safe
                     frame=await capture_screenshot(browser_page),
                     url=url_now,
                     trigger_reason=f"safety_block:{check.reason}",
+                    clickable_elements=sb_state.get("elements", []),
+                    focus=sb_state.get("focus"),
                 )
                 state.add_observation(obs)
                 continue
@@ -105,9 +112,12 @@ async def run_agent(task: str, start_url: str, model, browser_page, config, safe
         # Wait for page to react
         await asyncio.sleep(config.POST_ACTION_WAIT_MS / 1000)
 
-        # Capture post-action frame
+        # Capture post-action frame + DOM state (clickables + focus)
         t1 = await capture_screenshot(browser_page)
         url_after = get_current_url(browser_page)
+        dom_state = await extract_page_state(browser_page)
+        clickables = dom_state.get("elements", [])
+        focus_state = dom_state.get("focus")
 
         # Compute diff (always — needed for classification and observation)
         diff_result = compute_diff(t0, t1, config)
@@ -156,6 +166,8 @@ async def run_agent(task: str, start_url: str, model, browser_page, config, safe
                 frame=t1,
                 url=url_after,
                 trigger_reason=trigger,
+                clickable_elements=clickables,
+                focus=focus_state,
             )
 
         else:  # DELTA
@@ -178,6 +190,7 @@ async def run_agent(task: str, start_url: str, model, browser_page, config, safe
                     state.no_change_streak,
                 )
                 t0_refresh = await capture_screenshot(browser_page)
+                refresh_state = await extract_page_state(browser_page)
                 obs = build_observation(
                     obs_type="full_frame",
                     task=task,
@@ -186,6 +199,8 @@ async def run_agent(task: str, start_url: str, model, browser_page, config, safe
                     frame=t0_refresh,
                     url=url_after,
                     trigger_reason="force_refresh_no_effect",
+                    clickable_elements=refresh_state.get("elements", []),
+                    focus=refresh_state.get("focus"),
                 )
                 state.reset_no_change_streak()
                 t0 = t0_refresh
@@ -201,6 +216,8 @@ async def run_agent(task: str, start_url: str, model, browser_page, config, safe
                     action_had_effect=diff_result.action_had_effect,
                     no_change_count=state.no_change_streak,
                     current_frame=t1,
+                    clickable_elements=clickables,
+                    focus=focus_state,
                 )
 
         state.add_observation(obs)
