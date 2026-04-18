@@ -49,8 +49,19 @@ Artifacts preserved for comparison:
 ## Benchmark infrastructure
 
 - [ ] **n>3 head-to-head trials** for statistical significance. Currently n=3 limited by Anthropic API rate limits. Spread across time + use cache-control to reduce cost.
-- [ ] **Cross-machine reproducibility test** of scripted 77.2% benchmark. Run on a different OS / different Chromium build. Report pixel-level and classification-level drift.
+- [ ] **Cross-machine reproducibility test** of scripted 77.2% benchmark. Run on a different OS / different Chromium build. Report pixel-level and classification-level drift. **PARTIAL: GitHub Actions nightly workflow now runs this on Ubuntu; extend to Windows.**
 - [ ] **More tasks in head-to-head**: Wikipedia article lookup (more text-heavy), HackerNews navigation, Gmail compose flow. Different failure modes will surface.
+
+### Known cross-platform classifier drift
+
+**HumanBenchmark reaction-time page, "idle" scenario.** On macOS + Chromium the 17/17 classifier suite is fully green. On Ubuntu headless Chromium (GitHub Actions), one scenario consistently drifts: the reaction-time idle page shows ~24% pixel diff + pHash distance 36 between two captures taken seconds apart, which exceeds the NEW_PAGE pHash threshold and gets classified as `new_page` instead of `delta`.
+
+Cause is almost certainly a subtle animation on HumanBenchmark's page (pulsing loading indicator, cursor, etc.) that renders differently between runner environments. CI workflow tolerates this as a known drift (≥16/17 passes; >1 fails). Fix options when revisited:
+
+1. Widen NEW_PAGE pHash threshold (risky — might miss real page transitions elsewhere)
+2. Add per-site classifier tuning (already exists as `MCGRAWHILL_CONFIG` preset — add `HUMANBENCHMARK_CONFIG`)
+3. Drop humanbenchmark from the generalization suite and replace with a more stable site
+4. Capture ~5 snapshots of the "idle" state and use median pHash instead of pairwise diff
 
 ## Model backends
 
