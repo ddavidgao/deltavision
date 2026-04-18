@@ -19,6 +19,11 @@ concurrency:
 jobs:
   analyze:
     name: Analyze Python
+    # Code scanning / SARIF upload requires GitHub Advanced Security on
+    # private repos (paid feature on personal accounts). It's free on public
+    # repos. Skip analysis on the private source-of-truth repo — results
+    # upload from the public mirror covers the same code either way.
+    if: github.repository == 'ddavidgao/deltavision'
     runs-on: ubuntu-latest
     permissions:
       actions: read
