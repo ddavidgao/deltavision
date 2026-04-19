@@ -1,0 +1,13 @@
+{
+  "step": 6,
+  "label": "Open Openigloo",
+  "phase": "research",
+  "action": "click listing 2",
+  "url": "https://www.google.com/maps/place/Openigloo/@40.656798,-74.0067299,17z/data=!3m1!4b1!4m6!3m5!1s0x89c25bdaa758ec03:0xf00617c160fd64c1!8m2!3d40.656798!4d-74.0067299!16s%2Fg%2F11ptzj24y5?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDQxNS4wIKXMDSoASAFQAw%3D%3D",
+  "t_rel_s": 37.47,
+  "obs_type": "full_frame",
+  "trigger": "url_change",
+  "dv_tokens": 1365,
+  "ff_tokens": 1365,
+  "savings_pct": 0.0
+}

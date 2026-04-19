@@ -1,0 +1,13 @@
+{
+  "step": 14,
+  "label": "Row 2 B: address",
+  "phase": "document",
+  "action": "type B2",
+  "url": "https://docs.google.com/spreadsheets/d/1_WQ2e9-7CS6NbFZ-3WsdP5Mrfptb1e4_CWIlVOszKzc/edit?gid=0#gid=0",
+  "t_rel_s": 60.14,
+  "obs_type": "delta",
+  "trigger": "none",
+  "dv_tokens": 260,
+  "ff_tokens": 1365,
+  "savings_pct": 81.0
+}

@@ -1,0 +1,13 @@
+{
+  "step": 8,
+  "label": "Switch to Sheet",
+  "phase": "document",
+  "action": "switch tab",
+  "url": "https://docs.google.com/spreadsheets/d/1_WQ2e9-7CS6NbFZ-3WsdP5Mrfptb1e4_CWIlVOszKzc/edit?gid=0#gid=0",
+  "t_rel_s": 44.61,
+  "obs_type": "full_frame",
+  "trigger": "url_change",
+  "dv_tokens": 1365,
+  "ff_tokens": 1365,
+  "savings_pct": 0.0
+}

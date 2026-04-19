@@ -63,7 +63,8 @@ for _cand in (_here, _here.parent, Path("C:/Users/david/Projects/deltavision")):
 from observer import DeltaVisionObserver  # noqa: E402
 
 VIEWPORT = {"width": 1280, "height": 800}
-OUT = Path("C:/Users/david/Projects/deltavision/runs_multitab_real")
+# Output dir: repo root / runs_multitab_real — works on Mac and Windows
+OUT = Path(__file__).resolve().parent.parent / "runs_multitab_real"
 MAPS_URL = "https://www.google.com/maps/search/apartments+brooklyn+ny"
 SHEET_URL = "https://docs.google.com/spreadsheets/d/1_WQ2e9-7CS6NbFZ-3WsdP5Mrfptb1e4_CWIlVOszKzc/edit?usp=sharing"
 

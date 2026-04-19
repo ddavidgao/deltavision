@@ -1,0 +1,13 @@
+{
+  "step": 1,
+  "label": "Load Maps + search",
+  "phase": "research",
+  "action": "navigate to maps",
+  "url": "https://www.google.com/maps/search/apartments+brooklyn+ny/@40.6581757,-73.975529,12z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI2MDQxNS4wIKXMDSoASAFQAw%3D%3D",
+  "t_rel_s": 17.89,
+  "obs_type": "full_frame",
+  "trigger": "initial",
+  "dv_tokens": 1365,
+  "ff_tokens": 1365,
+  "savings_pct": 0.0
+}

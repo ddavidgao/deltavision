@@ -1,0 +1,13 @@
+{
+  "step": 4,
+  "label": "Scroll first listing",
+  "phase": "research",
+  "action": "scroll 500px",
+  "url": "https://www.google.com/maps/place/461+Dean+Apartments/@40.6821039,-73.9753978,16z/data=!3m1!4b1!4m6!3m5!1s0x89c25baef2277129:0x81f33cf348117426!8m2!3d40.6821039!4d-73.9753978!16s%2Fg%2F11c6sqy70l?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDQxNS4wIKXMDSoASAFQAw%3D%3D",
+  "t_rel_s": 28.53,
+  "obs_type": "full_frame",
+  "trigger": "url_change",
+  "dv_tokens": 1365,
+  "ff_tokens": 1365,
+  "savings_pct": 0.0
+}

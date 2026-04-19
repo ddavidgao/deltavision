@@ -1,0 +1,13 @@
+{
+  "step": 3,
+  "label": "Open 461 Dean Apartments",
+  "phase": "research",
+  "action": "click listing 1",
+  "url": "https://www.google.com/maps/place/461+Dean+Apartments/data=!4m7!3m6!1s0x89c25baef2277129:0x81f33cf348117426!8m2!3d40.6821039!4d-73.9753978!16s%2Fg%2F11c6sqy70l!19sChIJKXEn8q5bwokRJnQRSPM884E?authuser=0&hl=en&rclk=1",
+  "t_rel_s": 25.09,
+  "obs_type": "full_frame",
+  "trigger": "url_change",
+  "dv_tokens": 1365,
+  "ff_tokens": 1365,
+  "savings_pct": 0.0
+}

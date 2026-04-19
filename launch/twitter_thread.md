@@ -5,12 +5,13 @@
 **Target post time:** Sunday evening ~7-9pm ET or Monday morning 8-10am ET.
 
 **Attachment order:**
-1. Tweet 1 → attach `benchmarks/ablation/video_frames/apartment_demo.mp4` (~32s, the multi-tab apartment demo — main hook)
+1. Tweet 1 → attach `benchmarks/ablation/video_frames/multitab_real_v1.mp4` (~86s, real Google Maps → Google Sheets — main hook, real sites no mocks)
 2. Tweet 10 → optionally attach `benchmarks/ablation/video_frames/deltavision_v1_launch.mp4` (~75s, the deep technical walkthrough — supporting)
 
 **Framing discipline:**
-- **67% multi-tab apartment demo** is the visceral hook — real workflow, real time, real savings
-- 77.2% is the **compression ceiling** on a scripted trajectory
+- **54% real 2-site demo** is the hook — real Maps research + real Sheets, zero mocks. More credible than 67% on local HTML.
+- **67% scripted ceiling** is tweet 4 — honest about what it is (mocked HTML, maximum compression)
+- 77.2% is the **hard ceiling** on a pure scripted trajectory
 - 62% head-to-head is the **utility proof** — same Claude agent, same task, different observation pipeline, 3/3 both sides
 - **Task-shape caveat is explicit in tweet 7** — don't let the big numbers imply universal savings
 - Four claims, four tweets, don't conflate them.
@@ -19,19 +20,19 @@
 
 ## Thread (10 tweets)
 
-### 1/10 — Hook (attach apartment_demo.mp4)
+### 1/10 — Hook (attach multitab_real_v1.mp4)
 ```
 I shipped a thing.
 
 DeltaVision: CU agents that send your model only what changed on screen, not a full screenshot every step.
 
-Apartment research → spreadsheet → filter → email.
-Same agent, same task.
+Real Google Maps → real Google Sheet.
+Same 21-step workflow. No mocks.
 
-Full Frame: 39,585 tokens.
-DeltaVision: 13,076.
+Full Frame: 28,665 tokens.
+DeltaVision: 13,179.
 
-67% fewer tokens. ↓ video ↓
+54% fewer tokens. ↓ video ↓
 
 🧵
 ```
@@ -181,8 +182,8 @@ pip install deltavision 🧵
 
 ## Pre-post checklist
 
-- [ ] Post apartment_demo.mp4 with tweet 1 (32s, 1080p60, 3.7 MB)
-- [ ] Verify the big number at 0:30 reads clean on mobile preview
+- [ ] Post multitab_real_v1.mp4 with tweet 1 (~86s, 1080p60)
+- [ ] Verify the 54% reveal at the outro reads clean on mobile preview
 - [ ] PyPI link resolves (pypi.org/project/deltavision/1.0.4/)
 - [ ] GitHub link resolves (github.com/ddavidgao/deltavision)
 - [ ] All 9 tweets copied into Twitter's thread composer

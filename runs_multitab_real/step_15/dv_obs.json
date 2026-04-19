@@ -1,0 +1,13 @@
+{
+  "step": 15,
+  "label": "Row 2 C: rating",
+  "phase": "document",
+  "action": "type C2",
+  "url": "https://docs.google.com/spreadsheets/d/1_WQ2e9-7CS6NbFZ-3WsdP5Mrfptb1e4_CWIlVOszKzc/edit?gid=0#gid=0",
+  "t_rel_s": 62.46,
+  "obs_type": "delta",
+  "trigger": "none",
+  "dv_tokens": 276,
+  "ff_tokens": 1365,
+  "savings_pct": 79.8
+}

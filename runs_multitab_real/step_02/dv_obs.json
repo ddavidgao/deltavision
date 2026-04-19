@@ -1,0 +1,13 @@
+{
+  "step": 2,
+  "label": "Read sidebar results",
+  "phase": "research",
+  "action": "idle read",
+  "url": "https://www.google.com/maps/search/apartments+brooklyn+ny/@40.6581757,-73.975529,12z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI2MDQxNS4wIKXMDSoASAFQAw%3D%3D",
+  "t_rel_s": 21.16,
+  "obs_type": "delta",
+  "trigger": "none",
+  "dv_tokens": 96,
+  "ff_tokens": 1365,
+  "savings_pct": 93.0
+}
