@@ -1,0 +1,149 @@
+{
+  "site": "google.com/maps",
+  "url": "https://www.google.com/maps/search/apartments+brooklyn+ny",
+  "viewport": {
+    "width": 1280,
+    "height": 800
+  },
+  "n_steps": 11,
+  "total_dv_tokens": 9249,
+  "total_ff_tokens": 15015,
+  "savings_pct": 38.4,
+  "n_full_frames": 6,
+  "n_deltas": 5,
+  "elapsed_s": 55.5,
+  "steps": [
+    {
+      "step": 1,
+      "label": "Load Maps w/ search",
+      "action": "goto maps search",
+      "url": "https://www.google.com/maps/search/apartments+brooklyn+ny/@40.6581757,-73.9718994,12z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI2MDQxNS4wIKXMDSoASAFQAw%3D%3D",
+      "t_rel_s": 11.0,
+      "obs_type": "full_frame",
+      "trigger": "initial",
+      "dv_tokens": 1365,
+      "ff_tokens": 1365,
+      "savings_pct": 0.0
+    },
+    {
+      "step": 2,
+      "label": "Read sidebar results",
+      "action": "idle read",
+      "url": "https://www.google.com/maps/search/apartments+brooklyn+ny/@40.6581757,-73.9718994,12z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI2MDQxNS4wIKXMDSoASAFQAw%3D%3D",
+      "t_rel_s": 14.99,
+      "obs_type": "delta",
+      "trigger": "none",
+      "dv_tokens": 171,
+      "ff_tokens": 1365,
+      "savings_pct": 87.5
+    },
+    {
+      "step": 3,
+      "label": "Open first result",
+      "action": "click 461 Dean Apartments",
+      "url": "https://www.google.com/maps/place/461+Dean+Apartments/@40.6821039,-73.9753978,16z/data=!3m1!4b1!4m6!3m5!1s0x89c25baef2277129:0x81f33cf348117426!8m2!3d40.6821039!4d-73.9753978!16s%2Fg%2F11c6sqy70l?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDQxNS4wIKXMDSoASAFQAw%3D%3D",
+      "t_rel_s": 22.08,
+      "obs_type": "full_frame",
+      "trigger": "url_change",
+      "dv_tokens": 1365,
+      "ff_tokens": 1365,
+      "savings_pct": 0.0
+    },
+    {
+      "step": 4,
+      "label": "Read first result",
+      "action": "idle read",
+      "url": "https://www.google.com/maps/place/461+Dean+Apartments/@40.6821039,-73.9753978,16z/data=!3m1!4b1!4m6!3m5!1s0x89c25baef2277129:0x81f33cf348117426!8m2!3d40.6821039!4d-73.9753978!16s%2Fg%2F11c6sqy70l?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDQxNS4wIKXMDSoASAFQAw%3D%3D",
+      "t_rel_s": 25.78,
+      "obs_type": "delta",
+      "trigger": "none",
+      "dv_tokens": 96,
+      "ff_tokens": 1365,
+      "savings_pct": 93.0
+    },
+    {
+      "step": 5,
+      "label": "Scroll first detail",
+      "action": "scroll 400px",
+      "url": "https://www.google.com/maps/place/461+Dean+Apartments/@40.6821039,-73.9753978,16z/data=!3m1!4b1!4m6!3m5!1s0x89c25baef2277129:0x81f33cf348117426!8m2!3d40.6821039!4d-73.9753978!16s%2Fg%2F11c6sqy70l?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDQxNS4wIKXMDSoASAFQAw%3D%3D",
+      "t_rel_s": 28.47,
+      "obs_type": "delta",
+      "trigger": "scroll_bypass",
+      "dv_tokens": 600,
+      "ff_tokens": 1365,
+      "savings_pct": 56.0
+    },
+    {
+      "step": 6,
+      "label": "Back to search results",
+      "action": "back to list",
+      "url": "https://www.google.com/maps/search/apartments+brooklyn+ny/@40.6581757,-73.9718994,12z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI2MDQxNS4wIKXMDSoASAFQAw%3D%3D",
+      "t_rel_s": 35.58,
+      "obs_type": "full_frame",
+      "trigger": "url_change",
+      "dv_tokens": 1365,
+      "ff_tokens": 1365,
+      "savings_pct": 0.0
+    },
+    {
+      "step": 7,
+      "label": "Zoom map in",
+      "action": "zoom in",
+      "url": "https://www.google.com/maps/search/apartments+brooklyn+ny/@40.6581758,-73.9307007,13z?entry=ttu&g_ep=EgoyMDI2MDQxNS4wIKXMDSoASAFQAw%3D%3D",
+      "t_rel_s": 39.27,
+      "obs_type": "full_frame",
+      "trigger": "url_change",
+      "dv_tokens": 1365,
+      "ff_tokens": 1365,
+      "savings_pct": 0.0
+    },
+    {
+      "step": 8,
+      "label": "Open second result",
+      "action": "click The Bay NYC Luxury Apartment R",
+      "url": "https://www.google.com/maps/place/The+Bay+NYC+Luxury+Apartment+Rentals/@40.5800618,-73.9759813,17z/data=!3m1!4b1!4m6!3m5!1s0x89c24581cd74d369:0xf8224ff43d234368!8m2!3d40.5800618!4d-73.9759813!16s%2Fg%2F11vc7y5dtj?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDQxNS4wIKXMDSoASAFQAw%3D%3D",
+      "t_rel_s": 46.38,
+      "obs_type": "full_frame",
+      "trigger": "url_change",
+      "dv_tokens": 1365,
+      "ff_tokens": 1365,
+      "savings_pct": 0.0
+    },
+    {
+      "step": 9,
+      "label": "Read second result",
+      "action": "idle read",
+      "url": "https://www.google.com/maps/place/The+Bay+NYC+Luxury+Apartment+Rentals/@40.5800618,-73.9759813,17z/data=!3m1!4b1!4m6!3m5!1s0x89c24581cd74d369:0xf8224ff43d234368!8m2!3d40.5800618!4d-73.9759813!16s%2Fg%2F11vc7y5dtj?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDQxNS4wIKXMDSoASAFQAw%3D%3D",
+      "t_rel_s": 50.11,
+      "obs_type": "delta",
+      "trigger": "none",
+      "dv_tokens": 96,
+      "ff_tokens": 1365,
+      "savings_pct": 93.0
+    },
+    {
+      "step": 10,
+      "label": "Scroll second detail",
+      "action": "scroll 400px",
+      "url": "https://www.google.com/maps/place/The+Bay+NYC+Luxury+Apartment+Rentals/@40.5800618,-73.9759813,17z/data=!3m1!4b1!4m6!3m5!1s0x89c24581cd74d369:0xf8224ff43d234368!8m2!3d40.5800618!4d-73.9759813!16s%2Fg%2F11vc7y5dtj?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDQxNS4wIKXMDSoASAFQAw%3D%3D",
+      "t_rel_s": 52.83,
+      "obs_type": "full_frame",
+      "trigger": "crop_covers_frame",
+      "dv_tokens": 1365,
+      "ff_tokens": 1365,
+      "savings_pct": 0.0
+    },
+    {
+      "step": 11,
+      "label": "Final frame",
+      "action": "idle",
+      "url": "https://www.google.com/maps/place/The+Bay+NYC+Luxury+Apartment+Rentals/@40.5800618,-73.9759813,17z/data=!3m1!4b1!4m6!3m5!1s0x89c24581cd74d369:0xf8224ff43d234368!8m2!3d40.5800618!4d-73.9759813!16s%2Fg%2F11vc7y5dtj?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDQxNS4wIKXMDSoASAFQAw%3D%3D",
+      "t_rel_s": 55.54,
+      "obs_type": "delta",
+      "trigger": "none",
+      "dv_tokens": 96,
+      "ff_tokens": 1365,
+      "savings_pct": 93.0
+    }
+  ]
+}

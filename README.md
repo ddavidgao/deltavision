@@ -82,31 +82,44 @@ Dogfood-measured, not modeled. The ~0% case is a real sibling-agent A/B (2026-04
 
 This is the tool's shape, not a bug. The CV classifier can't compress what isn't redundant.
 
-## Headline demo — 3-tab apartment deal flow
+## Headline demos — two videos, two honesty tiers
 
-A real 29-step user task: research 5 Brooklyn apartment listings on tab 1, enter them into a comparison spreadsheet on tab 2, filter to under $3000, draft an email to the broker on tab 3. One Chromium session, scripted trajectory, both sides observed on the same screenshots:
+### (1) Real Google Maps apartment search — 38.4% savings on the real web
+
+A scripted 11-step trajectory on live Google Maps: search Brooklyn apartments, scroll listings, click into two real listing detail pages (461 Dean Apartments, The Bay NYC Luxury), scroll details, zoom map. Every observation runs through the live DeltaVision CV pipeline on the real screenshot — **no mocks, no hand-coded pages.**
 
 | | Full Frame | DeltaVision | Savings |
 |---|---|---|---|
-| Input tokens | 39,585 | 13,076 | **67.0%** |
+| Image tokens | 15,015 | 9,249 | **38.4%** |
+| Full-frame obs | 11 (every step) | 6 (URL changes + zoom + scroll guard) | — |
+| Delta obs | — | 5 | — |
+
+**Video walkthrough:** [`benchmarks/ablation/video_frames/gmaps_demo_v1.mp4`](benchmarks/ablation/video_frames/gmaps_demo_v1.mp4) (68 s, 1080p60) — includes live counters + scene labels.
+**Source metadata:** [`gmaps_demo_v1.metadata.json`](benchmarks/ablation/video_frames/gmaps_demo_v1.metadata.json) (per-step timing, cumulative tokens, obs_type + trigger).
+
+**Run it yourself** (real Google Maps, no auth, no API key):
+
+```bash
+python examples/gmaps_demo.py      # produces runs_gmaps/browser.webm + metadata.json
+```
+
+The 38.4% is *in the mixed-browsing band of the task-shape matrix above* — honest for a real user workflow where the agent does both navigation (full_frame) and same-page reading (delta).
+
+### (2) Scripted 3-tab workflow — 67% savings on local mocks (compression ceiling)
+
+| | Full Frame | DeltaVision | Savings |
+|---|---|---|---|
+| Image tokens | 39,585 | 13,076 | **67.0%** |
 | Per-step avg | 1,365 | 451 | 67.0% |
-| Full-frame obs | 29 (every step) | 3 (initial + tab switches) | — |
 
 **Video walkthrough:** [`benchmarks/ablation/video_frames/apartment_demo.mp4`](benchmarks/ablation/video_frames/apartment_demo.mp4) (32 s, 1080p60)
 
-**Run it yourself** (fully reproducible, no auth, no API key):
+This version uses local HTML mocks designed to exercise DV's sweet spot. The 67% shows the compression ceiling when a task has many same-page interactions. For how real agents on real sites actually do, see video (1) above.
 
 ```bash
-# Terminal 1
-cd examples/multitab_apartment_demo/mocks
-python3 -m http.server 8765
-
-# Terminal 2
-cd examples/multitab_apartment_demo
-python3 run_multitab_demo.py
+cd examples/multitab_apartment_demo/mocks && python3 -m http.server 8765  # Terminal 1
+cd examples/multitab_apartment_demo && python3 run_multitab_demo.py       # Terminal 2
 ```
-
-Output: `runs_multitab/browser.mp4` + per-step screenshots + `metadata.json` with exact token counts.
 
 ## Why This Matters
 
