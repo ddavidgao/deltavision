@@ -65,6 +65,23 @@ Because v1.0.x maintains backwards compatibility with the flat-module imports (`
 
 **PyPI:** [`deltavision==1.0.4`](https://pypi.org/project/deltavision/1.0.4/) · **OS-level companion (V2, alpha):** [`deltavision-os`](https://pypi.org/project/deltavision-os/) · **Source of truth:** private repo, public mirror auto-synced
 
+## When DeltaVision helps — and when it doesn't
+
+DeltaVision's savings are **task-shape-dependent.** Reading the headline numbers without this context will over-sell the tool.
+
+| Task shape | DV savings | Why |
+|---|---|---|
+| **Sticky-context workflows** (forms, SPAs, spreadsheets, multi-tab user tasks — same page, many small interactions) | **40–77%** | agent re-reads the same page; small deltas dominate |
+| **Mixed browsing** (typical CU workload: clicks + typing + occasional nav) | **20–40%** | some steps hit the delta path, some hit new_page |
+| **Scroll-heavy media exploration** (WebVoyager-style news/feed sites) | **5–20%** | scroll-bypass gate fires; delta crops are near-viewport |
+| **Nav-heavy research** (URL-hop every 1–2 steps, big scrolls) | **~0%** | every observation is a full frame by correct design — no redundant context to strip |
+
+Dogfood-measured, not modeled. The ~0% case is a real sibling-agent A/B (2026-04-19, 10-step deep-research trajectory, URL nav + 600 px scrolls) — DV stayed on the `full_frame` path on every step by design, because the classifier correctly identified that each observation was genuinely a new page or a new viewport of content.
+
+**Sweet spot: agents that re-read the same page.** Form-heavy flows, SPA interactions, multi-tab comparison tasks. Not ideal: "open 10 new tabs, read each, close them."
+
+This is the tool's shape, not a bug. The CV classifier can't compress what isn't redundant.
+
 ## Headline demo — 3-tab apartment deal flow
 
 A real 29-step user task: research 5 Brooklyn apartment listings on tab 1, enter them into a comparison spreadsheet on tab 2, filter to under $3000, draft an email to the broker on tab 3. One Chromium session, scripted trajectory, both sides observed on the same screenshots:

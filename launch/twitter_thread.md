@@ -1,24 +1,25 @@
-# DeltaVision launch — Twitter thread (v1.0.2)
+# DeltaVision launch — Twitter thread (v1.0.4)
 
-**Status:** Ready to post. Numbers are final.
+**Status:** Ready to post. Numbers are final. Carries the task-shape caveat as tweet 7/10.
 
 **Target post time:** Sunday evening ~7-9pm ET or Monday morning 8-10am ET.
 
 **Attachment order:**
 1. Tweet 1 → attach `benchmarks/ablation/video_frames/apartment_demo.mp4` (~32s, the multi-tab apartment demo — main hook)
-2. Tweet 9 → optionally attach `benchmarks/ablation/video_frames/deltavision_v1_launch.mp4` (~75s, the deep technical walkthrough — supporting)
+2. Tweet 10 → optionally attach `benchmarks/ablation/video_frames/deltavision_v1_launch.mp4` (~75s, the deep technical walkthrough — supporting)
 
 **Framing discipline:**
 - **67% multi-tab apartment demo** is the visceral hook — real workflow, real time, real savings
 - 77.2% is the **compression ceiling** on a scripted trajectory
 - 62% head-to-head is the **utility proof** — same Claude agent, same task, different observation pipeline, 3/3 both sides
-- Three numbers, three different claims. Don't conflate them.
+- **Task-shape caveat is explicit in tweet 7** — don't let the big numbers imply universal savings
+- Four claims, four tweets, don't conflate them.
 
 ---
 
-## Thread (9 tweets)
+## Thread (10 tweets)
 
-### 1/9 — Hook (attach apartment_demo.mp4)
+### 1/10 — Hook (attach apartment_demo.mp4)
 ```
 I shipped a thing.
 
@@ -35,7 +36,7 @@ DeltaVision: 13,076.
 🧵
 ```
 
-### 2/9 — Problem
+### 2/10 — Problem
 ```
 Every computer-use agent today sends the model a full screenshot on EVERY step.
 
@@ -46,7 +47,7 @@ A 1280×800 screenshot = ~1,365 image tokens. A 29-step task = 39,585 tokens jus
 The model doesn't need most of it.
 ```
 
-### 3/9 — Mechanism
+### 3/10 — Mechanism
 ```
 DeltaVision sits between browser and model.
 
@@ -59,7 +60,7 @@ Pipeline (all CPU, no LLM, no RNG):
 Output: a full frame when the page actually changed, or a thumbnail + tiny crop of what moved.
 ```
 
-### 4/9 — Compression ceiling
+### 4/10 — Compression ceiling
 ```
 On a fully scripted 25-step spreadsheet benchmark, the ceiling is 77.2%.
 
@@ -70,7 +71,7 @@ No agent, no trajectory variance, no LLM. Byte-reproducible across 3 independent
 This is the compression ceiling. What's achievable when everything behaves.
 ```
 
-### 5/9 — Utility with a real Claude agent
+### 5/10 — Utility with a real Claude agent
 ```
 But scripted isn't real.
 
@@ -84,7 +85,7 @@ DV agent: 7 steps, 23,693 tokens, 3/3 success
 Token variance on DV: ±66. Deterministic.
 ```
 
-### 6/9 — The architectural lesson
+### 6/10 — The architectural lesson
 ```
 CV alone wasn't enough. Two things the classifier couldn't see:
 
@@ -96,7 +97,17 @@ Fix: one JS eval per step returns DOM clickables + focus. ~300 tokens.
 CV + DOM hybrid. The right primitive, not "more pixels."
 ```
 
-### 7/9 — What's in the box
+### 7/10 — Know the shape
+```
+Know the shape: DV is task-sensitive.
+
+Sweet spot — agents re-reading the same page (forms, SPAs, multi-tab flows): 40–77% savings.
+Nav-heavy research (URL-hop every step): A/B'd it → 0%. Every obs was genuinely new.
+
+Compresses redundancy. Can't compress what isn't there.
+```
+
+### 8/10 — What's in the box
 ```
 Ships with 4 adapters:
 • Anthropic (claude-sonnet-4 verified live)
@@ -107,19 +118,19 @@ Ships with 4 adapters:
 Drop-in replacement for your screenshot step. Tool-result-shaped content — models already speak it.
 ```
 
-### 8/9 — Reproducibility discipline
+### 9/10 — Reproducibility discipline
 ```
 Every number has a checked-in artifact:
 • 67% apartment → examples/multitab_apartment_demo/
 • 77.2% scripted → examples/spreadsheet_observation_cost.py
 • 62% head-to-head → benchmarks/headtohead/
 • 17/17 classifier → benchmarks/generalization/
-• 224 tests pass on Ubuntu + macOS × Py 3.11/3.12/3.13
+• 232 tests pass on Ubuntu + macOS × Py 3.11/3.12/3.13
 
 Clone the repo. Re-run anything.
 ```
 
-### 9/9 — Links
+### 10/10 — Links
 ```
 pip install deltavision
 
@@ -172,7 +183,7 @@ pip install deltavision 🧵
 
 - [ ] Post apartment_demo.mp4 with tweet 1 (32s, 1080p60, 3.7 MB)
 - [ ] Verify the big number at 0:30 reads clean on mobile preview
-- [ ] PyPI link resolves (pypi.org/project/deltavision/1.0.2/)
+- [ ] PyPI link resolves (pypi.org/project/deltavision/1.0.4/)
 - [ ] GitHub link resolves (github.com/ddavidgao/deltavision)
 - [ ] All 9 tweets copied into Twitter's thread composer
 - [ ] Pin tweet 1 to profile
