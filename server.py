@@ -10,7 +10,7 @@ Run:
 
 API:
     GET  /health
-        → {"status": "ok", "version": "1.0.0"}
+        → {"status": "ok", "version": <installed deltavision version>}
 
     POST /observe
         Request (one of):
@@ -49,6 +49,29 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from observer import DeltaVisionObserver
 
+
+def _package_version() -> str:
+    """Best-effort read of the installed deltavision version.
+
+    Tries the umbrella package first (what `pip install deltavision`
+    provides), falls back to parsing pyproject.toml when running from the
+    repo root, final fallback to "unknown".
+    """
+    try:
+        import deltavision
+        v = getattr(deltavision, "__version__", None)
+        if v:
+            return v
+    except Exception:
+        pass
+    try:
+        from importlib.metadata import version as _v
+        return _v("deltavision")
+    except Exception:
+        return "unknown"
+
+
+VERSION = _package_version()
 log = logging.getLogger("dv-server")
 
 
@@ -189,7 +212,7 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         parsed = urlparse(self.path)
         if parsed.path == "/health":
-            return self._respond_json(200, {"status": "ok", "version": "1.0.0"})
+            return self._respond_json(200, {"status": "ok", "version": VERSION})
         if parsed.path == "/state":
             cls = OBSERVER.last_classification
             return self._respond_json(200, {

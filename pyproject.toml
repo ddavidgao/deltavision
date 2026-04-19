@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "deltavision"
-version = "1.0.3"
+version = "1.0.4"
 description = "Delta-first computer-use agent framework: CV + DOM hybrid observation with a zero-LLM gating pipeline"
 readme = "README.md"
 license = {file = "LICENSE"}
@@ -65,7 +65,7 @@ Repository = "https://github.com/ddavidgao/deltavision"
 "Private (source of truth)" = "https://github.com/ddavidgao/deltavision-private"
 
 [project.scripts]
-deltavision = "main:cli_entry"
+deltavision = "deltavision.cli:main"
 
 [tool.setuptools]
 # Module layout: this is a flat repo, not src/. List packages explicitly to

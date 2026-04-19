@@ -24,7 +24,46 @@ result.to_anthropic_tool_result_content()  # ready-to-send Claude content blocks
 
 That's it. Plug the `observe()` call wherever your agent currently sends a screenshot to the model. Every adapter (`to_anthropic_*`, `to_openai_*`, `to_browser_use_*`, `to_stagehand_*`) returns content already shaped for that SDK's vision API. See [`examples/integration_tests.py`](examples/integration_tests.py) for live-API proof on all four.
 
-**PyPI:** [`deltavision==1.0.3`](https://pypi.org/project/deltavision/1.0.3/) · **OS-level companion (V2, alpha):** [`deltavision-os`](https://pypi.org/project/deltavision-os/) · **Source of truth:** private repo, public mirror auto-synced
+### Verify your install in 10 seconds
+
+```bash
+deltavision selftest
+```
+
+Runs 9 staged checks (import → observer → delta path → coverage guard → adapter → HTTP sidecar round-trip). Each stage reports ✓ or ✗ with what it checked, so a failure points directly at the broken piece. No API keys, no network, all synthetic frames.
+
+```
+DeltaVision self-test — staged E2E
+  S1  import deltavision                              ✓  v1.0.4
+  S2  observer construction                           ✓  26 fields
+  S3  initial observation → full_frame                ✓  tokens=1365
+  S4  small delta is cheaper than full frame          ✓  tokens=171 vs FF=1365 (87.5% saved)
+  S5  whole-frame change → coverage guard fires       ✓  tokens=1365 = FF 1365 (trigger='crop_covers_frame')
+  S6  anthropic adapter output is well-formed         ✓  1 content blocks
+  S7  HTTP /health reports package version            ✓  version=1.0.4
+  S8  HTTP /observe round-trips a DVObservation       ✓
+  S9  HTTP /reset clears observer state               ✓
+  All 9 stages passed.
+```
+
+### Run as an HTTP service (non-Python agents)
+
+```bash
+python -m server --port 9000
+
+# Then from any runtime:
+curl http://localhost:9000/health                 # → {"status":"ok","version":"1.0.4"}
+curl -X POST http://localhost:9000/observe \
+     -F file=@screenshot.png -F url=... -F format=anthropic
+```
+
+Endpoints: `GET /health` · `POST /observe` · `POST /reset` · `GET /state`. Returns adapter-formatted JSON (`anthropic` / `openai` / `browser_use` / `stagehand` / `raw`). See [`server.py`](server.py) for the full API.
+
+### Namespace layout caveat
+
+Because v1.0.x maintains backwards compatibility with the flat-module imports (`from observer import ...`), the wheel ships both a `deltavision/` umbrella package AND the raw modules (`observer.py`, `vision/`, `agent/`, `model/`) at site-packages root. If your CWD has a directory named `vision/` or `observer.py`, it can shadow the installed one — run your script from a different directory or use `from deltavision import X` (which always resolves through the umbrella). v2.0 will nest modules under the package to remove this caveat.
+
+**PyPI:** [`deltavision==1.0.4`](https://pypi.org/project/deltavision/1.0.4/) · **OS-level companion (V2, alpha):** [`deltavision-os`](https://pypi.org/project/deltavision-os/) · **Source of truth:** private repo, public mirror auto-synced
 
 ## Headline demo — 3-tab apartment deal flow
 
@@ -204,13 +243,13 @@ deltavision/
     generalization/ # Classifier accuracy across diverse sites + visual frame capture
     ablation/       # DeltaVision vs full-frame controlled comparison
     sites/          # Benchmark site registry (7 sites, 3 difficulty tiers)
-  tests/            # 226 tests: unit, integration, live Playwright, real screenshots
+  tests/            # 232 tests: unit, integration, live Playwright, real screenshots
   paper/            # Paper outline with figure/table mapping to data
 ```
 
 ## Testing
 
-`pytest tests/` — 226 tests total (219 offline + 7 live Playwright).
+`pytest tests/` — 232 tests total (225 offline + 7 live Playwright). Covers CV pipeline, classifier cascade, observation builder, safety layer, response parsers, HTTP sidecar, v1.0.3 regression invariants (`import deltavision` works, DV ≤ FF on every single step).
 
 | Suite | Tests | Covers |
 |---|---|---|
