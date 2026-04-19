@@ -105,7 +105,26 @@ python examples/gmaps_demo.py      # produces runs_gmaps/browser.webm + metadata
 
 The 38.4% is *in the mixed-browsing band of the task-shape matrix above* — honest for a real user workflow where the agent does both navigation (full_frame) and same-page reading (delta).
 
-### (2) Scripted 3-tab workflow — 67% savings on local mocks (compression ceiling)
+### (2) Real 2-site workflow: Maps → Sheets — 54% savings on live sites
+
+A scripted 21-step workflow on two live, unmodified sites: **Google Maps** (research phase, 7 steps — search apartments, open two listings, scroll details) → **Google Sheets** (document phase, 14 steps — type findings into a real anonymous-edit spreadsheet). No mocks. The two phases run in separate browser contexts so the recording shows each site correctly.
+
+| | Full Frame | DeltaVision | Savings |
+|---|---|---|---|
+| Image tokens | 28,665 | 13,179 | **54.0%** |
+| Research phase (Maps nav, 7 steps) | 9,555 | 8,286 | ~13% — nav-heavy, expected |
+| Document phase (Sheets fills, 14 steps) | 19,110 | 4,893 | **~74%** — delta-heavy |
+| Full-frame obs | 21 (every step) | 7 | — |
+| Delta obs | — | 14 | — |
+
+The split tells the whole story: nav-heavy = near-zero savings, sticky-context = 74%. The combined 54% is an honest mixed-task number.
+
+**Run it yourself:**
+```bash
+python examples/multitab_real_demo.py   # produces runs_multitab_real/browser.webm + metadata.json
+```
+
+### (3) Scripted 3-tab workflow — 67% savings on local mocks (compression ceiling)
 
 | | Full Frame | DeltaVision | Savings |
 |---|---|---|---|
@@ -129,6 +148,7 @@ Standard computer use agents send a full 1280x900 screenshot (~1600 tokens) on e
 
 | Benchmark | What it measures | Steps | DV cost | FF cost | Savings | Reproduce |
 |---|---|---|---|---|---|---|
+| **Real 2-site workflow** (Google Maps → Google Sheets, live sites) | real multi-tab CU task | 21 | 13,179 tok | 28,665 tok | **54.0%** | `python examples/multitab_real_demo.py` |
 | **Multi-tab apartment workflow** (3 tabs, deterministic script) | realistic 3-tab user task | 29 | 13,076 tok | 39,585 tok | **67.0%** | `python examples/multitab_apartment_demo/run_multitab_demo.py` |
 | Spreadsheet (deterministic, local HTML mock) | compression ceiling | 25 | 7,780 tok | 34,125 tok | **77.2%** | `python examples/spreadsheet_observation_cost.py` |
 | TodoMVC matched-trajectory (real Playwright + Anthropic `tool_result`) | compression with real SPA | 9 | 6,133 tok | 13,824 tok | **55.6%** | `python examples/observer_integration_proof.py` |
