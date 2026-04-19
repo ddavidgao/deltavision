@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Brooklyn Rentals — Weekly Listings</title>
+<style>
+  :root { --bg:#fafafa; --fg:#111; --muted:#666; --accent:#0b5fff; --card:#fff; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif; background: var(--bg); color: var(--fg); }
+  .topbar { background:#111; color:#fff; padding:14px 28px; display:flex; justify-content:space-between; align-items:center; }
+  .topbar h1 { margin:0; font-size:18px; font-weight:600; letter-spacing:0.3px; }
+  .topbar .meta { font-size:13px; opacity:0.7; }
+  .container { max-width: 1100px; margin: 24px auto; padding: 0 24px; }
+  .banner { background:#fff3cd; border-left:4px solid #f0b000; padding:12px 16px; font-size:14px; margin-bottom:20px; }
+  h2 { margin: 0 0 16px; font-size: 22px; font-weight: 600; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .card {
+    background: var(--card); border: 1px solid #e2e2e2; border-radius: 10px;
+    padding: 20px; box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  }
+  .card .title { font-size: 17px; font-weight: 600; margin: 0 0 4px; }
+  .card .price { font-size: 24px; font-weight: 700; color: var(--accent); margin: 6px 0; }
+  .card .row { display: flex; justify-content: space-between; font-size: 14px; color: var(--muted); margin: 3px 0; }
+  .card .row span.label { color: #888; }
+  .card .contact { margin-top: 10px; font-size: 13px; color: #333; border-top: 1px dashed #ddd; padding-top: 8px; }
+  .footer { color: var(--muted); font-size: 13px; margin: 28px 0; text-align: center; }
+  .listing-index { display:inline-block; background:#111; color:#fff; border-radius:4px; padding:2px 8px; font-size:12px; margin-right:8px; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>Brooklyn Rentals — Weekly Listings</h1>
+  <div class="meta">5 new · updated today</div>
+</div>
+
+<div class="container">
+
+  <div class="banner">
+    <strong>5 fresh listings</strong> from verified brokers in your saved neighborhoods: Park Slope · Bed-Stuy · Williamsburg · Crown Heights · Bushwick.
+  </div>
+
+  <h2>Available this week</h2>
+
+  <div class="grid">
+
+    <div class="card" data-idx="1">
+      <div class="title"><span class="listing-index">#1</span>Sunny 1BR — Park Slope</div>
+      <div class="price">$2,850 / mo</div>
+      <div class="row"><span class="label">Neighborhood</span><span>Park Slope</span></div>
+      <div class="row"><span class="label">Size</span><span>650 sqft</span></div>
+      <div class="row"><span class="label">Bed / Bath</span><span>1 / 1</span></div>
+      <div class="contact">Broker: Maya Chen · maya@bkrentals.nyc</div>
+    </div>
+
+    <div class="card" data-idx="2">
+      <div class="title"><span class="listing-index">#2</span>Spacious 2BR Loft — Williamsburg</div>
+      <div class="price">$4,200 / mo</div>
+      <div class="row"><span class="label">Neighborhood</span><span>Williamsburg</span></div>
+      <div class="row"><span class="label">Size</span><span>1050 sqft</span></div>
+      <div class="row"><span class="label">Bed / Bath</span><span>2 / 1</span></div>
+      <div class="contact">Broker: Maya Chen · maya@bkrentals.nyc</div>
+    </div>
+
+    <div class="card" data-idx="3">
+      <div class="title"><span class="listing-index">#3</span>Brownstone Garden 1BR — Bed-Stuy</div>
+      <div class="price">$2,495 / mo</div>
+      <div class="row"><span class="label">Neighborhood</span><span>Bed-Stuy</span></div>
+      <div class="row"><span class="label">Size</span><span>720 sqft</span></div>
+      <div class="row"><span class="label">Bed / Bath</span><span>1 / 1</span></div>
+      <div class="contact">Broker: Maya Chen · maya@bkrentals.nyc</div>
+    </div>
+
+    <div class="card" data-idx="4">
+      <div class="title"><span class="listing-index">#4</span>Modern 2BR w/ Roof Access — Crown Heights</div>
+      <div class="price">$3,400 / mo</div>
+      <div class="row"><span class="label">Neighborhood</span><span>Crown Heights</span></div>
+      <div class="row"><span class="label">Size</span><span>900 sqft</span></div>
+      <div class="row"><span class="label">Bed / Bath</span><span>2 / 1</span></div>
+      <div class="contact">Broker: Maya Chen · maya@bkrentals.nyc</div>
+    </div>
+
+    <div class="card" data-idx="5">
+      <div class="title"><span class="listing-index">#5</span>Cozy Studio — Bushwick</div>
+      <div class="price">$1,950 / mo</div>
+      <div class="row"><span class="label">Neighborhood</span><span>Bushwick</span></div>
+      <div class="row"><span class="label">Size</span><span>420 sqft</span></div>
+      <div class="row"><span class="label">Bed / Bath</span><span>Studio / 1</span></div>
+      <div class="contact">Broker: Maya Chen · maya@bkrentals.nyc</div>
+    </div>
+
+  </div>
+
+  <div class="footer">End of this week's listings · 5 total · Saved search: &lt;$4500, Brooklyn, 1-2BR</div>
+</div>
+
+</body>
+</html>

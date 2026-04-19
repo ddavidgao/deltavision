@@ -1,23 +1,66 @@
 # DeltaVision
 
-**Observation middleware for GUI agents.** A CV pipeline sits between the browser and the model, sending only what changed on screen instead of a full screenshot every step.
+**Observation middleware for computer-use agents.** Sits between your browser and your model. Sends the model only what changed on screen instead of a fresh screenshot every step. The agent still reasons — it just reasons about less.
 
-The model still reasons — it just reasons about less.
+## 60-second install + use
 
 ```bash
 pip install deltavision
 ```
 
-On PyPI: [deltavision 1.0.0](https://pypi.org/project/deltavision/1.0.0/). OS-level companion (V2, alpha): [deltavision-os](https://pypi.org/project/deltavision-os/).
+```python
+import deltavision
+
+obs = deltavision.DeltaVisionObserver()
+
+# Give it a screenshot (bytes / PIL Image / base64 / data URL),
+# the current URL, and a description of the last action.
+result = obs.observe(screenshot_png_bytes, url="https://example.com", last_action="click #submit")
+
+print(result.obs_type)            # "full_frame" or "delta"
+print(result.estimated_image_tokens())  # what this observation actually costs
+result.to_anthropic_tool_result_content()  # ready-to-send Claude content blocks
+```
+
+That's it. Plug the `observe()` call wherever your agent currently sends a screenshot to the model. Every adapter (`to_anthropic_*`, `to_openai_*`, `to_browser_use_*`, `to_stagehand_*`) returns content already shaped for that SDK's vision API. See [`examples/integration_tests.py`](examples/integration_tests.py) for live-API proof on all four.
+
+**PyPI:** [`deltavision==1.0.3`](https://pypi.org/project/deltavision/1.0.3/) · **OS-level companion (V2, alpha):** [`deltavision-os`](https://pypi.org/project/deltavision-os/) · **Source of truth:** private repo, public mirror auto-synced
+
+## Headline demo — 3-tab apartment deal flow
+
+A real 29-step user task: research 5 Brooklyn apartment listings on tab 1, enter them into a comparison spreadsheet on tab 2, filter to under $3000, draft an email to the broker on tab 3. One Chromium session, scripted trajectory, both sides observed on the same screenshots:
+
+| | Full Frame | DeltaVision | Savings |
+|---|---|---|---|
+| Input tokens | 39,585 | 13,076 | **67.0%** |
+| Per-step avg | 1,365 | 451 | 67.0% |
+| Full-frame obs | 29 (every step) | 3 (initial + tab switches) | — |
+
+**Video walkthrough:** [`benchmarks/ablation/video_frames/apartment_demo.mp4`](benchmarks/ablation/video_frames/apartment_demo.mp4) (32 s, 1080p60)
+
+**Run it yourself** (fully reproducible, no auth, no API key):
+
+```bash
+# Terminal 1
+cd examples/multitab_apartment_demo/mocks
+python3 -m http.server 8765
+
+# Terminal 2
+cd examples/multitab_apartment_demo
+python3 run_multitab_demo.py
+```
+
+Output: `runs_multitab/browser.mp4` + per-step screenshots + `metadata.json` with exact token counts.
 
 ## Why This Matters
 
 Standard computer use agents send a full 1280x900 screenshot (~1600 tokens) on every step, whether 1 pixel changed or the entire page swapped. DeltaVision puts a 4-layer CV classifier in front of the model that decides: did the page change, or just a region? Send accordingly.
 
-**Three headline benchmarks — compression ceiling, matched-trajectory utility, and head-to-head with a real agent making decisions:**
+**Four headline benchmarks across different task shapes:**
 
 | Benchmark | What it measures | Steps | DV cost | FF cost | Savings | Reproduce |
 |---|---|---|---|---|---|---|
+| **Multi-tab apartment workflow** (3 tabs, deterministic script) | realistic 3-tab user task | 29 | 13,076 tok | 39,585 tok | **67.0%** | `python examples/multitab_apartment_demo/run_multitab_demo.py` |
 | Spreadsheet (deterministic, local HTML mock) | compression ceiling | 25 | 7,780 tok | 34,125 tok | **77.2%** | `python examples/spreadsheet_observation_cost.py` |
 | TodoMVC matched-trajectory (real Playwright + Anthropic `tool_result`) | compression with real SPA | 9 | 6,133 tok | 13,824 tok | **55.6%** | `python examples/observer_integration_proof.py` |
 | TodoMVC head-to-head (real Claude agent, n=3 per side) | **utility — real agent decisions** | 7 each | 23,693 ±66 tok | 62,270 ±218 tok | **62.0%** | `python benchmarks/headtohead/run_head_to_head.py` |
@@ -161,13 +204,13 @@ deltavision/
     generalization/ # Classifier accuracy across diverse sites + visual frame capture
     ablation/       # DeltaVision vs full-frame controlled comparison
     sites/          # Benchmark site registry (7 sites, 3 difficulty tiers)
-  tests/            # 224 tests: unit, integration, live Playwright, real screenshots
+  tests/            # 226 tests: unit, integration, live Playwright, real screenshots
   paper/            # Paper outline with figure/table mapping to data
 ```
 
 ## Testing
 
-`pytest tests/` — 224 tests total (217 offline + 7 live Playwright).
+`pytest tests/` — 226 tests total (219 offline + 7 live Playwright).
 
 | Suite | Tests | Covers |
 |---|---|---|

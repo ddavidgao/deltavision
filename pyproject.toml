@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "deltavision"
-version = "1.0.2"
+version = "1.0.3"
 description = "Delta-first computer-use agent framework: CV + DOM hybrid observation with a zero-LLM gating pipeline"
 readme = "README.md"
 license = {file = "LICENSE"}
@@ -70,7 +70,11 @@ deltavision = "main:cli_entry"
 [tool.setuptools]
 # Module layout: this is a flat repo, not src/. List packages explicitly to
 # avoid setuptools auto-discovering test / benchmark dirs as installable.
+# `deltavision/` is an umbrella package that re-exports the public API so
+# `import deltavision` works (v1.0.2 shipped without it — top-level flat
+# modules only, which broke the intuitive import pattern).
 packages = [
+    "deltavision",
     "agent",
     "model",
     "observation",

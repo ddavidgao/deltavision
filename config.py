@@ -56,6 +56,13 @@ class DeltaVisionConfig:
     # Padding around each bbox crop in pixels
     CROP_PADDING: int = 15
 
+    # If the selected crops together cover >= this fraction of the frame,
+    # fall back to full_frame instead of sending thumbnail + near-full crop.
+    # Observed regression: a big scroll produces one crop ~= the whole viewport,
+    # which makes DV cost MORE than the full-frame baseline. This guard fixes
+    # that. Set to 1.0 to disable the guard (not recommended).
+    CROP_COVERAGE_MAX: float = 0.75
+
     # -- Agent Loop Parameters --
 
     MAX_STEPS: int = 50

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Apartment Comparison — Brooklyn</title>
+<style>
+  :root { --bg:#fff; --fg:#111; --muted:#777; --accent:#0b5fff; --ok:#1a7f37; --warn:#cc8400; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif; background: #f6f8fa; color: var(--fg); }
+  .topbar { background: #1a7f37; color: #fff; padding: 14px 28px; display: flex; justify-content: space-between; align-items: center; }
+  .topbar h1 { margin: 0; font-size: 18px; font-weight: 600; letter-spacing: 0.3px; }
+  .topbar .meta { font-size: 13px; opacity: 0.9; }
+  .container { max-width: 1100px; margin: 24px auto; padding: 0 24px; }
+  h2 { margin: 0 0 12px; font-size: 22px; font-weight: 600; }
+  .toolbar { display: flex; gap: 10px; align-items: center; margin-bottom: 14px; }
+  .toolbar button {
+    background: var(--accent); color: #fff; border: 0; border-radius: 6px;
+    padding: 9px 16px; font-size: 14px; font-weight: 500; cursor: pointer;
+  }
+  .toolbar button.secondary { background: #eaeef2; color: #111; }
+  .toolbar button:active { transform: translateY(1px); }
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+  th { background: #f1f4f7; text-align: left; padding: 12px 14px; font-size: 13px; color: #444; font-weight: 600; border-bottom: 1px solid #e2e6ea; }
+  td { padding: 10px 14px; font-size: 14px; border-bottom: 1px solid #eef1f4; }
+  tr.hidden { display: none; }
+  tr.hit { background: #ecfbea; }
+  td input {
+    width: 100%; border: 1px solid #d0d7de; border-radius: 4px;
+    padding: 6px 8px; font-size: 14px; font-family: inherit;
+  }
+  td input:focus { outline: 2px solid var(--accent); border-color: var(--accent); }
+  .filter-status { margin-left: 12px; font-size: 14px; color: var(--muted); }
+  .filter-status.active { color: var(--ok); font-weight: 600; }
+  .footer { color: var(--muted); font-size: 13px; margin: 28px 0; text-align: center; }
+  .filter-chip { display: none; background: #ecfbea; border: 1px solid #a8d9b0; padding: 8px 12px; border-radius: 6px; font-size: 13px; color: #1a7f37; margin-bottom: 14px; }
+  .filter-chip.active { display: inline-block; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>Apartment Comparison — Brooklyn</h1>
+  <div class="meta">Untitled spreadsheet · editing</div>
+</div>
+
+<div class="container">
+  <h2>Candidates</h2>
+
+  <div class="toolbar">
+    <button id="filterBtn" onclick="applyFilter()">Filter: under $3000</button>
+    <button class="secondary" onclick="clearFilter()">Clear filter</button>
+    <span id="filterStatus" class="filter-status">Showing all rows</span>
+  </div>
+
+  <div id="filterChip" class="filter-chip">Active filter: price &lt; $3000 · 2 matches</div>
+
+  <table id="sheet">
+    <thead>
+      <tr>
+        <th style="width: 30%;">Title</th>
+        <th style="width: 20%;">Price ($/mo)</th>
+        <th style="width: 15%;">Sqft</th>
+        <th style="width: 35%;">Neighborhood</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-row="1"><td><input type="text" id="r1_title"/></td><td><input type="number" id="r1_price"/></td><td><input type="number" id="r1_sqft"/></td><td><input type="text" id="r1_hood"/></td></tr>
+      <tr data-row="2"><td><input type="text" id="r2_title"/></td><td><input type="number" id="r2_price"/></td><td><input type="number" id="r2_sqft"/></td><td><input type="text" id="r2_hood"/></td></tr>
+      <tr data-row="3"><td><input type="text" id="r3_title"/></td><td><input type="number" id="r3_price"/></td><td><input type="number" id="r3_sqft"/></td><td><input type="text" id="r3_hood"/></td></tr>
+      <tr data-row="4"><td><input type="text" id="r4_title"/></td><td><input type="number" id="r4_price"/></td><td><input type="number" id="r4_sqft"/></td><td><input type="text" id="r4_hood"/></td></tr>
+      <tr data-row="5"><td><input type="text" id="r5_title"/></td><td><input type="number" id="r5_price"/></td><td><input type="number" id="r5_sqft"/></td><td><input type="text" id="r5_hood"/></td></tr>
+    </tbody>
+  </table>
+
+  <div class="footer">5-row comparison · filter lets you shortlist by price · hand this to your broker</div>
+</div>
+
+<script>
+function applyFilter() {
+  let hits = 0;
+  const rows = document.querySelectorAll('tr[data-row]');
+  rows.forEach(r => {
+    const p = parseFloat(r.querySelector('input[type=number]').value);
+    if (!isNaN(p) && p > 0 && p < 3000) {
+      r.classList.remove('hidden');
+      r.classList.add('hit');
+      hits++;
+    } else {
+      r.classList.add('hidden');
+      r.classList.remove('hit');
+    }
+  });
+  const st = document.getElementById('filterStatus');
+  st.textContent = `Showing ${hits} of 5 rows (filtered)`;
+  st.classList.add('active');
+  const chip = document.getElementById('filterChip');
+  chip.textContent = `Active filter: price < $3000 · ${hits} matches`;
+  chip.classList.add('active');
+}
+function clearFilter() {
+  document.querySelectorAll('tr[data-row]').forEach(r => {
+    r.classList.remove('hidden');
+    r.classList.remove('hit');
+  });
+  const st = document.getElementById('filterStatus');
+  st.textContent = 'Showing all rows';
+  st.classList.remove('active');
+  document.getElementById('filterChip').classList.remove('active');
+}
+</script>
+
+</body>
+</html>

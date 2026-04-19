@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Compose — bkrentals.nyc</title>
+<style>
+  :root { --bg:#f6f8fa; --fg:#111; --muted:#666; --accent:#d44638; --accent-dark:#b23528; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif; background: var(--bg); color: var(--fg); }
+  .topbar { background: var(--accent); color: #fff; padding: 14px 28px; display: flex; justify-content: space-between; align-items: center; }
+  .topbar h1 { margin: 0; font-size: 18px; font-weight: 600; letter-spacing: 0.3px; }
+  .topbar .meta { font-size: 13px; opacity: 0.9; }
+  .compose {
+    max-width: 760px; margin: 40px auto; background: #fff; border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e2e6ea;
+  }
+  .compose-header { background:#f1f4f7; padding:10px 16px; font-size:14px; font-weight:600; color:#333; border-bottom:1px solid #e2e6ea; }
+  .field { display: flex; border-bottom: 1px solid #eef1f4; padding: 10px 16px; align-items: center; }
+  .field label { width: 70px; color: var(--muted); font-size: 13px; font-weight: 500; }
+  .field input, .field textarea {
+    flex: 1; border: 0; padding: 8px 6px; font-size: 14px; font-family: inherit;
+    background: transparent; outline: none; color: var(--fg);
+  }
+  .body-field textarea { min-height: 240px; resize: vertical; line-height: 1.55; }
+  .actions { display: flex; gap: 10px; padding: 14px 16px; background: #fafbfc; align-items: center; }
+  .send-btn {
+    background: var(--accent); color: #fff; border: 0; border-radius: 6px;
+    padding: 10px 24px; font-size: 14px; font-weight: 600; cursor: pointer;
+  }
+  .send-btn:hover { background: var(--accent-dark); }
+  .draft-btn {
+    background: #eaeef2; color: #333; border: 0; border-radius: 6px;
+    padding: 10px 16px; font-size: 14px; font-weight: 500; cursor: pointer;
+  }
+  .status { margin-left: auto; color: var(--muted); font-size: 13px; }
+  .status.sent { color: #1a7f37; font-weight: 600; }
+  .footer { color: var(--muted); font-size: 13px; margin: 28px 0; text-align: center; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>Compose — bkrentals.nyc</h1>
+  <div class="meta">New message · draft</div>
+</div>
+
+<div class="compose">
+  <div class="compose-header">New Message</div>
+  <div class="field"><label>To</label><input type="email" id="to" placeholder="recipient@example.com"/></div>
+  <div class="field"><label>Subject</label><input type="text" id="subject" placeholder="Subject"/></div>
+  <div class="field body-field"><label>Body</label><textarea id="body" placeholder="Write your message..."></textarea></div>
+  <div class="actions">
+    <button class="send-btn" id="sendBtn" onclick="send()">Send</button>
+    <button class="draft-btn" onclick="saveDraft()">Save draft</button>
+    <span id="status" class="status">Draft unsaved</span>
+  </div>
+</div>
+
+<div class="footer">Composing message — this is a draft interface</div>
+
+<script>
+function send() {
+  document.getElementById('status').textContent = 'Sent ✓';
+  document.getElementById('status').classList.add('sent');
+}
+function saveDraft() {
+  document.getElementById('status').textContent = 'Draft saved';
+}
+</script>
+
+</body>
+</html>

@@ -495,6 +495,32 @@ class DeltaVisionObserver:
             self._t0, frame, diff.changed_bboxes, self.config.CROP_PADDING
         )
 
+        # Guard: if the crops together cover most of the frame (common on
+        # large scrolls), sending thumbnail + near-full-frame crop costs MORE
+        # than the full frame alone. Fall back to full_frame in that case.
+        # Observed regression case: a 600 px scroll produces a crop bbox
+        # covering 100% of the viewport — DV: 1536 tok, FF: 1365 tok (+13%).
+        # This guard turns those into a clean 1:1 with FF.
+        frame_area = frame.width * frame.height
+        crop_area = sum((c["bbox"][2] - c["bbox"][0]) * (c["bbox"][3] - c["bbox"][1])
+                        for c in crops[:2])
+        CROP_COVERAGE_MAX = getattr(self.config, "CROP_COVERAGE_MAX", 0.75)
+        if crops and frame_area > 0 and crop_area / frame_area >= CROP_COVERAGE_MAX:
+            # Re-anchor (we're essentially on a new visual context) and emit full frame
+            self._t0 = frame
+            self._anchor = extract_anchor(frame, self.config)
+            self._no_change_streak = 0
+            return self._build_full_frame_obs(
+                frame=frame,
+                trigger="crop_covers_frame",
+                url=url,
+                last_action=last_action,
+                diff_ratio=cls.diff_ratio,
+                phash_distance=cls.phash_distance,
+                anchor_score=cls.anchor_score,
+                action_had_effect=diff.action_had_effect,
+            )
+
         thumb = self._make_thumbnail_with_boxes(frame, crops)
 
         # Cap crops to 2 for token efficiency

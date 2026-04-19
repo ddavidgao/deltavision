@@ -1,44 +1,49 @@
-# DeltaVision V1 launch — Twitter thread
+# DeltaVision launch — Twitter thread (v1.0.2)
 
-**Status:** DRAFT. Numbers in [brackets] get filled in from
-`benchmarks/headtohead/head_to_head_results.json` once the benchmark finishes.
+**Status:** Ready to post. Numbers are final.
 
 **Target post time:** Sunday evening ~7-9pm ET or Monday morning 8-10am ET.
 
-**Framing discipline (per Saturday compression-vs-utility discussion):**
-- 77.2% is the **compression ceiling** on a scripted trajectory. Don't let it
-  read as an agent-win number.
-- Head-to-head on TodoMVC is the **utility proof** — same agent, same task,
-  different observation pipeline.
-- Both matter together; neither alone would.
+**Attachment order:**
+1. Tweet 1 → attach `benchmarks/ablation/video_frames/apartment_demo.mp4` (~32s, the multi-tab apartment demo — main hook)
+2. Tweet 9 → optionally attach `benchmarks/ablation/video_frames/deltavision_v1_launch.mp4` (~75s, the deep technical walkthrough — supporting)
+
+**Framing discipline:**
+- **67% multi-tab apartment demo** is the visceral hook — real workflow, real time, real savings
+- 77.2% is the **compression ceiling** on a scripted trajectory
+- 62% head-to-head is the **utility proof** — same Claude agent, same task, different observation pipeline, 3/3 both sides
+- Three numbers, three different claims. Don't conflate them.
 
 ---
 
 ## Thread (9 tweets)
 
-### 1/9 — Hook
+### 1/9 — Hook (attach apartment_demo.mp4)
 ```
-Shipping DeltaVision v1:
+I shipped a thing.
 
-pip install deltavision
+DeltaVision: CU agents that send your model only what changed on screen, not a full screenshot every step.
 
-Observation middleware for CU agents.
-Instead of sending a full screenshot every step, your model sees only what changed.
+Apartment research → spreadsheet → filter → email.
+Same agent, same task.
 
-Zero-LLM CV pipeline in the gating path. Same model. Fewer tokens.
+Full Frame: 39,585 tokens.
+DeltaVision: 13,076.
 
-Thread 🧵
+67% fewer tokens. ↓ video ↓
+
+🧵
 ```
 
 ### 2/9 — Problem
 ```
-Every computer-use agent today sends the model a full screenshot every step.
+Every computer-use agent today sends the model a full screenshot on EVERY step.
 
-Even when most of the page didn't change.
+Even when nothing changed on screen.
 
-A 1920×1080 screenshot costs ~1,365 image tokens. Multiply by 25 steps = 34,125 tokens just on *looking*.
+A 1280×800 screenshot = ~1,365 image tokens. A 29-step task = 39,585 tokens just on *looking*.
 
-The model doesn't need most of it. Most steps change one region.
+The model doesn't need most of it.
 ```
 
 ### 3/9 — Mechanism
@@ -46,69 +51,70 @@ The model doesn't need most of it. Most steps change one region.
 DeltaVision sits between browser and model.
 
 Pipeline (all CPU, no LLM, no RNG):
-• diff screenshot t0 → t1
-• pHash distance
+• pixel diff t0 → t1
+• perceptual hash distance
 • anchor template match
-• scroll-bypass gate
+• DOM element + focus extraction
 
-Outputs: "this is a new page" OR "here's a low-res thumbnail + tiny crops of what changed."
+Output: a full frame when the page actually changed, or a thumbnail + tiny crop of what moved.
 ```
 
-### 4/9 — Compression ceiling (77.2%)
+### 4/9 — Compression ceiling
 ```
-Compression ceiling: 77.2%
+On a fully scripted 25-step spreadsheet benchmark, the ceiling is 77.2%.
 
-Scripted 25-step spreadsheet, matched trajectory both sides.
-FF baseline: 34,125 image tokens. DV: 7,780.
+FF: 34,125 image tokens. DV: 7,780.
 
-Byte-reproducible: md5-verified across 3 independent processes.
-No LLM in this benchmark = zero trajectory variance.
+No agent, no trajectory variance, no LLM. Byte-reproducible across 3 independent Python processes.
 
-This is what's achievable when it works.
+This is the compression ceiling. What's achievable when everything behaves.
 ```
 
-### 5/9 — Utility with a real agent (head-to-head)
+### 5/9 — Utility with a real Claude agent
 ```
-But scripted isn't the whole story.
+But scripted isn't real.
 
-Head-to-head on TodoMVC — same claude-sonnet-4, same task, n=3 trials per config:
+Head-to-head on TodoMVC — same claude-sonnet-4, n=3 trials each side:
 
-FF agent: 10.0 (range 10–10) steps, 88,115 (range 87,932–88,267) tokens, 3/3 success
-DV agent: 11.0 (range 10–12) steps, 32,446 (range 31,559–32,973) tokens, 2/3 success
+FF agent: 7 steps, 62,270 tokens, 3/3 success
+DV agent: 7 steps, 23,693 tokens, 3/3 success
 
-63.2% fewer tokens, matched success rate.
+62% fewer input tokens. Identical success rate. Identical step count.
+
+Token variance on DV: ±66. Deterministic.
 ```
 
-### 6/9 — Why the split matters
+### 6/9 — The architectural lesson
 ```
-Two numbers, two different claims:
+CV alone wasn't enough. Two things the classifier couldn't see:
 
-77.2% compression (scripted) — what the pipeline can save when agent behavior is fixed.
+1. Focus state — cursor blinker is sub-pixel
+2. Small UI targets — 20px checkboxes invisible in a 320×225 thumbnail
 
-63.2% utility (live agent) — what you actually get when a real model makes decisions with DV observations instead of full frames.
+Fix: one JS eval per step returns DOM clickables + focus. ~300 tokens.
 
-Don't conflate them.
+CV + DOM hybrid. The right primitive, not "more pixels."
 ```
 
 ### 7/9 — What's in the box
 ```
-v1 ships with 4 adapters:
+Ships with 4 adapters:
 • Anthropic (claude-sonnet-4 verified live)
 • OpenAI computer-use (tool_output spec)
-• Browser Use (monkey-patched state summary)
-• Stagehand (parts list)
+• Browser Use (patched state summary)
+• Stagehand (typed parts list)
 
-Drop-in replacement for your screenshot step. Returns tool-result-shaped content the model already understands.
+Drop-in replacement for your screenshot step. Tool-result-shaped content — models already speak it.
 ```
 
 ### 8/9 — Reproducibility discipline
 ```
-Every headline number has a checked-in artifact:
-• 77.2% → examples/spreadsheet_observation_cost.py + .json
-• 55.6% TodoMVC → examples/observer_integration_proof.py
-• 14.7% WebVoyager → webvoyager_subset.py
+Every number has a checked-in artifact:
+• 67% apartment → examples/multitab_apartment_demo/
+• 77.2% scripted → examples/spreadsheet_observation_cost.py
+• 62% head-to-head → benchmarks/headtohead/
 • 17/17 classifier → benchmarks/generalization/
-• 224 tests → pytest tests/
+• 224 tests pass on Ubuntu + macOS × Py 3.11/3.12/3.13
 
 Clone the repo. Re-run anything.
 ```
@@ -117,62 +123,57 @@ Clone the repo. Re-run anything.
 ```
 pip install deltavision
 
-PyPI: https://pypi.org/project/deltavision/
-Repo: https://github.com/ddavidgao/deltavision
-Paper outline + ablation: /paper/outline.md
-Launch video (74s): in the repo README
+PyPI: pypi.org/project/deltavision/
+Repo: github.com/ddavidgao/deltavision
+Deep-dive video (75s, full technical walkthrough): attached
 
-Built this in freshman year at Purdue. Feedback + PRs welcome.
+Built this in freshman year at Purdue.
+Feedback + PRs welcome.
 ```
 
 ---
 
-## Alt snippets (for if you want to reshuffle)
-
-### Alt hook (shorter)
+## Alt hook (shorter / if you want to lead differently)
 ```
-DeltaVision v1 is out.
+I built a middleware that cuts your CU agent's vision bill by 67%.
 
-CU agents send a full screenshot every step. DV sends only what changed.
+Not a model. Not a fine-tune. A classifier in front of the screenshot.
 
-Pure CV classifier in the gating path — no LLM decides when to send a full frame.
-
-77.2% compression ceiling. 63.2% fewer tokens with a real Claude agent.
+Video below. Real 3-tab workflow. Same agent on both sides.
 
 pip install deltavision 🧵
 ```
 
-### Alt for scientific audiences
+## Alt hook (pure number lead)
 ```
-DeltaVision: observation middleware for CU agents.
+Claude agents watching a browser → 39,585 tokens.
+Same Claude agent with DeltaVision → 13,076 tokens.
+Same task. Same outcome.
 
-- Pre-model CV classifier (diff, pHash, template, scroll bypass)
-- Sends only delta crops when safe, full frames on page transitions
-- Matched-trajectory ablation: 77.2% compression
-- Head-to-head on TodoMVC vs full-frame baseline: 63.2% (n=3)
+67% fewer input tokens. Zero LLM in the pipeline that decides.
 
-github.com/ddavidgao/deltavision
+🧵
 ```
 
-### Alt if numbers look ugly
+## Alt hook (infrastructure angle)
 ```
-Head-to-head was messier than we'd hoped — real agents have real variance.
+Built observation middleware for computer-use agents.
 
-But on TodoMVC:
-• DV-wrapped: 11.0 (range 10–12) steps / 32,446 (range 31,559–32,973) tokens / 2/3
-• FF-baseline: 10.0 (range 10–10) steps / 88,115 (range 87,932–88,267) tokens / 3/3
+Sits between browser and model. Sends the model only what changed on screen, not a fresh screenshot every step.
 
-n=3 each. That's the honest picture — same agent, same task, different obs pipeline.
+32s demo: real agent, 3 tabs, 67% fewer tokens.
+
+pip install deltavision 🧵
 ```
 
 ---
 
 ## Pre-post checklist
 
-- [ ] Numbers plugged in (replace all [BRACKETS])
-- [ ] Launch video attached to tweet 1 (74s MP4)
-- [ ] Screenshot of head-to-head table attached to tweet 5
-- [ ] Links resolve (PyPI, GitHub, paper outline)
-- [ ] Run `twine check dist/*` one last time
-- [ ] Push latest private → public
-- [ ] Pinned tweet on profile: "See pinned — DeltaVision v1"
+- [ ] Post apartment_demo.mp4 with tweet 1 (32s, 1080p60, 3.7 MB)
+- [ ] Verify the big number at 0:30 reads clean on mobile preview
+- [ ] PyPI link resolves (pypi.org/project/deltavision/1.0.2/)
+- [ ] GitHub link resolves (github.com/ddavidgao/deltavision)
+- [ ] All 9 tweets copied into Twitter's thread composer
+- [ ] Pin tweet 1 to profile
+- [ ] Optional: cross-post to HN as "Show HN: DeltaVision — observation middleware..."

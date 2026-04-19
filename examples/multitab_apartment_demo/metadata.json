@@ -1,0 +1,891 @@
+{
+  "task": "Brooklyn apartment deal flow (3 tabs)",
+  "n_steps": 29,
+  "total_runtime_sec": 20.78,
+  "ff_total_tokens": 39585,
+  "dv_total_tokens": 13076,
+  "savings_pct": 67.0,
+  "per_step": [
+    {
+      "step": 0,
+      "phase": "research",
+      "tab": "listings",
+      "action": "load listings",
+      "ts_before_sec": 2.102,
+      "ts_after_sec": 2.102,
+      "ff_tokens": 1365,
+      "dv_tokens": 1365,
+      "dv_obs_type": "full_frame",
+      "dv_trigger": "initial",
+      "diff_ratio": 0.0,
+      "phash_distance": 0,
+      "anchor_score": 1.0,
+      "crop_bboxes": [],
+      "ff_running_total": 1365,
+      "dv_running_total": 1365
+    },
+    {
+      "step": 1,
+      "phase": "research",
+      "tab": "listings",
+      "action": "scroll to see all 5",
+      "ts_before_sec": 2.221,
+      "ts_after_sec": 3.425,
+      "ff_tokens": 1365,
+      "dv_tokens": 1536,
+      "dv_obs_type": "delta",
+      "dv_trigger": "scroll_bypass",
+      "diff_ratio": 0.1793,
+      "phash_distance": 0,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          0,
+          0,
+          1280,
+          800
+        ],
+        [
+          1043,
+          170,
+          122,
+          166
+        ]
+      ],
+      "ff_running_total": 2730,
+      "dv_running_total": 2901
+    },
+    {
+      "step": 2,
+      "phase": "fill",
+      "tab": "spreadsheet",
+      "action": "switch to spreadsheet",
+      "ts_before_sec": 4.855,
+      "ts_after_sec": 5.46,
+      "ff_tokens": 1365,
+      "dv_tokens": 1365,
+      "dv_obs_type": "full_frame",
+      "dv_trigger": "initial",
+      "diff_ratio": 0.0,
+      "phash_distance": 0,
+      "anchor_score": 1.0,
+      "crop_bboxes": [],
+      "ff_running_total": 4095,
+      "dv_running_total": 4266
+    },
+    {
+      "step": 3,
+      "phase": "fill",
+      "tab": "spreadsheet",
+      "action": "row 1: title",
+      "ts_before_sec": 5.544,
+      "ts_after_sec": 6.305,
+      "ff_tokens": 1365,
+      "dv_tokens": 171,
+      "dv_obs_type": "delta",
+      "dv_trigger": "none",
+      "diff_ratio": 0.0045,
+      "phash_distance": 6,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          107,
+          189,
+          332,
+          75
+        ]
+      ],
+      "ff_running_total": 5460,
+      "dv_running_total": 4437
+    },
+    {
+      "step": 4,
+      "phase": "fill",
+      "tab": "spreadsheet",
+      "action": "row 1: price",
+      "ts_before_sec": 6.775,
+      "ts_after_sec": 7.066,
+      "ff_tokens": 1365,
+      "dv_tokens": 246,
+      "dv_obs_type": "delta",
+      "dv_trigger": "none",
+      "diff_ratio": 0.004,
+      "phash_distance": 6,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          423,
+          189,
+          226,
+          75
+        ],
+        [
+          119,
+          201,
+          190,
+          54
+        ]
+      ],
+      "ff_running_total": 6825,
+      "dv_running_total": 4683
+    },
+    {
+      "step": 5,
+      "phase": "fill",
+      "tab": "spreadsheet",
+      "action": "row 1: sqft",
+      "ts_before_sec": 7.147,
+      "ts_after_sec": 7.428,
+      "ff_tokens": 1365,
+      "dv_tokens": 246,
+      "dv_obs_type": "delta",
+      "dv_trigger": "none",
+      "diff_ratio": 0.0038,
+      "phash_distance": 0,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          633,
+          189,
+          174,
+          75
+        ],
+        [
+          119,
+          201,
+          190,
+          54
+        ]
+      ],
+      "ff_running_total": 8190,
+      "dv_running_total": 4929
+    },
+    {
+      "step": 6,
+      "phase": "fill",
+      "tab": "spreadsheet",
+      "action": "row 1: hood",
+      "ts_before_sec": 7.511,
+      "ts_after_sec": 7.795,
+      "ff_tokens": 1365,
+      "dv_tokens": 246,
+      "dv_obs_type": "delta",
+      "dv_trigger": "none",
+      "diff_ratio": 0.0064,
+      "phash_distance": 6,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          791,
+          189,
+          384,
+          75
+        ],
+        [
+          119,
+          201,
+          190,
+          54
+        ]
+      ],
+      "ff_running_total": 9555,
+      "dv_running_total": 5175
+    },
+    {
+      "step": 7,
+      "phase": "fill",
+      "tab": "spreadsheet",
+      "action": "row 2: title",
+      "ts_before_sec": 7.878,
+      "ts_after_sec": 8.159,
+      "ff_tokens": 1365,
+      "dv_tokens": 254,
+      "dv_obs_type": "delta",
+      "dv_trigger": "none",
+      "diff_ratio": 0.008,
+      "phash_distance": 6,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          107,
+          201,
+          401,
+          115
+        ],
+        [
+          802,
+          201,
+          109,
+          54
+        ]
+      ],
+      "ff_running_total": 10920,
+      "dv_running_total": 5429
+    },
+    {
+      "step": 8,
+      "phase": "fill",
+      "tab": "spreadsheet",
+      "action": "row 2: price",
+      "ts_before_sec": 8.238,
+      "ts_after_sec": 8.527,
+      "ff_tokens": 1365,
+      "dv_tokens": 246,
+      "dv_obs_type": "delta",
+      "dv_trigger": "none",
+      "diff_ratio": 0.0075,
+      "phash_distance": 4,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          423,
+          201,
+          287,
+          115
+        ],
+        [
+          119,
+          201,
+          255,
+          106
+        ]
+      ],
+      "ff_running_total": 12285,
+      "dv_running_total": 5675
+    },
+    {
+      "step": 9,
+      "phase": "fill",
+      "tab": "spreadsheet",
+      "action": "row 2: sqft",
+      "ts_before_sec": 8.612,
+      "ts_after_sec": 8.895,
+      "ff_tokens": 1365,
+      "dv_tokens": 246,
+      "dv_obs_type": "delta",
+      "dv_trigger": "none",
+      "diff_ratio": 0.0073,
+      "phash_distance": 2,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          633,
+          201,
+          278,
+          115
+        ],
+        [
+          119,
+          201,
+          255,
+          106
+        ]
+      ],
+      "ff_running_total": 13650,
+      "dv_running_total": 5921
+    },
+    {
+      "step": 10,
+      "phase": "fill",
+      "tab": "spreadsheet",
+      "action": "row 2: hood",
+      "ts_before_sec": 8.975,
+      "ts_after_sec": 9.259,
+      "ff_tokens": 1365,
+      "dv_tokens": 251,
+      "dv_obs_type": "delta",
+      "dv_trigger": "none",
+      "diff_ratio": 0.0102,
+      "phash_distance": 6,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          791,
+          201,
+          384,
+          115
+        ],
+        [
+          119,
+          201,
+          255,
+          106
+        ]
+      ],
+      "ff_running_total": 15015,
+      "dv_running_total": 6172
+    },
+    {
+      "step": 11,
+      "phase": "fill",
+      "tab": "spreadsheet",
+      "action": "row 3: title",
+      "ts_before_sec": 9.341,
+      "ts_after_sec": 9.627,
+      "ff_tokens": 1365,
+      "dv_tokens": 284,
+      "dv_obs_type": "delta",
+      "dv_trigger": "none",
+      "diff_ratio": 0.0118,
+      "phash_distance": 8,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          107,
+          201,
+          401,
+          167
+        ],
+        [
+          802,
+          201,
+          123,
+          106
+        ]
+      ],
+      "ff_running_total": 16380,
+      "dv_running_total": 6456
+    },
+    {
+      "step": 12,
+      "phase": "fill",
+      "tab": "spreadsheet",
+      "action": "row 3: price",
+      "ts_before_sec": 9.709,
+      "ts_after_sec": 9.994,
+      "ff_tokens": 1365,
+      "dv_tokens": 255,
+      "dv_obs_type": "delta",
+      "dv_trigger": "none",
+      "diff_ratio": 0.0113,
+      "phash_distance": 8,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          423,
+          201,
+          293,
+          167
+        ],
+        [
+          119,
+          201,
+          270,
+          158
+        ]
+      ],
+      "ff_running_total": 17745,
+      "dv_running_total": 6711
+    },
+    {
+      "step": 13,
+      "phase": "fill",
+      "tab": "spreadsheet",
+      "action": "row 3: sqft",
+      "ts_before_sec": 10.076,
+      "ts_after_sec": 10.36,
+      "ff_tokens": 1365,
+      "dv_tokens": 255,
+      "dv_obs_type": "delta",
+      "dv_trigger": "none",
+      "diff_ratio": 0.011,
+      "phash_distance": 2,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          633,
+          201,
+          292,
+          167
+        ],
+        [
+          119,
+          201,
+          270,
+          158
+        ]
+      ],
+      "ff_running_total": 19110,
+      "dv_running_total": 6966
+    },
+    {
+      "step": 14,
+      "phase": "fill",
+      "tab": "spreadsheet",
+      "action": "row 3: hood",
+      "ts_before_sec": 10.44,
+      "ts_after_sec": 10.728,
+      "ff_tokens": 1365,
+      "dv_tokens": 279,
+      "dv_obs_type": "delta",
+      "dv_trigger": "none",
+      "diff_ratio": 0.0136,
+      "phash_distance": 4,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          791,
+          201,
+          384,
+          167
+        ],
+        [
+          119,
+          201,
+          270,
+          158
+        ]
+      ],
+      "ff_running_total": 20475,
+      "dv_running_total": 7245
+    },
+    {
+      "step": 15,
+      "phase": "fill",
+      "tab": "spreadsheet",
+      "action": "row 4: title",
+      "ts_before_sec": 10.807,
+      "ts_after_sec": 11.091,
+      "ff_tokens": 1365,
+      "dv_tokens": 314,
+      "dv_obs_type": "delta",
+      "dv_trigger": "none",
+      "diff_ratio": 0.0153,
+      "phash_distance": 8,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          107,
+          201,
+          401,
+          219
+        ],
+        [
+          802,
+          201,
+          123,
+          158
+        ]
+      ],
+      "ff_running_total": 21840,
+      "dv_running_total": 7559
+    },
+    {
+      "step": 16,
+      "phase": "fill",
+      "tab": "spreadsheet",
+      "action": "row 4: price",
+      "ts_before_sec": 11.176,
+      "ts_after_sec": 11.458,
+      "ff_tokens": 1365,
+      "dv_tokens": 300,
+      "dv_obs_type": "delta",
+      "dv_trigger": "none",
+      "diff_ratio": 0.0147,
+      "phash_distance": 10,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          423,
+          201,
+          293,
+          219
+        ],
+        [
+          119,
+          201,
+          276,
+          210
+        ]
+      ],
+      "ff_running_total": 23205,
+      "dv_running_total": 7859
+    },
+    {
+      "step": 17,
+      "phase": "fill",
+      "tab": "spreadsheet",
+      "action": "row 4: sqft",
+      "ts_before_sec": 11.544,
+      "ts_after_sec": 11.825,
+      "ff_tokens": 1365,
+      "dv_tokens": 299,
+      "dv_obs_type": "delta",
+      "dv_trigger": "none",
+      "diff_ratio": 0.0145,
+      "phash_distance": 8,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          633,
+          201,
+          292,
+          219
+        ],
+        [
+          119,
+          201,
+          276,
+          210
+        ]
+      ],
+      "ff_running_total": 24570,
+      "dv_running_total": 8158
+    },
+    {
+      "step": 18,
+      "phase": "fill",
+      "tab": "spreadsheet",
+      "action": "row 4: hood",
+      "ts_before_sec": 11.91,
+      "ts_after_sec": 12.192,
+      "ff_tokens": 1365,
+      "dv_tokens": 330,
+      "dv_obs_type": "delta",
+      "dv_trigger": "none",
+      "diff_ratio": 0.0174,
+      "phash_distance": 6,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          791,
+          201,
+          384,
+          219
+        ],
+        [
+          119,
+          201,
+          276,
+          210
+        ]
+      ],
+      "ff_running_total": 25935,
+      "dv_running_total": 8488
+    },
+    {
+      "step": 19,
+      "phase": "fill",
+      "tab": "spreadsheet",
+      "action": "row 5: title",
+      "ts_before_sec": 12.278,
+      "ts_after_sec": 12.559,
+      "ff_tokens": 1365,
+      "dv_tokens": 343,
+      "dv_obs_type": "delta",
+      "dv_trigger": "none",
+      "diff_ratio": 0.0184,
+      "phash_distance": 8,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          107,
+          201,
+          401,
+          271
+        ],
+        [
+          802,
+          201,
+          135,
+          210
+        ]
+      ],
+      "ff_running_total": 27300,
+      "dv_running_total": 8831
+    },
+    {
+      "step": 20,
+      "phase": "fill",
+      "tab": "spreadsheet",
+      "action": "row 5: price",
+      "ts_before_sec": 12.65,
+      "ts_after_sec": 12.925,
+      "ff_tokens": 1365,
+      "dv_tokens": 344,
+      "dv_obs_type": "delta",
+      "dv_trigger": "none",
+      "diff_ratio": 0.0178,
+      "phash_distance": 8,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          423,
+          201,
+          293,
+          271
+        ],
+        [
+          118,
+          201,
+          277,
+          262
+        ]
+      ],
+      "ff_running_total": 28665,
+      "dv_running_total": 9175
+    },
+    {
+      "step": 21,
+      "phase": "fill",
+      "tab": "spreadsheet",
+      "action": "row 5: sqft",
+      "ts_before_sec": 13.013,
+      "ts_after_sec": 13.291,
+      "ff_tokens": 1365,
+      "dv_tokens": 349,
+      "dv_obs_type": "delta",
+      "dv_trigger": "none",
+      "diff_ratio": 0.0176,
+      "phash_distance": 8,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          633,
+          201,
+          304,
+          271
+        ],
+        [
+          118,
+          201,
+          277,
+          262
+        ]
+      ],
+      "ff_running_total": 30030,
+      "dv_running_total": 9524
+    },
+    {
+      "step": 22,
+      "phase": "fill",
+      "tab": "spreadsheet",
+      "action": "row 5: hood",
+      "ts_before_sec": 13.379,
+      "ts_after_sec": 13.66,
+      "ff_tokens": 1365,
+      "dv_tokens": 381,
+      "dv_obs_type": "delta",
+      "dv_trigger": "none",
+      "diff_ratio": 0.0202,
+      "phash_distance": 6,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          791,
+          201,
+          384,
+          271
+        ],
+        [
+          118,
+          201,
+          277,
+          262
+        ]
+      ],
+      "ff_running_total": 31395,
+      "dv_running_total": 9905
+    },
+    {
+      "step": 23,
+      "phase": "filter",
+      "tab": "spreadsheet",
+      "action": "click Filter under 3000",
+      "ts_before_sec": 13.749,
+      "ts_after_sec": 14.763,
+      "ff_tokens": 1365,
+      "dv_tokens": 760,
+      "dv_obs_type": "delta",
+      "dv_trigger": "none",
+      "diff_ratio": 0.048,
+      "phash_distance": 8,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          96,
+          104,
+          1089,
+          365
+        ],
+        [
+          392,
+          472,
+          499,
+          52
+        ]
+      ],
+      "ff_running_total": 32760,
+      "dv_running_total": 10665
+    },
+    {
+      "step": 24,
+      "phase": "email",
+      "tab": "email",
+      "action": "switch to email",
+      "ts_before_sec": 16.175,
+      "ts_after_sec": 16.778,
+      "ff_tokens": 1365,
+      "dv_tokens": 1365,
+      "dv_obs_type": "full_frame",
+      "dv_trigger": "initial",
+      "diff_ratio": 0.0,
+      "phash_distance": 0,
+      "anchor_score": 1.0,
+      "crop_bboxes": [],
+      "ff_running_total": 34125,
+      "dv_running_total": 12030
+    },
+    {
+      "step": 25,
+      "phase": "email",
+      "tab": "email",
+      "action": "type To",
+      "ts_before_sec": 16.844,
+      "ts_after_sec": 17.206,
+      "ff_tokens": 1365,
+      "dv_tokens": 171,
+      "dv_obs_type": "delta",
+      "dv_trigger": "none",
+      "diff_ratio": 0.0016,
+      "phash_distance": 2,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          335,
+          130,
+          193,
+          54
+        ]
+      ],
+      "ff_running_total": 35490,
+      "dv_running_total": 12201
+    },
+    {
+      "step": 26,
+      "phase": "email",
+      "tab": "email",
+      "action": "type Subject",
+      "ts_before_sec": 17.285,
+      "ts_after_sec": 17.639,
+      "ff_tokens": 1365,
+      "dv_tokens": 171,
+      "dv_obs_type": "delta",
+      "dv_trigger": "none",
+      "diff_ratio": 0.0043,
+      "phash_distance": 8,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          334,
+          130,
+          325,
+          108
+        ]
+      ],
+      "ff_running_total": 36855,
+      "dv_running_total": 12372
+    },
+    {
+      "step": 27,
+      "phase": "email",
+      "tab": "email",
+      "action": "type Body",
+      "ts_before_sec": 17.728,
+      "ts_after_sec": 18.089,
+      "ff_tokens": 1365,
+      "dv_tokens": 352,
+      "dv_obs_type": "delta",
+      "dv_trigger": "none",
+      "diff_ratio": 0.0179,
+      "phash_distance": 12,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          334,
+          241,
+          466,
+          245
+        ],
+        [
+          334,
+          130,
+          325,
+          108
+        ]
+      ],
+      "ff_running_total": 38220,
+      "dv_running_total": 12724
+    },
+    {
+      "step": 28,
+      "phase": "email",
+      "tab": "email",
+      "action": "click Send",
+      "ts_before_sec": 18.178,
+      "ts_after_sec": 19.397,
+      "ff_tokens": 1365,
+      "dv_tokens": 352,
+      "dv_obs_type": "delta",
+      "dv_trigger": "none",
+      "diff_ratio": 0.021,
+      "phash_distance": 10,
+      "anchor_score": 1.0,
+      "crop_bboxes": [
+        [
+          334,
+          241,
+          466,
+          245
+        ],
+        [
+          334,
+          130,
+          325,
+          108
+        ]
+      ],
+      "ff_running_total": 39585,
+      "dv_running_total": 13076
+    }
+  ],
+  "apartments": [
+    {
+      "title": "Sunny 1BR - Park Slope",
+      "price": 2850,
+      "sqft": 650,
+      "hood": "Park Slope"
+    },
+    {
+      "title": "Spacious 2BR Loft - Williamsburg",
+      "price": 4200,
+      "sqft": 1050,
+      "hood": "Williamsburg"
+    },
+    {
+      "title": "Brownstone Garden 1BR - Bed-Stuy",
+      "price": 2495,
+      "sqft": 720,
+      "hood": "Bed-Stuy"
+    },
+    {
+      "title": "Modern 2BR w Roof - Crown Heights",
+      "price": 3400,
+      "sqft": 900,
+      "hood": "Crown Heights"
+    },
+    {
+      "title": "Cozy Studio - Bushwick",
+      "price": 1950,
+      "sqft": 420,
+      "hood": "Bushwick"
+    }
+  ],
+  "email": {
+    "to": "maya@bkrentals.nyc",
+    "subject": "Viewing request: 2 apartments this weekend",
+    "body": "Hi Maya,\n\nI narrowed down to two listings under $3000:\n  - Brownstone Garden 1BR, Bed-Stuy ($2,495)\n  - Cozy Studio, Bushwick ($1,950)\n\nCould we tour both this Saturday? Morning slots work best for me.\n\nThanks,\nDavid"
+  },
+  "video_webm": "/Users/davidgao/Projects/dv-video-scratch/apartment_demo/runs_multitab/browser.webm",
+  "video_mp4": "/Users/davidgao/Projects/dv-video-scratch/apartment_demo/runs_multitab/browser.mp4"
+}
