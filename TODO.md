@@ -46,6 +46,37 @@ Artifacts preserved for comparison:
 
 - [ ] **Action verification loop.** If `diff_result.action_had_effect` is False, currently we just increment `no_change_streak`. Consider: immediately re-emit a full frame before the next action, not after N stuck steps. Faster recovery.
 
+## Task-shape sensitivity (measured, 2026-04-19)
+
+A sibling-agent A/B dogfood ran a deep-research trajectory (10 steps, URL navigation + 600px scrolls, no idle re-observes) and got **0% savings** — identical bytes transferred, DV arm +4% from DOM header overhead.
+
+| Arm | Observations | Bytes | Delta% |
+|---|---|---:|---:|
+| Baseline (no DV) | 10 full screenshots | 1.99 MB | — |
+| DeltaVision v1.0.3 | 10 full_frame (0 delta) | 2.07 MB | 0% |
+
+**Why:** every observation was either URL change → NEW_PAGE → full_frame, or 600px scroll → `crop_covers_frame` guard (v1.0.3) → full_frame. DV never entered the delta path.
+
+This is **not a bug** — it's DV behaving exactly as designed. But it means the headline "67% / 77%" numbers don't generalize to nav-heavy research workloads.
+
+### Task-shape matrix (to add to README + pitch)
+
+| Shape | DV savings | Why |
+|---|---|---|
+| Data entry in a form (scripted) | **77.2%** | same page, many small deltas — delta path every step |
+| Multi-tab user workflow (apartment demo) | **67.0%** | 3 tab switches → 3 full frames, 26 deltas |
+| Real agent on SPA (TodoMVC head-to-head) | **62.0%** | same page, agent types sequentially |
+| Matched-trajectory SPA (TodoMVC replay) | **55.6%** | same as above, scripted |
+| **Nav-heavy research (new finding)** | **~0%** | URL changes + big scrolls → every step is full_frame |
+| Scroll-dominant (WebVoyager subset) | 14.7% | lots of big scrolls, guard fires often |
+
+**Marketing implication:** the headline needs a qualifier. "Up to 77% on sticky-context tasks, ~0% on nav-heavy research." The claim stays honest + defensible.
+
+Follow-up to add in a future pass:
+- [ ] Dedicated "When DeltaVision helps (and when it doesn't)" section at the top of README
+- [ ] Thread qualifier on tweet 5: "Sweet spot: agents that re-read the same page. Not for hop-page-every-2-steps research."
+- [ ] Consider a low-overhead mode for detected nav-heavy sessions (skip DOM extraction when URL changes every step)
+
 ## Benchmark infrastructure
 
 - [ ] **n>3 head-to-head trials** for statistical significance. Currently n=3 limited by Anthropic API rate limits. Spread across time + use cache-control to reduce cost.
