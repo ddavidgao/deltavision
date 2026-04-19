@@ -42,7 +42,7 @@ Every adapter claim is covered by a runnable script. Reproduce with `python exam
 | **Anthropic `tool_result`** | Live API call via `claude-sonnet-4-20250514` ingests DV's content blocks without error | 1,762 in / 50 out tokens, real response |
 | **OpenAI CUA (Operator)** | `to_openai_computer_call_output()` matches the [computer-use spec](https://platform.openai.com/docs/guides/tools-computer-use) | data URL decodes to valid PNG, `type=computer_call_output` |
 | **Browser Use** | `pip install browser-use` + 5-line monkey-patch wires DV in; `to_browser_use_screenshot_b64()` returns a valid base64 PNG | Patches `BrowserSession.get_browser_state_summary`, see [`examples/browser_use_integration/`](examples/browser_use_integration/) |
-| **Stagehand** | `to_stagehand_middleware_parts()` returns a valid list of typed content parts | See [`examples/openclaw_integration/deltavision-adapter.ts`](examples/openclaw_integration/deltavision-adapter.ts) for the TS side |
+| **Stagehand** | `to_stagehand_middleware_parts()` returns a valid list of typed content parts | Adapter method `DeltaVisionObserver.to_stagehand_middleware_parts()` |
 
 Artifact: [`examples/integration_test_results.json`](examples/integration_test_results.json) (commit-tracked; 4/5 pass, Skyvern skipped — not on PyPI).
 
@@ -162,13 +162,12 @@ deltavision/
     ablation/       # DeltaVision vs full-frame controlled comparison
     sites/          # Benchmark site registry (7 sites, 3 difficulty tiers)
   tests/            # 224 tests: unit, integration, live Playwright, real screenshots
-                    # See TESTS.md for a visual coverage map
   paper/            # Paper outline with figure/table mapping to data
 ```
 
 ## Testing
 
-See [TESTS.md](TESTS.md) for a per-module table of what every test verifies.
+`pytest tests/` — 224 tests total (217 offline + 7 live Playwright).
 
 | Suite | Tests | Covers |
 |---|---|---|
@@ -354,9 +353,7 @@ A 75-second narrated walkthrough of DeltaVision — the problem, the pipeline, t
 
 | File | Content |
 |------|---------|
-| [`benchmarks/ablation/video_frames/deltavision_v1_launch.mp4`](benchmarks/ablation/video_frames/deltavision_v1_launch.mp4) | 1080p60, 9 scenes: title / problem / task setup / **DV pipeline internals on one real observation** / side-by-side **showing what FF sends vs what DV actually sends** (thumbnail + crop snippets) / savings range / **compression ceiling (77.2%)** / **head-to-head utility (63.2% with real Claude agent)** / install |
-
-Older per-benchmark clips in the same directory: `honest_numbers.mp4` (summary), `waldo_comparison.mp4` (TodoMVC side-by-side), `github_comparison.mp4`, `real_comparison.mp4`.
+| [`benchmarks/ablation/video_frames/deltavision_v1_launch.mp4`](benchmarks/ablation/video_frames/deltavision_v1_launch.mp4) | 1080p60, 9 scenes: title / problem / task setup / **DV pipeline internals on one real observation** / side-by-side **showing what FF sends vs what DV actually sends** (thumbnail + crop snippets) / savings range / **compression ceiling (77.2%)** / **head-to-head utility (62.0% with real Claude agent)** / install |
 
 Record your own agent session:
 ```bash

@@ -1,7 +1,0 @@
-FULL_FRAME observation. Task: Search Wikipedia for 'Alan Turing'. Click the first result. Then click the link to 'Bletchley Park'. Report done when you see the Bletchley Park article.
-Step: 3
-URL: https://en.wikipedia.org/wiki/Bletchley_Park
-Trigger: url_change
-Last action: click(447, 613)
-
-Full screen:

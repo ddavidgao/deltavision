@@ -1,8 +1,0 @@
-{
-  "mode": "full_frame",
-  "obs_type": "full_frame",
-  "step": 0,
-  "current_frame_path": "/Users/davidgao/Projects/deltavision/benchmarks/ablation/runs/subagent_dv/step_0/t0.png",
-  "last_action": "",
-  "trigger_reason": "full_frame_ablation"
-}
