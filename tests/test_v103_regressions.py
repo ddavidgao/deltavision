@@ -21,7 +21,6 @@ import io
 import pytest
 from PIL import Image, ImageDraw
 
-
 # ---------- Finding 1: umbrella import ----------
 
 
@@ -36,8 +35,8 @@ def test_import_deltavision_works():
 def test_from_deltavision_imports():
     """Public API re-exports must be reachable via `from deltavision import X`."""
     from deltavision import (
-        DeltaVisionObserver,
         DeltaVisionConfig,
+        DeltaVisionObserver,
         DVObservation,
         compute_diff,
         compute_phash,
@@ -56,7 +55,7 @@ def test_flat_imports_still_work():
     """Backwards compat: the flat-module import style v1.0.2 shipped with must
     keep working. We don't want to break users who wrote `from observer import ...`."""
     from observer import DeltaVisionObserver  # noqa: F401
-    from vision.diff import compute_diff       # noqa: F401
+    from vision.diff import compute_diff  # noqa: F401
     from vision.elements import extract_page_state  # noqa: F401
 
 
@@ -187,8 +186,8 @@ def test_coverage_threshold_config():
 
 def test_coverage_threshold_can_be_disabled():
     """If set to 1.0, the guard should never fire (users can opt out)."""
-    from observer import DeltaVisionObserver
     from config import DeltaVisionConfig
+    from observer import DeltaVisionObserver
 
     cfg = DeltaVisionConfig()
     cfg.CROP_COVERAGE_MAX = 1.0  # effectively disable the guard

@@ -39,7 +39,6 @@ import threading
 import time
 import urllib.error
 import urllib.request
-from pathlib import Path
 
 # ANSI color helpers — degrade gracefully if piped.
 _ISATTY = sys.stdout.isatty()
@@ -134,7 +133,7 @@ def stage_1_import():
 
 @stage("S2  observer construction")
 def stage_2_observer():
-    from deltavision import DeltaVisionObserver, DeltaVisionConfig
+    from deltavision import DeltaVisionConfig, DeltaVisionObserver
     obs = DeltaVisionObserver()
     if obs.config is None:
         raise StageError("config is None after construction")
@@ -184,7 +183,6 @@ def stage_4_delta():
 def stage_5_guard():
     obs = _STATE["obs"]
     # Entire frame changes color — crops-cover-frame guard should fire.
-    from PIL import Image
     frame = _synthetic_frame(fill=(20, 20, 20))
     r = obs.observe(frame, url="http://test.local", last_action="scroll")
     ff = _ff_tokens()
@@ -239,8 +237,9 @@ def _find_free_port() -> int:
 
 def _start_server_in_thread(port: int):
     """Start server.py's HTTPServer on a background thread."""
-    import server as srv
     from http.server import ThreadingHTTPServer
+
+    import server as srv
     # Reset the process-global observer so stage 7 sees fresh state
     srv.OBSERVER.reset()
     srv._server = ThreadingHTTPServer(("127.0.0.1", port), srv.Handler)

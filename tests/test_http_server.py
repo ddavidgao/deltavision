@@ -46,8 +46,9 @@ def _free_port() -> int:
 @pytest.fixture(scope="module")
 def http_server():
     """Start the sidecar on a random port for the whole test module."""
-    import server as srv
     from http.server import ThreadingHTTPServer
+
+    import server as srv
 
     port = _free_port()
     srv.OBSERVER.reset()
