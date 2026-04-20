@@ -1,0 +1,33 @@
+The sheet seems to have an issue. Let me compile the apartment data and present it to you instead. Based on my research on Google Maps, I found the following 4 highly-rated apartments in Brooklyn:
+
+## Found Apartments (4.0+ Stars):
+
+**1. Court House (125 Court Street) Apartments**
+- Address: 125 Court St, Brooklyn, NY
+- Star Rating: 5.0 ⭐
+- Pet Friendly: Not clearly stated
+- Maps URL: https://www.google.com/maps/place/Court+House+%28125+Court+Street%29+Apartments/
+
+**2. The Landing at Brooklyn Bridge Park**
+- Address: 15 Bridge Park Dr, Brooklyn, NY
+- Star Rating: 4.8 ⭐
+- Pet Friendly: Not explicitly mentioned
+- Maps URL: https://www.google.com/maps/place/The+Landing+at+Brooklyn+Bridge+Park/
+
+**3. 461 Dean Apartments**
+- Address: 461 Dean St, Brooklyn, NY 11217
+- Star Rating: 4.7 ⭐
+- Pet Friendly: Yes - Dogs allowed
+- Notes: "In a highly convenient location, the building is well-maintained and clean"
+- Maps URL: https://maps.app.goo.gl/x5M53LeX32wN8byg7
+
+**4. The Ashland**
+- Address: 250 Ashland Pl, Brooklyn, NY
+- Star Rating: 4.3 ⭐
+- Pet Friendly: Not clearly stated
+- Notes: "The units are beautiful and the amenities are great"
+- Maps URL: https://www.google.com/maps/place/The+Ashland/
+
+The Google Sheet experienced a technical issue while loading. Would you like me to try again to enter this data into the spreadsheet, or would you prefer the data in another format?
+
+STDERR:

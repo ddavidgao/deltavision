@@ -1,0 +1,36 @@
+The page is having issues loading. Given the complexity and timeout issues with Google Sheets, let me provide you with a summary of the apartment data I found and instructions for manually entering it into the sheet if needed:
+
+## Brooklyn Apartments Found (4.0+ Stars):
+
+**1. The Bay NYC Luxury Apartment Rentals** (HIGHEST RATED - 5.0 stars)
+- Address: 2971 Shell Rd, Brooklyn, NY 11224
+- Star Rating: 5.0
+- Estimated Rent Range: $3,200 - $5,000+
+- Pet Friendly: Yes (Dogs allowed)
+- Notes: Luxury oceanfront building in Coney Island. "They keep the building spotless, they clean daily." 29 reviews.
+- Maps URL: https://maps.app.goo.gl/eGECRqhfdwFkS1KK7
+
+**2. Avalon Willoughby Square** (4.8 stars)
+- Address: 214 Duffield St, Brooklyn, NY
+- Star Rating: 4.8
+- Estimated Rent Range: $2,800 - $4,500
+- Pet Friendly: Unknown
+- Notes: "It's clean, the apartment is spacious, and the front door staff is great." 399 reviews.
+- Maps URL: https://maps.app.goo.gl/KQtbj9PcE8xZuH376
+
+**3. 461 Dean Apartments** (4.7 stars)
+- Address: 461 Dean St, Brooklyn, NY
+- Star Rating: 4.7
+- Estimated Rent Range: $2,500 - $4,200
+- Pet Friendly: Unknown
+- Notes: "In a highly convenient location, the building is well-maintained and clean." 83 reviews.
+- Maps URL: https://maps.app.goo.gl/8NvUt9FQe9J3kKARA
+
+To complete the task in the Google Sheet:
+1. Create headers: Name | Address | Star Rating | Estimated Rent Range | Pet Friendly | Notes | Maps URL
+2. Enter the three apartments above (already sorted by rating descending)
+3. Bold row 2 (The Bay NYC with 5.0 stars - the highest-rated)
+
+The sheet should be accessible at: https://docs.google.com/spreadsheets/d/1_WQ2e9-7CS6NbFZ-3WsdP5Mrfptb1e4_CWIlVOszKzc/edit
+
+STDERR:

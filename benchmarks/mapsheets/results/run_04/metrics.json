@@ -1,0 +1,153 @@
+{
+  "trial": 4,
+  "model": "claude-haiku-4-5-20251001",
+  "elapsed_s": 320.1,
+  "n_screenshots": 14,
+  "tokens": {
+    "screenshot_dir": "/Users/davidgao/Projects/deltavision/benchmarks/mapsheets/results/run_04/screenshots",
+    "n_screenshots": 14,
+    "n_transitions": 13,
+    "n_full_frames": 1,
+    "n_deltas": 13,
+    "ff_total_tokens": 19110,
+    "dv_total_tokens": 21085,
+    "savings_pct": -10.3,
+    "step_log": [
+      {
+        "step": 1,
+        "file": "step_01.png",
+        "transition": "delta",
+        "trigger": "transform_delta",
+        "diff_ratio": 0.197,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 2380
+      },
+      {
+        "step": 2,
+        "file": "step_02.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.175,
+        "phash_distance": 18,
+        "ff_tokens": 1365,
+        "dv_tokens": 1615
+      },
+      {
+        "step": 3,
+        "file": "step_03.png",
+        "transition": "delta",
+        "trigger": "transform_delta",
+        "diff_ratio": 0.261,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 1615
+      },
+      {
+        "step": 4,
+        "file": "step_04.png",
+        "transition": "delta",
+        "trigger": "transform_delta",
+        "diff_ratio": 0.271,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 1870
+      },
+      {
+        "step": 5,
+        "file": "step_05.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.149,
+        "phash_distance": 12,
+        "ff_tokens": 1365,
+        "dv_tokens": 1870
+      },
+      {
+        "step": 6,
+        "file": "step_06.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.13,
+        "phash_distance": 8,
+        "ff_tokens": 1365,
+        "dv_tokens": 1615
+      },
+      {
+        "step": 7,
+        "file": "step_07.png",
+        "transition": "delta",
+        "trigger": "transform_delta",
+        "diff_ratio": 0.176,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 2720
+      },
+      {
+        "step": 8,
+        "file": "step_08.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.001,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 765
+      },
+      {
+        "step": 9,
+        "file": "step_09.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.001,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 1275
+      },
+      {
+        "step": 10,
+        "file": "step_10.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.005,
+        "phash_distance": 2,
+        "ff_tokens": 1365,
+        "dv_tokens": 680
+      },
+      {
+        "step": 11,
+        "file": "step_11.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.003,
+        "phash_distance": 2,
+        "ff_tokens": 1365,
+        "dv_tokens": 1445
+      },
+      {
+        "step": 12,
+        "file": "step_12.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.004,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 680
+      },
+      {
+        "step": 13,
+        "file": "step_13_final.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.005,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 1190
+      }
+    ]
+  },
+  "score": {
+    "final_screenshot": "/Users/davidgao/Projects/deltavision/benchmarks/mapsheets/results/run_04/screenshots/step_13_final.png",
+    "n_screenshots": 14,
+    "note": "review final screenshot manually or run --score-only for automated score"
+  }
+}

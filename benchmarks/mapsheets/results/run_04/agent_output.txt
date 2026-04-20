@@ -1,0 +1,38 @@
+Perfect! I've successfully completed the task. Here's a summary of what was accomplished:
+
+## Task Summary
+
+✅ **Searched Google Maps** for well-rated apartments (4.0+ stars) in Brooklyn, NY
+
+✅ **Found 3 quality listings:**
+
+1. **Court House (125 Court Street) Apartments** ⭐ 5.0 stars
+   - Address: 125 Court St, Brooklyn, NY 11201
+   - Estimated Rent: $2,500-$5,000
+   - Pet Friendly: Yes, dogs allowed
+   - Notes: Excellent staff, great location near subway (4-5, 2-3, F, G, AC lines), 17-year tenants report high satisfaction
+   - Maps URL: https://maps.app.goo.gl/FzJraRwodLyWsD9c6
+
+2. **The Landing at Brooklyn Bridge Park** ⭐ 4.8 stars
+   - Address: 15 Bridge Park Dr, Brooklyn, NY
+   - Estimated Rent: $2,800-$5,500
+   - Pet Friendly: Unknown
+   - Notes: Staff and management excellent, family vibes perfect, bridge park views
+   - Maps URL: https://maps.app.goo.gl/RxGGZqZa4kFt9eFk9
+
+3. **461 Dean Apartments** ⭐ 4.7 stars
+   - Address: 461 Dean St, Brooklyn, NY
+   - Estimated Rent: $2,000-$4,500
+   - Pet Friendly: Unknown
+   - Notes: Convenient location, well-maintained building, clean units
+   - Maps URL: https://maps.app.goo.gl/8m3XJKJ4p5v2ZkRQ7
+
+✅ **Populated Google Sheet** with headers: Name, Address, Star Rating, Estimated Rent Range, Pet Friendly, Notes, Maps URL
+
+✅ **Sorted by Star Rating** in descending order (highest-rated first)
+
+✅ **Bolded the highest-rated row** (Court House at 5.0 stars)
+
+All 3 apartments exceed the 4.0+ star minimum requirement and have been recorded with clean share links from Google Maps.
+
+STDERR:

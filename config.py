@@ -94,6 +94,21 @@ class DeltaVisionConfig:
     PHASH_LOW_DIFF_FLOOR: float = 0.15
     PHASH_ANIMATION_MARGIN: int = 5  # extra pHash distance needed when diff < floor
 
+    # -- Similarity-Transform Compensation --
+
+    # Enable pan/zoom/rotate detection via ORB keypoints + RANSAC.
+    # When a similarity transform is confirmed, diff is computed against the
+    # warped anchor instead of raw t0 — the model only sees newly-revealed
+    # content, not content that merely moved or rescaled.
+    TRANSFORM_COMPENSATION_ENABLED: bool = True
+
+    # Minimum RANSAC inlier ratio to confirm a similarity transform.
+    # Below this threshold the change is treated as genuine new content.
+    WARP_MIN_INLIER_RATIO: float = 0.5
+
+    # Minimum diff_ratio to attempt transform compensation (skip ORB on tiny diffs).
+    TRANSFORM_TRY_THRESHOLD: float = 0.15
+
     # -- Ablation --
 
     # Force full-frame observations (disable delta gating). For controlled comparison.
@@ -115,7 +130,8 @@ class DeltaVisionConfig:
         for name in ("NEW_PAGE_DIFF_THRESHOLD", "ANCHOR_MATCH_THRESHOLD",
                      "ANCHOR_HEIGHT_FRACTION", "MIN_EFFECT_THRESHOLD",
                      "OCR_REGION_MAX_FRACTION", "OCR_MIN_CONFIDENCE",
-                     "PHASH_LOW_DIFF_FLOOR"):
+                     "PHASH_LOW_DIFF_FLOOR", "WARP_MIN_INLIER_RATIO",
+                     "TRANSFORM_TRY_THRESHOLD"):
             v = getattr(self, name)
             if not (0.0 <= v <= 1.0):
                 raise ConfigError(f"{name} must be in [0, 1], got {v}")

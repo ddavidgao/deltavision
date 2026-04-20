@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "dv-playwright": {
+      "command": "/Users/davidgao/Projects/deltavision/.venv/bin/python3",
+      "args": ["/Users/davidgao/Projects/deltavision/dv_playwright_mcp.py"],
+      "env": {
+        "DV_LOG_DIR": "/Users/davidgao/Projects/deltavision/dv_runs"
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+Everything is done. Here's a summary of what was accomplished:
+
+---
+
+## Task Complete
+
+**5 Brooklyn apartments found (4.0+ stars), added to the Google Sheet:**
+
+| Name | Address | Stars | Pet Friendly | Notes |
+|------|---------|-------|-------------|-------|
+| **Avalon Willoughby Square** | 214 Duffield St, Brooklyn, NY 11201 | **4.8** | No | Studio/1BR/2BR; near Jay St-MetroTech; 399 reviews |
+| 461 Dean Apartments | 461 Dean St, Brooklyn, NY 11217 | 4.7 | Yes (dogs) | Elevator, in-unit W/D, fitness, outdoor space; near Barclays Center |
+| 7 Dekalb Avenue | 7 Dekalb Ave, Brooklyn, NY 11201 | 4.4 | Yes (dogs) | Luxury high-rise; fitness center, outdoor space; downtown BK |
+| 420 Kent Luxury Brooklyn Apartments | 420 Kent Ave, Brooklyn, NY 11249 | 4.3 | No | Williamsburg waterfront |
+| The Ashland | 250 Ashland Pl, Brooklyn, NY 11217 | 4.3 | No | Mixed-use building; near BAM |
+
+**Sheet operations completed:**
+- ✅ Header row in row 1, data in rows 2–6
+- ✅ Sorted by Star Rating descending (Z→A)
+- ✅ Row 2 (Avalon Willoughby Square, 4.8★) **bolded** as highest-rated
+- ✅ 22 screenshots saved to `benchmarks/mapsheets/results/run_02/screenshots/`
+
+STDERR:

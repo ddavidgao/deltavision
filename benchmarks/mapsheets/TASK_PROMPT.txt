@@ -1,0 +1,70 @@
+Search Google Maps for well-rated apartments (4.0+ stars) in San Francisco, CA.
+Find at least 3 listings. For each listing, click into it and find:
+- Name
+- Address
+- Star rating
+- Estimated rent for a 1BR/studio — see RENT SCRAPING section below
+- Whether it is pet friendly (Yes/No/Unknown)
+- Any standout details / notes
+- The building's real website URL (NOT the Google Maps URL)
+
+Use the DeltaVision-Playwright MCP browser tools (mcp__dv-playwright__*) for all browsing.
+If mcp__dv-playwright__* tools are not available, fall back to mcp__playwright__* tools.
+
+=== RENT SCRAPING (try all before giving up) ===
+1. Maps sidebar — check for "From $X/mo" in the listing overview
+2. Building website (click "Website" button) → find Pricing / Floorplans / Availability page
+3. Zillow fallback: navigate to https://www.zillow.com, search "[building name] San Francisco",
+   look for 1BR listings and note the monthly rent shown
+4. Enter "Unknown" only after trying steps 1-3
+
+=== GOOGLE MAPS ===
+Navigate to https://maps.google.com, search "apartments San Francisco CA".
+Click each listing to open its sidebar. Take a screenshot after each major state change.
+
+=== GOOGLE SHEET ===
+Navigate to:
+https://docs.google.com/spreadsheets/d/1_WQ2e9-7CS6NbFZ-3WsdP5Mrfptb1e4_CWIlVOszKzc/edit
+
+The sheet is publicly editable. If a sign-in dialog appears, dismiss it (look for "No thanks",
+"Skip", or "×"). Do NOT sign in.
+
+Columns: Name | Address | Star Rating | Estimated Rent (1BR/Studio) | Pet Friendly | Notes | Website URL
+
+FASTEST DATA ENTRY — use clipboard paste:
+1. Click the Name Box (top-left), type "A1", press Enter
+2. Call browser_evaluate to write all data as TSV to clipboard:
+   await navigator.clipboard.writeText("col1\tcol2\t...\nrow2col1\t...")
+3. Press Cmd+V to paste — fills all rows and columns instantly
+4. Verify the data landed correctly with a screenshot
+
+=== POST-PROCESSING (important for demo — do all of these) ===
+After data entry, do the following IN ORDER to show the sheet is actually useful:
+
+1. SORT by Star Rating descending:
+   - Click Data menu → Sort range → "Sort range by column"
+   - In the dialog: check "Data has header row", select Column C, Z→A, click Sort
+   - Take a screenshot
+
+2. BOLD the top-rated row (row 2 after sorting):
+   - Click the Name Box, type "A2", Enter
+   - Press Shift+Space to select entire row 2
+   - Press Cmd+B to bold
+   - Take a screenshot
+
+3. ADD A SUMMARY in row 6 (or first empty row after data):
+   - Click the Name Box, type "A6", Enter
+   - Type: "Avg Rating" Tab then in B6 type: =AVERAGE(C2:C4) Enter
+   - Click A7, type: "Pet Friendly Count" Tab then B7: =COUNTIF(E2:E4,"Yes*") Enter
+   - Take a screenshot showing the formulas computed
+
+4. HIGHLIGHT pet-friendly rows with green fill:
+   - Select A2:G4 (all data rows)
+   - Format menu → Conditional formatting
+   - "Custom formula is": =$E2="Yes (Dogs allowed)" OR use: =SEARCH("Yes",$E2)>0
+   - Set fill color to light green
+   - Click Done
+   - Take a screenshot
+
+After completing all post-processing steps, take a final screenshot of the complete sheet.
+Aim for 15-25 screenshots total across the full run.

@@ -1,0 +1,14 @@
+{
+  "trial": 12,
+  "model": "claude-sonnet-4-6",
+  "n_screenshots": 10,
+  "tokens": {
+    "ff_total_tokens": 36855,
+    "dv_total_tokens": 31750,
+    "savings_pct": 13.9,
+    "n_full_frames": 9,
+    "n_deltas": 18
+  },
+  "task": "Maps->Sheets with real website URLs",
+  "result": "success"
+}

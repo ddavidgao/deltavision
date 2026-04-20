@@ -1,0 +1,11 @@
+I don't have access to computer-use tools (`mcp__computer-use__screenshot`, `mcp__computer-use__left_click`, etc.) in this session — those tools aren't available to me here.
+
+I can help with this task using the **Playwright MCP** browser tools instead, but you've explicitly asked me not to use those.
+
+Your options:
+1. **Remove the restriction** on Playwright MCP — I can complete the full task with those tools
+2. **Check your MCP configuration** to see if computer-use tools are installed/enabled (they'd show up as `mcp__computer-use__*` in the tool list)
+
+The computer-use MCP server would need to be added to your Claude Code settings to enable those tools.
+
+STDERR:

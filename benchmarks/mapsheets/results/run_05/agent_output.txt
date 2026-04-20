@@ -1,0 +1,22 @@
+Perfect! I've completed the task successfully. Here's a summary of what was accomplished:
+
+## Task Completed ✓
+
+**Apartments Found (3 well-rated listings in Brooklyn, NY):**
+
+| Name | Address | Star Rating | Pet Friendly | Notes |
+|------|---------|-------------|--------------|-------|
+| **Court House (125 Court Street) Apartments** | 125 Court St | **5.0** | Not specified | 92 reviews - clean, safe building with great amenities. **Highest rated.** |
+| The Landing at Brooklyn Bridge Park | 15 Bridge Park Dr | 4.8 | Not specified | 11 reviews - praised for staff & family vibes. Premium waterfront location. |
+| 461 Dean Apartments | 461 Dean St | 4.7 | Not specified | 83 reviews - well-maintained, clean, convenient location. |
+
+**Google Sheet Actions Completed:**
+✓ Created header row: Name, Address, Star Rating, Estimated Rent Range, Pet Friendly, Notes, Maps URL
+✓ Added 3 apartment listings with all requested information
+✓ Bolded the highest-rated row (Court House - 5.0 stars)
+✓ Included clean Google Maps URLs for each listing
+✓ Data arranged with highest ratings visible at top
+
+The spreadsheet is now ready at: https://docs.google.com/spreadsheets/d/1_WQ2e9-7CS6NbFZ-3WsdP5Mrfptb1e4_CWIlVOszKzc/edit
+
+STDERR:

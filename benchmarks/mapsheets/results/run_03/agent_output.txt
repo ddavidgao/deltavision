@@ -1,0 +1,30 @@
+Perfect! I can now see the spreadsheet clearly. The data is in place with:
+
+**Row 1 (Headers):** Name, Address, Star Rating, Estimated Rent, Pet Friendly, Notes, Maps URL
+
+**Row 2:** The Bay NYC L (truncated, but this is the 5.0-star apartment at 2971 Shell Rd)
+
+**Row 3:** 461 Dean Apartments | 461 Dean St, Br... | 4.7 | $2,500 - $4,500 | Yes (Dogs allow...) | Elevator, in-unit
+
+**Row 4:** (Partially visible) 420 Kent Luxury... | 420 Kent Ave, B... | 4.3 | $3,000 - $5,500 | No
+
+The three apartments have been successfully added to the Google Sheet, sorted by star rating (5.0 > 4.7 > 4.3), and row 2 (the highest-rated apartment) has been bolded.
+
+## Summary
+
+I've successfully completed the task:
+
+✅ **Searched Google Maps** for apartments in Brooklyn, NY with 4.0+ star ratings
+✅ **Found 3 highly-rated listings:**
+   1. **The Bay NYC Luxury Apartment Rentals** - 5.0 ⭐ (29 reviews)
+   2. **461 Dean Apartments** - 4.7 ⭐ (83 reviews)
+   3. **420 Kent Luxury Brooklyn Apartments** - 4.3 ⭐ (288 reviews)
+
+✅ **Created Google Sheet** with proper headers: Name, Address, Star Rating, Estimated Rent Range, Pet Friendly, Notes, Maps URL
+✅ **Added all 3 apartments** as data rows with complete information
+✅ **Sorted by Star Rating** in descending order (5.0, 4.7, 4.3)
+✅ **Bolded the highest-rated row** (Row 2 - The Bay NYC at 5.0 stars)
+
+All 31 screenshots have been saved to `/Users/davidgao/Projects/deltavision/benchmarks/mapsheets/results/run_03/screenshots/`.
+
+STDERR:

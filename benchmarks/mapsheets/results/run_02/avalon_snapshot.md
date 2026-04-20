@@ -1,0 +1,188 @@
+- generic "Google Maps" [ref=e9]:
+  - generic [ref=e3]:
+    - application "Map · Use arrow keys to pan the map. · Get details about a place by pressing its corresponding number key." [ref=e10]
+    - search [ref=e15]:
+      - generic [ref=e16]:
+        - combobox [ref=e18]: Avalon Willoughby Square
+        - button "Search" [ref=e20] [cursor=pointer]:
+          - generic [ref=e21]: 
+        - button "Close" [ref=e23] [cursor=pointer]:
+          - generic [ref=e24]: 
+    - region "Available search options for this area" [ref=e31]:
+      - generic [ref=e34]:
+        - button "Restaurants" [ref=e36] [cursor=pointer]:
+          - generic [ref=e37]:
+            - generic [ref=e39]: 
+            - generic [ref=e40]: Restaurants
+        - button "Hotels" [ref=e42] [cursor=pointer]:
+          - generic [ref=e43]:
+            - generic [ref=e45]: 
+            - generic [ref=e46]: Hotels
+        - button "Things to do" [ref=e48] [cursor=pointer]:
+          - generic [ref=e49]:
+            - generic [ref=e51]: 
+            - generic [ref=e52]: Things to do
+        - button "Transit" [ref=e54] [cursor=pointer]:
+          - generic [ref=e55]:
+            - generic [ref=e57]: 
+            - generic [ref=e58]: Transit
+        - button "Parking" [ref=e60] [cursor=pointer]:
+          - generic [ref=e61]:
+            - generic [ref=e63]: 
+            - generic [ref=e64]: Parking
+        - button "Pharmacies" [ref=e66] [cursor=pointer]:
+          - generic [ref=e67]:
+            - generic [ref=e69]: 
+            - generic [ref=e70]: Pharmacies
+        - button "ATMs" [ref=e72] [cursor=pointer]:
+          - generic [ref=e73]:
+            - generic [ref=e75]: 
+            - generic [ref=e76]: ATMs
+      - button "Next page" [ref=e77] [cursor=pointer]:
+        - generic [ref=e78]: 
+    - generic [ref=e79]:
+      - generic [ref=e80]:
+        - list [ref=e82]:
+          - listitem [ref=e83]:
+            - button "Menu" [ref=e84] [cursor=pointer]
+          - listitem [ref=e87]:
+            - button "Saved" [ref=e88] [cursor=pointer]
+          - listitem [ref=e93]:
+            - button "Recents" [ref=e94] [cursor=pointer]
+          - listitem [ref=e100]:
+            - button "Avalon Willoughby Square" [ref=e101] [cursor=pointer]
+          - listitem [ref=e109]:
+            - button "Get app" [ref=e110] [cursor=pointer]
+        - main "Avalon Willoughby Square" [ref=e119]:
+          - generic [ref=e120]:
+            - button "Photo of Avalon Willoughby Square" [active] [ref=e122] [cursor=pointer]
+            - button "See photos" [ref=e124] [cursor=pointer]
+          - generic [ref=e129]:
+            - heading "Avalon Willoughby Square" [level=1] [ref=e131]: Avalon Willoughby Square
+            - generic [ref=e133]
+          - tablist [ref=e153]:
+            - tab "Overview of Avalon Willoughby Square" [selected] [ref=e154]
+            - tab "Reviews for Avalon Willoughby Square" [ref=e158]
+            - tab "About Avalon Willoughby Square" [ref=e162]
+          - region "Actions for Avalon Willoughby Square" [ref=e166]:
+            - button "Directions" [ref=e168] [cursor=pointer]
+            - button "Save" [ref=e173] [cursor=pointer]
+            - button "Nearby" [ref=e178] [cursor=pointer]
+            - button "Send to phone" [ref=e183] [cursor=pointer]
+            - button "Share" [ref=e188] [cursor=pointer]
+          - heading "Sponsored · By Avalon Willoughby Square" [level=1] [ref=e194]:
+            - generic [ref=e195]: Sponsored·
+            - generic [ref=e196]: By Avalon Willoughby Square
+            - button "Why this ad?" [ref=e198] [cursor=pointer]
+          - link "Ad · Apartments For Rent - Studio, 1 Bed, 2 Bed & More · Spacious, thoughtfully designed apartments with upscale features, fixtures, and finishes. · Visit Site · www.avaloncommunities.com/" [ref=e202] [cursor=pointer]:
+            - /url: /aclk?sa=L&ai=DChsSEwin5qW4tfuTAxUVQv8BHRJ4CqQYACICCAEQEBoCbWQ&ae=2&co=1&ase=2&gclid=EAIaIQobChMIp-aluLX7kwMVFUL_AR0SeAqkEBIYASAAEgKWIvD_BwE&cid=CAASugHkaOsZPJfmEZJnu3ilmeA2MvGlng5KorhA9JxcAYC0Apv1fKSrG9bFfSLKLcDCuNVnR1RNJLyJzb_DRxkoFED4vnAAbaZrWmWgXpU7mTxfTeN3PThP7WFasrY2Wmhtr4hNwB1k_751Lxz7yrA9RVTLLQYt-alwJ-jLPX0vKVZTLOfafY8fBDb_LqdXfmnNuTjYD_MRswrBZUDYA8RP3nslwKbNxpaydZiLFAxQMdhNi-ra-MeMrWNuORk&cce=2&category=acrcp_v1_71&sig=AOD64_3CPdKz6C7KJAsJN_6pu4W_eGftyg&adurl=&placesheetAdFix=1&rct=j&nis=6
+            - generic [ref=e203]
+          - region "Information for Avalon Willoughby Square" [ref=e215]:
+            - generic [ref=e216]
+            - button "Floor 1 · Jay St - MetroTech" [ref=e229] [cursor=pointer]
+            - button "Hours Closed · Opens 9 AM Mon Show open hours for the week" [ref=e235] [cursor=pointer]
+            - generic [ref=e242]
+            - generic [ref=e254]
+            - generic [ref=e270]
+            - generic [ref=e286]
+          - button "Suggest an edit" [ref=e305] [cursor=pointer]:
+            - generic [ref=e306]
+          - generic [ref=e311]:
+            - heading "Photos & videos" [level=2] [ref=e313]
+            - region "Photos of Avalon Willoughby Square" [ref=e314]
+          - button "Add photos & videos" [ref=e338] [cursor=pointer]:
+            - generic [ref=e339]
+          - generic [ref=e344]:
+            - heading "At this place" [level=2] [ref=e346]
+            - article "Nimbus Downtown Brooklyn" [ref=e348]
+            - article "Woofle Dog Walking" [ref=e375]
+            - article "Icon Parking" [ref=e402]
+            - article "Big Daddy's Hawaiian BBQ (Brooklyn)" [ref=e429]
+            - button "View all" [ref=e460]
+          - generic [ref=e465]:
+            - heading "Review summary" [level=2] [ref=e466]
+            - button "More information about the review summary" [ref=e467] [cursor=pointer]
+          - generic [ref=e470] [cursor=pointer]:
+            - table [ref=e472]
+            - generic [ref=e489]
+          - generic [ref=e501]:
+            - link "Photo of reviewer who wrote \"Very good apartment, very good service quality\"" [ref=e502] [cursor=pointer]:
+              - /url: https://www.google.com/maps/contrib/110866233175877208169?hl=en-US
+            - button "\"Very good apartment, very good service quality" [ref=e503] [cursor=pointer]
+          - generic [ref=e506]:
+            - link "Photo of reviewer who wrote \"Great location, amenities, but it really comes down to the staff.\"" [ref=e507] [cursor=pointer]:
+              - /url: https://www.google.com/maps/contrib/108403478814063781549?hl=en-US
+            - button "\"Great location, amenities, but it really comes down to the staff.\"" [ref=e508] [cursor=pointer]
+          - button "Write a review" [ref=e513] [cursor=pointer]:
+            - generic [ref=e514]
+          - generic [ref=e519]:
+            - generic [ref=e521]
+            - button "Sort reviews" [ref=e531] [cursor=pointer]
+          - radiogroup "Refine reviews" [ref=e535]:
+            - radio "All reviews" [checked] [ref=e537] [cursor=pointer]
+            - radio "concierge, mentioned in 48 reviews" [ref=e542] [cursor=pointer]
+            - radio "clean lobby, mentioned in 3 reviews" [ref=e547] [cursor=pointer]
+            - radio "quick response time, mentioned in 6 reviews" [ref=e552] [cursor=pointer]
+            - radio "warm welcome, mentioned in 9 reviews" [ref=e557] [cursor=pointer]
+            - button "View 6 more Topics" [ref=e562] [cursor=pointer]
+          - generic "Shaniece W" [ref=e565]:
+            - generic [ref=e567]
+          - generic "Ki Lay" [ref=e607]:
+            - generic [ref=e609]
+          - generic "Suxiang Zhong" [ref=e649]:
+            - generic [ref=e651]
+          - button "More reviews (396)" [ref=e689]:
+            - generic [ref=e691] [cursor=pointer]: More reviews (396)
+          - heading "People also search for" [level=2] [ref=e695]
+          - generic [ref=e699]:
+            - link "Willoughby · 4.5 stars · 165 reviews · Apartment rental agency" [ref=e700] [cursor=pointer]
+            - link "Willoughby Apartments · 4.0 stars · 11 reviews · Apartment complex" [ref=e711] [cursor=pointer]
+            - link "One Boerum Place · 4.5 stars · 42 reviews · Apartment complex" [ref=e722] [cursor=pointer]
+            - link "461 Dean Apartments · 4.7 stars · 83 reviews · Apartment rental agency" [ref=e733] [cursor=pointer]
+            - link "365 Bond · 4.4 stars · 152 reviews · Apartment rental agency" [ref=e744] [cursor=pointer]
+          - heading "Web results" [level=2] [ref=e759]
+          - region [ref=e762]
+          - link "About this data" [ref=e801] [cursor=pointer]:
+            - /url: https://support.google.com/local-listings?p=how_google_sources&authuser=0&hl=en
+            - generic [ref=e803]: About this data
+          - heading "Get the most out of Google Maps Sign in" [level=2] [ref=e807]:
+            - generic [ref=e808]: Get the most out of Google Maps
+            - button "Sign in" [ref=e811] [cursor=pointer]
+      - button "Collapse side panel" [ref=e815] [cursor=pointer]:
+        - generic [ref=e816]: 
+    - generic [ref=e820]:
+      - button "Google apps" [ref=e824] [cursor=pointer]:
+        - img [ref=e825]
+      - link "Sign in" [ref=e828] [cursor=pointer]:
+        - /url: https://accounts.google.com/ServiceLogin?hl=en&passive=true&continue=https%3A%2F%2Fwww.google.com%2Fmaps%2Fplace%2FAvalon%2BWilloughby%2BSquare%2F%4040.6919136%2C-73.9847926%2C17z%2Fdata%3D!4m6!3m5!1s0x89c25a4b42fd0609%3A0x631133db2b940012!8m2!3d40.6919136!4d-73.9847926!16s%252Fg%252F11cmffknw2%3Fved%3D1t%253A314688&service=local&ec=GAZAcQ
+    - generic:
+      - dialog "Images" [ref=e831]:
+        - generic [ref=e833]:
+          - generic [ref=e834]:
+            - heading "Images" [level=2] [ref=e835]
+            - generic [ref=e836]
+            - generic [ref=e840]
+          - checkbox "Show images" [checked] [ref=e843] [cursor=pointer]
+      - generic:
+        - button "Show Your Location" [ref=e848] [cursor=pointer]:
+          - generic [ref=e850]: 
+        - generic [ref=e852] [cursor=pointer]:
+          - button "Zoom in" [ref=e853]
+          - button "Zoom out" [ref=e856]
+      - generic [ref=e862]:
+        - button "Browse Street View images" [ref=e864]
+        - button "Street View" [ref=e866] [cursor=pointer]
+      - generic [ref=e870]:
+        - generic "Interactive map" [ref=e871]
+        - generic [ref=e875] [cursor=pointer]:
+          - generic [ref=e876]: 
+          - generic [ref=e877]: Layers
+        - button "Layers" [ref=e878] [cursor=pointer]
+    - generic [ref=e880]:
+      - contentinfo [ref=e883]:
+        - text: Imagery ©2026 , Map data ©2026 Google
+        - button "United States" [ref=e884] [cursor=pointer]
+        - button "Terms" [ref=e885] [cursor=pointer]
+        - button "Privacy" [ref=e886] [cursor=pointer]
+        - button "Send Product Feedback" [ref=e887] [cursor=pointer]
+      - button "200 ft" [ref=e889] [cursor=pointer]: 200 ft

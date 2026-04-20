@@ -148,6 +148,7 @@ Standard computer use agents send a full 1280x900 screenshot (~1600 tokens) on e
 
 | Benchmark | What it measures | Steps | DV cost | FF cost | Savings | Reproduce |
 |---|---|---|---|---|---|---|
+| **Maps→Sheets agent benchmark** (live Claude agent, Haiku 4.5, CDP-measured) | real agentic sticky-context task | 53 | 14,115 tok | 72,345 tok | **80.5%** | `python benchmarks/mapsheets/run_bench.py --trial N` |
 | **Real 2-site workflow** (Google Maps → Google Sheets, live sites) | real multi-tab CU task | 21 | 13,179 tok | 28,665 tok | **54.0%** | `python examples/multitab_real_demo.py` |
 | **Multi-tab apartment workflow** (3 tabs, deterministic script) | realistic 3-tab user task | 29 | 13,076 tok | 39,585 tok | **67.0%** | `python examples/multitab_apartment_demo/run_multitab_demo.py` |
 | Spreadsheet (deterministic, local HTML mock) | compression ceiling | 25 | 7,780 tok | 34,125 tok | **77.2%** | `python examples/spreadsheet_observation_cost.py` |

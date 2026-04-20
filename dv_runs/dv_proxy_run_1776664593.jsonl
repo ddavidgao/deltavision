@@ -1,0 +1,10 @@
+{"event": "proxy_started", "run_id": 1776664593, "log_file": "/Users/davidgao/Projects/deltavision/dv_runs/dv_proxy_run_1776664593.jsonl", "n_tools": 21}
+{"step": 1, "transition": "initial", "trigger": "initial", "ff_tokens": 1365, "dv_tokens": 1365, "ff_cumulative": 1365, "dv_cumulative": 1365}
+{"step": 2, "transition": "new_page", "trigger": "anchor_loss", "diff_ratio": 0.6983, "phash_distance": 20, "ff_tokens": 1365, "dv_tokens": 1365, "ff_cumulative": 2730, "dv_cumulative": 2730, "savings_pct_cumulative": 0.0}
+{"step": 3, "transition": "delta", "trigger": "transform_delta", "diff_ratio": 0.504, "phash_distance": 0, "ff_tokens": 1365, "dv_tokens": 1870, "ff_cumulative": 4095, "dv_cumulative": 4600, "savings_pct_cumulative": -12.3}
+{"step": 4, "transition": "delta", "trigger": "transform_delta", "diff_ratio": 0.2354, "phash_distance": 0, "ff_tokens": 1365, "dv_tokens": 2125, "ff_cumulative": 5460, "dv_cumulative": 6725, "savings_pct_cumulative": -23.2}
+{"step": 5, "transition": "delta", "trigger": "transform_delta", "diff_ratio": 0.2302, "phash_distance": 0, "ff_tokens": 1365, "dv_tokens": 1870, "ff_cumulative": 6825, "dv_cumulative": 8595, "savings_pct_cumulative": -25.9}
+{"step": 6, "transition": "new_page", "trigger": "phash", "diff_ratio": 0.4785, "phash_distance": 32, "ff_tokens": 1365, "dv_tokens": 1365, "ff_cumulative": 8190, "dv_cumulative": 9960, "savings_pct_cumulative": -21.6}
+{"step": 7, "transition": "delta", "trigger": "none", "diff_ratio": 0.0039, "phash_distance": 0, "ff_tokens": 1365, "dv_tokens": 255, "ff_cumulative": 9555, "dv_cumulative": 10215, "savings_pct_cumulative": -6.9}
+{"step": 8, "transition": "delta", "trigger": "none", "diff_ratio": 0.0586, "phash_distance": 14, "ff_tokens": 1365, "dv_tokens": 935, "ff_cumulative": 10920, "dv_cumulative": 11150, "savings_pct_cumulative": -2.1}
+{"step": 9, "transition": "delta", "trigger": "none", "diff_ratio": 0.0322, "phash_distance": 8, "ff_tokens": 1365, "dv_tokens": 1190, "ff_cumulative": 12285, "dv_cumulative": 12340, "savings_pct_cumulative": -0.4}

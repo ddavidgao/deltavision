@@ -1,0 +1,73 @@
+{
+  "trial": 9,
+  "model": "claude-haiku-4-5-20251001",
+  "elapsed_s": 345.0,
+  "n_screenshots": 6,
+  "tokens": {
+    "screenshot_dir": "/Users/davidgao/Projects/deltavision/benchmarks/mapsheets/results/run_09/screenshots",
+    "n_screenshots": 6,
+    "n_transitions": 5,
+    "n_full_frames": 1,
+    "n_deltas": 5,
+    "ff_total_tokens": 8190,
+    "dv_total_tokens": 3660,
+    "savings_pct": 55.3,
+    "step_log": [
+      {
+        "step": 1,
+        "file": "step_001.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.024,
+        "phash_distance": 4,
+        "ff_tokens": 1365,
+        "dv_tokens": 935
+      },
+      {
+        "step": 2,
+        "file": "step_002.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.021,
+        "phash_distance": 10,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 3,
+        "file": "step_003.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.0,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 85
+      },
+      {
+        "step": 4,
+        "file": "step_004.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.001,
+        "phash_distance": 2,
+        "ff_tokens": 1365,
+        "dv_tokens": 765
+      },
+      {
+        "step": 5,
+        "file": "step_005.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.005,
+        "phash_distance": 4,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      }
+    ]
+  },
+  "score": {
+    "final_screenshot": "/Users/davidgao/Projects/deltavision/benchmarks/mapsheets/results/run_09/screenshots/step_005.png",
+    "n_screenshots": 6,
+    "note": "review final screenshot manually or run --score-only for automated score"
+  }
+}

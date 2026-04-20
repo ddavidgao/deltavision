@@ -1,0 +1,2 @@
+{"step": 1, "transition": "initial", "trigger": "initial", "ff_tokens": 1365, "dv_tokens": 1365, "ff_cumulative": 1365, "dv_cumulative": 1365}
+{"step": 2, "transition": "delta", "trigger": "none", "diff_ratio": 0.0257, "phash_distance": 0, "ff_tokens": 1365, "dv_tokens": 255, "ff_cumulative": 2730, "dv_cumulative": 1620, "savings_pct_cumulative": 40.7}

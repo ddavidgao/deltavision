@@ -1,0 +1,117 @@
+- generic "Google Maps" [ref=e2]:
+  - generic [ref=e3]:
+    - application "Map · Use arrow keys to pan the map. · Get details about a place by pressing its corresponding number key." [ref=e8] [cursor=pointer]
+    - generic [ref=e11]:
+      - search [ref=e14]:
+        - generic [ref=e15]:
+          - generic [ref=e16]:
+            - generic [ref=e17]: Search Google Maps
+            - combobox "Search Google Maps" [active] [ref=e18]
+          - button "Search" [ref=e20] [cursor=pointer]:
+            - generic [ref=e21]: 
+          - button "Directions" [ref=e23] [cursor=pointer]:
+            - generic [ref=e24]: 
+      - region "West Lafayette" [ref=e56]:
+        - generic [ref=e57]:
+          - heading "West Lafayette" [level=1] [ref=e59]
+          - group "West Lafayette weather" [ref=e60]:
+            - generic [ref=e61]: 40°
+            - img "Clear" [ref=e62]
+        - region "Traffic" [ref=e63]:
+          - button "Heavy traffic in this area Much slower than usual" [ref=e64] [cursor=pointer]:
+            - img [ref=e66]
+            - generic [ref=e67]:
+              - generic [ref=e68]: Heavy traffic in this area
+              - generic [ref=e69]: Much slower than usual
+            - generic [ref=e70]: 
+    - region "Available search options for this area" [ref=e77]:
+      - generic [ref=e80]:
+        - button "Restaurants" [ref=e82] [cursor=pointer]:
+          - generic [ref=e83]:
+            - generic [ref=e85]: 
+            - generic [ref=e86]: Restaurants
+        - button "Hotels" [ref=e88] [cursor=pointer]:
+          - generic [ref=e89]:
+            - generic [ref=e91]: 
+            - generic [ref=e92]: Hotels
+        - button "Things to do" [ref=e94] [cursor=pointer]:
+          - generic [ref=e95]:
+            - generic [ref=e97]: 
+            - generic [ref=e98]: Things to do
+        - button "Museums" [ref=e100] [cursor=pointer]:
+          - generic [ref=e101]:
+            - generic [ref=e103]: 
+            - generic [ref=e104]: Museums
+        - button "Transit" [ref=e106] [cursor=pointer]:
+          - generic [ref=e107]:
+            - generic [ref=e109]: 
+            - generic [ref=e110]: Transit
+        - button "Pharmacies" [ref=e112] [cursor=pointer]:
+          - generic [ref=e113]:
+            - generic [ref=e115]: 
+            - generic [ref=e116]: Pharmacies
+        - button "ATMs" [ref=e118] [cursor=pointer]:
+          - generic [ref=e119]:
+            - generic [ref=e121]: 
+            - generic [ref=e122]: ATMs
+      - button "Next page" [ref=e123] [cursor=pointer]:
+        - generic [ref=e124]: 
+    - list [ref=e28]:
+      - listitem [ref=e29]:
+        - button "Menu" [ref=e30] [cursor=pointer]:
+          - generic [ref=e32]: 
+      - listitem [ref=e33]:
+        - button "Saved" [ref=e34] [cursor=pointer]:
+          - generic [ref=e36]: 
+          - generic [ref=e38]: Saved
+      - listitem [ref=e39]:
+        - button "Recents" [disabled] [ref=e40]:
+          - generic [ref=e42]: 
+          - generic [ref=e44]: Recents
+      - listitem [ref=e46]:
+        - button "Get app" [ref=e47] [cursor=pointer]:
+          - generic [ref=e49]: 
+          - generic [ref=e51]: Get app
+    - generic [ref=e128]:
+      - button "Google apps" [ref=e132] [cursor=pointer]:
+        - img [ref=e133]
+      - link "Sign in" [ref=e136] [cursor=pointer]:
+        - /url: https://accounts.google.com/ServiceLogin?hl=en&passive=true&continue=https%3A%2F%2Fwww.google.com%2Fmaps%2F%4040.4226048%2C-86.9269504%2C14z%3Fved%3D1t%253A314688&service=local&ec=GAZAcQ
+    - generic:
+      - dialog "Images" [ref=e139]:
+        - generic [ref=e141]:
+          - generic [ref=e142]:
+            - heading "Images" [level=2] [ref=e143]
+            - generic [ref=e144]:
+              - generic [ref=e145]: Street View
+              - generic [ref=e146]: Photo Path
+              - generic [ref=e147]: Photo Sphere
+            - generic [ref=e148]:
+              - text: Click highlighted areas to see images
+              - link "Learn more" [ref=e149] [cursor=pointer]:
+                - /url: https://support.google.com/maps/?p=sv_imagekey
+          - checkbox "Show images" [checked] [ref=e151] [cursor=pointer]
+      - generic:
+        - button "Show Your Location" [ref=e156] [cursor=pointer]:
+          - generic [ref=e158]: 
+        - generic [ref=e160] [cursor=pointer]:
+          - button "Zoom in" [ref=e161]
+          - button "Zoom out" [ref=e164]
+      - generic [ref=e171] [cursor=pointer]:
+        - button "Browse Street View images" [ref=e172]
+        - button "Show imagery" [ref=e174]:
+          - generic [ref=e177]: 
+      - generic [ref=e178]:
+        - generic "Interactive map" [ref=e179]
+        - generic [ref=e183] [cursor=pointer]:
+          - generic [ref=e184]: 
+          - generic [ref=e185]: Layers
+        - button "Layers" [ref=e186] [cursor=pointer]
+    - generic [ref=e188]:
+      - contentinfo [ref=e191]:
+        - text: Imagery ©2026 , Map data ©2026 Google
+        - button "United States" [ref=e192] [cursor=pointer]
+        - button "Terms" [ref=e193] [cursor=pointer]
+        - button "Privacy" [ref=e194] [cursor=pointer]
+        - button "Send Product Feedback" [ref=e195] [cursor=pointer]
+      - button "2000 ft" [ref=e197] [cursor=pointer]: 2000 ft

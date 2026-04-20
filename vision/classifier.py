@@ -19,6 +19,7 @@ from PIL import Image
 
 from .diff import DiffResult, compute_diff
 from .phash import compute_phash, hamming_distance
+from .transform import detect_similarity
 
 
 class TransitionType(Enum):
@@ -70,9 +71,27 @@ def classify_transition(
     if diff_result is None:
         diff_result = compute_diff(t0, t1, config)
 
-    # Scroll bypass: scrolling shifts the viewport but does NOT change page state.
-    # Layers 2-4 would false-positive because the visual content moved. Return
-    # DELTA immediately — the agent loop will re-anchor after scroll.
+    # Similarity-transform compensation: detect pan/zoom/rotate before cascade.
+    # When the visual change is a similarity transform (same content, moved/scaled/rotated),
+    # recompute diff against the warped anchor so the model only sees newly-revealed
+    # content (the residual). Fires for scroll actions and any large non-scroll diff.
+    _transform_enabled = getattr(config, "TRANSFORM_COMPENSATION_ENABLED", False)
+    _try_threshold = getattr(config, "TRANSFORM_TRY_THRESHOLD", 0.15)
+    _inlier_ratio = getattr(config, "WARP_MIN_INLIER_RATIO", 0.5)
+    if _transform_enabled and (is_scroll or diff_result.diff_ratio > _try_threshold):
+        tr = detect_similarity(t0, t1, min_inlier_ratio=_inlier_ratio)
+        if tr.detected:
+            residual = compute_diff(tr.warped_t0, t1, config)
+            return ClassificationResult(
+                transition=TransitionType.DELTA,
+                trigger="transform_delta",
+                diff_ratio=residual.diff_ratio,
+                phash_distance=0,
+                anchor_score=1.0,
+            )
+
+    # Scroll bypass: fallback for scroll actions where transform compensation either
+    # was disabled or found insufficient keypoints (e.g. mostly-blank pages).
     if is_scroll:
         return ClassificationResult(
             transition=TransitionType.DELTA,

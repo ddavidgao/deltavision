@@ -1,0 +1,12 @@
+{
+  "trial": 2,
+  "model": "claude-sonnet-4-6",
+  "elapsed_s": 26.6,
+  "n_screenshots": 0,
+  "tokens": {
+    "error": "need \u22652 screenshots"
+  },
+  "score": {
+    "error": "no screenshots found"
+  }
+}

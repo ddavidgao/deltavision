@@ -1,0 +1,546 @@
+{
+  "trial": 6,
+  "model": "claude-haiku-4-5-20251001",
+  "elapsed_s": 214.8,
+  "n_screenshots": 53,
+  "tokens": {
+    "screenshot_dir": "/Users/davidgao/Projects/deltavision/benchmarks/mapsheets/results/run_06/screenshots",
+    "n_screenshots": 53,
+    "n_transitions": 52,
+    "n_full_frames": 1,
+    "n_deltas": 52,
+    "ff_total_tokens": 72345,
+    "dv_total_tokens": 14115,
+    "savings_pct": 80.5,
+    "step_log": [
+      {
+        "step": 1,
+        "file": "step_01.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.003,
+        "phash_distance": 2,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 2,
+        "file": "step_02.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.004,
+        "phash_distance": 2,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 3,
+        "file": "step_03.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.004,
+        "phash_distance": 2,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 4,
+        "file": "step_04.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.003,
+        "phash_distance": 2,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 5,
+        "file": "step_05.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.003,
+        "phash_distance": 2,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 6,
+        "file": "step_06.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.0,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 85
+      },
+      {
+        "step": 7,
+        "file": "step_07.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.004,
+        "phash_distance": 2,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 8,
+        "file": "step_08.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.003,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 9,
+        "file": "step_09.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.003,
+        "phash_distance": 2,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 10,
+        "file": "step_10.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.003,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 11,
+        "file": "step_11.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.003,
+        "phash_distance": 2,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 12,
+        "file": "step_12.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.003,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 13,
+        "file": "step_13.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.004,
+        "phash_distance": 2,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 14,
+        "file": "step_14.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.004,
+        "phash_distance": 2,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 15,
+        "file": "step_15.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.004,
+        "phash_distance": 2,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 16,
+        "file": "step_16.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.003,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 17,
+        "file": "step_17.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.0,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 85
+      },
+      {
+        "step": 18,
+        "file": "step_18.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.004,
+        "phash_distance": 2,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 19,
+        "file": "step_19.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.004,
+        "phash_distance": 2,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 20,
+        "file": "step_20.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.0,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 85
+      },
+      {
+        "step": 21,
+        "file": "step_21.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.004,
+        "phash_distance": 2,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 22,
+        "file": "step_22.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.004,
+        "phash_distance": 2,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 23,
+        "file": "step_23.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.004,
+        "phash_distance": 2,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 24,
+        "file": "step_24.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.004,
+        "phash_distance": 4,
+        "ff_tokens": 1365,
+        "dv_tokens": 510
+      },
+      {
+        "step": 25,
+        "file": "step_25.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.004,
+        "phash_distance": 2,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 26,
+        "file": "step_26.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.005,
+        "phash_distance": 2,
+        "ff_tokens": 1365,
+        "dv_tokens": 510
+      },
+      {
+        "step": 27,
+        "file": "step_27.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.004,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 28,
+        "file": "step_28.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.0,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 85
+      },
+      {
+        "step": 29,
+        "file": "step_29.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.004,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 30,
+        "file": "step_30.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.003,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 31,
+        "file": "step_31.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.004,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 32,
+        "file": "step_32.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.003,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 33,
+        "file": "step_33.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.003,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 34,
+        "file": "step_34.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.003,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 35,
+        "file": "step_35.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.004,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 36,
+        "file": "step_36.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.004,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 37,
+        "file": "step_37.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.003,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 38,
+        "file": "step_38.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.004,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 39,
+        "file": "step_39.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.004,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 40,
+        "file": "step_40.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.003,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 41,
+        "file": "step_41.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.003,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 42,
+        "file": "step_42.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.0,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 85
+      },
+      {
+        "step": 43,
+        "file": "step_43.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.003,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 44,
+        "file": "step_44.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.003,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 45,
+        "file": "step_45.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.003,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 46,
+        "file": "step_46.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.003,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 47,
+        "file": "step_47.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.0,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 85
+      },
+      {
+        "step": 48,
+        "file": "step_48.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.003,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 49,
+        "file": "step_49.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.003,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 50,
+        "file": "step_50.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.003,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 51,
+        "file": "step_51.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.004,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      },
+      {
+        "step": 52,
+        "file": "step_52.png",
+        "transition": "delta",
+        "trigger": "none",
+        "diff_ratio": 0.004,
+        "phash_distance": 0,
+        "ff_tokens": 1365,
+        "dv_tokens": 255
+      }
+    ]
+  },
+  "score": {
+    "final_screenshot": "/Users/davidgao/Projects/deltavision/benchmarks/mapsheets/results/run_06/screenshots/step_52.png",
+    "n_screenshots": 53,
+    "note": "review final screenshot manually or run --score-only for automated score"
+  },
+  "task_success": false,
+  "task_note": "Haiku gave up writing to sheet, printed results to terminal instead",
+  "token_measurement_valid": true
+}
