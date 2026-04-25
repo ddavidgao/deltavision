@@ -1,0 +1,25 @@
+{
+  "dv_run": {
+    "path": "benchmarks/mapsheets/results/run_18_dv_parallel/dv_proxy_run_1777072627.jsonl",
+    "steps": 31,
+    "total_tokens": 30350,
+    "ontask_steps": 27,
+    "ontask_tokens": 28730
+  },
+  "ff_run": {
+    "path": "benchmarks/mapsheets/results/run_19_ff_parallel/dv_proxy_run_1777072642_ff.jsonl",
+    "steps": 27,
+    "total_tokens": 36855,
+    "ontask_steps": 26,
+    "ontask_tokens": 35490
+  },
+  "framings": {
+    "per_step_savings_pct": 28.3,
+    "total_task_savings_pct": 17.7,
+    "ontask_per_step_savings_pct": 22.0,
+    "first_n_truncated_savings_pct": 27.1
+  },
+  "sanity": {
+    "dv_steps_over_full_frame_tokens": 0
+  }
+}

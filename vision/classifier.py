@@ -71,24 +71,48 @@ def classify_transition(
     if diff_result is None:
         diff_result = compute_diff(t0, t1, config)
 
-    # Similarity-transform compensation: detect pan/zoom/rotate before cascade.
-    # When the visual change is a similarity transform (same content, moved/scaled/rotated),
-    # recompute diff against the warped anchor so the model only sees newly-revealed
-    # content (the residual). Fires for scroll actions and any large non-scroll diff.
+    # Residual-first transform compensation.
+    #
+    # Always try the warp (cheap, ~5-10ms). Compare residual diff against raw diff.
+    # Keep the warp only if it actually reduces the diff — this is self-correcting
+    # against bogus transforms fit to noise (bogus warps increase residual, so we
+    # throw them out automatically without needing an inlier-ratio threshold).
+    #
+    # Design note: this replaces all-or-nothing inlier gating. Even 20% inlier
+    # matches carry real information — if those 20% cluster spatially (e.g. a
+    # stable sidebar), warping subtracts that region from the diff, saving tokens.
     _transform_enabled = getattr(config, "TRANSFORM_COMPENSATION_ENABLED", False)
-    _try_threshold = getattr(config, "TRANSFORM_TRY_THRESHOLD", 0.15)
-    _inlier_ratio = getattr(config, "WARP_MIN_INLIER_RATIO", 0.5)
+    _try_threshold = getattr(config, "TRANSFORM_TRY_THRESHOLD", 0.05)
+    _identical_epsilon = getattr(config, "IDENTICAL_DIFF_EPSILON", 0.003)
+
     if _transform_enabled and (is_scroll or diff_result.diff_ratio > _try_threshold):
-        tr = detect_similarity(t0, t1, min_inlier_ratio=_inlier_ratio)
+        tr = detect_similarity(t0, t1, min_inlier_ratio=0.0)
         if tr.detected:
             residual = compute_diff(tr.warped_t0, t1, config)
-            return ClassificationResult(
-                transition=TransitionType.DELTA,
-                trigger="transform_delta",
-                diff_ratio=residual.diff_ratio,
-                phash_distance=0,
-                anchor_score=1.0,
-            )
+            # Keep warp only if it strictly reduces the diff.
+            if residual.diff_ratio < diff_result.diff_ratio:
+                diff_result = residual
+
+                # Effectively-identical fast exit: if the warped residual is under
+                # IDENTICAL_DIFF_EPSILON of the frame, t1 is explained by t0 +
+                # motion. Nothing new. Zero tokens. "Cut it off entirely."
+                if residual.diff_ratio < _identical_epsilon:
+                    return ClassificationResult(
+                        transition=TransitionType.DELTA,
+                        trigger="transform_delta_identical",
+                        diff_ratio=residual.diff_ratio,
+                        phash_distance=0,
+                        anchor_score=1.0,
+                    )
+
+                # Otherwise it's a DELTA with a tighter, warped-residual bbox.
+                return ClassificationResult(
+                    transition=TransitionType.DELTA,
+                    trigger="transform_delta",
+                    diff_ratio=residual.diff_ratio,
+                    phash_distance=0,
+                    anchor_score=1.0,
+                )
 
     # Scroll bypass: fallback for scroll actions where transform compensation either
     # was disabled or found insufficient keypoints (e.g. mostly-blank pages).

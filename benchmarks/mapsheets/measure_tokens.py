@@ -150,7 +150,7 @@ def main():
     print(json.dumps(metrics, indent=2))
 
     if "error" not in metrics:
-        print(f"\n--- Summary ---")
+        print("\n--- Summary ---")
         print(f"Steps: {metrics['n_transitions']}")
         print(f"Full frames: {metrics['n_full_frames']}  Deltas: {metrics['n_deltas']}")
         print(f"FF tokens:  {metrics['ff_total_tokens']:,}")

@@ -1,0 +1,22 @@
+{
+  "headline_per_step_savings_pct": 25.9,
+  "total_task_savings_pct": 23.2,
+  "ff": {
+    "steps": 27,
+    "total_tokens": 36855
+  },
+  "dv_culled": {
+    "steps": 28,
+    "total_tokens": 28305,
+    "excluded_steps": [
+      8,
+      9,
+      10
+    ],
+    "excluded_tokens": 2045
+  },
+  "dv_raw": {
+    "steps": 31,
+    "total_tokens": 30350
+  }
+}

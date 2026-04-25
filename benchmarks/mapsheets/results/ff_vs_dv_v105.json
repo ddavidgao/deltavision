@@ -1,0 +1,22 @@
+{
+  "run": "v1.0.5 matched parallel SF Maps\u2192Sheets",
+  "headline_per_step_savings_pct": 35.7,
+  "total_task_savings_pct": 24.0,
+  "ff": {
+    "steps": 33,
+    "total_tokens": 45045
+  },
+  "dv_culled": {
+    "steps": 39,
+    "total_tokens": 34245,
+    "excluded_steps": [
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "excluded_tokens": 4860
+  }
+}

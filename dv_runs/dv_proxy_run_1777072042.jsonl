@@ -1,0 +1,6 @@
+{"step": 1, "transition": "initial", "trigger": "initial", "ff_tokens": 1365, "dv_tokens": 1365, "ff_cumulative": 1365, "dv_cumulative": 1365}
+{"step": 2, "transition": "new_page", "trigger": "phash", "diff_ratio": 0.037, "phash_distance": 31, "ff_tokens": 1365, "dv_tokens": 1365, "ff_cumulative": 2730, "dv_cumulative": 2730, "savings_pct_cumulative": 0.0}
+{"step": 1, "transition": "initial", "trigger": "initial", "ff_tokens": 1365, "dv_tokens": 1365, "ff_cumulative": 1365, "dv_cumulative": 1365}
+{"step": 2, "transition": "delta", "trigger": "none", "diff_ratio": 0.0, "phash_distance": 0, "ff_tokens": 1365, "dv_tokens": 85, "ff_cumulative": 2730, "dv_cumulative": 1450, "savings_pct_cumulative": 46.9}
+{"step": 1, "transition": "ff_full", "trigger": "force_full_frame", "ff_tokens": 1365, "dv_tokens": 1365, "ff_cumulative": 1365, "dv_cumulative": 1365, "savings_pct_cumulative": 0.0}
+{"step": 2, "transition": "ff_full", "trigger": "force_full_frame", "ff_tokens": 1365, "dv_tokens": 1365, "ff_cumulative": 2730, "dv_cumulative": 2730, "savings_pct_cumulative": 0.0}

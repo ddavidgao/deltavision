@@ -38,10 +38,10 @@ RESULTS_DIR = Path(__file__).parent / "results"
 # Sheet clear — via AppleScript
 # ---------------------------------------------------------------------------
 
-CLEAR_APPLESCRIPT = """
+CLEAR_APPLESCRIPT = f"""
 tell application "Google Chrome"
     activate
-    tell front window to make new tab with properties {{URL:"{url}"}}
+    tell front window to make new tab with properties {{URL:"{SHEET_URL}"}}
     delay 5
 end tell
 
@@ -57,7 +57,7 @@ tell application "System Events"
         delay 0.3
     end tell
 end tell
-""".format(url=SHEET_URL)
+"""
 
 
 def clear_sheet_applescript() -> None:

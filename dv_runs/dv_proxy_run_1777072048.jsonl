@@ -1,0 +1,2 @@
+{"event": "proxy_started", "run_id": 1777072048, "log_file": "/Users/davidgao/Projects/deltavision/dv_runs/dv_proxy_run_1777072048.jsonl", "n_tools": 21, "mode": "dv_classified"}
+{"step": 1, "transition": "initial", "trigger": "initial", "ff_tokens": 1365, "dv_tokens": 1365, "ff_cumulative": 1365, "dv_cumulative": 1365}

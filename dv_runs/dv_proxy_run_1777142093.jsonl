@@ -1,0 +1,24 @@
+{"step": 1, "transition": "initial", "trigger": "initial", "ff_tokens": 1365, "dv_tokens": 1365, "ff_cumulative": 1365, "dv_cumulative": 1365}
+{"step": 2, "transition": "new_page", "trigger": "phash", "diff_ratio": 0.037, "phash_distance": 31, "ff_tokens": 1365, "dv_tokens": 1365, "ff_cumulative": 2730, "dv_cumulative": 2730, "savings_pct_cumulative": 0.0}
+{"step": 1, "transition": "initial", "trigger": "initial", "ff_tokens": 1365, "dv_tokens": 1365, "ff_cumulative": 1365, "dv_cumulative": 1365}
+{"step": 2, "transition": "delta", "trigger": "none", "diff_ratio": 0.0, "phash_distance": 0, "ff_tokens": 1365, "dv_tokens": 85, "ff_cumulative": 2730, "dv_cumulative": 1450, "savings_pct_cumulative": 46.9}
+{"step": 1, "transition": "ff_full", "trigger": "force_full_frame", "ff_tokens": 1365, "dv_tokens": 1365, "ff_cumulative": 1365, "dv_cumulative": 1365, "savings_pct_cumulative": 0.0}
+{"step": 2, "transition": "ff_full", "trigger": "force_full_frame", "ff_tokens": 1365, "dv_tokens": 1365, "ff_cumulative": 2730, "dv_cumulative": 2730, "savings_pct_cumulative": 0.0}
+{"step": 1, "transition": "initial", "trigger": "initial", "ff_tokens": 1365, "dv_tokens": 1365, "ff_cumulative": 1365, "dv_cumulative": 1365}
+{"step": 2, "transition": "new_page", "trigger": "phash", "diff_ratio": 0.0011, "phash_distance": 31, "ff_tokens": 1365, "dv_tokens": 1365, "ff_cumulative": 2730, "dv_cumulative": 2730, "savings_pct_cumulative": 0.0}
+{"step": 3, "transition": "delta", "trigger": "none", "diff_ratio": 0.0022, "phash_distance": 18, "ff_tokens": 1365, "dv_tokens": 255, "ff_cumulative": 4095, "dv_cumulative": 2985, "savings_pct_cumulative": 27.1}
+{"step": 4, "transition": "delta", "trigger": "none", "diff_ratio": 0.0022, "phash_distance": 16, "ff_tokens": 1365, "dv_tokens": 255, "ff_cumulative": 5460, "dv_cumulative": 3240, "savings_pct_cumulative": 40.7}
+{"step": 5, "transition": "delta", "trigger": "none", "diff_ratio": 0.0022, "phash_distance": 16, "ff_tokens": 1365, "dv_tokens": 255, "ff_cumulative": 6825, "dv_cumulative": 3495, "savings_pct_cumulative": 48.8}
+{"step": 6, "transition": "delta", "trigger": "none", "diff_ratio": 0.0022, "phash_distance": 10, "ff_tokens": 1365, "dv_tokens": 255, "ff_cumulative": 8190, "dv_cumulative": 3750, "savings_pct_cumulative": 54.2}
+{"step": 7, "transition": "delta", "trigger": "none", "diff_ratio": 0.0022, "phash_distance": 20, "ff_tokens": 1365, "dv_tokens": 255, "ff_cumulative": 9555, "dv_cumulative": 4005, "savings_pct_cumulative": 58.1}
+{"step": 8, "transition": "delta", "trigger": "periodic_refresh", "diff_ratio": 0.0022, "phash_distance": 14, "ff_tokens": 1365, "dv_tokens": 1365, "ff_cumulative": 10920, "dv_cumulative": 5370, "savings_pct_cumulative": 50.8}
+{"step": 9, "transition": "delta", "trigger": "none", "diff_ratio": 0.0022, "phash_distance": 14, "ff_tokens": 1365, "dv_tokens": 255, "ff_cumulative": 12285, "dv_cumulative": 5625, "savings_pct_cumulative": 54.2}
+{"step": 1, "transition": "initial", "trigger": "initial", "ff_tokens": 1365, "dv_tokens": 1365, "ff_cumulative": 1365, "dv_cumulative": 1365}
+{"step": 2, "transition": "new_page", "trigger": "phash", "diff_ratio": 0.0011, "phash_distance": 31, "ff_tokens": 1365, "dv_tokens": 1365, "ff_cumulative": 2730, "dv_cumulative": 2730, "savings_pct_cumulative": 0.0}
+{"step": 3, "transition": "delta", "trigger": "none", "diff_ratio": 0.0022, "phash_distance": 18, "ff_tokens": 1365, "dv_tokens": 255, "ff_cumulative": 4095, "dv_cumulative": 2985, "savings_pct_cumulative": 27.1}
+{"step": 4, "transition": "delta", "trigger": "none", "diff_ratio": 0.0022, "phash_distance": 16, "ff_tokens": 1365, "dv_tokens": 255, "ff_cumulative": 5460, "dv_cumulative": 3240, "savings_pct_cumulative": 40.7}
+{"step": 5, "transition": "delta", "trigger": "none", "diff_ratio": 0.0022, "phash_distance": 16, "ff_tokens": 1365, "dv_tokens": 255, "ff_cumulative": 6825, "dv_cumulative": 3495, "savings_pct_cumulative": 48.8}
+{"step": 6, "transition": "delta", "trigger": "none", "diff_ratio": 0.0022, "phash_distance": 10, "ff_tokens": 1365, "dv_tokens": 255, "ff_cumulative": 8190, "dv_cumulative": 3750, "savings_pct_cumulative": 54.2}
+{"step": 7, "transition": "delta", "trigger": "none", "diff_ratio": 0.0022, "phash_distance": 20, "ff_tokens": 1365, "dv_tokens": 255, "ff_cumulative": 9555, "dv_cumulative": 4005, "savings_pct_cumulative": 58.1}
+{"step": 8, "transition": "delta", "trigger": "periodic_refresh", "diff_ratio": 0.0022, "phash_distance": 14, "ff_tokens": 1365, "dv_tokens": 1365, "ff_cumulative": 10920, "dv_cumulative": 5370, "savings_pct_cumulative": 50.8}
+{"step": 9, "transition": "new_page", "trigger": "phash", "diff_ratio": 0.0022, "phash_distance": 30, "ff_tokens": 1365, "dv_tokens": 1365, "ff_cumulative": 12285, "dv_cumulative": 6735, "savings_pct_cumulative": 45.2}

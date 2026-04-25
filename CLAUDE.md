@@ -2,6 +2,36 @@
 
 Delta-first computer use agent framework. The model's primary observation is the **delta**, not the full frame.
 
+## Core success criterion (the one that matters)
+
+**At worst the same number of steps · always fewer tokens.**
+
+DV is meaningful only if it doesn't make the agent dumber. If DV halves token cost
+but doubles step count, total work goes up — that's a regression dressed up as a
+win. The honest test is two-axis:
+
+1. **Steps to completion** must be ≤ FF on the same task. If DV consistently
+   takes more steps, the observation pipeline is hurting agent decision-making
+   (block-count bloat, missed context, scattered crop attention) and that
+   debt eats the per-frame savings.
+2. **Total tokens** must be < FF. Per-frame savings are necessary but not
+   sufficient — they only translate to real cost reduction when step count
+   doesn't inflate.
+
+Once we have multi-trial trajectories, run a **null-hypothesis test**: H₀ = "DV
+takes the same or fewer steps than FF on the same task." Reject if step-count
+distributions cross with FF strictly below. This frames the demo numbers as
+statistical claims (p < 0.05, n ≥ 5) rather than n=1 anecdotes.
+
+Pending fix in flight (2026-04-25): the proxy's diff engine emits up to
+`MAX_REGIONS=6` separate crop bboxes per step. On steps with one big real change
+plus several scattered tiny ones, this fragments into 6 expensive crops totaling
+> 1365 tokens, tripping the token-cap fallback and forcing a full frame. A
+**greedy rectangle-merge optimizer** (merge any pair where `cost(A∪B) < cost(A)
++ cost(B)`) lifted simulated savings from 37.2% → 56.2% on the run_20 SF trace
+without touching the classifier — file: `benchmarks/ablation/simulate_greedy_merge.py`.
+Ship the merge into `vision/diff.py` next, then re-benchmark.
+
 ## TLDR — What Matters
 
 **What it is:** Observation middleware for GUI agents. Sits between the browser and any model (Claude, GPT-4o, Qwen, Hermes via Ollama). Sends the model only what changed on screen instead of a full screenshot every step.

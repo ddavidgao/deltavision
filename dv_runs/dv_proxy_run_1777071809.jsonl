@@ -1,0 +1,3 @@
+{"event": "proxy_started", "run_id": 1777071809, "log_file": "/Users/davidgao/Projects/deltavision/dv_runs/dv_proxy_run_1777071809.jsonl", "n_tools": 21, "mode": "dv_classified"}
+{"step": 1, "transition": "initial", "trigger": "initial", "ff_tokens": 1365, "dv_tokens": 1365, "ff_cumulative": 1365, "dv_cumulative": 1365}
+{"step": 2, "transition": "new_page", "trigger": "phash", "diff_ratio": 0.7027, "phash_distance": 26, "ff_tokens": 1365, "dv_tokens": 1365, "ff_cumulative": 2730, "dv_cumulative": 2730, "savings_pct_cumulative": 0.0}

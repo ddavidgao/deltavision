@@ -1,0 +1,20 @@
+{
+  "dv_run": {
+    "log": "benchmarks/mapsheets/results/run_14_sf_fixed/dv_proxy_run_1777061077.jsonl",
+    "total_steps": 46,
+    "on_task_steps": 32,
+    "dv_tokens": 37370,
+    "ff_sim_tokens": 62790
+  },
+  "ff_run": {
+    "log": "benchmarks/mapsheets/results/run_15_sf_ff/dv_proxy_run_1777066006_ff.jsonl",
+    "total_steps": 29,
+    "on_task_steps": 27,
+    "ff_tokens": 39585
+  },
+  "framings": {
+    "a_self_reported_dv_savings_pct": 40.5,
+    "b_per_step_savings_pct": 40.5,
+    "d_on_task_per_step_savings_pct": 17.2
+  }
+}

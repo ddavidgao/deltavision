@@ -1,0 +1,131 @@
+{
+  "total_steps": 46,
+  "on_task_steps": 32,
+  "off_task_steps": 14,
+  "raw_savings_pct": 40.5,
+  "on_task_savings_pct": 17.2,
+  "ff_cum_raw": 62790,
+  "dv_cum_raw": 37370,
+  "ff_cum_ontask": 43680,
+  "dv_cum_ontask": 36180,
+  "on_task_mask": [
+    true,
+    true,
+    true,
+    true,
+    false,
+    true,
+    false,
+    true,
+    false,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    true,
+    true,
+    true,
+    false,
+    true,
+    true,
+    true,
+    true,
+    false,
+    false,
+    true,
+    false,
+    true,
+    true,
+    true,
+    false,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    false,
+    false,
+    false,
+    true,
+    true,
+    false
+  ],
+  "off_task_details": [
+    {
+      "step": 5,
+      "file": "05_filter_top_results.png",
+      "dv_tokens": 85
+    },
+    {
+      "step": 7,
+      "file": "07_george_details.png",
+      "dv_tokens": 85
+    },
+    {
+      "step": 9,
+      "file": "09_back_to_results.png",
+      "dv_tokens": 85
+    },
+    {
+      "step": 16,
+      "file": "16_chorus_availability.png",
+      "dv_tokens": 85
+    },
+    {
+      "step": 20,
+      "file": "20_sheet_dialog_dismissed.png",
+      "dv_tokens": 85
+    },
+    {
+      "step": 25,
+      "file": "25_sort_submenu.png",
+      "dv_tokens": 85
+    },
+    {
+      "step": 26,
+      "file": "26_sort_range_submenu.png",
+      "dv_tokens": 85
+    },
+    {
+      "step": 28,
+      "file": "28_sort_dialog.png",
+      "dv_tokens": 85
+    },
+    {
+      "step": 32,
+      "file": "32_sort_configured.png",
+      "dv_tokens": 85
+    },
+    {
+      "step": 40,
+      "file": "40_cf_panel_open.png",
+      "dv_tokens": 85
+    },
+    {
+      "step": 41,
+      "file": "42_cf_check.png",
+      "dv_tokens": 85
+    },
+    {
+      "step": 42,
+      "file": "42_viewport.png",
+      "dv_tokens": 85
+    },
+    {
+      "step": 43,
+      "file": "43_full_view.png",
+      "dv_tokens": 85
+    },
+    {
+      "step": 46,
+      "file": "46_cf_rule_edit.png",
+      "dv_tokens": 85
+    }
+  ]
+}

@@ -53,6 +53,13 @@ class DeltaVisionConfig:
     # Maximum changed regions to send to model (sorted by size, largest first)
     MAX_REGIONS: int = 6
 
+    # Greedy rectangle-merge optimizer in vision/diff.py. Merges adjacent
+    # contour bboxes whenever the union token-cost is cheaper than the sum of
+    # their separate costs. Lifts simulated savings ~37% → ~56% on the SF
+    # Maps→Sheets trace by avoiding the "6 small fragments → token-cap fallback
+    # to full frame" failure mode. Set False only for ablation comparisons.
+    BBOX_MERGE_ENABLED: bool = True
+
     # Padding around each bbox crop in pixels
     CROP_PADDING: int = 15
 
@@ -102,12 +109,23 @@ class DeltaVisionConfig:
     # content, not content that merely moved or rescaled.
     TRANSFORM_COMPENSATION_ENABLED: bool = True
 
-    # Minimum RANSAC inlier ratio to confirm a similarity transform.
-    # Below this threshold the change is treated as genuine new content.
-    WARP_MIN_INLIER_RATIO: float = 0.5
+    # Minimum RANSAC inlier ratio to gate similarity-transform acceptance.
+    # Default 0.0 (residual-first): always try the warp, keep it if it reduces
+    # the diff, drop it if it doesn't. Self-correcting against bogus transforms
+    # fit to noise — no threshold tuning needed in normal operation. Set > 0 only
+    # to short-circuit the warp attempt when you know the inlier ratio will be
+    # too low (e.g. for profiling / ablation).
+    WARP_MIN_INLIER_RATIO: float = 0.0
 
     # Minimum diff_ratio to attempt transform compensation (skip ORB on tiny diffs).
-    TRANSFORM_TRY_THRESHOLD: float = 0.15
+    # Lowered 0.15 -> 0.05 on 2026-04-24 to catch subtle pan/zoom cases.
+    TRANSFORM_TRY_THRESHOLD: float = 0.05
+
+    # If the residual diff after warping is below this fraction of the frame,
+    # t1 is considered effectively identical to t0 after motion compensation —
+    # emit a zero-residual DELTA (no tokens sent). Was previously handled by
+    # MIN_EFFECT_THRESHOLD after-the-fact; now handled at classifier level.
+    IDENTICAL_DIFF_EPSILON: float = 0.003
 
     # -- Ablation --
 
@@ -131,7 +149,7 @@ class DeltaVisionConfig:
                      "ANCHOR_HEIGHT_FRACTION", "MIN_EFFECT_THRESHOLD",
                      "OCR_REGION_MAX_FRACTION", "OCR_MIN_CONFIDENCE",
                      "PHASH_LOW_DIFF_FLOOR", "WARP_MIN_INLIER_RATIO",
-                     "TRANSFORM_TRY_THRESHOLD"):
+                     "TRANSFORM_TRY_THRESHOLD", "IDENTICAL_DIFF_EPSILON"):
             v = getattr(self, name)
             if not (0.0 <= v <= 1.0):
                 raise ConfigError(f"{name} must be in [0, 1], got {v}")

@@ -1,0 +1,36 @@
+{
+  "run": "v1.0.5 matched parallel SF Maps\u2192Sheets \u2014 confounder-culled",
+  "headline_per_step_savings_pct": 29.0,
+  "total_task_savings_pct": -3.5,
+  "ff": {
+    "kept_steps": 24,
+    "total_tokens": 32760,
+    "culled": [
+      5,
+      9,
+      10,
+      11,
+      12,
+      13,
+      16,
+      22,
+      30
+    ]
+  },
+  "dv": {
+    "kept_steps": 35,
+    "total_tokens": 33905,
+    "culled": [
+      9,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      25,
+      32,
+      35
+    ]
+  }
+}

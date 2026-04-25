@@ -28,7 +28,7 @@ class TransformResult:
 def detect_similarity(
     t0: Image.Image,
     t1: Image.Image,
-    min_inlier_ratio: float = 0.5,
+    min_inlier_ratio: float = 0.0,
 ) -> TransformResult:
     """
     Detect if t0 → t1 is a similarity transform (pan, zoom, rotate).
@@ -37,9 +37,18 @@ def detect_similarity(
     (4-DOF: tx, ty, rotation, uniform scale). Excludes shearing and
     perspective warp — only transforms that preserve shape and angles.
 
-    Returns warped t0 aligned to t1 when inlier_ratio >= min_inlier_ratio.
-    Returns detected=False when frames have insufficient features (e.g. solid
-    color screens) or when the inlier ratio is too low (genuinely new content).
+    Default behavior (min_inlier_ratio=0.0): returns the warped t0 whenever
+    RANSAC can fit any transform at all. The caller is expected to verify the
+    warp is beneficial by comparing residual diff against raw diff — see
+    `classify_transition` in classifier.py. This residual-first design lets
+    partial correspondence (e.g. a stable sidebar on an otherwise-changed
+    page) still subtract that region from the delta, instead of all-or-nothing
+    gating.
+
+    Returns detected=False only when there genuinely is no correspondence:
+      - Too few keypoints (solid color, uniform texture)
+      - Too few matches (< 8, RANSAC minimum)
+      - RANSAC cannot fit any model at all
     """
     img0 = np.array(t0.convert("L"))
     img1 = np.array(t1.convert("L"))

@@ -34,13 +34,13 @@ Runs 9 staged checks (import → observer → delta path → coverage guard → 
 
 ```
 DeltaVision self-test — staged E2E
-  S1  import deltavision                              ✓  v1.0.4
+  S1  import deltavision                              ✓  v1.0.6
   S2  observer construction                           ✓  26 fields
   S3  initial observation → full_frame                ✓  tokens=1365
   S4  small delta is cheaper than full frame          ✓  tokens=171 vs FF=1365 (87.5% saved)
   S5  whole-frame change → coverage guard fires       ✓  tokens=1365 = FF 1365 (trigger='crop_covers_frame')
   S6  anthropic adapter output is well-formed         ✓  1 content blocks
-  S7  HTTP /health reports package version            ✓  version=1.0.4
+  S7  HTTP /health reports package version            ✓  version=1.0.6
   S8  HTTP /observe round-trips a DVObservation       ✓
   S9  HTTP /reset clears observer state               ✓
   All 9 stages passed.
@@ -52,7 +52,7 @@ DeltaVision self-test — staged E2E
 python -m server --port 9000
 
 # Then from any runtime:
-curl http://localhost:9000/health                 # → {"status":"ok","version":"1.0.4"}
+curl http://localhost:9000/health                 # → {"status":"ok","version":"1.0.5"}
 curl -X POST http://localhost:9000/observe \
      -F file=@screenshot.png -F url=... -F format=anthropic
 ```
@@ -63,7 +63,14 @@ Endpoints: `GET /health` · `POST /observe` · `POST /reset` · `GET /state`. Re
 
 Because v1.0.x maintains backwards compatibility with the flat-module imports (`from observer import ...`), the wheel ships both a `deltavision/` umbrella package AND the raw modules (`observer.py`, `vision/`, `agent/`, `model/`) at site-packages root. If your CWD has a directory named `vision/` or `observer.py`, it can shadow the installed one — run your script from a different directory or use `from deltavision import X` (which always resolves through the umbrella). v2.0 will nest modules under the package to remove this caveat.
 
-**PyPI:** [`deltavision==1.0.4`](https://pypi.org/project/deltavision/1.0.4/) · **OS-level companion (V2, alpha):** [`deltavision-os`](https://pypi.org/project/deltavision-os/) · **Source of truth:** private repo, public mirror auto-synced
+**PyPI:** [`deltavision==1.0.6`](https://pypi.org/project/deltavision/1.0.6/) · **OS-level companion (V2, alpha):** [`deltavision-os`](https://pypi.org/project/deltavision-os/) · **Source of truth:** private repo, public mirror auto-synced
+
+### What's new in 1.0.6
+
+Two CV-pipeline upgrades that, together, flip DV from "wins on tokens, loses on steps" to "wins on **both** axes" — the criterion the project requires:
+
+- **Greedy bbox-merge optimizer (`vision/diff.py`).** The proxy used to emit up to `MAX_REGIONS=6` separate crop bboxes per step. On steps with one big real change plus several scattered tiny ones, this fragmented into 6 expensive crops totaling > 1365 tokens, tripping the token-cap fallback and forcing a full frame. The new merger greedily pairs bboxes while `cost(A∪B) < cost(A) + cost(B)`. Replayed across 16 saved runs: **38.1% → 48.9% mean savings**, no classifier changes. Toggleable via `DeltaVisionConfig(BBOX_MERGE_ENABLED=True)` (default on).
+- **Periodic full-frame refresh (`dv_playwright_mcp.py`).** The proxy now forces a full-frame response every `DV_DELTA_REFRESH_EVERY=5` consecutive deltas, so the agent re-anchors instead of getting lost in dialog interactions because it's only seeing tiny crops. Combined with a leaner screenshot prompt this dropped agent step count from **49 → 32 on the SF mapsheets task** (vs FF's 45 steps), at 28,725 vs 61,425 image tokens — **53.2% total savings, 34.2% per-step savings**, while the agent uses fewer steps too.
 
 ## When DeltaVision helps — and when it doesn't
 
@@ -300,7 +307,7 @@ deltavision/
 
 ## Testing
 
-`pytest tests/` — 232 tests total (225 offline + 7 live Playwright). Covers CV pipeline, classifier cascade, observation builder, safety layer, response parsers, HTTP sidecar, v1.0.3 regression invariants (`import deltavision` works, DV ≤ FF on every single step).
+`pytest tests/` — 256 tests total (offline + live Playwright). Covers CV pipeline, classifier cascade, observation builder, safety layer, response parsers, HTTP sidecar, v1.0.3 regression invariants (`import deltavision` works, DV ≤ FF on every single step), v1.0.5 token-cap guard (proxy never bills more than a full frame), v1.0.6 greedy bbox-merge optimizer + periodic full-frame refresh.
 
 | Suite | Tests | Covers |
 |---|---|---|

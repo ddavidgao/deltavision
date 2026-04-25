@@ -25,7 +25,7 @@ from vision.classifier import (
 from vision.diff import compute_diff, extract_crops
 from vision.phash import compute_phash, hamming_distance
 
-FIXTURES = Path(__file__).parent / "fixtures" / "mcgrawhill"
+FIXTURES = Path(__file__).parent / "fixtures" / "regression" / "real_sites" / "mcgrawhill"
 
 # Skip entire module if fixtures aren't present
 pytestmark = pytest.mark.skipif(
@@ -73,13 +73,25 @@ class TestRealDiffMetrics:
         """Question → Reading mode: layout change BUT both pages are mostly
         white, so diff_ratio stays low (~2%). The content difference shows up
         in the bbox crops, not in raw pixel count. This is why pHash and
-        anchor matching exist — diff_ratio alone can't catch everything."""
+        anchor matching exist — diff_ratio alone can't catch everything.
+
+        Note: pre-merge this returned ≥2 raw contour bboxes. With the greedy
+        rectangle-merge optimizer, those collapse into a single region whose
+        union covers the same change but at lower token cost. We assert the
+        change was detected (action_had_effect + meaningful bbox area)
+        instead of the literal contour count.
+        """
         diff = compute_diff(q3_question, reading_mode, config)
         print(f"\nQuestion→Reading: diff_ratio={diff.diff_ratio:.3f}, "
               f"bboxes={len(diff.changed_bboxes)}, "
               f"largest_area={diff.largest_change_area:.3f}")
         assert diff.action_had_effect
-        assert len(diff.changed_bboxes) >= 2  # multiple regions changed
+        assert len(diff.changed_bboxes) >= 1
+        # The detected change should cover a meaningful chunk of the frame.
+        assert diff.largest_change_area > 0.1, (
+            f"Question→Reading layout change should produce a meaningful bbox; "
+            f"got largest_change_area={diff.largest_change_area:.3f}"
+        )
 
     def test_feedback_to_reading_diff(self, config, q2_feedback, reading_mode):
         """Feedback → Reading: completely different content."""
