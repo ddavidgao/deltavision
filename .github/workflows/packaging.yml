@@ -18,6 +18,9 @@ concurrency:
 
 jobs:
   build-and-verify:
+    # Public-repo only: private-repo minutes count against the 2000/month
+    # free quota. The public mirror runs this same job on every sync.
+    if: github.repository == 'ddavidgao/deltavision'
     runs-on: ubuntu-latest
 
     steps:

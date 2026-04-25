@@ -14,6 +14,13 @@ concurrency:
 
 jobs:
   test:
+    # Skip on the private source-of-truth repo. Private-repo Actions minutes
+    # count against the 2000/month free quota; public-repo minutes are free
+    # and unlimited. The public mirror runs the exact same workflow on every
+    # sync, so coverage is identical — we just stop double-billing the same
+    # commit on private. Flip back to no-gate when minutes refresh next month
+    # if you want pre-sync drift detection.
+    if: github.repository == 'ddavidgao/deltavision'
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false

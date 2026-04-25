@@ -10,6 +10,10 @@ on:
 
 jobs:
   stale:
+    # Public-repo only: private repo has no public issues/PRs to triage,
+    # and private-repo Actions minutes count against the 2000/month free
+    # quota. The public mirror has the issue/PR queue.
+    if: github.repository == 'ddavidgao/deltavision'
     runs-on: ubuntu-latest
     permissions:
       issues: write

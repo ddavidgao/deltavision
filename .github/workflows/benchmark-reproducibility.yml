@@ -30,6 +30,11 @@ concurrency:
 
 jobs:
   scripted-77:
+    # Public-repo only: private-repo Actions minutes count against the
+    # 2000/month free quota; this is a daily-cron workflow that would burn
+    # ~60 minutes/month on private with zero added signal (public mirror
+    # runs the same checks). Flip back when minutes refresh.
+    if: github.repository == 'ddavidgao/deltavision'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -70,6 +75,7 @@ jobs:
           retention-days: 7
 
   classifier-17:
+    if: github.repository == 'ddavidgao/deltavision'   # public-only, save private minutes
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
