@@ -4,16 +4,21 @@ name: release
 # No PYPI_API_TOKEN secret required — PyPI trusts this workflow directly,
 # scoped to this exact repo + branch + workflow filename.
 #
-# To arm this for the first time:
-#   1. On https://pypi.org/manage/project/deltavision/settings/publishing/,
-#      add a "GitHub" trusted publisher:
-#        owner:    ddavidgao
-#        repo:     deltavision
-#        workflow: release.yml
+# Status (2026-04-25): Trusted publisher NOT YET configured on PyPI. Until
+# then, releases happen via manual `twine upload` from the laptop and this
+# workflow's publish-pypi job is gated to the public repo only (so private
+# tag pushes don't go red on `invalid-publisher`). When you're ready to
+# arm OIDC publishing:
+#   1. Log into https://pypi.org/manage/project/deltavision/settings/publishing/
+#   2. Add a "GitHub" trusted publisher:
+#        owner:       ddavidgao
+#        repo:        deltavision   ← public repo, NOT deltavision-private
+#        workflow:    release.yml
 #        environment: pypi
-#   2. In this repo's Settings → Environments, create an env named `pypi`.
+#   3. In the PUBLIC repo's Settings → Environments, create an env named `pypi`.
 #      (Optional: add branch protection / required reviewers for extra safety.)
-#   3. Tag a release:  git tag v1.0.3 && git push --tags
+#   4. Push a tag: tags trigger the public mirror's release workflow, which
+#      runs build → publish-pypi → github-release.
 #
 # See: https://docs.pypi.org/trusted-publishers/adding-a-publisher/
 
@@ -59,6 +64,11 @@ jobs:
 
   publish-pypi:
     needs: build
+    # Only the public mirror has the PyPI Trusted Publisher configured (the
+    # private repo's `sub` claim doesn't match anything on pypi.org). Skipping
+    # this job on the private repo prevents every tag push there from going
+    # red on `invalid-publisher`.
+    if: github.repository == 'ddavidgao/deltavision'
     runs-on: ubuntu-latest
     environment: pypi   # gates on environment protection rules if set
     permissions:
@@ -75,6 +85,10 @@ jobs:
 
   github-release:
     needs: publish-pypi
+    # github-release follows publish-pypi, so it only fires on the public repo.
+    # Same gate, kept explicit so a failed public-only `needs` doesn't pin
+    # this on the private mirror via `always()`-like fallback.
+    if: github.repository == 'ddavidgao/deltavision'
     runs-on: ubuntu-latest
     permissions:
       contents: write

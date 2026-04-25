@@ -2,6 +2,30 @@
 
 Delta-first computer use agent framework. The model's primary observation is the **delta**, not the full frame.
 
+## Bug log
+
+This repo keeps an append-only structured bug log at `bugs/log.jsonl` (schema in `bugs/SCHEMA.md`). The human-readable index at `BUGS.md` is generated — don't edit it by hand.
+
+**Whenever you find a bug during other work** (CI failures with surprising root causes, regressions, fragile-but-currently-passing code, surprising metric drift, etc.), log it before continuing:
+
+```bash
+python bugs/add.py --title "..." --severity major \
+    --tags classifier,benchmark \
+    --discovered-during "..." \
+    --symptom "..." --repro "..." --root-cause "..."
+python bugs/render.py    # regenerates BUGS.md
+```
+
+When the same session fixes one, mark it resolved:
+
+```bash
+python bugs/resolve.py BUG-0006 --status fixed \
+    --commit abc1234 --summary "..."
+python bugs/render.py
+```
+
+The point is the *narrative*: a public bug log shows engineering discipline, not broken software. Discovered-during, symptom, repro, root cause are required because future-you needs to be able to reproduce it cold. Defaulting to "I'll fix it and forget" loses the institutional memory that turns a research codebase into something credible.
+
 ## Core success criterion (the one that matters)
 
 **At worst the same number of steps · always fewer tokens.**
