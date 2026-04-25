@@ -100,10 +100,10 @@ def main():
     per_step = (1 - (dv_total / len(dv_kept)) / (ff_total / len(ff_kept))) * 100
     total = (1 - dv_total / ff_total) * 100
 
-    print(f"\n--- HEADLINE: per-step savings ---")
+    print("\n--- HEADLINE: per-step savings ---")
     print(f"  {per_step:.1f}%   (DV avg per frame vs FF's 1,365)")
 
-    print(f"\n--- Total task savings (cleaned trajectory) ---")
+    print("\n--- Total task savings (cleaned trajectory) ---")
     print(f"  {total:.1f}%")
 
     out = {

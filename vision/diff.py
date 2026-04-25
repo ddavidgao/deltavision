@@ -10,7 +10,6 @@ import cv2
 import numpy as np
 from PIL import Image
 
-
 # --- Token cost model (must match dv_playwright_mcp.py) ---
 # A region's cost to send to the model is base + per-tile, where each tile
 # covers up to 512×512 pixels of the cropped region. Used by the

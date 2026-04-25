@@ -376,7 +376,6 @@ def render_insight_frame():
            font=font(16, mono=True), fill=DIM, anchor="lm")
 
     # --- Bottom prompt + answer ---
-    YELLOW  # noqa: B015 — name preserved for parity with intro card
     d.text((W // 2, 920), "The sidebar collapsed. That's it.",
            font=font(34), fill=DIM, anchor="mm")
     d.text((W // 2, 980), "DeltaVision sends only what changed.",
