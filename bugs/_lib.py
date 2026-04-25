@@ -9,57 +9,74 @@ mirror.
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parent
-LOG = ROOT / "log.jsonl"
+PUBLIC_LOG = ROOT / "log.jsonl"
+PRIVATE_LOG = ROOT / "log.private.jsonl"
+
+
+def log_path(private: bool = False) -> Path:
+    """Resolve the JSONL path for public (default) vs private bug logs."""
+    return PRIVATE_LOG if private else PUBLIC_LOG
 
 VALID_SEVERITIES = {"blocker", "major", "minor", "cosmetic"}
 VALID_STATUSES = {"open", "fixed", "deferred", "wontfix", "cant_reproduce"}
 
 
-def load() -> list[dict[str, Any]]:
-    """Parse the log into a list of dicts. Skips blank lines and # comments."""
-    if not LOG.exists():
+def load(path: Path | None = None) -> list[dict[str, Any]]:
+    """Parse the log into a list of dicts. Skips blank lines and # comments.
+
+    `path` defaults to the public log; pass log_path(private=True) for the
+    private one.
+    """
+    p = path or PUBLIC_LOG
+    if not p.exists():
         return []
     out = []
-    for i, line in enumerate(LOG.read_text().splitlines(), start=1):
+    for i, line in enumerate(p.read_text().splitlines(), start=1):
         s = line.strip()
         if not s or s.startswith("#"):
             continue
         try:
             out.append(json.loads(s))
         except json.JSONDecodeError as e:
-            raise SystemExit(f"bugs/log.jsonl line {i}: malformed JSON ({e})")
+            raise SystemExit(f"{p.name} line {i}: malformed JSON ({e})") from e
     return out
 
 
-def save(entries: list[dict[str, Any]]) -> None:
-    """Rewrite log.jsonl from the in-memory list. Sorts by id for stability."""
+def save(entries: list[dict[str, Any]], path: Path | None = None) -> None:
+    """Rewrite the log from the in-memory list. Sorts by id for stability."""
+    p = path or PUBLIC_LOG
     entries = sorted(entries, key=lambda e: e["id"])
     body = "\n".join(json.dumps(e, sort_keys=True) for e in entries)
-    LOG.write_text(body + ("\n" if body else ""))
+    p.write_text(body + ("\n" if body else ""))
 
 
-def append(entry: dict[str, Any]) -> None:
+def append(entry: dict[str, Any], path: Path | None = None) -> None:
     """Append a single entry without rewriting the whole file."""
+    p = path or PUBLIC_LOG
     line = json.dumps(entry, sort_keys=True)
-    with LOG.open("a") as f:
+    with p.open("a") as f:
         f.write(line + "\n")
 
 
-def next_id(entries: list[dict[str, Any]]) -> str:
-    """Pick the next BUG-NNNN. Never reuses; gaps are fine."""
+def next_id(*_ignored) -> str:
+    """Pick the next BUG-NNNN across BOTH public and private logs.
+
+    IDs are globally unique even though entries live in two files — that way
+    a bug can be moved between public and private without colliding.
+    """
     nums = []
-    for e in entries:
-        s = e.get("id", "")
-        if s.startswith("BUG-"):
-            try:
-                nums.append(int(s.split("-", 1)[1]))
-            except ValueError:
-                pass
+    for p in (PUBLIC_LOG, PRIVATE_LOG):
+        for e in load(p):
+            s = e.get("id", "")
+            if s.startswith("BUG-"):
+                try:
+                    nums.append(int(s.split("-", 1)[1]))
+                except ValueError:
+                    pass
     n = max(nums, default=0) + 1
     return f"BUG-{n:04d}"
 

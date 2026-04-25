@@ -1,0 +1,43 @@
+#!/bin/bash
+# Pre-commit hook for DeltaVision.
+#
+# Runs ruff against staged Python files only — fast, scoped, blocks the
+# commit if anything fails. The motivation: in v1.0.6 release work, I
+# pushed two separate commits where ruff caught trivial errors in CI
+# that local ruff would have caught instantly (BUG-0007). Mental rules
+# break under task-switching pressure; enforcement doesn't.
+#
+# Install: ./scripts/install-hooks.sh
+# Bypass:  git commit --no-verify   (avoid; if you must, you must)
+
+set -e
+
+# Find ruff: prefer repo .venv, fall back to system PATH.
+RUFF=""
+if [ -x ".venv/bin/ruff" ]; then
+    RUFF=".venv/bin/ruff"
+elif command -v ruff >/dev/null 2>&1; then
+    RUFF=$(command -v ruff)
+else
+    echo "pre-commit: ruff not found. Install with: pip install ruff"
+    echo "  (or skip this hook with: git commit --no-verify)"
+    exit 1
+fi
+
+# Get staged .py files. If none, nothing to lint.
+STAGED_PY=$(git diff --cached --name-only --diff-filter=ACMR | grep '\.py$' || true)
+if [ -z "$STAGED_PY" ]; then
+    exit 0
+fi
+
+# Run ruff check on staged files only. --force-exclude respects pyproject.toml
+# excludes even when files are passed explicitly.
+echo "pre-commit: ruff check on $(echo "$STAGED_PY" | wc -l | tr -d ' ') staged file(s)..."
+if ! "$RUFF" check --force-exclude $STAGED_PY; then
+    echo ""
+    echo "pre-commit: ruff failed. Auto-fix with:  $RUFF check --fix ."
+    echo "  (or skip with: git commit --no-verify)"
+    exit 1
+fi
+
+echo "pre-commit: ruff ok."

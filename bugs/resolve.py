@@ -18,7 +18,7 @@ from __future__ import annotations
 import argparse
 import sys
 
-from _lib import load, save, validate
+from _lib import load, log_path, save, validate
 
 
 def main():
@@ -35,9 +35,12 @@ def main():
                    help="append/replace the notes field")
     p.add_argument("--root-cause", default=None,
                    help="set or update root_cause if you've now figured it out")
+    p.add_argument("--private", action="store_true",
+                   help="target bugs/log.private.jsonl instead of the public log")
     args = p.parse_args()
 
-    entries = load()
+    target = log_path(private=args.private)
+    entries = load(target)
     matches = [i for i, e in enumerate(entries) if e.get("id") == args.bug_id]
     if not matches:
         sys.exit(f"ERROR: no entry with id={args.bug_id}")
@@ -61,11 +64,13 @@ def main():
     except ValueError as ve:
         sys.exit(f"ERROR: {ve}")
 
-    save(entries)
-    print(f"{args.bug_id} → status={args.status}")
+    save(entries, path=target)
+    where = "private" if args.private else "public"
+    print(f"{args.bug_id} ({where}) → status={args.status}")
     if args.status == "fixed":
         print(f"  fix: {args.commit} — {args.summary}")
-    print("Run `python bugs/render.py` to refresh BUGS.md.")
+    if not args.private:
+        print("Run `python bugs/render.py` to refresh BUGS.md.")
 
 
 if __name__ == "__main__":

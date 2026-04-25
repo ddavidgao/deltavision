@@ -22,7 +22,7 @@ import argparse
 import datetime as dt
 import sys
 
-from _lib import append, load, next_id, validate
+from _lib import append, log_path, next_id, validate
 
 
 def main():
@@ -49,10 +49,14 @@ def main():
     p.add_argument("--notes", default=None)
     p.add_argument("--date", default=None,
                    help="discovery date YYYY-MM-DD; default today")
+    p.add_argument("--private", action="store_true",
+                   help="log to bugs/log.private.jsonl (gitignored). Use for "
+                        "process/workflow bugs (e.g. 'I forgot to run ruff'). "
+                        "Default is the public log: real software issues only.")
     args = p.parse_args()
 
-    entries = load()
-    bug_id = next_id(entries)
+    target = log_path(private=args.private)
+    bug_id = next_id()
 
     entry = {
         "id": bug_id,
@@ -79,10 +83,12 @@ def main():
     except ValueError as e:
         sys.exit(f"ERROR: {e}")
 
-    append(entry)
-    print(f"Logged {bug_id}: {args.title}")
+    append(entry, path=target)
+    where = "private (gitignored)" if args.private else "public"
+    print(f"Logged {bug_id} to {where} log: {args.title}")
     print(f"  severity={args.severity}  status={args.status}  tags={entry['tags']}")
-    print("Run `python bugs/render.py` to refresh BUGS.md.")
+    if not args.private:
+        print("Run `python bugs/render.py` to refresh BUGS.md.")
 
 
 if __name__ == "__main__":

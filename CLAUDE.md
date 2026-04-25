@@ -4,27 +4,34 @@ Delta-first computer use agent framework. The model's primary observation is the
 
 ## Bug log
 
-This repo keeps an append-only structured bug log at `bugs/log.jsonl` (schema in `bugs/SCHEMA.md`). The human-readable index at `BUGS.md` is generated — don't edit it by hand.
+Two logs, same JSONL schema (`bugs/SCHEMA.md`):
+- **`bugs/log.jsonl` — public.** Real software bugs about THE PROJECT: classifier regressions, packaging issues, agent loop bugs, benchmark drift, security findings, breaking changes. These tell the engineering-discipline story. Renders to `BUGS.md` (don't edit by hand).
+- **`bugs/log.private.jsonl` — gitignored.** Process/workflow/personal-mistake stuff: "shipped without running ruff", "forgot to bump the version constant", "burned tokens on a redundant API call". Useful for self-improvement. **Never** synced to public mirror.
 
-**Whenever you find a bug during other work** (CI failures with surprising root causes, regressions, fragile-but-currently-passing code, surprising metric drift, etc.), log it before continuing:
+The split rule: **does this entry teach anyone anything about the software, or only about my workflow?** Software → public. Workflow → private.
 
 ```bash
+# Public software bug (default)
 python bugs/add.py --title "..." --severity major \
     --tags classifier,benchmark \
     --discovered-during "..." \
     --symptom "..." --repro "..." --root-cause "..."
 python bugs/render.py    # regenerates BUGS.md
+
+# Private workflow / personal-mistake bug
+python bugs/add.py --private --title "..." --severity minor \
+    --tags process,workflow \
+    --discovered-during "..." --symptom "..." --repro "..." --root-cause "..."
+# (no render needed; private log doesn't get a rendered index)
+
+# Resolve (works for both — pass --private to target the private log)
+python bugs/resolve.py BUG-0006 --status fixed --commit abc1234 --summary "..."
+python bugs/resolve.py BUG-0007 --private --status fixed --commit ... --summary "..."
 ```
 
-When the same session fixes one, mark it resolved:
+Bug IDs are globally unique across both logs, so an entry can be reclassified by moving its line between files without renumbering. Always run `python bugs/render.py` after any change to the public log.
 
-```bash
-python bugs/resolve.py BUG-0006 --status fixed \
-    --commit abc1234 --summary "..."
-python bugs/render.py
-```
-
-The point is the *narrative*: a public bug log shows engineering discipline, not broken software. Discovered-during, symptom, repro, root cause are required because future-you needs to be able to reproduce it cold. Defaulting to "I'll fix it and forget" loses the institutional memory that turns a research codebase into something credible.
+Discovered-during, symptom, repro, root cause are required because future-you needs to be able to reproduce the finding cold. The "I'll fix it and forget" default is what kills institutional memory in a research codebase.
 
 ## Core success criterion (the one that matters)
 

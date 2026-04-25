@@ -31,6 +31,12 @@ run_*.json
 # Claude memory (private)
 .claude/
 
+# Private bug log — process / workflow / personal-mistake findings.
+# bugs/log.jsonl is the public engineering-discipline trail (real software
+# bugs); bugs/log.private.jsonl is the private "I forgot to run ruff" stuff.
+# Same schema, never synced to the mirror.
+bugs/log.private.jsonl
+
 # Credentials / cookies
 *.credential*
 benchmarks/mcgrawhill/cookies/
