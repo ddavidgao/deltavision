@@ -75,12 +75,14 @@ INSIGHT_S = 8         # "THE INSIGHT" two-screenshots-look-the-same card
 SBS_S = 30
 OUTRO_S = 10          # simplified outro (no cards / no footnote)
 
-# Insight frame asset paths — Chicago FF shot_003 + shot_004, the two
-# consecutive frames where the only thing that changed is the sidebar
-# collapse. Sourced from dv-video-scratch/.../public/ff_chicago/.
+# Insight frame asset paths — TWO REAL CONSECUTIVE FF FRAMES from run_22_ff_M
+# (the same SF FF run featured in the SBS demo). At step 19→20 the agent
+# clicked the "Data has header row" checkbox in the Sort dialog. Two pixels
+# changed (checkbox: empty → green; "Sort by" dropdown: "Column A" → "Name").
+# Everything else is identical. FF billed BOTH frames at 1,365 tokens.
 ASSETS_DIR = Path(__file__).resolve().parent / "assets"
-INSIGHT_BEFORE = ASSETS_DIR / "insight_before.png"
-INSIGHT_AFTER = ASSETS_DIR / "insight_after.png"
+INSIGHT_BEFORE = ROOT / "benchmarks/mapsheets/results/run_22_ff_M/screenshots/ffM_19_sort_dialog2.png"
+INSIGHT_AFTER = ROOT / "benchmarks/mapsheets/results/run_22_ff_M/screenshots/ffM_20_sort_header_checked.png"
 
 # Spotlight params
 BLUR_RADIUS = 8
@@ -257,16 +259,17 @@ def render_insight_frame():
     """
     Bridges the intro and the SBS demo with a concrete "look at this" beat.
 
-    Two consecutive Chicago Maps screenshots that look almost identical —
-    only the search-results sidebar collapsed. Highlights the cyan callout
-    box on the after-shot to show "this is the only thing that changed",
-    then says: this is why DeltaVision exists.
+    Uses TWO REAL CONSECUTIVE FF FRAMES from run_22_ff_M (the same SF FF run
+    featured in the SBS demo). At step 19→20 the agent clicked the "Data has
+    header row" checkbox in the Sort dialog. Two pixels changed:
+      1. The checkbox went from empty to a green checkmark.
+      2. The "Sort by" dropdown auto-updated from "Column A" to "Name"
+         (because the row got declared a header).
+    Everything else — spreadsheet behind the dialog, menu bar, tooltips,
+    cell selection — pixel-identical between the two frames.
 
-    Lifted from FFvsDVComparison.tsx (v3 Remotion source) — same shots,
-    same callout, same copy. Rendered here in PIL at 1920x1080 to match
-    the rest of the video.
+    FF billed BOTH frames at 1,365 tokens. That's the entire pitch.
     """
-    YELLOW = (240, 200, 60)
     HEADLINE_FG = (235, 235, 235)
 
     img = Image.new("RGB", (W, H), BG)
@@ -297,63 +300,66 @@ def render_insight_frame():
            font=f_headline, fill=HEADLINE_FG, anchor="lm")
 
     # --- Two screenshots side-by-side ---
+    # Source frames are 1280×800. We render them at 760×475 (preserves 1280:800
+    # = 1.6 aspect ratio: 760/475 = 1.6). That keeps the actual UI proportions
+    # honest — no cropping, no distortion.
+    src_w, src_h = 1280, 800
     shot_w = 760
-    shot_h = 460
+    shot_h = int(shot_w * src_h / src_w)   # 475
     gap = 80
     shots_total_w = shot_w * 2 + gap
     left_x = (W - shots_total_w) // 2
     right_x = left_x + shot_w + gap
     shots_y = 380
+    # Scale factor from source coordinates (1280×800) to display (760×475)
+    sx = shot_w / src_w
+    sy = shot_h / src_h
 
-    # STEP labels (mono, letterspaced)
+    # STEP labels (mono, letterspaced) — real step numbers from the FF run
     f_step_lbl = font(15, mono=True)
     d.text((left_x + shot_w // 2, shots_y - 24),
-           "S T E P   4   ·   s c r e e n s h o t",
+           "S T E P   1 9   ·   F F   s c r e e n s h o t",
            font=f_step_lbl, fill=DIM, anchor="mm")
     d.text((right_x + shot_w // 2, shots_y - 24),
-           "S T E P   5   ·   s c r e e n s h o t",
+           "S T E P   2 0   ·   F F   s c r e e n s h o t",
            font=f_step_lbl, fill=DIM, anchor="mm")
 
-    # Load the two shots; crop to top portion (objectPosition: top in v3) so
-    # we get the search-results sidebar + map header where the visible delta
-    # actually lives.
+    # Paste the two frames at full-frame aspect (no top-crop)
     if INSIGHT_BEFORE.exists() and INSIGHT_AFTER.exists():
-        before = Image.open(INSIGHT_BEFORE).convert("RGB")
-        after = Image.open(INSIGHT_AFTER).convert("RGB")
-
-        def _fit_top(im, w, h):
-            # Resize to width=w, then crop top h pixels
-            ratio = w / im.width
-            new_h = int(im.height * ratio)
-            scaled = im.resize((w, new_h), Image.LANCZOS)
-            return scaled.crop((0, 0, w, min(h, new_h)))
-
-        before_fit = _fit_top(before, shot_w, shot_h)
-        after_fit = _fit_top(after, shot_w, shot_h)
-        img.paste(before_fit, (left_x, shots_y))
-        img.paste(after_fit, (right_x, shots_y))
+        before = Image.open(INSIGHT_BEFORE).convert("RGB").resize(
+            (shot_w, shot_h), Image.LANCZOS
+        )
+        after = Image.open(INSIGHT_AFTER).convert("RGB").resize(
+            (shot_w, shot_h), Image.LANCZOS
+        )
+        img.paste(before, (left_x, shots_y))
+        img.paste(after, (right_x, shots_y))
 
     # 1px hairline border around each shot
     for x in (left_x, right_x):
         d.rectangle([x, shots_y, x + shot_w, shots_y + shot_h],
                     outline=(40, 40, 44), width=1)
 
-    # --- Cyan callout box on the AFTER shot (the changed sidebar region) ---
-    # In v3 the box covers a 240x130 region at top-left of the 680x400 shot.
-    # We've scaled to 760x460 so scale the box accordingly.
-    cb_w = int(240 * shot_w / 680)   # ≈ 268
-    cb_h = int(130 * shot_h / 400)   # ≈ 150
-    cb_x = right_x + 10
-    cb_y = shots_y + 10
+    # --- Cyan callout box on the AFTER shot ---
+    # The change region in source (1280×800) coords:
+    #   - Checkbox: ~(395, 305) → (530, 340)
+    #   - Sort-by dropdown: ~(450, 360) → (550, 400)
+    #   - Union: (390, 300) → (560, 405)  — w=170 h=105
+    src_box = (390, 300, 560, 405)
+    cb_x = right_x + int(src_box[0] * sx)
+    cb_y = shots_y + int(src_box[1] * sy)
+    cb_w = int((src_box[2] - src_box[0]) * sx)
+    cb_h = int((src_box[3] - src_box[1]) * sy)
     d.rectangle([cb_x, cb_y, cb_x + cb_w, cb_y + cb_h],
                 outline=CYAN, width=3)
-    # "↑ only this changed" pill below the box
-    pill_text = "↑ only this changed"
+
+    # "↓ only this changed" pill ABOVE the box (room is below at this position)
+    pill_text = "↓ only this changed"
     f_pill = font(15, mono=True)
     pill_w = d.textlength(pill_text, font=f_pill) + 18
     pill_h = 26
     pill_x = cb_x
-    pill_y = cb_y + cb_h + 6
+    pill_y = cb_y - pill_h - 6
     d.rounded_rectangle([pill_x, pill_y, pill_x + pill_w, pill_y + pill_h],
                         radius=4, fill=(9, 9, 9))
     d.text((pill_x + 9, pill_y + pill_h // 2), pill_text,
@@ -376,9 +382,12 @@ def render_insight_frame():
            font=font(16, mono=True), fill=DIM, anchor="lm")
 
     # --- Bottom prompt + answer ---
-    d.text((W // 2, 920), "The sidebar collapsed. That's it.",
+    # Position depends on shot height (shot_h grew from 460 → 475)
+    bottom_y = shots_y + shot_h + 100
+    d.text((W // 2, bottom_y),
+           "The agent clicked one checkbox. That's it.",
            font=font(34), fill=DIM, anchor="mm")
-    d.text((W // 2, 980), "DeltaVision sends only what changed.",
+    d.text((W // 2, bottom_y + 60), "DeltaVision sends only what changed.",
            font=font(40, bold=True), fill=CYAN, anchor="mm")
 
     return img
