@@ -8,6 +8,10 @@ deltavision CLI — tiny dispatcher.
         Runs the agent loop (see main.cli_entry for the full arg list).
         This is the same entrypoint that v1.0.2 shipped as `deltavision`.
 
+    deltavision verify-trace <path> [--no-paths] [--quiet]
+        Validate a benchmark trace file produced by any DV benchmark. See
+        deltavision.verify_trace for the full list of invariants.
+
     deltavision --help
 """
 from __future__ import annotations
@@ -37,6 +41,10 @@ def main(argv: list[str] | None = None) -> int:
         sys.argv = [sys.argv[0]] + rest
         _main_module.cli_entry()
         return 0
+
+    if cmd in {"verify-trace", "verify_trace"}:
+        from deltavision.verify_trace import main as verify_main
+        return verify_main(rest)
 
     # Back-compat: v1.0.2/v1.0.3 `deltavision` was a direct alias for
     # `main.cli_entry`. If the user passes flags (`--task ...`) without a
