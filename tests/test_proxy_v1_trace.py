@@ -125,6 +125,138 @@ def test_dual_write_proxy_emits_valid_v1_trace(tmp_path, monkeypatch):
         )
 
 
+def test_soft_nudge_records_zero_image_tokens(tmp_path, monkeypatch):
+    """The soft no-change nudge sends a text-only payload. The v1 trace's
+    cost-split semantics demand model_facing_tokens=0 on that step (no
+    images → no image tokens), even though the LEGACY log records 85
+    tokens for "minimum proxy overhead." Without this fix the trace would
+    inflate the savings denominator with phantom image tokens.
+
+    Also asserts the trigger is the explicit `no_change_soft_nudge`, not
+    the upstream classifier trigger.
+    """
+    monkeypatch.setenv("DV_LOG_DIR", str(tmp_path))
+    monkeypatch.setenv("DV_TASK_ID", "soft-nudge-test")
+    # NO_CHANGE_HARD_NUDGE defaults to 2; we want the soft branch (streak=1)
+    # to fire, so we send 2 frames: first triggers initial, second triggers
+    # the soft nudge (since it's identical to the first).
+    monkeypatch.setenv("DV_NO_CHANGE_HARD_NUDGE", "5")  # raise so soft fires
+
+    import importlib
+    import sys
+    if "dv_playwright_mcp" in sys.modules:
+        del sys.modules["dv_playwright_mcp"]
+    proxy = importlib.import_module("dv_playwright_mcp")
+
+    state = proxy.DVState()
+    f1 = _white()
+    state.process_screenshot(f1)
+    state.process_screenshot(f1.copy())  # identical → no-change → soft nudge
+    proxy._close_trace_writer()
+
+    from results.trace import canonical_image_manifest, parse_trace, validate_trace
+    trace = parse_trace(proxy.TRACE_FILE)
+    report = validate_trace(trace, check_paths=False)
+    assert report.ok, f"trace failed validation: {report.errors}"
+
+    # Step 0 = initial (full_frame). Step 1 should be the soft nudge.
+    assert len(trace.steps) == 2
+    soft = trace.steps[1]
+    assert soft["trigger"] == "no_change_soft_nudge", (
+        f"trigger should be 'no_change_soft_nudge', got {soft['trigger']!r}"
+    )
+    assert soft["model_facing_tokens"] == 0, (
+        f"text-only soft-nudge step should report 0 model-facing image tokens, "
+        f"got {soft['model_facing_tokens']}"
+    )
+    assert soft["payload_images"] == [], (
+        f"soft-nudge has zero image blocks; payload_images should be empty, "
+        f"got {soft['payload_images']}"
+    )
+    # Manifest hash should be the hash of an empty list (stable canonical).
+    expected_hash, _ = canonical_image_manifest([])
+    assert soft["payload_image_sha256"] == expected_hash
+
+
+def test_token_cap_fallback_emits_explicit_trigger(tmp_path, monkeypatch):
+    """When the summed crop cost exceeds FULL_FRAME_TOKENS and the proxy
+    falls back to a full-frame send, the v1 trace MUST record trigger=
+    'crop_token_cap_fallback' — NOT the upstream classifier trigger.
+    Otherwise post-run analysis can't distinguish a genuine classifier-
+    driven full frame from a cost-driven fallback.
+
+    Implementation note: the fallback path is genuinely hard to reach on
+    synthetic input because (a) high-contrast scattered patterns trip pHash
+    NEW_PAGE classification, and (b) the diff engine's contour-finding
+    pre-merges adjacent regions before the optimizer even runs. We exercise
+    the fallback by mocking two seams:
+        * classify_transition → force DELTA (avoids the NEW_PAGE branch)
+        * _estimate_crop_tokens → return FULL_FRAME_TOKENS+1 (forces fallback)
+    This isolates the test to the cost-fallback logic in process_screenshot,
+    which is the actual subject under test.
+    """
+    monkeypatch.setenv("DV_LOG_DIR", str(tmp_path))
+    monkeypatch.setenv("DV_TASK_ID", "token-cap-test")
+
+    import importlib
+    import sys
+    if "dv_playwright_mcp" in sys.modules:
+        del sys.modules["dv_playwright_mcp"]
+    proxy = importlib.import_module("dv_playwright_mcp")
+
+    from vision.classifier import ClassificationResult, TransitionType
+    real_classify = proxy.classify_transition
+
+    def _force_delta(*args, **kwargs):
+        real = real_classify(*args, **kwargs)
+        return ClassificationResult(
+            transition=TransitionType.DELTA,
+            trigger=real.trigger,
+            diff_ratio=real.diff_ratio,
+            phash_distance=real.phash_distance,
+            anchor_score=real.anchor_score,
+        )
+    monkeypatch.setattr(proxy, "classify_transition", _force_delta)
+
+    # Force fragmented-cost path: report crops as more expensive than a
+    # full frame. The ACTUAL cost computation is correct in production
+    # (and well-covered by test_proxy_token_cap.py); here we just need
+    # the fallback branch to fire deterministically.
+    monkeypatch.setattr(
+        proxy, "_estimate_crop_tokens",
+        lambda crops: proxy.FULL_FRAME_TOKENS + 1,
+    )
+
+    def _localized(w=1280, h=800):
+        # Small localized change → produces a real (non-empty) crop list,
+        # which is what we need to enter the `if crops:` branch.
+        img = _white(w, h)
+        px = img.load()
+        for dx in range(50):
+            for dy in range(50):
+                px[100 + dx, 100 + dy] = (0, 0, 0)
+        return img
+
+    state = proxy.DVState()
+    state.process_screenshot(_white())   # initial
+    state.process_screenshot(_localized())  # delta → fallback (mocked cost)
+    proxy._close_trace_writer()
+
+    from results.trace import parse_trace, validate_trace
+    trace = parse_trace(proxy.TRACE_FILE)
+    report = validate_trace(trace, check_paths=False)
+    assert report.ok, f"trace failed validation: {report.errors}"
+
+    fallback = trace.steps[1]
+    assert fallback["obs_type"] == "full_frame"
+    assert fallback["trigger"] == "crop_token_cap_fallback", (
+        f"fallback trigger should be 'crop_token_cap_fallback', "
+        f"got {fallback['trigger']!r} — analysis can't distinguish this "
+        f"from a genuine classifier full frame without the explicit label"
+    )
+    assert fallback["model_facing_tokens"] == proxy.FULL_FRAME_TOKENS
+
+
 def test_ff_mode_emits_observation_mode_ff(tmp_path, monkeypatch):
     """When DV_FORCE_FULL_FRAME=1, the trace's header.observation_mode must
     be 'ff' so paired-trial tooling can match it to its DV sibling."""

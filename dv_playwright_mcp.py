@@ -398,6 +398,20 @@ class DVState:
         trace_payload_text: list[str] = []
         trace_obs_type: str = "delta"
         trace_bboxes: list[list[int]] = []
+        # Trigger override: branches that diverge from the classifier's
+        # `result.trigger` (e.g. token-cap fallback flips to a full frame
+        # for cost reasons, not because the classifier said so) MUST set
+        # this so the v1 trace records why DV actually behaved this way.
+        # Empty string means "use result.trigger" — the default classifier-
+        # driven path.
+        trace_trigger_override: str = ""
+        # Model-facing cost override. Defaults to whatever dv_cost is at the
+        # tail _log() emit, but the soft-nudge branch sets this to 0 because
+        # a text-only payload has zero image-token cost (the legacy log keeps
+        # its 85-token "minimum proxy overhead" accounting for backwards
+        # compat, but the v1 trace's cost-split semantics demand we report
+        # the actual image-payload cost — which is zero when no images ship).
+        trace_model_facing_override: int | None = None
 
         if result.transition == TransitionType.NEW_PAGE:
             # Send full frame — new page, anchor resets. Page navigation is an
@@ -486,6 +500,12 @@ class DVState:
                     trace_payload_images = [manifest]
                     trace_payload_text = [cap_text]
                     trace_obs_type = "full_frame"
+                    # Override classifier trigger: this full frame was sent
+                    # for COST reasons, not classification. Without this,
+                    # post-run analysis can't distinguish a genuine NEW_PAGE
+                    # from a fragmented-diff fallback — both would show
+                    # obs_type="full_frame" with the same trigger label.
+                    trace_trigger_override = "crop_token_cap_fallback"
                 else:
                     content = []
                     for c in crops:
@@ -559,6 +579,11 @@ class DVState:
                     return content, transition, result_trigger
                 else:
                     # Soft nudge: still minimal tokens, but tell the agent nothing happened.
+                    # Legacy log: dv_cost stays at CROP_BASE_TOKENS=85 ("minimum proxy
+                    # overhead per call") so existing tooling that totals dv_tokens
+                    # doesn't shift behavior. v1 trace: model_facing_tokens=0 because
+                    # the actual model-facing payload is text-only — zero image tokens.
+                    # Conflating those numbers would weaken the cost-split semantics.
                     dv_cost = CROP_BASE_TOKENS
                     soft_nudge = (
                         "[DeltaVision: no visible change detected. If you just "
@@ -567,11 +592,10 @@ class DVState:
                         "screenshot.]"
                     )
                     content = [{"type": "text", "text": soft_nudge}]
-                    # Soft nudge ships zero images, only the text hint. Trace
-                    # payload_images stays empty; the manifest hash is the hash
-                    # of an empty list (a stable, well-defined value).
                     trace_payload_text = [soft_nudge]
                     trace_obs_type = "delta"
+                    trace_trigger_override = "no_change_soft_nudge"
+                    trace_model_facing_override = 0
 
             self.dv_tokens += dv_cost
             self.t0 = t1
@@ -594,8 +618,13 @@ class DVState:
             step_idx=self.step, full_frame=t1,
             payload_images_manifest=trace_payload_images,
             payload_text_blocks=trace_payload_text,
-            obs_type=trace_obs_type, trigger=result.trigger,
-            model_facing_tokens=dv_cost,
+            obs_type=trace_obs_type,
+            trigger=trace_trigger_override or result.trigger,
+            model_facing_tokens=(
+                trace_model_facing_override
+                if trace_model_facing_override is not None
+                else dv_cost
+            ),
             crop_bboxes_px=trace_bboxes,
         )
 
