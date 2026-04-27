@@ -20,7 +20,7 @@ import numpy as np
 import pytest
 from PIL import Image
 
-from observer import DeltaVisionObserver, _load_screenshot
+from observer import DeltaVisionObserver, DVObservation, _load_screenshot
 
 # ============================================================= helpers
 
@@ -469,16 +469,63 @@ class TestCostSplit:
         assert raw["estimated_image_tokens"] == raw["model_facing_tokens"]
 
     def test_consumed_frame_size_populated_on_both_obs_types(self):
-        """consumed_frame_size is the data dv_internal_tokens() reads.
-        Must be populated on both full_frame AND delta observations,
-        otherwise dv_internal_tokens() returns 0 (the documented escape
-        hatch for older observations) and the cost-split silently breaks."""
+        """consumed_frame_size is the data dv_internal_tokens() prefers.
+        Observer always populates it on both full_frame AND delta observations
+        so the cost-split is always available without falling back to other
+        resolution paths."""
         obs = DeltaVisionObserver()
         base = striped(0, size=(1280, 900))
         ff = obs.observe(base)
         delta = obs.observe(small_delta(base))
         assert ff.consumed_frame_size == (1280, 900)
         assert delta.consumed_frame_size == (1280, 900)
+
+    # BUG-0008 hardening: dv_internal_tokens() must produce a useful answer
+    # OR raise — silent zero would let savings claims silently inflate.
+
+    def test_full_frame_obs_without_consumed_frame_size_falls_back_to_frame(self):
+        """A hand-built full_frame DVObservation that omits consumed_frame_size
+        should still work — `frame` is right there, so dv_internal_tokens()
+        can derive the size. This keeps mocks/tests/custom integrations from
+        breaking just because the cost-split was added."""
+        from PIL import Image as _Image
+        frame = _Image.new("RGB", (1280, 800), (200, 200, 200))
+        obs = DVObservation(
+            obs_type="full_frame", step=0,
+            trigger="initial", diff_ratio=0.0,
+            phash_distance=0, anchor_score=1.0,
+            action_had_effect=False,
+            frame=frame,
+            # consumed_frame_size deliberately omitted
+        )
+        assert obs.consumed_frame_size is None
+        # Should derive from frame.size and equal model_facing on a full frame
+        assert obs.dv_internal_tokens() > 0
+        assert obs.dv_internal_tokens() == obs.model_facing_tokens(), (
+            "full-frame fallback path should match the cost of `frame`"
+        )
+
+    def test_delta_obs_without_consumed_frame_size_raises(self):
+        """A hand-built delta DVObservation that omits consumed_frame_size
+        has no way to recover what DV consumed (delta observations don't
+        carry the full frame). Must raise ValueError — silent zero would
+        let cost-split callers compute bogus 100%/inf savings."""
+        import pytest as _pytest
+        from PIL import Image as _Image
+        thumb = _Image.new("RGB", (320, 200), (255, 255, 255))
+        obs = DVObservation(
+            obs_type="delta", step=1,
+            trigger="diff_ratio", diff_ratio=0.05,
+            phash_distance=2, anchor_score=0.95,
+            action_had_effect=True,
+            frame=None,
+            thumbnail=thumb,
+            crops=[],
+            crop_bboxes=[],
+            # consumed_frame_size deliberately omitted
+        )
+        with _pytest.raises(ValueError, match="consumed_frame_size"):
+            obs.dv_internal_tokens()
 
 
 # ============================================================= scroll handling

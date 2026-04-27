@@ -162,13 +162,31 @@ class DVObservation:
         every screenshot at full resolution to compute its diff; the
         savings only show up at the model-facing layer.
 
-        Returns 0 if `consumed_frame_size` was never recorded (older
-        observations that predate the cost-split refactor).
+        Resolution order:
+          1. If `consumed_frame_size` is set, use it.
+          2. Otherwise, if `frame` is present (full_frame observations
+             always have it), derive size from `frame.size`. This makes
+             a hand-built full-frame DVObservation work even without
+             consumed_frame_size — the data is right there.
+          3. Otherwise raise ValueError. Hitting this path means a delta
+             observation was constructed without consumed_frame_size,
+             and there's no way to recover the consumed-frame cost from
+             the observation alone (delta observations carry only the
+             thumbnail + crops, not the full screenshot). Loud failure
+             beats silent zero — see BUG-0008.
         """
-        if self.consumed_frame_size is None:
-            return 0
-        w, h = self.consumed_frame_size
-        return self._image_tokens_from_size(w, h)
+        if self.consumed_frame_size is not None:
+            w, h = self.consumed_frame_size
+            return self._image_tokens_from_size(w, h)
+        if self.frame is not None:
+            return self._image_tokens(self.frame)
+        raise ValueError(
+            "DVObservation.dv_internal_tokens() cannot be computed: "
+            "consumed_frame_size is None and frame is None (this is a "
+            "delta observation built outside DeltaVisionObserver). Set "
+            "consumed_frame_size=(width, height) to record the size of "
+            "the screenshot DV consumed. See BUG-0008."
+        )
 
     def estimated_image_tokens(self) -> int:
         """DEPRECATED ALIAS: returns the same value as `model_facing_tokens()`.
