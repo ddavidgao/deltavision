@@ -21,6 +21,7 @@ Config (env vars):
 from __future__ import annotations
 
 import asyncio
+import atexit
 import base64
 import io
 import json
@@ -48,8 +49,27 @@ REPO = Path(__file__).resolve().parent
 sys.path.insert(0, str(REPO))
 
 from config import DeltaVisionConfig  # noqa: E402  (sys.path mutation above)
+from results.trace import (  # noqa: E402
+    TraceHeader,
+    TraceStep,
+    TraceWriter,
+    bytes_sha256,
+    canonical_image_manifest,
+    config_hash,
+    payload_text_sha256,
+)
 from vision.classifier import TransitionType, classify_transition, extract_anchor  # noqa: E402
 from vision.diff import compute_diff, extract_crops  # noqa: E402
+
+# DV version the trace says it was emitted by. Read from package metadata so
+# updates to deltavision==X.Y.Z are reflected automatically without touching
+# this file. Falls back to "unknown" if metadata isn't available (e.g. running
+# from a source checkout without pip install).
+try:
+    from importlib.metadata import version as _pkg_version  # noqa: E402
+    _DV_VERSION = _pkg_version("deltavision")
+except Exception:
+    _DV_VERSION = "unknown"
 
 # ---------------------------------------------------------------------------
 # Setup
@@ -71,6 +91,13 @@ RUN_ID = int(time.time())
 # FF runs get an _ff suffix so the log filename alone tells you which ablation you're looking at.
 _suffix = "_ff" if FORCE_FULL_FRAME else ""
 LOG_FILE = LOG_DIR / f"dv_proxy_run_{RUN_ID}{_suffix}.jsonl"
+
+# Side-by-side v1 BenchmarkTrace file. The legacy `dv_proxy_run_*.jsonl` above
+# is preserved unchanged for downstream tooling; this new file emits the
+# canonical schema validated by `deltavision verify-trace`. Both files write
+# during the same run and any schema/log inconsistency between them is itself
+# diagnostic. See results/trace.py for the schema.
+TRACE_FILE = LOG_DIR / f"dv_trace_v1_{RUN_ID}{_suffix}.jsonl"
 
 FULL_FRAME_TOKENS = 1365
 CROP_BASE_TOKENS = 85
@@ -127,6 +154,149 @@ def _log(entry: dict) -> None:
 
 
 # ---------------------------------------------------------------------------
+# v1 trace writer (alongside legacy log, never replaces it)
+# ---------------------------------------------------------------------------
+#
+# The trace writer is lazy-initialized on the first step so we capture the
+# task identity from env vars that may be set after this module is imported.
+# It's closed via atexit so a clean process termination produces a valid
+# summary line; an unclean termination (kill -9, OOM, SIGSEGV) leaves the
+# trace summary-less, which the verifier surfaces as a warning.
+
+_TRACE_WRITER: TraceWriter | None = None
+
+
+def _trace_writer() -> TraceWriter:
+    """Return the per-run trace writer, opening it on first call."""
+    global _TRACE_WRITER
+    if _TRACE_WRITER is None:
+        # Task identity comes from env so the same process serves multiple
+        # benchmarks if needed. Defaults are intentionally generic — the
+        # paired A/B harness sets these explicitly per-trial.
+        task_id = os.environ.get("DV_TASK_ID", f"unknown-{RUN_ID}")
+        task_description = os.environ.get(
+            "DV_TASK_DESCRIPTION", "DV-Playwright proxy run"
+        )
+        trial_group_id = os.environ.get("DV_TRIAL_GROUP_ID", f"run-{RUN_ID}")
+        observation_mode = "ff" if FORCE_FULL_FRAME else "dv"
+        header = TraceHeader(
+            trace_id=f"dv-proxy-{RUN_ID}{_suffix}",
+            trial_group_id=trial_group_id,
+            observation_mode=observation_mode,
+            dv_version=_DV_VERSION,
+            dv_config_hash=config_hash(DV_CONFIG),
+            task_id=task_id,
+            task_description=task_description,
+            model=os.environ.get("DV_MODEL"),
+        )
+        _TRACE_WRITER = TraceWriter(TRACE_FILE, header)
+    return _TRACE_WRITER
+
+
+def _close_trace_writer() -> None:
+    """Idempotent close. Registered with atexit so a clean process exit
+    writes the summary line; the validator treats a missing summary as
+    'this run did not complete cleanly,' which is correct behavior on a
+    crash."""
+    global _TRACE_WRITER
+    if _TRACE_WRITER is not None:
+        try:
+            _TRACE_WRITER.close(write_summary=True)
+        except Exception:
+            # Don't let an atexit handler raise — that masks the real error.
+            log.exception("trace writer close failed")
+        _TRACE_WRITER = None
+
+
+atexit.register(_close_trace_writer)
+
+
+def _payload_image_block(img: Image.Image) -> tuple[str, dict]:
+    """Encode a PIL image as PNG bytes and produce a manifest entry.
+
+    Returns (b64_str_for_mcp, manifest_dict_for_trace). The b64 string is what
+    we send back to the MCP client; the manifest dict is what the trace
+    records. Both come from the SAME bytes, so the manifest hash is provably
+    a hash of what the model actually saw.
+    """
+    buf = io.BytesIO()
+    img.save(buf, format="PNG")
+    raw = buf.getvalue()
+    b64 = base64.b64encode(raw).decode()
+    manifest = {
+        "sha256": bytes_sha256(raw),
+        "media_type": "image/png",
+        "bytes": len(raw),
+    }
+    return b64, manifest
+
+
+def _frame_sha256(img: Image.Image) -> str:
+    """sha256 of the canonical PNG bytes of `img`. Used for frame_sha256
+    (the bytes DV consumed). Distinct from the payload-image hash because
+    DV may consume a 1280×800 frame and ship a 256×128 crop — different bytes,
+    different hashes.
+    """
+    buf = io.BytesIO()
+    img.save(buf, format="PNG")
+    return bytes_sha256(buf.getvalue())
+
+
+def _emit_trace_step(
+    *,
+    step_idx: int,
+    full_frame: Image.Image,
+    payload_images_manifest: list[dict],
+    payload_text_blocks: list[str],
+    obs_type: str,
+    trigger: str,
+    model_facing_tokens: int,
+    crop_bboxes_px: list[list[int]],
+    url: str | None = None,
+) -> None:
+    """Emit one TraceStep to the v1 trace file.
+
+    Args:
+        full_frame: the screenshot DV consumed this step (always full frame —
+            DV needs the whole thing internally to compute next-step diff).
+            Hashed for frame_sha256 and counted as dv_internal_tokens.
+        payload_images_manifest: pre-built manifest entries (one per image
+            block in the model-facing payload). Empty list for text-only
+            payloads (e.g. soft no-change nudge).
+        payload_text_blocks: list of text strings the proxy puts in the
+            payload, joined with newlines for the text-hash input.
+        obs_type: "full_frame" if the model saw the full frame, "delta" if
+            it saw crops or a text-only response.
+        trigger: free-form classifier-trigger string (initial, new_page,
+            periodic_refresh, etc.).
+        model_facing_tokens: estimated token cost of the payload sent to
+            the model. Equal to dv_internal_tokens on full-frame steps,
+            smaller on delta steps.
+        crop_bboxes_px: [[x, y, w, h], ...] in source pixel coords. Empty
+            on full-frame steps.
+        url: optional URL the screenshot was taken on (proxy doesn't always
+            know).
+    """
+    text_payload = "\n".join(payload_text_blocks)
+    img_hash, canonical = canonical_image_manifest(payload_images_manifest)
+    step = TraceStep(
+        step_idx=step_idx,
+        ts=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        url=url,
+        obs_type=obs_type,
+        trigger=trigger,
+        dv_internal_tokens=FULL_FRAME_TOKENS,  # always — DV consumed full frame
+        model_facing_tokens=model_facing_tokens,
+        frame_sha256=_frame_sha256(full_frame),
+        payload_image_sha256=img_hash,
+        payload_text_sha256=payload_text_sha256(text_payload),
+        payload_images=canonical,
+        crop_bboxes_px=crop_bboxes_px,
+    )
+    _trace_writer().write_step(step)
+
+
+# ---------------------------------------------------------------------------
 # DV state (per-session, single browser context assumption)
 # ---------------------------------------------------------------------------
 
@@ -161,7 +331,8 @@ class DVState:
             self.t0 = t1
             self.ff_tokens += FULL_FRAME_TOKENS
             self.dv_tokens += FULL_FRAME_TOKENS
-            content = [{"type": "image", "data": _img_to_b64(t1), "mimeType": "image/png"}]
+            b64, manifest = _payload_image_block(t1)
+            content = [{"type": "image", "data": b64, "mimeType": "image/png"}]
             savings_pct = 0.0  # FF has no savings by construction
             _log({
                 "step": self.step,
@@ -173,6 +344,14 @@ class DVState:
                 "dv_cumulative": self.dv_tokens,
                 "savings_pct_cumulative": savings_pct,
             })
+            _emit_trace_step(
+                step_idx=self.step, full_frame=t1,
+                payload_images_manifest=[manifest],
+                payload_text_blocks=[],
+                obs_type="full_frame", trigger="force_full_frame",
+                model_facing_tokens=FULL_FRAME_TOKENS,
+                crop_bboxes_px=[],
+            )
             return content, "ff_full", "force_full_frame"
 
         if self.t0 is None:
@@ -182,10 +361,19 @@ class DVState:
             tokens = FULL_FRAME_TOKENS
             self.ff_tokens += tokens
             self.dv_tokens += tokens
-            content = [{"type": "image", "data": _img_to_b64(t1), "mimeType": "image/png"}]
+            b64, manifest = _payload_image_block(t1)
+            content = [{"type": "image", "data": b64, "mimeType": "image/png"}]
             _log({"step": self.step, "transition": "initial", "trigger": "initial",
                   "ff_tokens": tokens, "dv_tokens": tokens, "ff_cumulative": self.ff_tokens,
                   "dv_cumulative": self.dv_tokens})
+            _emit_trace_step(
+                step_idx=self.step, full_frame=t1,
+                payload_images_manifest=[manifest],
+                payload_text_blocks=[],
+                obs_type="full_frame", trigger="initial",
+                model_facing_tokens=tokens,
+                crop_bboxes_px=[],
+            )
             return content, "initial", "initial"
 
         diff_result = compute_diff(self.t0, t1, DV_CONFIG)
@@ -200,6 +388,17 @@ class DVState:
         ff_cost = FULL_FRAME_TOKENS
         self.ff_tokens += ff_cost
 
+        # Per-step trace state, populated by whichever branch fires below.
+        # Captured here at function scope so the shared trailing _log() block
+        # can also emit a v1 trace step. Branches that early-return (FF, initial,
+        # periodic_refresh, no_change_hard_nudge) emit their own trace step
+        # inline before the return; this state is only consumed by the shared
+        # tail emit.
+        trace_payload_images: list[dict] = []
+        trace_payload_text: list[str] = []
+        trace_obs_type: str = "delta"
+        trace_bboxes: list[list[int]] = []
+
         if result.transition == TransitionType.NEW_PAGE:
             # Send full frame — new page, anchor resets. Page navigation is an
             # actual change (even if our own agent triggered it), so reset the
@@ -210,8 +409,11 @@ class DVState:
             self.anchor = extract_anchor(t1, DV_CONFIG)
             self.no_change_streak = 0
             self.delta_streak = 0
-            content = [{"type": "image", "data": _img_to_b64(t1), "mimeType": "image/png"}]
+            b64, manifest = _payload_image_block(t1)
+            content = [{"type": "image", "data": b64, "mimeType": "image/png"}]
             transition = "new_page"
+            trace_payload_images = [manifest]
+            trace_obs_type = "full_frame"
         elif self.delta_streak >= DELTA_REFRESH_EVERY:
             # Periodic full-frame refresh — the agent has been seeing only deltas for
             # too long and may have lost spatial context. Send a full frame so it
@@ -222,12 +424,14 @@ class DVState:
             self.t0 = t1
             self.anchor = extract_anchor(t1, DV_CONFIG)
             self.delta_streak = 0
+            refresh_text = (
+                f"[DeltaVision: periodic refresh after {DELTA_REFRESH_EVERY} deltas — "
+                f"sending full frame so you can re-anchor on the surrounding state.]"
+            )
+            b64, manifest = _payload_image_block(t1)
             content = [
-                {"type": "image", "data": _img_to_b64(t1), "mimeType": "image/png"},
-                {"type": "text", "text": (
-                    f"[DeltaVision: periodic refresh after {DELTA_REFRESH_EVERY} deltas — "
-                    f"sending full frame so you can re-anchor on the surrounding state.]"
-                )},
+                {"type": "image", "data": b64, "mimeType": "image/png"},
+                {"type": "text", "text": refresh_text},
             ]
             savings_pct = round((self.ff_tokens - self.dv_tokens) / self.ff_tokens * 100, 1)
             _log({
@@ -242,6 +446,18 @@ class DVState:
                 "dv_cumulative": self.dv_tokens,
                 "savings_pct_cumulative": savings_pct,
             })
+            # Trace step: trigger=periodic_refresh, obs_type=full_frame (we DID
+            # send a full frame; the proxy's legacy log labels it transition=delta
+            # for streak-tracking continuity, but at the wire level it is a
+            # full_frame observation).
+            _emit_trace_step(
+                step_idx=self.step, full_frame=t1,
+                payload_images_manifest=[manifest],
+                payload_text_blocks=[refresh_text],
+                obs_type="full_frame", trigger="periodic_refresh",
+                model_facing_tokens=dv_cost,
+                crop_bboxes_px=[],
+            )
             return content, "delta", "periodic_refresh"
         else:
             # DELTA — send only changed crops
@@ -261,26 +477,33 @@ class DVState:
                 if dv_cost > FULL_FRAME_TOKENS:
                     dv_cost = FULL_FRAME_TOKENS
                     self.anchor = extract_anchor(t1, DV_CONFIG)
+                    cap_text = "[DeltaVision: crops exceeded full-frame cost — sending full frame instead]"
+                    b64, manifest = _payload_image_block(t1)
                     content = [
-                        {"type": "image", "data": _img_to_b64(t1), "mimeType": "image/png"},
-                        {"type": "text",
-                         "text": "[DeltaVision: crops exceeded full-frame cost — sending full frame instead]"},
+                        {"type": "image", "data": b64, "mimeType": "image/png"},
+                        {"type": "text", "text": cap_text},
                     ]
+                    trace_payload_images = [manifest]
+                    trace_payload_text = [cap_text]
+                    trace_obs_type = "full_frame"
                 else:
                     content = []
                     for c in crops:
                         img = c["crop_after"]
                         bbox = c["bbox"]
+                        b64, manifest = _payload_image_block(img)
                         content.append({
                             "type": "image",
-                            "data": _img_to_b64(img),
+                            "data": b64,
                             "mimeType": "image/png",
                         })
                         # Include bbox as text context for the model
-                        content.append({
-                            "type": "text",
-                            "text": f"[DeltaVision: changed region at x={bbox[0]}, y={bbox[1]}, w={bbox[2]}, h={bbox[3]}]"
-                        })
+                        bbox_text = f"[DeltaVision: changed region at x={bbox[0]}, y={bbox[1]}, w={bbox[2]}, h={bbox[3]}]"
+                        content.append({"type": "text", "text": bbox_text})
+                        trace_payload_images.append(manifest)
+                        trace_payload_text.append(bbox_text)
+                        trace_bboxes.append([bbox[0], bbox[1], bbox[2], bbox[3]])
+                    trace_obs_type = "delta"
             else:
                 # No visible change. Escalating nudge:
                 #   streak 1        -> minimal response + soft hint
@@ -302,8 +525,9 @@ class DVState:
                         "(click vs press_key vs evaluate), or check whether a dialog/"
                         "loading-spinner is blocking input.]"
                     )
+                    b64, manifest = _payload_image_block(t1)
                     content = [
-                        {"type": "image", "data": _img_to_b64(t1), "mimeType": "image/png"},
+                        {"type": "image", "data": b64, "mimeType": "image/png"},
                         {"type": "text", "text": nudge},
                     ]
                     transition = "new_page"  # log it as a forced refresh
@@ -324,19 +548,30 @@ class DVState:
                         "savings_pct_cumulative": savings_pct,
                         "no_change_streak_before": NO_CHANGE_HARD_NUDGE,
                     })
+                    _emit_trace_step(
+                        step_idx=self.step, full_frame=t1,
+                        payload_images_manifest=[manifest],
+                        payload_text_blocks=[nudge],
+                        obs_type="full_frame", trigger="no_change_hard_nudge",
+                        model_facing_tokens=dv_cost,
+                        crop_bboxes_px=[],
+                    )
                     return content, transition, result_trigger
                 else:
                     # Soft nudge: still minimal tokens, but tell the agent nothing happened.
                     dv_cost = CROP_BASE_TOKENS
-                    content = [{
-                        "type": "text",
-                        "text": (
-                            "[DeltaVision: no visible change detected. If you just "
-                            "issued an action, it may not have landed — consider a "
-                            "different selector or approach before taking another "
-                            "screenshot.]"
-                        ),
-                    }]
+                    soft_nudge = (
+                        "[DeltaVision: no visible change detected. If you just "
+                        "issued an action, it may not have landed — consider a "
+                        "different selector or approach before taking another "
+                        "screenshot.]"
+                    )
+                    content = [{"type": "text", "text": soft_nudge}]
+                    # Soft nudge ships zero images, only the text hint. Trace
+                    # payload_images stays empty; the manifest hash is the hash
+                    # of an empty list (a stable, well-defined value).
+                    trace_payload_text = [soft_nudge]
+                    trace_obs_type = "delta"
 
             self.dv_tokens += dv_cost
             self.t0 = t1
@@ -355,6 +590,14 @@ class DVState:
             "dv_cumulative": self.dv_tokens,
             "savings_pct_cumulative": savings_pct,
         })
+        _emit_trace_step(
+            step_idx=self.step, full_frame=t1,
+            payload_images_manifest=trace_payload_images,
+            payload_text_blocks=trace_payload_text,
+            obs_type=trace_obs_type, trigger=result.trigger,
+            model_facing_tokens=dv_cost,
+            crop_bboxes_px=trace_bboxes,
+        )
 
         return content, transition, result.trigger
 
