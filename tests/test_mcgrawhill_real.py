@@ -75,20 +75,28 @@ class TestRealDiffMetrics:
         in the bbox crops, not in raw pixel count. This is why pHash and
         anchor matching exist — diff_ratio alone can't catch everything.
 
-        Note: pre-merge this returned ≥2 raw contour bboxes. With the greedy
-        rectangle-merge optimizer, those collapse into a single region whose
-        union covers the same change but at lower token cost. We assert the
-        change was detected (action_had_effect + meaningful bbox area)
-        instead of the literal contour count.
+        The assertion target shifted twice with the cost-split work:
+          * Original: ≥2 raw contour bboxes (pre-merger).
+          * v1.0.6 with merger ON: collapsed to 1 bbox covering ~0.1+ of frame.
+          * v1.0.7 with BUG-0006 fix (merger OFF by default): back to 3 raw
+            contour bboxes; the largest covers ~0.08 of frame on this fixture.
+        We now assert the change was DETECTED (action_had_effect, ≥2 bboxes,
+        meaningful largest-area) without pinning the exact contour topology,
+        which is sensitive to the merger flag and pixel-level fixture render.
         """
         diff = compute_diff(q3_question, reading_mode, config)
         print(f"\nQuestion→Reading: diff_ratio={diff.diff_ratio:.3f}, "
               f"bboxes={len(diff.changed_bboxes)}, "
               f"largest_area={diff.largest_change_area:.3f}")
         assert diff.action_had_effect
-        assert len(diff.changed_bboxes) >= 1
-        # The detected change should cover a meaningful chunk of the frame.
-        assert diff.largest_change_area > 0.1, (
+        assert len(diff.changed_bboxes) >= 2, (
+            f"with merger off, the contour-finder should produce multiple "
+            f"raw bboxes; got {len(diff.changed_bboxes)}"
+        )
+        # Loose lower bound: the largest bbox should cover at least a few
+        # percent of the frame. Not 10% (that was a merger-on artifact); not
+        # 1% (that's noise). 0.05 catches "we found something real."
+        assert diff.largest_change_area > 0.05, (
             f"Question→Reading layout change should produce a meaningful bbox; "
             f"got largest_change_area={diff.largest_change_area:.3f}"
         )

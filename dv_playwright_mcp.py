@@ -78,7 +78,14 @@ except Exception:
 logging.basicConfig(level=logging.WARNING)
 log = logging.getLogger("dv_proxy")
 
-DV_CONFIG = DeltaVisionConfig()
+# The DV-MCP proxy explicitly opts INTO the bbox-merge optimizer because it
+# faces real-agent workloads where fragmented diffs are common (a click in
+# the middle of a complex page produces many small scattered contours). The
+# library default flipped to False in BUG-0006 because compression-ceiling
+# benchmarks like scripted-77 don't have fragmented diffs and the merger
+# inflates costs there. Until the truncate-then-merge fix lands, the proxy
+# carries its own opt-in.
+DV_CONFIG = DeltaVisionConfig(BBOX_MERGE_ENABLED=True)
 
 # Ablation: set DV_FORCE_FULL_FRAME=1 to bypass classification and always return
 # the full screenshot. Log entries will record ff_tokens==dv_tokens==FULL_FRAME_TOKENS

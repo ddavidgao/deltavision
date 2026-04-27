@@ -57,8 +57,18 @@ class DeltaVisionConfig:
     # contour bboxes whenever the union token-cost is cheaper than the sum of
     # their separate costs. Lifts simulated savings ~37% → ~56% on the SF
     # Maps→Sheets trace by avoiding the "6 small fragments → token-cap fallback
-    # to full frame" failure mode. Set False only for ablation comparisons.
-    BBOX_MERGE_ENABLED: bool = True
+    # to full frame" failure mode.
+    #
+    # DEFAULT IS OFF (BUG-0006, 2026-04-25): the merger runs BEFORE the
+    # MAX_REGIONS=6 truncation, so on benchmarks like scripted-77 where only
+    # 1–3 contours survive the truncation anyway, the merger inflates the
+    # surviving region instead of helping — measured 77.2% → 72.1% regression
+    # on `examples/spreadsheet_observation_cost.py`. Until the truncate-then-
+    # merge fix lands (planned for v1.1.0), this stays opt-in. The DV-MCP
+    # proxy enables it explicitly when fragmented diffs are common; benchmarks
+    # validating compression ceilings keep the default off so headline numbers
+    # stay reproducible.
+    BBOX_MERGE_ENABLED: bool = False
 
     # Padding around each bbox crop in pixels
     CROP_PADDING: int = 15

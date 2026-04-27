@@ -398,6 +398,8 @@ python -c "from results.store import ResultStore; ResultStore().summary()"
 The sibling repo `deltavision-os` (mss + pyautogui for OS-level desktop agents)
 published its own independent ablation:
 
+> The token numbers below use the same accounting convention as the rest of this README — the forced-full-frame baseline is the `dv_internal` denominator and the delta-gated number is the `model_facing` numerator. See [Cost accounting](#cost-accounting--what-savings-means-here).
+
 - **Same 10-step trajectory run twice** on a real Mac desktop, natural
   Qwen2.5-VL behavior. No cherry-picking — exact same actions each time.
 - Forced full-frame: 17,600 image tokens
@@ -418,6 +420,8 @@ Repo: https://github.com/ddavidgao/deltavision-os
 ---
 
 ### Browser side: savings depend heavily on the workload
+
+> All "token savings" percentages in the tables below follow the same accounting convention as the rest of the README: the baseline (full-frame) total is the `dv_internal` denominator, the DV total is the `model_facing` numerator, and savings = `1 − model_facing / dv_internal`. See [Cost accounting](#cost-accounting--what-savings-means-here).
 
 Two benchmarks, both same Anthropic `tool_result` format, both real Playwright,
 same `DeltaVisionObserver` wrapping — nothing else changes between baseline
