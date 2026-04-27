@@ -24,7 +24,7 @@ Stable JSON keys (do not rename without bumping schema_version):
              dv_internal_tokens, model_facing_tokens,
              frame_sha256, frame_path?,
              payload_images[], payload_image_sha256, payload_text_sha256,
-             payload_path?,
+             payload_path?, payload_file_sha256?,
              crop_bboxes_px, crop_bboxes_norm?,
              cv_timing_ms?
     Summary: ended_at, n_steps, total_dv_internal_tokens,
@@ -143,9 +143,9 @@ class TraceStep:
     writes per `process_screenshot` call.
 
     Hash policy: `frame_sha256` is required (the bytes DV consumed).
-    `payload_image_sha256` and `payload_text_sha256` are required. The verifier
-    validates that if `frame_path` or `payload_path` is given, the hashes
-    on disk match.
+    `payload_image_sha256` is the hash of the canonical payload_images
+    manifest, not a raw file hash. If `payload_path` is given,
+    `payload_file_sha256` is required and is checked against the bytes on disk.
     """
     step_idx: int
     ts: str
@@ -162,6 +162,7 @@ class TraceStep:
     crop_bboxes_norm: list[list[float]] | None = None
     frame_path: str | None = None
     payload_path: str | None = None
+    payload_file_sha256: str | None = None
     cv_timing_ms: dict[str, float] | None = None
 
     def to_jsonl_line(self) -> str:
@@ -266,7 +267,7 @@ REQUIRED_HEADER_KEYS = {
 REQUIRED_STEP_KEYS = {
     "_kind", "step_idx", "ts", "obs_type", "trigger",
     "dv_internal_tokens", "model_facing_tokens",
-    "frame_sha256", "payload_image_sha256", "payload_text_sha256",
+    "frame_sha256", "payload_images", "payload_image_sha256", "payload_text_sha256",
     "crop_bboxes_px",
 }
 
@@ -299,7 +300,7 @@ def validate_trace(
     Args:
         trace: a ParsedTrace from parse_trace().
         check_paths: if True and a step has frame_path / payload_path,
-            verify the file exists and its sha256 matches the recorded hash.
+            verify the file exists and its sha256 matches the recorded file hash.
 
     Returns a ValidationReport. ok=True iff errors is empty. Warnings flag
     things that don't violate the schema but look suspicious (savings_pct
@@ -344,6 +345,25 @@ def validate_trace(
             errors.append(f"{prefix}: duplicate step_idx={s['step_idx']}")
         seen_idx.add(s["step_idx"])
 
+        payload_images = s.get("payload_images")
+        if not isinstance(payload_images, list):
+            errors.append(f"{prefix}: payload_images must be a list")
+        else:
+            try:
+                actual_payload_hash, _ = canonical_image_manifest(payload_images)
+            except KeyError as e:
+                errors.append(
+                    f"{prefix}: payload_images entries must include "
+                    f"sha256/media_type/bytes; missing {e}"
+                )
+            else:
+                if actual_payload_hash != s["payload_image_sha256"]:
+                    errors.append(
+                        f"{prefix}: payload_image_sha256 mismatch — "
+                        f"trace says {s['payload_image_sha256']}, "
+                        f"payload_images canonical manifest is {actual_payload_hash}"
+                    )
+
         dv_t = int(s["dv_internal_tokens"])
         mf_t = int(s["model_facing_tokens"])
         total_dv += dv_t
@@ -373,11 +393,19 @@ def validate_trace(
 
         # Optional file checks
         if check_paths:
-            for path_key, hash_key in (
-                ("frame_path", "frame_sha256"),
-                ("payload_path", "payload_image_sha256"),
-            ):
-                if path_key in s:
+            path_hash_pairs = [("frame_path", "frame_sha256")]
+            if "payload_path" in s:
+                if "payload_file_sha256" not in s:
+                    errors.append(
+                        f"{prefix}: payload_path is set but payload_file_sha256 "
+                        f"is missing"
+                    )
+                else:
+                    path_hash_pairs.append(
+                        ("payload_path", "payload_file_sha256")
+                    )
+            for path_key, hash_key in path_hash_pairs:
+                if path_key in s and hash_key in s:
                     fp = _resolve(trace.path, s[path_key])
                     if not fp.exists():
                         errors.append(
@@ -422,6 +450,8 @@ def validate_trace(
                     f"summary: savings_pct_total={sm['savings_pct_total']:.3f}% "
                     f"but recomputed is {recomputed_savings:.3f}%"
                 )
+    else:
+        warnings.append("trace has no summary line; run may be incomplete")
 
     savings = (1 - total_mf / total_dv) * 100 if total_dv else 0.0
     return ValidationReport(

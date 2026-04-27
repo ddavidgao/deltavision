@@ -7,8 +7,8 @@ Coverage:
        orders that should be identical, AND distinct across inputs that
        should differ.
     3. Validator catches every invariant violation we care about.
-    4. Optional file-on-disk hash check (frame_path / payload_path) works
-       and fails on mismatch.
+    4. payload_images manifest hash is recomputed and optional file-on-disk
+       hash checks (frame_path / payload_path) work and fail on mismatch.
     5. JSONL structural errors: missing header, double header, step before
        header, unknown _kind.
 """
@@ -107,6 +107,10 @@ def _mk_header(**overrides) -> TraceHeader:
 
 
 def _mk_step(idx: int, *, obs_type="delta", **overrides) -> TraceStep:
+    payload_images = [
+        {"sha256": "a" * 64, "media_type": "image/png", "bytes": 100},
+    ]
+    payload_image_hash, canonical_images = canonical_image_manifest(payload_images)
     base = dict(
         step_idx=idx,
         ts="2026-04-26T00:00:00Z",
@@ -116,8 +120,9 @@ def _mk_step(idx: int, *, obs_type="delta", **overrides) -> TraceStep:
         dv_internal_tokens=1365,
         model_facing_tokens=425 if obs_type == "delta" else 1365,
         frame_sha256="0" * 64,
-        payload_image_sha256="1" * 64,
+        payload_image_sha256=payload_image_hash,
         payload_text_sha256="2" * 64,
+        payload_images=canonical_images,
         crop_bboxes_px=[[10, 20, 100, 50]] if obs_type == "delta" else [],
     )
     base.update(overrides)
@@ -172,6 +177,9 @@ class TestRoundTrip:
         # verifier should treat this as "did not complete cleanly."
         assert len(trace.steps) == 1
         assert trace.summary is None
+        report = validate_trace(trace, check_paths=False)
+        assert report.ok
+        assert any("no summary" in w for w in report.warnings)
 
 
 # ---------------------------------------------------------------------------
@@ -239,6 +247,30 @@ class TestValidator:
         assert not report.ok
         assert any("model_facing" in e and "dv_internal" in e
                    for e in report.errors)
+
+    def test_missing_payload_images_errors(self, tmp_path):
+        s = _good_step_dict(0)
+        del s["payload_images"]
+        trace = _build_raw_trace(_good_header_dict(), [s], None, tmp_path)
+        report = validate_trace(trace, check_paths=False)
+        assert not report.ok
+        assert any("payload_images" in e for e in report.errors)
+
+    def test_payload_image_sha256_recomputed_from_manifest(self, tmp_path):
+        s = _good_step_dict(0)
+        s["payload_image_sha256"] = "f" * 64
+        trace = _build_raw_trace(_good_header_dict(), [s], None, tmp_path)
+        report = validate_trace(trace, check_paths=False)
+        assert not report.ok
+        assert any("payload_image_sha256 mismatch" in e for e in report.errors)
+
+    def test_payload_images_missing_manifest_key_errors(self, tmp_path):
+        s = _good_step_dict(0)
+        s["payload_images"] = [{"sha256": "a" * 64, "media_type": "image/png"}]
+        trace = _build_raw_trace(_good_header_dict(), [s], None, tmp_path)
+        report = validate_trace(trace, check_paths=False)
+        assert not report.ok
+        assert any("payload_images entries" in e for e in report.errors)
 
     def test_full_frame_with_compression_warns(self, tmp_path):
         # full_frame steps should bill what they consumed (no compression).
@@ -361,6 +393,38 @@ class TestFilePathChecks:
         trace = _build_raw_trace(_good_header_dict(), [s], None, tmp_path)
         report = validate_trace(trace, check_paths=False)
         assert report.ok, f"errors: {report.errors}"
+
+    def test_payload_path_requires_payload_file_sha256(self, tmp_path):
+        payload_file = tmp_path / "payload.png"
+        payload_file.write_bytes(b"payload bytes")
+        s = _good_step_dict(0)
+        s["payload_path"] = "payload.png"
+        trace = _build_raw_trace(_good_header_dict(), [s], None, tmp_path)
+        report = validate_trace(trace, check_paths=True)
+        assert not report.ok
+        assert any("payload_file_sha256" in e for e in report.errors)
+
+    def test_payload_path_hash_match_passes(self, tmp_path):
+        payload_bytes = b"payload bytes"
+        payload_file = tmp_path / "payload.png"
+        payload_file.write_bytes(payload_bytes)
+        s = _good_step_dict(0)
+        s["payload_path"] = "payload.png"
+        s["payload_file_sha256"] = bytes_sha256(payload_bytes)
+        trace = _build_raw_trace(_good_header_dict(), [s], None, tmp_path)
+        report = validate_trace(trace, check_paths=True)
+        assert report.ok, f"errors: {report.errors}"
+
+    def test_payload_path_hash_mismatch_errors(self, tmp_path):
+        payload_file = tmp_path / "payload.png"
+        payload_file.write_bytes(b"actual payload bytes")
+        s = _good_step_dict(0)
+        s["payload_path"] = "payload.png"
+        s["payload_file_sha256"] = "f" * 64
+        trace = _build_raw_trace(_good_header_dict(), [s], None, tmp_path)
+        report = validate_trace(trace, check_paths=True)
+        assert not report.ok
+        assert any("payload_file_sha256 mismatch" in e for e in report.errors)
 
 
 # ---------------------------------------------------------------------------
