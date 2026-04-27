@@ -17,8 +17,11 @@ obs = deltavision.DeltaVisionObserver()
 # the current URL, and a description of the last action.
 result = obs.observe(screenshot_png_bytes, url="https://example.com", last_action="click #submit")
 
-print(result.obs_type)            # "full_frame" or "delta"
-print(result.estimated_image_tokens())  # what this observation actually costs
+print(result.obs_type)              # "full_frame" or "delta"
+print(result.model_facing_tokens())  # tokens DV is about to ship to the model
+print(result.dv_internal_tokens())   # tokens DV consumed internally (always full frame)
+# Savings on this step: 1 - model_facing / dv_internal.
+# (estimated_image_tokens() is a deprecated alias of model_facing_tokens(); see Cost accounting.)
 result.to_anthropic_tool_result_content()  # ready-to-send Claude content blocks
 ```
 
@@ -70,7 +73,7 @@ Because v1.0.x maintains backwards compatibility with the flat-module imports (`
 Two CV-pipeline upgrades that, together, flip DV from "wins on tokens, loses on steps" to "wins on **both** axes" — the criterion the project requires:
 
 - **Greedy bbox-merge optimizer (`vision/diff.py`).** The proxy used to emit up to `MAX_REGIONS=6` separate crop bboxes per step. On steps with one big real change plus several scattered tiny ones, this fragmented into 6 expensive crops totaling > 1365 tokens, tripping the token-cap fallback and forcing a full frame. The new merger greedily pairs bboxes while `cost(A∪B) < cost(A) + cost(B)`. Replayed across 16 saved runs: **38.1% → 48.9% mean savings**, no classifier changes. Toggleable via `DeltaVisionConfig(BBOX_MERGE_ENABLED=True)` (default on).
-- **Periodic full-frame refresh (`dv_playwright_mcp.py`).** The proxy now forces a full-frame response every `DV_DELTA_REFRESH_EVERY=5` consecutive deltas, so the agent re-anchors instead of getting lost in dialog interactions because it's only seeing tiny crops. Combined with a leaner screenshot prompt this dropped agent step count from **49 → 32 on the SF mapsheets task** (vs FF's 45 steps), at 28,725 vs 61,425 image tokens — **53.2% total savings, 34.2% per-step savings**, while the agent uses fewer steps too.
+- **Periodic full-frame refresh (`dv_playwright_mcp.py`).** The proxy now forces a full-frame response every `DV_DELTA_REFRESH_EVERY=5` consecutive deltas, so the agent re-anchors instead of getting lost in dialog interactions because it's only seeing tiny crops. Combined with a leaner screenshot prompt this dropped agent step count from **49 → 32 on the SF mapsheets task** (vs FF's 45 steps). On the same trace, `dv_internal_total_tokens=61,425` (45 steps × 1,365 each — same as FF's required full-screenshot cost), `model_facing_total_tokens=28,725`, so the cost-split savings is **`1 − 28,725/61,425 = 53.2%`**, with a per-step model-facing-vs-internal savings of 34.2%. The agent took fewer steps AND DV shipped less to the model — wins on both axes the project requires.
 
 ## When DeltaVision helps — and when it doesn't
 
@@ -89,6 +92,27 @@ Dogfood-measured, not modeled. The ~0% case is a real sibling-agent A/B (2026-04
 
 This is the tool's shape, not a bug. The CV classifier can't compress what isn't redundant.
 
+## Cost accounting — what "savings" means here
+
+Every DV trace records two distinct token costs per step. They mean different things and conflating them is the most common way to overstate or misstate DV's effect:
+
+- **`dv_internal_tokens`** — what DV consumed internally on this step. Always equals the cost of the full screenshot at the consumed viewport size. DV needs the full frame in memory to compute the next-step diff, so this number does not go down regardless of what the model sees. This is the infrastructure cost of running the pipeline.
+- **`model_facing_tokens`** — what DV actually shipped to the model on this step. On a delta step this is just the changed crops; on a full-frame step it equals `dv_internal_tokens`. This is the number that drives user-visible token spend on Claude, GPT, etc.
+
+Every "X% savings" claim in this README is computed as
+
+```
+savings = 1 − sum(model_facing_tokens) / sum(dv_internal_tokens)
+```
+
+over the trace. The infrastructure cost (`dv_internal_tokens`) is **not** reduced — DV is observation middleware, not a screenshot-skipper. What it reduces is the bytes that reach the model.
+
+If you read a saved benchmark JSON, the explicit keys are `dv_internal_tokens` / `model_facing_tokens` per step and `dv_internal_total_tokens` / `model_facing_total_tokens` / `total_savings_pct` in the summary. Older benchmark outputs use `ff_tokens` / `dv_tokens` (per step) and `ff_total_tokens` / `dv_total_tokens` (summary) as legacy aliases — they map exactly to `dv_internal` / `model_facing` respectively, kept for one release.
+
+`DVObservation.model_facing_tokens()` and `DVObservation.dv_internal_tokens()` are the public methods. The pre-split `DVObservation.estimated_image_tokens()` is now a deprecated alias of `model_facing_tokens()` — kept for one release for back-compat, will be removed in v1.1.0.
+
+Every claim below should be reproducible by running the named benchmark and checking the resulting JSON's `total_savings_pct` against the number in the table.
+
 ## Headline demos — two videos, two honesty tiers
 
 ### (1) Real Google Maps apartment search — 38.4% savings on the real web
@@ -100,6 +124,8 @@ A scripted 11-step trajectory on live Google Maps: search Brooklyn apartments, s
 | Image tokens | 15,015 | 9,249 | **38.4%** |
 | Full-frame obs | 11 (every step) | 6 (URL changes + zoom + scroll guard) | — |
 | Delta obs | — | 5 | — |
+
+`Full Frame` column = `dv_internal_total_tokens` (cost of all 11 full screenshots DV consumed). `DeltaVision` column = `model_facing_total_tokens` (what DV shipped to the model). 38.4% = `1 − 9,249 / 15,015`.
 
 **Video walkthrough:** [`benchmarks/ablation/video_frames/gmaps_demo_v1.mp4`](benchmarks/ablation/video_frames/gmaps_demo_v1.mp4) (68 s, 1080p60) — includes live counters + scene labels.
 **Source metadata:** [`gmaps_demo_v1.metadata.json`](benchmarks/ablation/video_frames/gmaps_demo_v1.metadata.json) (per-step timing, cumulative tokens, obs_type + trigger).
@@ -124,6 +150,8 @@ A scripted 21-step workflow on two live, unmodified sites: **Google Maps** (rese
 | Full-frame obs | 21 (every step) | 7 | — |
 | Delta obs | — | 14 | — |
 
+`Full Frame` column = `dv_internal_total_tokens`, `DeltaVision` column = `model_facing_total_tokens`, **54.0% = `1 − 13,179 / 28,665`**.
+
 The split tells the whole story: nav-heavy = near-zero savings, sticky-context = 74%. The combined 54% is an honest mixed-task number.
 
 **Run it yourself:**
@@ -137,6 +165,8 @@ python examples/multitab_real_demo.py   # produces runs_multitab_real/browser.we
 |---|---|---|---|
 | Image tokens | 39,585 | 13,076 | **67.0%** |
 | Per-step avg | 1,365 | 451 | 67.0% |
+
+`Full Frame` = `dv_internal_total_tokens`, `DeltaVision` = `model_facing_total_tokens`, **67.0% = `1 − 13,076 / 39,585`**. This is on a local HTML mock (no network, no real-site quirks) — that's why it's labeled the *compression ceiling*.
 
 **Video walkthrough:** [`benchmarks/ablation/video_frames/apartment_demo.mp4`](benchmarks/ablation/video_frames/apartment_demo.mp4) (32 s, 1080p60)
 
@@ -161,6 +191,8 @@ Standard computer use agents send a full 1280x900 screenshot (~1600 tokens) on e
 | Spreadsheet (deterministic, local HTML mock) | compression ceiling | 25 | 7,780 tok | 34,125 tok | **77.2%** | `python examples/spreadsheet_observation_cost.py` |
 | TodoMVC matched-trajectory (real Playwright + Anthropic `tool_result`) | compression with real SPA | 9 | 6,133 tok | 13,824 tok | **55.6%** | `python examples/observer_integration_proof.py` |
 | TodoMVC head-to-head (real Claude agent, n=3 per side) | **utility — real agent decisions** | 7 each | 23,693 ±66 tok | 62,270 ±218 tok | **62.0%** | `python benchmarks/headtohead/run_head_to_head.py` |
+
+In every row, **`DV cost` = `model_facing_total_tokens`** (what DV shipped to the model) and **`FF cost` = `dv_internal_total_tokens`** (what DV consumed internally — the same number FF would have shipped). Savings = `1 − DV / FF` per row. See [Cost accounting](#cost-accounting--what-savings-means-here).
 
 **Read these together. They answer three different questions:**
 - First: byte-reproducible on any machine — no agent, no trajectory variance, no auth. Shows the per-observation compression ceiling.
