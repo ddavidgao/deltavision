@@ -37,13 +37,13 @@ Runs 9 staged checks (import → observer → delta path → coverage guard → 
 
 ```
 DeltaVision self-test — staged E2E
-  S1  import deltavision                              ✓  v1.0.6
+  S1  import deltavision                              ✓  v1.0.7
   S2  observer construction                           ✓  26 fields
   S3  initial observation → full_frame                ✓  tokens=1365
   S4  small delta is cheaper than full frame          ✓  tokens=171 vs FF=1365 (87.5% saved)
   S5  whole-frame change → coverage guard fires       ✓  tokens=1365 = FF 1365 (trigger='crop_covers_frame')
   S6  anthropic adapter output is well-formed         ✓  1 content blocks
-  S7  HTTP /health reports package version            ✓  version=1.0.6
+  S7  HTTP /health reports package version            ✓  version=1.0.7
   S8  HTTP /observe round-trips a DVObservation       ✓
   S9  HTTP /reset clears observer state               ✓
   All 9 stages passed.
@@ -55,7 +55,7 @@ DeltaVision self-test — staged E2E
 python -m server --port 9000
 
 # Then from any runtime:
-curl http://localhost:9000/health                 # → {"status":"ok","version":"1.0.5"}
+curl http://localhost:9000/health                 # → {"status":"ok","version":"1.0.7"}
 curl -X POST http://localhost:9000/observe \
      -F file=@screenshot.png -F url=... -F format=anthropic
 ```
@@ -66,7 +66,19 @@ Endpoints: `GET /health` · `POST /observe` · `POST /reset` · `GET /state`. Re
 
 Because v1.0.x maintains backwards compatibility with the flat-module imports (`from observer import ...`), the wheel ships both a `deltavision/` umbrella package AND the raw modules (`observer.py`, `vision/`, `agent/`, `model/`) at site-packages root. If your CWD has a directory named `vision/` or `observer.py`, it can shadow the installed one — run your script from a different directory or use `from deltavision import X` (which always resolves through the umbrella). v2.0 will nest modules under the package to remove this caveat.
 
-**PyPI:** [`deltavision==1.0.6`](https://pypi.org/project/deltavision/1.0.6/) · **OS-level companion (V2, alpha):** [`deltavision-os`](https://pypi.org/project/deltavision-os/) · **Source of truth:** private repo, public mirror auto-synced
+**PyPI:** [`deltavision==1.0.7`](https://pypi.org/project/deltavision/1.0.7/) · **OS-level companion (V2, alpha):** [`deltavision-os`](https://pypi.org/project/deltavision-os/) · **Source of truth:** private repo, public mirror auto-synced
+
+### What's new in 1.0.7
+
+Cost-accounting honesty + regression fix. No new claims, just makes the existing claims auditable.
+
+- **Cost split exposed in the public API.** `DVObservation.model_facing_tokens()` (what DV ships to the model — drives savings claims) and `DVObservation.dv_internal_tokens()` (what DV consumes internally — always full-frame size) are now first-class methods on every observation. The pre-split `estimated_image_tokens()` is preserved as a deprecated alias of `model_facing_tokens()` (will be removed in v1.1.0). See [Cost accounting](#cost-accounting--what-savings-means-here) for the formula and why it matters.
+- **`BenchmarkTrace` schema + `deltavision verify-trace` CLI.** Every DV-MCP proxy run now emits a structured `dv_trace_v1_<run_id>.jsonl` next to its legacy log. The trace records per-step `dv_internal_tokens`, `model_facing_tokens`, `payload_image_sha256` (canonical manifest hash), `frame_sha256`, classifier trigger, and crop bboxes. Anyone can run `deltavision verify-trace path/to/trace.jsonl` to validate that the trace's stated savings are internally consistent — schema-valid, hashes match, totals add up, no fabricated payloads. The credibility primitive: trust the trace, not the marketing.
+- **BUG-0006 fix: greedy bbox-merge default flipped to OFF.** v1.0.6 shipped `BBOX_MERGE_ENABLED=True` as the public default, which inflated `model_facing_tokens` on benchmarks where only 1–3 contours survive `MAX_REGIONS=6` truncation anyway (the merger ran *before* truncation, adding cost the truncation would have dropped for free). On the scripted-77 spreadsheet benchmark this measured a 77.2% → 72.1% regression. The fix: default off in the library, opt-in for the DV-MCP proxy (which faces fragmented-diff agent workloads where the merger genuinely helps). Full truncate-then-merge fix tracked for v1.1.0.
+- **BUG-0008 fix: `dv_internal_tokens()` no longer silently returns 0.** A hand-built `DVObservation` missing `consumed_frame_size` used to return 0, which would silently inflate any `1 − model_facing / dv_internal` calculation to ~100%. Now it falls back to `frame.size` for full-frame observations and raises `ValueError` for delta observations (where the original frame is unavailable). Loud failure beats silent zero.
+- **Public bug log.** `bugs/log.jsonl` (source) + `BUGS.md` (rendered) document every bug found during development, with severity, repro, root cause, and fix commit. Currently 0 open. The point is the *narrative* — engineering discipline, not broken software.
+
+The trace + verifier + cost split are the spine for the next release line: paired A/B harnesses and adapter-level "no full frame in delta payload" invariants both build on this in v1.1.0.
 
 ### What's new in 1.0.6
 
@@ -339,7 +351,7 @@ deltavision/
 
 ## Testing
 
-`pytest tests/` — 256 tests total (offline + live Playwright). Covers CV pipeline, classifier cascade, observation builder, safety layer, response parsers, HTTP sidecar, v1.0.3 regression invariants (`import deltavision` works, DV ≤ FF on every single step), v1.0.5 token-cap guard (proxy never bills more than a full frame), v1.0.6 greedy bbox-merge optimizer + periodic full-frame refresh.
+`pytest tests/` — 293 tests total (offline + live Playwright). Covers CV pipeline, classifier cascade, observation builder, safety layer, response parsers, HTTP sidecar, v1.0.3 regression invariants (`import deltavision` works, DV ≤ FF on every single step), v1.0.5 token-cap guard (proxy never bills more than a full frame), v1.0.6 greedy bbox-merge optimizer + periodic full-frame refresh, v1.0.7 cost-split methods (`model_facing_tokens()` / `dv_internal_tokens()`) + BenchmarkTrace schema + `verify-trace` CLI invariants.
 
 | Suite | Tests | Covers |
 |---|---|---|

@@ -47,7 +47,7 @@ from vision.elements import (  # noqa: F401
     format_clickables_for_prompt,
 )
 
-__version__ = "1.0.6"
+__version__ = "1.0.7"
 
 __all__ = [
     # core
