@@ -107,15 +107,46 @@ class DVObservation:
     url: str | None = None
     last_action: str | None = None
 
+    # Cost-split bookkeeping. Always populated by the observer regardless of
+    # obs_type. (width, height) of the screenshot DV consumed this step. Used
+    # by dv_internal_tokens() to report what DV processed *internally* (always
+    # a full frame), separately from what was actually shipped to the model.
+    # See `model_facing_tokens()` and `dv_internal_tokens()` below.
+    consumed_frame_size: tuple[int, int] | None = None
+
     # -------------------------------------------------------------- accessors
 
     def is_new_page(self) -> bool:
         return self.obs_type == "full_frame"
 
-    def estimated_image_tokens(self) -> int:
-        """Rough token cost of the image payload, matched to vision model
-        scaling (~1.15 MP → 1568 tokens for Anthropic). Thumbnail + crops
-        come out well under 1/3 of a full frame."""
+    # ---- Cost split (added v1.0.7-dev) ---------------------------------
+    #
+    # DV has two distinct token-cost numbers, which the codebase used to
+    # conflate under a single "estimated_image_tokens()" call:
+    #
+    #   model_facing_tokens()  — tokens DV actually put in front of the
+    #                            model on this step. Smaller than a full
+    #                            frame on delta observations. THIS is the
+    #                            number that drives savings claims.
+    #   dv_internal_tokens()   — tokens DV consumed internally to do its
+    #                            job. Always full-frame size, every step,
+    #                            regardless of what the model sees. DV
+    #                            needs the full frame to compute the next
+    #                            diff. This is the infrastructure cost.
+    #
+    # When a paper/README says "DV saved X% tokens," X% MUST be derived
+    # from sum(model_facing_tokens) / sum(dv_internal_tokens) — that's
+    # the model-cost claim. The infrastructure cost did NOT go down.
+    # See bugs/SCHEMA.md and results/trace.py for the trace-level mirror.
+
+    def model_facing_tokens(self) -> int:
+        """Tokens DV actually put in front of the model on this step.
+
+        On full_frame observations this is the cost of `frame`. On delta
+        observations it's the sum of `thumbnail` + `crops` (the actual
+        payload the adapter ships). This is the number that drives
+        savings claims.
+        """
         if self.is_new_page() and self.frame is not None:
             return self._image_tokens(self.frame)
         total = 0
@@ -125,11 +156,43 @@ class DVObservation:
             total += self._image_tokens(c)
         return total
 
+    def dv_internal_tokens(self) -> int:
+        """Tokens DV consumed internally on this step. Always equals the
+        cost of a full frame at the consumed viewport size. DV processes
+        every screenshot at full resolution to compute its diff; the
+        savings only show up at the model-facing layer.
+
+        Returns 0 if `consumed_frame_size` was never recorded (older
+        observations that predate the cost-split refactor).
+        """
+        if self.consumed_frame_size is None:
+            return 0
+        w, h = self.consumed_frame_size
+        return self._image_tokens_from_size(w, h)
+
+    def estimated_image_tokens(self) -> int:
+        """DEPRECATED ALIAS: returns the same value as `model_facing_tokens()`.
+
+        Kept for backward compatibility — pre-cost-split benchmark scripts and
+        user code call this method. Will be removed in v1.1.0. New code should
+        call `model_facing_tokens()` (or `dv_internal_tokens()` for the
+        complementary number).
+        """
+        return self.model_facing_tokens()
+
     @staticmethod
     def _image_tokens(img: Image.Image) -> int:
         # Anthropic: (width * height) / 750 (rough formula for their scaling).
         # Works well as a cross-model estimate for image-based pricing.
         return max(75, int((img.width * img.height) / 750))
+
+    @staticmethod
+    def _image_tokens_from_size(width: int, height: int) -> int:
+        # Same formula as _image_tokens() but takes raw dimensions, used by
+        # dv_internal_tokens() which doesn't keep the consumed PIL image
+        # around on delta observations (would inflate memory). Output must
+        # match _image_tokens(img) exactly when img has these dimensions.
+        return max(75, int((width * height) / 750))
 
     # ------------------------------------------------------- format adapters
 
@@ -292,7 +355,18 @@ class DVObservation:
         """
         Raw PIL images + metadata for DIY integrations or debugging.
         Safe to json-ify after dropping the image fields.
+
+        Cost keys (since v1.0.7-dev):
+            "model_facing_tokens" — preferred. What DV shipped to the model.
+            "dv_internal_tokens"  — what DV consumed internally (always
+                                    full-frame size).
+            "estimated_image_tokens" — DEPRECATED alias for
+                                    model_facing_tokens. Will be removed
+                                    in v1.1.0. Kept here so existing user
+                                    code doesn't break.
+        Compute savings as `1 - model_facing / dv_internal`.
         """
+        mft = self.model_facing_tokens()
         return {
             "obs_type": self.obs_type,
             "step": self.step,
@@ -307,7 +381,11 @@ class DVObservation:
             "crop_bboxes": list(self.crop_bboxes),
             "url": self.url,
             "last_action": self.last_action,
-            "estimated_image_tokens": self.estimated_image_tokens(),
+            # Cost split (preferred names)
+            "model_facing_tokens": mft,
+            "dv_internal_tokens": self.dv_internal_tokens(),
+            # Back-compat alias (deprecated; remove in v1.1.0)
+            "estimated_image_tokens": mft,
         }
 
     # --------------------------------------------------------- private helpers
@@ -546,6 +624,9 @@ class DeltaVisionObserver:
             crop_bboxes=crop_bboxes,
             url=url,
             last_action=last_action,
+            # consumed_frame_size: drives dv_internal_tokens() so the cost
+            # split survives the fact that we drop `frame` on delta steps.
+            consumed_frame_size=(frame.width, frame.height),
         )
 
     # ---------------------------------------------------- internal helpers
@@ -567,6 +648,7 @@ class DeltaVisionObserver:
             crop_bboxes=[],
             url=url,
             last_action=last_action,
+            consumed_frame_size=(frame.width, frame.height),
         )
 
     @staticmethod

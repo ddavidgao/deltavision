@@ -384,6 +384,103 @@ class TestTokenEstimation:
         assert r2.estimated_image_tokens() > r1.estimated_image_tokens()
 
 
+# ============================================================= cost split (v1.0.7-dev)
+
+class TestCostSplit:
+    """The v1.0.7-dev cost-split exposes two distinct token numbers on
+    every observation:
+
+        model_facing_tokens()  — what the adapter ships to the model
+        dv_internal_tokens()   — what DV consumed internally (always full frame)
+
+    The savings claim is `1 - model_facing / dv_internal`, summed across
+    a trace. Before this split, both numbers lived under one ambiguous
+    `estimated_image_tokens()` call, which let critics ask "are you
+    counting the screenshots DV throws away?" — the new methods make
+    the answer explicit.
+    """
+
+    def test_full_frame_observation_has_equal_costs(self):
+        """On a full-frame observation, the model gets the same image DV
+        consumed. Both costs equal the cost of that frame."""
+        obs = DeltaVisionObserver()
+        ff = obs.observe(striped(0, size=(1280, 800)))
+        assert ff.is_new_page()
+        assert ff.model_facing_tokens() == ff.dv_internal_tokens(), (
+            f"full-frame: model-facing ({ff.model_facing_tokens()}) "
+            f"should equal dv-internal ({ff.dv_internal_tokens()}) — "
+            f"DV shipped exactly what it consumed"
+        )
+
+    def test_delta_model_facing_smaller_than_internal(self):
+        """The whole point of DV: on a delta observation, model_facing <
+        dv_internal. This is the savings primitive."""
+        obs = DeltaVisionObserver()
+        base = striped(0, size=(1280, 900))
+        obs.observe(base)
+        delta = obs.observe(small_delta(base))
+        assert delta.obs_type == "delta"
+        assert delta.model_facing_tokens() < delta.dv_internal_tokens(), (
+            f"delta step should ship fewer tokens to the model "
+            f"({delta.model_facing_tokens()}) than DV consumed "
+            f"({delta.dv_internal_tokens()}) — that's the savings"
+        )
+
+    def test_dv_internal_tokens_does_not_depend_on_obs_type(self):
+        """DV consumes a full frame whether it ends up shipping one or
+        not. dv_internal should equal the FF cost of the same frame
+        regardless of obs_type."""
+        obs = DeltaVisionObserver()
+        base = striped(0, size=(1280, 900))
+        ff = obs.observe(base)
+        delta = obs.observe(small_delta(base))
+        # Both observations consumed a 1280×900 frame.
+        assert ff.dv_internal_tokens() == delta.dv_internal_tokens(), (
+            f"dv_internal should be size-only (consumed frame size), "
+            f"not obs_type-dependent: ff={ff.dv_internal_tokens()}, "
+            f"delta={delta.dv_internal_tokens()}"
+        )
+
+    def test_estimated_image_tokens_is_alias_for_model_facing(self):
+        """Back-compat: existing user code calls estimated_image_tokens().
+        It must keep working AND must return the same number as the
+        new model_facing_tokens() method until v1.1.0 removes it."""
+        obs = DeltaVisionObserver()
+        base = striped(0, size=(1280, 900))
+        ff = obs.observe(base)
+        delta = obs.observe(small_delta(base))
+        for o in (ff, delta):
+            assert o.estimated_image_tokens() == o.model_facing_tokens(), (
+                f"deprecated alias must equal model_facing_tokens() "
+                f"(obs_type={o.obs_type})"
+            )
+
+    def test_to_raw_emits_both_cost_keys_and_legacy_alias(self):
+        """The to_raw() dict (used by JSON serialization) must include
+        both new keys AND the deprecated alias for one release."""
+        obs = DeltaVisionObserver()
+        ff = obs.observe(striped(0, size=(1280, 800)))
+        raw = ff.to_raw()
+        # New explicit keys
+        assert "model_facing_tokens" in raw
+        assert "dv_internal_tokens" in raw
+        # Back-compat key
+        assert "estimated_image_tokens" in raw
+        assert raw["estimated_image_tokens"] == raw["model_facing_tokens"]
+
+    def test_consumed_frame_size_populated_on_both_obs_types(self):
+        """consumed_frame_size is the data dv_internal_tokens() reads.
+        Must be populated on both full_frame AND delta observations,
+        otherwise dv_internal_tokens() returns 0 (the documented escape
+        hatch for older observations) and the cost-split silently breaks."""
+        obs = DeltaVisionObserver()
+        base = striped(0, size=(1280, 900))
+        ff = obs.observe(base)
+        delta = obs.observe(small_delta(base))
+        assert ff.consumed_frame_size == (1280, 900)
+        assert delta.consumed_frame_size == (1280, 900)
+
+
 # ============================================================= scroll handling
 
 class TestScrollReanchor:
