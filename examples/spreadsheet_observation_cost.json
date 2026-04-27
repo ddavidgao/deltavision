@@ -15,12 +15,12 @@
     "total_steps": 25
   },
   "summary": {
-    "ff_total_tokens": 34125,
-    "dv_total_tokens": 7780,
-    "total_savings_pct": 77.2,
-    "per_step_avg_ff": 1365.0,
-    "per_step_avg_dv": 311.2,
-    "per_step_savings_pct": 77.2,
+    "dv_internal_total_tokens": 34125,
+    "model_facing_total_tokens": 9514,
+    "total_savings_pct": 72.1,
+    "per_step_avg_dv_internal": 1365.0,
+    "per_step_avg_model_facing": 380.6,
+    "per_step_savings_pct": 72.1,
     "trigger_counts": {
       "initial": 1,
       "none": 24
@@ -28,7 +28,11 @@
     "obs_type_counts": {
       "full_frame": 1,
       "delta": 24
-    }
+    },
+    "ff_total_tokens": 34125,
+    "dv_total_tokens": 9514,
+    "per_step_avg_ff": 1365.0,
+    "per_step_avg_dv": 380.6
   },
   "steps": [
     {
@@ -42,9 +46,11 @@
       "crop_bboxes": [],
       "crop_files": [],
       "thumbnail_file": null,
+      "dv_internal_tokens": 1365,
+      "model_facing_tokens": 1365,
+      "savings_pct": 0.0,
       "ff_tokens": 1365,
-      "dv_tokens": 1365,
-      "savings_pct": 0.0
+      "dv_tokens": 1365
     },
     {
       "step": 1,
@@ -66,9 +72,11 @@
         "spreadsheet_obs/step_01/crop_00.png"
       ],
       "thumbnail_file": "spreadsheet_obs/step_01/thumbnail.png",
+      "dv_internal_tokens": 1365,
+      "model_facing_tokens": 171,
+      "savings_pct": 87.5,
       "ff_tokens": 1365,
-      "dv_tokens": 171,
-      "savings_pct": 87.5
+      "dv_tokens": 171
     },
     {
       "step": 2,
@@ -82,24 +90,19 @@
         [
           19,
           85,
-          285,
-          73
-        ],
-        [
-          432,
-          85,
-          250,
+          663,
           73
         ]
       ],
       "crop_files": [
-        "spreadsheet_obs/step_02/crop_00.png",
-        "spreadsheet_obs/step_02/crop_01.png"
+        "spreadsheet_obs/step_02/crop_00.png"
       ],
       "thumbnail_file": "spreadsheet_obs/step_02/thumbnail.png",
+      "dv_internal_tokens": 1365,
+      "model_facing_tokens": 191,
+      "savings_pct": 86.0,
       "ff_tokens": 1365,
-      "dv_tokens": 246,
-      "savings_pct": 82.0
+      "dv_tokens": 191
     },
     {
       "step": 3,
@@ -113,24 +116,19 @@
         [
           19,
           85,
-          285,
-          73
-        ],
-        [
-          639,
-          85,
-          250,
+          870,
           73
         ]
       ],
       "crop_files": [
-        "spreadsheet_obs/step_03/crop_00.png",
-        "spreadsheet_obs/step_03/crop_01.png"
+        "spreadsheet_obs/step_03/crop_00.png"
       ],
       "thumbnail_file": "spreadsheet_obs/step_03/thumbnail.png",
+      "dv_internal_tokens": 1365,
+      "model_facing_tokens": 219,
+      "savings_pct": 84.0,
       "ff_tokens": 1365,
-      "dv_tokens": 246,
-      "savings_pct": 82.0
+      "dv_tokens": 219
     },
     {
       "step": 4,
@@ -144,24 +142,19 @@
         [
           19,
           85,
-          285,
-          73
-        ],
-        [
-          846,
-          85,
-          249,
+          1076,
           73
         ]
       ],
       "crop_files": [
-        "spreadsheet_obs/step_04/crop_00.png",
-        "spreadsheet_obs/step_04/crop_01.png"
+        "spreadsheet_obs/step_04/crop_00.png"
       ],
       "thumbnail_file": "spreadsheet_obs/step_04/thumbnail.png",
+      "dv_internal_tokens": 1365,
+      "model_facing_tokens": 247,
+      "savings_pct": 81.9,
       "ff_tokens": 1365,
-      "dv_tokens": 246,
-      "savings_pct": 82.0
+      "dv_tokens": 247
     },
     {
       "step": 5,
@@ -175,24 +168,19 @@
         [
           19,
           85,
-          285,
-          73
-        ],
-        [
-          1052,
-          85,
-          228,
+          1261,
           73
         ]
       ],
       "crop_files": [
-        "spreadsheet_obs/step_05/crop_00.png",
-        "spreadsheet_obs/step_05/crop_01.png"
+        "spreadsheet_obs/step_05/crop_00.png"
       ],
       "thumbnail_file": "spreadsheet_obs/step_05/thumbnail.png",
+      "dv_internal_tokens": 1365,
+      "model_facing_tokens": 271,
+      "savings_pct": 80.1,
       "ff_tokens": 1365,
-      "dv_tokens": 246,
-      "savings_pct": 82.0
+      "dv_tokens": 271
     },
     {
       "step": 6,
@@ -206,24 +194,19 @@
         [
           19,
           85,
-          285,
+          1116,
           105
-        ],
-        [
-          441,
-          95,
-          123,
-          53
         ]
       ],
       "crop_files": [
-        "spreadsheet_obs/step_06/crop_00.png",
-        "spreadsheet_obs/step_06/crop_01.png"
+        "spreadsheet_obs/step_06/crop_00.png"
       ],
       "thumbnail_file": "spreadsheet_obs/step_06/thumbnail.png",
+      "dv_internal_tokens": 1365,
+      "model_facing_tokens": 302,
+      "savings_pct": 77.9,
       "ff_tokens": 1365,
-      "dv_tokens": 246,
-      "savings_pct": 82.0
+      "dv_tokens": 302
     },
     {
       "step": 7,
@@ -237,24 +220,19 @@
         [
           19,
           85,
-          545,
+          1116,
           105
-        ],
-        [
-          647,
-          95,
-          98,
-          50
         ]
       ],
       "crop_files": [
-        "spreadsheet_obs/step_07/crop_00.png",
-        "spreadsheet_obs/step_07/crop_01.png"
+        "spreadsheet_obs/step_07/crop_00.png"
       ],
       "thumbnail_file": "spreadsheet_obs/step_07/thumbnail.png",
+      "dv_internal_tokens": 1365,
+      "model_facing_tokens": 302,
+      "savings_pct": 77.9,
       "ff_tokens": 1365,
-      "dv_tokens": 274,
-      "savings_pct": 79.9
+      "dv_tokens": 302
     },
     {
       "step": 8,
@@ -266,26 +244,21 @@
       "anchor_score": 1.0,
       "crop_bboxes": [
         [
-          432,
-          95,
-          313,
-          95
-        ],
-        [
           19,
           85,
-          285,
-          95
+          1116,
+          105
         ]
       ],
       "crop_files": [
-        "spreadsheet_obs/step_08/crop_00.png",
-        "spreadsheet_obs/step_08/crop_01.png"
+        "spreadsheet_obs/step_08/crop_00.png"
       ],
       "thumbnail_file": "spreadsheet_obs/step_08/thumbnail.png",
+      "dv_internal_tokens": 1365,
+      "model_facing_tokens": 302,
+      "savings_pct": 77.9,
       "ff_tokens": 1365,
-      "dv_tokens": 246,
-      "savings_pct": 82.0
+      "dv_tokens": 302
     },
     {
       "step": 9,
@@ -299,24 +272,19 @@
         [
           19,
           85,
-          285,
-          95
-        ],
-        [
-          639,
-          95,
-          281,
-          95
+          1116,
+          105
         ]
       ],
       "crop_files": [
-        "spreadsheet_obs/step_09/crop_00.png",
-        "spreadsheet_obs/step_09/crop_01.png"
+        "spreadsheet_obs/step_09/crop_00.png"
       ],
       "thumbnail_file": "spreadsheet_obs/step_09/thumbnail.png",
+      "dv_internal_tokens": 1365,
+      "model_facing_tokens": 302,
+      "savings_pct": 77.9,
       "ff_tokens": 1365,
-      "dv_tokens": 246,
-      "savings_pct": 82.0
+      "dv_tokens": 302
     },
     {
       "step": 10,
@@ -328,26 +296,21 @@
       "anchor_score": 1.0,
       "crop_bboxes": [
         [
-          647,
-          95,
-          488,
-          95
-        ],
-        [
           19,
           85,
-          285,
-          95
+          1116,
+          105
         ]
       ],
       "crop_files": [
-        "spreadsheet_obs/step_10/crop_00.png",
-        "spreadsheet_obs/step_10/crop_01.png"
+        "spreadsheet_obs/step_10/crop_00.png"
       ],
       "thumbnail_file": "spreadsheet_obs/step_10/thumbnail.png",
+      "dv_internal_tokens": 1365,
+      "model_facing_tokens": 302,
+      "savings_pct": 77.9,
       "ff_tokens": 1365,
-      "dv_tokens": 257,
-      "savings_pct": 81.2
+      "dv_tokens": 302
     },
     {
       "step": 11,
@@ -359,26 +322,21 @@
       "anchor_score": 1.0,
       "crop_bboxes": [
         [
-          854,
-          95,
-          426,
-          95
-        ],
-        [
           19,
           85,
-          285,
-          95
+          1261,
+          105
         ]
       ],
       "crop_files": [
-        "spreadsheet_obs/step_11/crop_00.png",
-        "spreadsheet_obs/step_11/crop_01.png"
+        "spreadsheet_obs/step_11/crop_00.png"
       ],
       "thumbnail_file": "spreadsheet_obs/step_11/thumbnail.png",
+      "dv_internal_tokens": 1365,
+      "model_facing_tokens": 325,
+      "savings_pct": 76.2,
       "ff_tokens": 1365,
-      "dv_tokens": 246,
-      "savings_pct": 82.0
+      "dv_tokens": 325
     },
     {
       "step": 12,
@@ -392,24 +350,19 @@
         [
           19,
           85,
-          285,
+          1189,
           137
-        ],
-        [
-          854,
-          95,
-          354,
-          85
         ]
       ],
       "crop_files": [
-        "spreadsheet_obs/step_12/crop_00.png",
-        "spreadsheet_obs/step_12/crop_01.png"
+        "spreadsheet_obs/step_12/crop_00.png"
       ],
       "thumbnail_file": "spreadsheet_obs/step_12/thumbnail.png",
+      "dv_internal_tokens": 1365,
+      "model_facing_tokens": 367,
+      "savings_pct": 73.1,
       "ff_tokens": 1365,
-      "dv_tokens": 246,
-      "savings_pct": 82.0
+      "dv_tokens": 367
     },
     {
       "step": 13,
@@ -423,24 +376,19 @@
         [
           19,
           85,
-          545,
+          1189,
           137
-        ],
-        [
-          854,
-          95,
-          354,
-          85
         ]
       ],
       "crop_files": [
-        "spreadsheet_obs/step_13/crop_00.png",
-        "spreadsheet_obs/step_13/crop_01.png"
+        "spreadsheet_obs/step_13/crop_00.png"
       ],
       "thumbnail_file": "spreadsheet_obs/step_13/thumbnail.png",
+      "dv_internal_tokens": 1365,
+      "model_facing_tokens": 367,
+      "savings_pct": 73.1,
       "ff_tokens": 1365,
-      "dv_tokens": 299,
-      "savings_pct": 78.1
+      "dv_tokens": 367
     },
     {
       "step": 14,
@@ -452,26 +400,21 @@
       "anchor_score": 1.0,
       "crop_bboxes": [
         [
-          432,
-          95,
-          419,
-          127
-        ],
-        [
           19,
           85,
-          285,
-          127
+          1189,
+          137
         ]
       ],
       "crop_files": [
-        "spreadsheet_obs/step_14/crop_00.png",
-        "spreadsheet_obs/step_14/crop_01.png"
+        "spreadsheet_obs/step_14/crop_00.png"
       ],
       "thumbnail_file": "spreadsheet_obs/step_14/thumbnail.png",
+      "dv_internal_tokens": 1365,
+      "model_facing_tokens": 367,
+      "savings_pct": 73.1,
       "ff_tokens": 1365,
-      "dv_tokens": 264,
-      "savings_pct": 80.7
+      "dv_tokens": 367
     },
     {
       "step": 15,
@@ -483,26 +426,21 @@
       "anchor_score": 1.0,
       "crop_bboxes": [
         [
-          639,
-          95,
-          569,
-          127
-        ],
-        [
           19,
           85,
-          285,
-          127
+          1189,
+          137
         ]
       ],
       "crop_files": [
-        "spreadsheet_obs/step_15/crop_00.png",
-        "spreadsheet_obs/step_15/crop_01.png"
+        "spreadsheet_obs/step_15/crop_00.png"
       ],
       "thumbnail_file": "spreadsheet_obs/step_15/thumbnail.png",
+      "dv_internal_tokens": 1365,
+      "model_facing_tokens": 367,
+      "savings_pct": 73.1,
       "ff_tokens": 1365,
-      "dv_tokens": 296,
-      "savings_pct": 78.3
+      "dv_tokens": 367
     },
     {
       "step": 16,
@@ -514,26 +452,21 @@
       "anchor_score": 1.0,
       "crop_bboxes": [
         [
-          647,
-          95,
-          561,
-          127
-        ],
-        [
           19,
           85,
-          285,
-          127
+          1189,
+          137
         ]
       ],
       "crop_files": [
-        "spreadsheet_obs/step_16/crop_00.png",
-        "spreadsheet_obs/step_16/crop_01.png"
+        "spreadsheet_obs/step_16/crop_00.png"
       ],
       "thumbnail_file": "spreadsheet_obs/step_16/thumbnail.png",
+      "dv_internal_tokens": 1365,
+      "model_facing_tokens": 367,
+      "savings_pct": 73.1,
       "ff_tokens": 1365,
-      "dv_tokens": 294,
-      "savings_pct": 78.5
+      "dv_tokens": 367
     },
     {
       "step": 17,
@@ -545,26 +478,21 @@
       "anchor_score": 1.0,
       "crop_bboxes": [
         [
-          854,
-          95,
-          426,
-          127
-        ],
-        [
           19,
           85,
-          285,
-          127
+          1261,
+          137
         ]
       ],
       "crop_files": [
-        "spreadsheet_obs/step_17/crop_00.png",
-        "spreadsheet_obs/step_17/crop_01.png"
+        "spreadsheet_obs/step_17/crop_00.png"
       ],
       "thumbnail_file": "spreadsheet_obs/step_17/thumbnail.png",
+      "dv_internal_tokens": 1365,
+      "model_facing_tokens": 380,
+      "savings_pct": 72.2,
       "ff_tokens": 1365,
-      "dv_tokens": 263,
-      "savings_pct": 80.7
+      "dv_tokens": 380
     },
     {
       "step": 18,
@@ -578,24 +506,19 @@
         [
           19,
           85,
-          285,
+          1189,
           169
-        ],
-        [
-          854,
-          95,
-          354,
-          117
         ]
       ],
       "crop_files": [
-        "spreadsheet_obs/step_18/crop_00.png",
-        "spreadsheet_obs/step_18/crop_01.png"
+        "spreadsheet_obs/step_18/crop_00.png"
       ],
       "thumbnail_file": "spreadsheet_obs/step_18/thumbnail.png",
+      "dv_internal_tokens": 1365,
+      "model_facing_tokens": 419,
+      "savings_pct": 69.3,
       "ff_tokens": 1365,
-      "dv_tokens": 254,
-      "savings_pct": 81.4
+      "dv_tokens": 419
     },
     {
       "step": 19,
@@ -609,24 +532,19 @@
         [
           19,
           85,
-          545,
+          1189,
           169
-        ],
-        [
-          854,
-          95,
-          354,
-          117
         ]
       ],
       "crop_files": [
-        "spreadsheet_obs/step_19/crop_00.png",
-        "spreadsheet_obs/step_19/crop_01.png"
+        "spreadsheet_obs/step_19/crop_00.png"
       ],
       "thumbnail_file": "spreadsheet_obs/step_19/thumbnail.png",
+      "dv_internal_tokens": 1365,
+      "model_facing_tokens": 419,
+      "savings_pct": 69.3,
       "ff_tokens": 1365,
-      "dv_tokens": 323,
-      "savings_pct": 76.3
+      "dv_tokens": 419
     },
     {
       "step": 20,
@@ -638,26 +556,21 @@
       "anchor_score": 1.0,
       "crop_bboxes": [
         [
-          432,
-          95,
-          419,
-          159
-        ],
-        [
           19,
           85,
-          285,
-          159
+          1189,
+          169
         ]
       ],
       "crop_files": [
-        "spreadsheet_obs/step_20/crop_00.png",
-        "spreadsheet_obs/step_20/crop_01.png"
+        "spreadsheet_obs/step_20/crop_00.png"
       ],
       "thumbnail_file": "spreadsheet_obs/step_20/thumbnail.png",
+      "dv_internal_tokens": 1365,
+      "model_facing_tokens": 419,
+      "savings_pct": 69.3,
       "ff_tokens": 1365,
-      "dv_tokens": 288,
-      "savings_pct": 78.9
+      "dv_tokens": 419
     },
     {
       "step": 21,
@@ -669,26 +582,21 @@
       "anchor_score": 1.0,
       "crop_bboxes": [
         [
-          639,
-          95,
-          569,
-          159
-        ],
-        [
           19,
           85,
-          285,
-          159
+          1189,
+          169
         ]
       ],
       "crop_files": [
-        "spreadsheet_obs/step_21/crop_00.png",
-        "spreadsheet_obs/step_21/crop_01.png"
+        "spreadsheet_obs/step_21/crop_00.png"
       ],
       "thumbnail_file": "spreadsheet_obs/step_21/thumbnail.png",
+      "dv_internal_tokens": 1365,
+      "model_facing_tokens": 419,
+      "savings_pct": 69.3,
       "ff_tokens": 1365,
-      "dv_tokens": 325,
-      "savings_pct": 76.2
+      "dv_tokens": 419
     },
     {
       "step": 22,
@@ -700,26 +608,21 @@
       "anchor_score": 1.0,
       "crop_bboxes": [
         [
-          647,
-          95,
-          561,
-          159
-        ],
-        [
           19,
           85,
-          285,
-          159
+          1189,
+          169
         ]
       ],
       "crop_files": [
-        "spreadsheet_obs/step_22/crop_00.png",
-        "spreadsheet_obs/step_22/crop_01.png"
+        "spreadsheet_obs/step_22/crop_00.png"
       ],
       "thumbnail_file": "spreadsheet_obs/step_22/thumbnail.png",
+      "dv_internal_tokens": 1365,
+      "model_facing_tokens": 419,
+      "savings_pct": 69.3,
       "ff_tokens": 1365,
-      "dv_tokens": 323,
-      "savings_pct": 76.3
+      "dv_tokens": 419
     },
     {
       "step": 23,
@@ -731,26 +634,21 @@
       "anchor_score": 1.0,
       "crop_bboxes": [
         [
-          854,
-          95,
-          426,
-          159
-        ],
-        [
           19,
           85,
-          285,
-          159
+          1261,
+          169
         ]
       ],
       "crop_files": [
-        "spreadsheet_obs/step_23/crop_00.png",
-        "spreadsheet_obs/step_23/crop_01.png"
+        "spreadsheet_obs/step_23/crop_00.png"
       ],
       "thumbnail_file": "spreadsheet_obs/step_23/thumbnail.png",
+      "dv_internal_tokens": 1365,
+      "model_facing_tokens": 434,
+      "savings_pct": 68.2,
       "ff_tokens": 1365,
-      "dv_tokens": 286,
-      "savings_pct": 79.0
+      "dv_tokens": 434
     },
     {
       "step": 24,
@@ -764,24 +662,19 @@
         [
           19,
           85,
-          285,
+          1189,
           201
-        ],
-        [
-          854,
-          95,
-          354,
-          149
         ]
       ],
       "crop_files": [
-        "spreadsheet_obs/step_24/crop_00.png",
-        "spreadsheet_obs/step_24/crop_01.png"
+        "spreadsheet_obs/step_24/crop_00.png"
       ],
       "thumbnail_file": "spreadsheet_obs/step_24/thumbnail.png",
+      "dv_internal_tokens": 1365,
+      "model_facing_tokens": 471,
+      "savings_pct": 65.5,
       "ff_tokens": 1365,
-      "dv_tokens": 284,
-      "savings_pct": 79.2
+      "dv_tokens": 471
     }
   ]
 }

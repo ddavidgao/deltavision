@@ -18,11 +18,25 @@ no login wall, no Cloudflare.
 
 What it measures
 ----------------
-For every step of the scripted trajectory:
-  - Full-frame baseline: max(75, w*h/750) image tokens for the raw PNG
-  - DeltaVision:         estimated_image_tokens() from the observer's
-                         packaged output (may be a delta crop, may be a
-                         full frame when DV's classifier chooses)
+For every step of the scripted trajectory, two distinct token costs:
+
+  - dv_internal_tokens  — what DV consumed internally (always full-frame
+                          size). DV needs the full screenshot to compute
+                          the next diff; this is the infrastructure cost.
+                          Equivalent to the old "ff_tokens" / FF baseline.
+  - model_facing_tokens — what DV actually shipped to the model (smaller
+                          than dv_internal on delta steps). This is the
+                          number that drives savings claims.
+
+Savings = 1 - sum(model_facing_tokens) / sum(dv_internal_tokens).
+
+This file used to call those numbers `ff_tokens` and `dv_tokens`, which
+ambiguously conflated "cost of the screenshot DV consumed" with "cost of
+DV-the-product's payload to the model." The output JSON keeps the legacy
+keys (`ff_tokens`, `dv_tokens`, `ff_total_tokens`, `dv_total_tokens`,
+`total_savings_pct`) as aliases for one release so existing CI gates and
+downstream tooling don't break, but new code should read the explicit
+keys: `dv_internal_tokens`, `model_facing_tokens`, etc.
 
 Outputs:
   - examples/spreadsheet_observation_cost.json  — per-step numbers
@@ -39,14 +53,12 @@ Run:
 from __future__ import annotations
 
 import asyncio
-import io
 import json
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from PIL import Image
 from playwright.async_api import async_playwright
 
 from observer import DeltaVisionObserver
@@ -88,12 +100,14 @@ ROWS = [
 # =============================================================================
 # Measurement
 # =============================================================================
-
-def _ff_image_tokens_from_png(png_bytes: bytes) -> int:
-    """Anthropic-style token estimate: max(75, w*h/750)."""
-    img = Image.open(io.BytesIO(png_bytes))
-    return max(75, (img.width * img.height) // 750)
-
+#
+# The cost-split numbers come straight off the DVObservation:
+#   obs.dv_internal_tokens()   — what DV consumed (always full-frame size)
+#   obs.model_facing_tokens()  — what DV shipped to the model
+# Both go through observer._image_tokens_from_size() / _image_tokens(), which
+# uses the same Anthropic-style formula max(75, w*h/750) we used to compute
+# inline here, but anchored to the canonical observer code path so a future
+# token-cost rescale only has to happen in one place.
 
 async def _capture(page) -> bytes:
     return await page.screenshot(type="png", full_page=False)
@@ -126,9 +140,18 @@ async def run_benchmark(examples_dir: Path) -> dict:
         async def snap_and_measure(step_idx: int, action_desc: str) -> None:
             png = await _capture(page)
             (frames_dir / f"step_{step_idx:02d}.png").write_bytes(png)
-            ff_tokens = _ff_image_tokens_from_png(png)
             obs = observer.observe(png, url=mock_url, last_action=action_desc)
-            dv_tokens = obs.estimated_image_tokens()
+            # Cost split (preferred):
+            #   dv_internal_tokens  = what DV consumed (always full-frame)
+            #   model_facing_tokens = what DV shipped to the model
+            dv_internal_tokens = obs.dv_internal_tokens()
+            model_facing_tokens = obs.model_facing_tokens()
+            # Legacy aliases (kept for one release for back-compat):
+            #   ff_tokens = dv_internal_tokens (the "FF baseline" was always
+            #               the cost of the full frame DV consumed)
+            #   dv_tokens = model_facing_tokens (what DV-the-product billed)
+            ff_tokens = dv_internal_tokens
+            dv_tokens = model_facing_tokens
             # Serialize crop bounding boxes for downstream visualization.
             # crop_bboxes is a list of (x1, y1, x2, y2) tuples in viewport coords.
             crop_bboxes = [list(b) for b in (obs.crop_bboxes or [])]
@@ -154,6 +177,9 @@ async def run_benchmark(examples_dir: Path) -> dict:
                 if hasattr(obs, "frame") and obs.frame is not None:
                     obs.frame.save(frame_path)
 
+            savings_pct = round(
+                (1 - model_facing_tokens / dv_internal_tokens) * 100, 1
+            ) if dv_internal_tokens else 0.0
             steps.append({
                 "step": step_idx,
                 "action": action_desc,
@@ -170,9 +196,13 @@ async def run_benchmark(examples_dir: Path) -> dict:
                 "crop_files": crop_files,
                 "thumbnail_file": f"spreadsheet_obs/step_{step_idx:02d}/thumbnail.png"
                     if obs.thumbnail is not None else None,
+                # Cost split (preferred names)
+                "dv_internal_tokens": dv_internal_tokens,
+                "model_facing_tokens": model_facing_tokens,
+                "savings_pct": savings_pct,
+                # Back-compat aliases (deprecated; remove in v1.1.0)
                 "ff_tokens": ff_tokens,
                 "dv_tokens": dv_tokens,
-                "savings_pct": round((ff_tokens - dv_tokens) / ff_tokens * 100, 1),
             })
 
         # Step 0 — initial state, no edits yet
@@ -206,12 +236,23 @@ async def run_benchmark(examples_dir: Path) -> dict:
 
         await browser.close()
 
-    # Aggregate
-    ff_total = sum(s["ff_tokens"] for s in steps)
-    dv_total = sum(s["dv_tokens"] for s in steps)
+    # Aggregate. Cost-split totals are the canonical numbers; legacy
+    # ff_total / dv_total are kept as aliases of dv_internal_total /
+    # model_facing_total respectively, for one release of back-compat
+    # (CI assertions and downstream readers still on the old key names).
+    dv_internal_total = sum(s["dv_internal_tokens"] for s in steps)
+    model_facing_total = sum(s["model_facing_tokens"] for s in steps)
     total_savings = (
-        round((ff_total - dv_total) / ff_total * 100, 1) if ff_total else 0.0
+        round((1 - model_facing_total / dv_internal_total) * 100, 1)
+        if dv_internal_total else 0.0
     )
+    n_steps = max(1, len(steps))
+    per_step_internal = dv_internal_total / n_steps
+    per_step_model_facing = model_facing_total / n_steps
+    per_step_savings = round(
+        (1 - per_step_model_facing / per_step_internal) * 100, 1
+    ) if per_step_internal else 0.0
+
     trigger_counts: dict[str, int] = {}
     obs_counts: dict[str, int] = {}
     for s in steps:
@@ -232,19 +273,22 @@ async def run_benchmark(examples_dir: Path) -> dict:
             "total_steps": len(steps),
         },
         "summary": {
-            "ff_total_tokens": ff_total,
-            "dv_total_tokens": dv_total,
+            # Cost split (preferred names — read these in new code)
+            "dv_internal_total_tokens": dv_internal_total,
+            "model_facing_total_tokens": model_facing_total,
             "total_savings_pct": total_savings,
-            "per_step_avg_ff": round(ff_total / max(1, len(steps)), 1),
-            "per_step_avg_dv": round(dv_total / max(1, len(steps)), 1),
-            "per_step_savings_pct": round(
-                (ff_total / max(1, len(steps)) - dv_total / max(1, len(steps)))
-                / max(1, ff_total / max(1, len(steps)))
-                * 100,
-                1,
-            ),
+            "per_step_avg_dv_internal": round(per_step_internal, 1),
+            "per_step_avg_model_facing": round(per_step_model_facing, 1),
+            "per_step_savings_pct": per_step_savings,
             "trigger_counts": trigger_counts,
             "obs_type_counts": obs_counts,
+            # Back-compat aliases (deprecated; remove in v1.1.0)
+            # ff = "what FF would have cost" = "the full frame DV consumed"
+            #    = dv_internal. dv = "what DV billed" = model_facing.
+            "ff_total_tokens": dv_internal_total,
+            "dv_total_tokens": model_facing_total,
+            "per_step_avg_ff": round(per_step_internal, 1),
+            "per_step_avg_dv": round(per_step_model_facing, 1),
         },
         "steps": steps,
     }
@@ -265,15 +309,17 @@ def main() -> None:
     print("=" * 72)
     print("Spreadsheet observation-cost benchmark")
     print("=" * 72)
-    print(f"Steps:               {n}")
-    print(f"FF total tokens:     {s['ff_total_tokens']:>7}")
-    print(f"DV total tokens:     {s['dv_total_tokens']:>7}")
-    print(f"Total savings:       {s['total_savings_pct']:>6.1f}%")
-    print(f"Per-step FF avg:     {s['per_step_avg_ff']:>7.1f}")
-    print(f"Per-step DV avg:     {s['per_step_avg_dv']:>7.1f}")
-    print(f"Per-step savings:    {s['per_step_savings_pct']:>6.1f}%")
-    print(f"Triggers:            {s['trigger_counts']}")
-    print(f"Obs types:           {s['obs_type_counts']}")
+    print(f"Steps:                       {n}")
+    print(f"DV internal total tokens:    {s['dv_internal_total_tokens']:>7}")
+    print("  (what DV consumed; cost of all full screenshots, every step)")
+    print(f"Model-facing total tokens:   {s['model_facing_total_tokens']:>7}")
+    print("  (what DV shipped to the model; smaller on delta steps)")
+    print(f"Total savings:               {s['total_savings_pct']:>6.1f}%")
+    print(f"Per-step DV internal avg:    {s['per_step_avg_dv_internal']:>7.1f}")
+    print(f"Per-step model-facing avg:   {s['per_step_avg_model_facing']:>7.1f}")
+    print(f"Per-step savings:            {s['per_step_savings_pct']:>6.1f}%")
+    print(f"Triggers:                    {s['trigger_counts']}")
+    print(f"Obs types:                   {s['obs_type_counts']}")
     print(f"\nArtifact:  {out_file}")
 
 
