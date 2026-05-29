@@ -14,9 +14,14 @@ Two distinct failure modes caught during dogfood testing of v1.0.2:
      sized crop (~1365 tok) vs the FF baseline of 1365 tok — a net +13%
      regression.
 """
+
 from __future__ import annotations
 
 import io
+import os
+import subprocess
+import sys
+from pathlib import Path
 
 import pytest
 from PIL import Image, ImageDraw
@@ -27,6 +32,7 @@ from PIL import Image, ImageDraw
 def test_import_deltavision_works():
     """`import deltavision` must succeed in a fresh install."""
     import deltavision
+
     assert hasattr(deltavision, "DeltaVisionObserver")
     assert hasattr(deltavision, "DeltaVisionConfig")
     assert hasattr(deltavision, "DVObservation")
@@ -43,12 +49,50 @@ def test_from_deltavision_imports():
         extract_page_state,
         format_page_state_for_prompt,
     )
+
     assert DeltaVisionObserver is not None
     assert DeltaVisionConfig is not None
     assert callable(compute_diff)
     assert callable(compute_phash)
     assert callable(extract_page_state)
     assert callable(format_page_state_for_prompt)
+
+
+def test_deltavision_import_ignores_local_flat_module_shadows(tmp_path):
+    """The umbrella package must not resolve its own flat imports from CWD."""
+    (tmp_path / "observer.py").write_text(
+        "raise RuntimeError('local observer.py should not be imported')\n"
+    )
+    shadow_vision = tmp_path / "vision"
+    shadow_vision.mkdir()
+    (shadow_vision / "__init__.py").write_text("")
+    (shadow_vision / "diff.py").write_text(
+        "raise RuntimeError('local vision.diff should not be imported')\n"
+    )
+
+    repo_root = Path(__file__).resolve().parents[1]
+    env = os.environ.copy()
+    env["PYTHONPATH"] = os.pathsep.join(
+        [str(repo_root), env["PYTHONPATH"]] if env.get("PYTHONPATH") else [str(repo_root)]
+    )
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            "-c",
+            (
+                "from deltavision import DeltaVisionObserver, compute_diff; "
+                "print(DeltaVisionObserver.__module__, compute_diff.__module__)"
+            ),
+        ],
+        cwd=tmp_path,
+        env=env,
+        check=True,
+        text=True,
+        capture_output=True,
+    )
+
+    assert "observer vision.diff" in result.stdout
 
 
 def test_flat_imports_still_work():
@@ -61,6 +105,7 @@ def test_flat_imports_still_work():
 
 def test_deltavision_version_exported():
     import deltavision
+
     assert hasattr(deltavision, "__version__")
     assert isinstance(deltavision.__version__, str)
     assert deltavision.__version__.count(".") >= 2  # semver-ish
@@ -171,14 +216,13 @@ def test_guard_does_not_over_fire():
     r = obs.observe(_png_bytes(t1), url="http://example.com", last_action="type 'hello'")
 
     # Whatever path is taken, it must not be the crops-cover-frame fallback.
-    assert r.trigger != "crop_covers_frame", (
-        f"Guard over-fired on a small delta! r={r}"
-    )
+    assert r.trigger != "crop_covers_frame", f"Guard over-fired on a small delta! r={r}"
 
 
 def test_coverage_threshold_config():
     """Config should expose CROP_COVERAGE_MAX as tunable."""
     from config import DeltaVisionConfig
+
     cfg = DeltaVisionConfig()
     assert hasattr(cfg, "CROP_COVERAGE_MAX")
     assert 0.0 < cfg.CROP_COVERAGE_MAX <= 1.0
@@ -203,6 +247,4 @@ def test_coverage_threshold_can_be_disabled():
 
     # With guard off, we MIGHT still get full_frame via NEW_PAGE classification,
     # but we specifically don't want the "crop_covers_frame" trigger.
-    assert r.trigger != "crop_covers_frame", (
-        "Guard should be disabled when CROP_COVERAGE_MAX=1.0"
-    )
+    assert r.trigger != "crop_covers_frame", "Guard should be disabled when CROP_COVERAGE_MAX=1.0"

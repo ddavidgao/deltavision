@@ -64,7 +64,7 @@ Endpoints: `GET /health` · `POST /observe` · `POST /reset` · `GET /state`. Re
 
 ### Namespace layout caveat
 
-Because v1.0.x maintains backwards compatibility with the flat-module imports (`from observer import ...`), the wheel ships both a `deltavision/` umbrella package AND the raw modules (`observer.py`, `vision/`, `agent/`, `model/`) at site-packages root. If your CWD has a directory named `vision/` or `observer.py`, it can shadow the installed one — run your script from a different directory or use `from deltavision import X` (which always resolves through the umbrella). v2.0 will nest modules under the package to remove this caveat.
+Because v1.0.x maintains backwards compatibility with the flat-module imports (`from observer import ...`), the wheel ships both a `deltavision/` umbrella package AND the raw modules (`observer.py`, `vision/`, `agent/`, `model/`) at site-packages root. In `deltavision==1.0.7` and older, a CWD containing `observer.py` or `vision/` can shadow the installed flat modules even when using `from deltavision import X`; current source pins umbrella re-exports to the packaged modules so that import style is shadow-safe again. Flat imports remain shadow-prone by Python design. v2.0 will nest modules under the package to remove this caveat.
 
 **PyPI:** [`deltavision==1.0.7`](https://pypi.org/project/deltavision/1.0.7/) · **OS-level companion (V2, alpha):** [`deltavision-os`](https://pypi.org/project/deltavision-os/) · **Source of truth:** private repo, public mirror auto-synced
 
