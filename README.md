@@ -37,13 +37,13 @@ Runs 9 staged checks (import → observer → delta path → coverage guard → 
 
 ```
 DeltaVision self-test — staged E2E
-  S1  import deltavision                              ✓  v1.0.7
+  S1  import deltavision                              ✓  v1.0.8
   S2  observer construction                           ✓  26 fields
   S3  initial observation → full_frame                ✓  tokens=1365
   S4  small delta is cheaper than full frame          ✓  tokens=171 vs FF=1365 (87.5% saved)
   S5  whole-frame change → coverage guard fires       ✓  tokens=1365 = FF 1365 (trigger='crop_covers_frame')
   S6  anthropic adapter output is well-formed         ✓  1 content blocks
-  S7  HTTP /health reports package version            ✓  version=1.0.7
+  S7  HTTP /health reports package version            ✓  version=1.0.8
   S8  HTTP /observe round-trips a DVObservation       ✓
   S9  HTTP /reset clears observer state               ✓
   All 9 stages passed.
@@ -55,7 +55,7 @@ DeltaVision self-test — staged E2E
 python -m server --port 9000
 
 # Then from any runtime:
-curl http://localhost:9000/health                 # → {"status":"ok","version":"1.0.7"}
+curl http://localhost:9000/health                 # → {"status":"ok","version":"1.0.8"}
 curl -X POST http://localhost:9000/observe \
      -F file=@screenshot.png -F url=... -F format=anthropic
 ```
@@ -66,7 +66,11 @@ Endpoints: `GET /health` · `POST /observe` · `POST /reset` · `GET /state`. Re
 
 Because v1.0.x maintains backwards compatibility with the flat-module imports (`from observer import ...`), the wheel ships both a `deltavision/` umbrella package AND the raw modules (`observer.py`, `vision/`, `agent/`, `model/`) at site-packages root. In `deltavision==1.0.7` and older, a CWD containing `observer.py` or `vision/` can shadow the installed flat modules even when using `from deltavision import X`; current source pins umbrella re-exports to the packaged modules so that import style is shadow-safe again. Flat imports remain shadow-prone by Python design. v2.0 will nest modules under the package to remove this caveat.
 
-**PyPI:** [`deltavision==1.0.7`](https://pypi.org/project/deltavision/1.0.7/) · **OS-level companion (V2, alpha):** [`deltavision-os`](https://pypi.org/project/deltavision-os/) · **Source of truth:** private repo, public mirror auto-synced
+**PyPI:** [`deltavision==1.0.8`](https://pypi.org/project/deltavision/1.0.8/) · **OS-level companion (V2, alpha):** [`deltavision-os`](https://pypi.org/project/deltavision-os/) · **Source of truth:** private repo, public mirror auto-synced
+
+### What's new in 1.0.8
+
+Packaging correctness release. The umbrella import now resolves public re-exports from the installed package even when the caller's working directory contains flat-module shadows such as `observer.py` or `vision/`. This keeps `from deltavision import DeltaVisionObserver, compute_diff` reliable in fresh installs and demo worktrees while preserving the v1.0.x flat-import compatibility surface.
 
 ### What's new in 1.0.7
 
@@ -351,7 +355,7 @@ deltavision/
 
 ## Testing
 
-`pytest tests/` — 293 tests total (offline + live Playwright). Covers CV pipeline, classifier cascade, observation builder, safety layer, response parsers, HTTP sidecar, v1.0.3 regression invariants (`import deltavision` works, DV ≤ FF on every single step), v1.0.5 token-cap guard (proxy never bills more than a full frame), v1.0.6 greedy bbox-merge optimizer + periodic full-frame refresh, v1.0.7 cost-split methods (`model_facing_tokens()` / `dv_internal_tokens()`) + BenchmarkTrace schema + `verify-trace` CLI invariants.
+`pytest tests/` — 293 tests total (offline + live Playwright). Covers CV pipeline, classifier cascade, observation builder, safety layer, response parsers, HTTP sidecar, v1.0.3 regression invariants (`import deltavision` works, DV ≤ FF on every single step), v1.0.5 token-cap guard (proxy never bills more than a full frame), v1.0.6 greedy bbox-merge optimizer + periodic full-frame refresh, v1.0.7 cost-split methods (`model_facing_tokens()` / `dv_internal_tokens()`) + BenchmarkTrace schema + `verify-trace` CLI invariants, and v1.0.8 umbrella-import shadow resistance.
 
 | Suite | Tests | Covers |
 |---|---|---|

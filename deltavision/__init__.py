@@ -64,7 +64,7 @@ extract_clickables = _elements.extract_clickables
 format_page_state_for_prompt = _elements.format_page_state_for_prompt
 format_clickables_for_prompt = _elements.format_clickables_for_prompt
 
-__version__ = "1.0.7"
+__version__ = "1.0.8"
 
 __all__ = [
     # core
