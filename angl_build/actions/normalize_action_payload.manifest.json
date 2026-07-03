@@ -1,0 +1,21 @@
+{
+  "chapter": "normalize_action_payload",
+  "function": "normalize_action_payload",
+  "boundary": "normalize_action_payload(raw_action: object) -> object",
+  "target": "node",
+  "entrypoint": "normalize_action_payload.js",
+  "generated_files": [
+    "normalize_action_payload.js",
+    "normalize_action_payload_shim.py",
+    "normalize_action_payload.py"
+  ],
+  "public_files": [
+    "normalize_action_payload.js",
+    "normalize_action_payload.py"
+  ],
+  "private_files": [
+    "normalize_action_payload_shim.py"
+  ],
+  "uses": [],
+  "cases": 16
+}

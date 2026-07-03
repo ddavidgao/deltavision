@@ -87,6 +87,12 @@ class TestActionParsing:
         assert a.x == 100
         assert a.y == 200
 
+    def test_parse_click_with_string_coordinates(self):
+        a = parse_action({"type": "click", "x": "551", "y": "247"})
+        assert a.type == ActionType.CLICK
+        assert a.x == 551
+        assert a.y == 247
+
     def test_parse_type(self):
         a = parse_action({"type": "type", "text": "hello"})
         assert a.type == ActionType.TYPE
@@ -110,6 +116,20 @@ class TestActionParsing:
 
     def test_parse_invalid(self):
         assert parse_action({"type": "invalid_action"}) is None
+
+    def test_parse_ui_tars_left_click(self):
+        a = parse_action({"action": "left_click", "coordinate": [100, 200]})
+        assert a.type == ActionType.CLICK
+        assert a.x == 100
+        assert a.y == 200
+
+    def test_parse_ui_tars_press(self):
+        a = parse_action({"action": "press", "key": "Enter"})
+        assert a.type == ActionType.KEY
+        assert a.key == "Enter"
+
+    def test_parse_ui_tars_malformed_coordinate(self):
+        assert parse_action({"action": "left_click", "coordinate": ["bad", 200]}) is None
 
     def test_action_str_repr(self):
         assert "click(100, 200)" == str(Action(type=ActionType.CLICK, x=100, y=200))

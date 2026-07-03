@@ -4,8 +4,11 @@ All actions are typed — no free-form strings.
 """
 
 import asyncio
+import importlib.util
 from dataclasses import dataclass
 from enum import Enum
+from functools import lru_cache
+from pathlib import Path
 
 
 class ActionType(Enum):
@@ -45,6 +48,27 @@ class Action:
         return f"unknown({self.type})"
 
 
+@lru_cache(maxsize=1)
+def _load_angl_action_normalizer():
+    path = (
+        Path(__file__).resolve().parents[1]
+        / "angl_build"
+        / "actions"
+        / "normalize_action_payload.py"
+    )
+    if not path.exists():
+        raise RuntimeError(
+            "Angl action normalizer is missing. Compile "
+            "specs/normalize_action_payload.angl into angl_build/actions first."
+        )
+    spec = importlib.util.spec_from_file_location("_angl_normalize_action_payload", path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"could not load Angl action normalizer at {path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.normalize_action_payload
+
+
 def parse_action(action_dict: dict | None) -> Action | None:
     """Parse model JSON output into a typed Action.
 
@@ -57,59 +81,19 @@ def parse_action(action_dict: dict | None) -> Action | None:
     if isinstance(action_dict, str):
         return None
     try:
-        # UI-TARS / CogAgent format: {"action": "left_click", "coordinate": [x, y]}
-        if "action" in action_dict and "type" not in action_dict:
-            raw_action = action_dict["action"]
-            coord = action_dict.get("coordinate", [])
-
-            # Map UI-TARS action names to our ActionType
-            action_map = {
-                "left_click": ActionType.CLICK,
-                "click": ActionType.CLICK,
-                "right_click": ActionType.CLICK,
-                "double_click": ActionType.CLICK,
-                "type": ActionType.TYPE,
-                "scroll": ActionType.SCROLL,
-                "key": ActionType.KEY,
-                "press": ActionType.KEY,
-                "wait": ActionType.WAIT,
-                "finished": ActionType.DONE,
-                "done": ActionType.DONE,
-            }
-            atype = action_map.get(raw_action.lower())
-            if atype is None:
-                return None
-
-            return Action(
-                type=atype,
-                x=int(coord[0]) if len(coord) > 0 else None,
-                y=int(coord[1]) if len(coord) > 1 else None,
-                text=action_dict.get("text"),
-                direction=action_dict.get("direction"),
-                amount=action_dict.get("amount"),
-                key=action_dict.get("key"),
-            )
-
-        # DeltaVision native format.
-        # Coerce numeric fields — some local VLMs (MAI-UI-8B observed) emit
-        # coordinates as strings like "551" instead of ints.
-        def _to_int(v):
-            if v is None:
-                return None
-            try:
-                return int(v)
-            except (ValueError, TypeError):
-                return None
+        normalized = _load_angl_action_normalizer()(action_dict)
+        if normalized is None:
+            return None
 
         return Action(
-            type=ActionType(action_dict["type"]),
-            x=_to_int(action_dict.get("x")),
-            y=_to_int(action_dict.get("y")),
-            text=action_dict.get("text"),
-            direction=action_dict.get("direction"),
-            amount=_to_int(action_dict.get("amount")),
-            key=action_dict.get("key"),
-            duration_ms=_to_int(action_dict.get("duration_ms")),
+            type=ActionType(normalized["type"]),
+            x=normalized.get("x"),
+            y=normalized.get("y"),
+            text=normalized.get("text"),
+            direction=normalized.get("direction"),
+            amount=normalized.get("amount"),
+            key=normalized.get("key"),
+            duration_ms=normalized.get("duration_ms"),
         )
     except (KeyError, ValueError, TypeError, IndexError):
         return None

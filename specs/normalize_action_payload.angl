@@ -1,0 +1,273 @@
+# Normalize Action Payload
+
+> Boundary: `normalize_action_payload(raw_action: object) -> object`
+> Runs as: `node`
+
+## Purpose
+
+This chapter normalizes raw model action JSON into DeltaVision's canonical action
+payload shape.
+
+## Behavior
+
+Accept one raw model action payload. Return either a plain canonical action
+object or `null` if the payload cannot be understood.
+
+The canonical action object always has these fields:
+
+* `type`
+* `x`
+* `y`
+* `text`
+* `direction`
+* `amount`
+* `key`
+* `duration_ms`
+
+Use `null` for missing optional fields.
+
+Support DeltaVision native payloads shaped like `{"type": "click", "x": 100}`.
+Valid native types are `click`, `type`, `scroll`, `key`, `wait`, and `done`.
+For native payloads, coerce `x`, `y`, `amount`, and `duration_ms` to integers
+when possible. If a numeric field is missing or cannot be coerced, set it to
+`null`; do not reject the whole action just because one optional numeric field is
+bad.
+
+Support UI-TARS and CogAgent-style payloads shaped like
+`{"action": "left_click", "coordinate": [100, 200]}` when no `type` field is
+present. Map `left_click`, `click`, `right_click`, and `double_click` to
+`click`. Map `type` to `type`, `scroll` to `scroll`, `key` and `press` to `key`,
+`wait` to `wait`, and `finished` and `done` to `done`.
+
+For UI-TARS-style payloads, coordinates must be coercible to integers when
+present. If a present coordinate cannot be coerced, return `null` because the
+coordinate list is malformed. Missing coordinates become `null`.
+
+Reject empty values, strings, arrays, numbers, unknown native types, and unknown
+UI-TARS action names by returning `null`.
+
+## Examples
+
+### Native click with numeric coordinates
+
+When the model emits a native click, keep its coordinates.
+
+Input `raw_action`:
+```json
+{"type": "click", "x": 100, "y": 200}
+```
+
+Returns:
+```json
+{"type": "click", "x": 100, "y": 200, "text": null, "direction": null, "amount": null, "key": null, "duration_ms": null}
+```
+
+### Native click with string coordinates
+
+When a local model emits coordinates as numeric strings, coerce them.
+
+Input `raw_action`:
+```json
+{"type": "click", "x": "551", "y": "247"}
+```
+
+Returns:
+```json
+{"type": "click", "x": 551, "y": 247, "text": null, "direction": null, "amount": null, "key": null, "duration_ms": null}
+```
+
+### Native type action
+
+When the model emits a native type action, keep the text.
+
+Input `raw_action`:
+```json
+{"type": "type", "text": "hello"}
+```
+
+Returns:
+```json
+{"type": "type", "x": null, "y": null, "text": "hello", "direction": null, "amount": null, "key": null, "duration_ms": null}
+```
+
+### Native scroll action
+
+When the model emits a native scroll action, coerce amount.
+
+Input `raw_action`:
+```json
+{"type": "scroll", "direction": "down", "amount": "300"}
+```
+
+Returns:
+```json
+{"type": "scroll", "x": null, "y": null, "text": null, "direction": "down", "amount": 300, "key": null, "duration_ms": null}
+```
+
+### Native key action
+
+When the model emits a native key action, keep the key name.
+
+Input `raw_action`:
+```json
+{"type": "key", "key": "Enter"}
+```
+
+Returns:
+```json
+{"type": "key", "x": null, "y": null, "text": null, "direction": null, "amount": null, "key": "Enter", "duration_ms": null}
+```
+
+### Native wait action
+
+When the model emits a native wait action, coerce duration.
+
+Input `raw_action`:
+```json
+{"type": "wait", "duration_ms": "1500"}
+```
+
+Returns:
+```json
+{"type": "wait", "x": null, "y": null, "text": null, "direction": null, "amount": null, "key": null, "duration_ms": 1500}
+```
+
+### Native done action
+
+When the model emits done, normalize it.
+
+Input `raw_action`:
+```json
+{"type": "done"}
+```
+
+Returns:
+```json
+{"type": "done", "x": null, "y": null, "text": null, "direction": null, "amount": null, "key": null, "duration_ms": null}
+```
+
+### Invalid native type returns null
+
+When the native type is unknown, reject it.
+
+Input `raw_action`:
+```json
+{"type": "drag", "x": 1, "y": 2}
+```
+
+Returns:
+```json
+null
+```
+
+### Empty object returns null
+
+When no action type is present, reject it.
+
+Input `raw_action`:
+```json
+{}
+```
+
+Returns:
+```json
+null
+```
+
+### String payload returns null
+
+When the payload is not an object, reject it.
+
+Input `raw_action`:
+```json
+"click"
+```
+
+Returns:
+```json
+null
+```
+
+### UI-TARS left click
+
+When the model emits a UI-TARS left click, map it to canonical click.
+
+Input `raw_action`:
+```json
+{"action": "left_click", "coordinate": [100, 200]}
+```
+
+Returns:
+```json
+{"type": "click", "x": 100, "y": 200, "text": null, "direction": null, "amount": null, "key": null, "duration_ms": null}
+```
+
+### UI-TARS right click maps to click
+
+When the model emits right click, DeltaVision still treats it as click.
+
+Input `raw_action`:
+```json
+{"action": "right_click", "coordinate": ["12", "34"]}
+```
+
+Returns:
+```json
+{"type": "click", "x": 12, "y": 34, "text": null, "direction": null, "amount": null, "key": null, "duration_ms": null}
+```
+
+### UI-TARS press maps to key
+
+When the model emits press, map it to canonical key.
+
+Input `raw_action`:
+```json
+{"action": "press", "key": "Enter"}
+```
+
+Returns:
+```json
+{"type": "key", "x": null, "y": null, "text": null, "direction": null, "amount": null, "key": "Enter", "duration_ms": null}
+```
+
+### UI-TARS finished maps to done
+
+When the model emits finished, map it to done.
+
+Input `raw_action`:
+```json
+{"action": "finished"}
+```
+
+Returns:
+```json
+{"type": "done", "x": null, "y": null, "text": null, "direction": null, "amount": null, "key": null, "duration_ms": null}
+```
+
+### UI-TARS malformed coordinate returns null
+
+When a present coordinate cannot be coerced, reject the action.
+
+Input `raw_action`:
+```json
+{"action": "left_click", "coordinate": ["bad", 200]}
+```
+
+Returns:
+```json
+null
+```
+
+### Unknown UI-TARS action returns null
+
+When the UI-TARS action name is unknown, reject it.
+
+Input `raw_action`:
+```json
+{"action": "hover", "coordinate": [1, 2]}
+```
+
+Returns:
+```json
+null
+```
