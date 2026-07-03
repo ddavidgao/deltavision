@@ -1,0 +1,21 @@
+{
+  "chapter": "evaluate_action_safety",
+  "function": "evaluate_action_safety",
+  "boundary": "evaluate_action_safety(action: object, policy: object, current_url: string, page_context: string) -> object",
+  "target": "node",
+  "entrypoint": "evaluate_action_safety.js",
+  "generated_files": [
+    "evaluate_action_safety.js",
+    "evaluate_action_safety_shim.py",
+    "evaluate_action_safety.py"
+  ],
+  "public_files": [
+    "evaluate_action_safety.js",
+    "evaluate_action_safety.py"
+  ],
+  "private_files": [
+    "evaluate_action_safety_shim.py"
+  ],
+  "uses": [],
+  "cases": 19
+}

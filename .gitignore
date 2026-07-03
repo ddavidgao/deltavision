@@ -5,6 +5,9 @@ dist/
 build/
 .eggs/
 
+# Angl generated artifacts
+angl_build/
+
 # Environment
 .env
 .venv/

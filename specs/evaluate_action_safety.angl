@@ -1,0 +1,626 @@
+# Evaluate Action Safety
+
+> Boundary: `evaluate_action_safety(action: object, policy: object, current_url: string, page_context: string) -> object`
+> Runs as: `node`
+
+## Purpose
+
+This chapter owns DeltaVision's model-agnostic action safety decision.
+
+## Behavior
+
+Evaluate one proposed browser action before the agent executes it. Return a plain
+object with `allowed`, `reason`, and `severity`.
+
+An allowed action returns `allowed: true`, an empty reason, and severity `info`.
+Blocked actions return `allowed: false`, a human-readable reason, and severity
+`warn` or `block`.
+
+Apply checks in this order:
+
+1. Type safety.
+2. URL safety.
+3. Action limits.
+
+Type safety only applies to actions whose `type` is `type`. If
+`block_credential_entry` is false, skip type-safety checks. Otherwise block
+typing into page contexts that look like credential fields. Match these lowercase
+patterns anywhere in the context: `password`, `ssn`, `social.security`,
+`credit.card`, `card.number`, `cvv`, `cvc`, `bank.account`, and
+`routing.number`. When this blocks, the reason is
+`Blocked typing into potential credential field (matched: PATTERN)` and severity
+is `block`.
+
+Also block typed text that looks like a credential. Remove spaces and dashes from
+the text. Nine digits is an SSN. Thirteen to nineteen digits is a card number.
+Three or four digits is a CVV only when the original text length is at most four.
+When this blocks, the reason is
+`Blocked: text looks like a credential (SSN, card number, etc.)` and severity is
+`block`.
+
+URL safety allows an empty current URL. If `block_url_shorteners` is true, block
+domains containing `bit.ly`, `tinyurl.com`, `t.co`, `goo.gl`, or `ow.ly`. The
+reason is `Blocked: URL shortener detected (SHORTENER). Cannot verify destination.`
+and severity is `block`.
+
+If `allowed_domains` is not null, allow only when the full domain or the base
+domain is listed. The base domain is the last two domain labels. When this
+blocks, the reason is `Blocked: domain DOMAIN not in allowlist` and severity is
+`warn`.
+
+Then block suspicious URL patterns:
+
+* URLs containing `login` before a dot outside `.edu` and `.gov`.
+* URLs containing `signin`.
+* URLs containing `account` before `verify`.
+* URLs containing `password` before `reset`.
+* URLs containing `.ru/`.
+* URLs containing `.cn/` and later `login`.
+
+When a suspicious pattern blocks, include the matching legacy regex in the
+reason as `Blocked: suspicious URL pattern (PATTERN)` and severity `warn`.
+
+Action limits block `type` actions whose text length is greater than
+`max_type_length`. The reason is
+`Blocked: type action too long (LENGTH chars > MAX)` and severity is `warn`.
+
+Action limits also block `click` actions only when both `x` and `y` are present
+and at least one is negative. The reason is `Blocked: negative click coordinates`
+and severity is `warn`.
+
+## Examples
+
+### Normal click is allowed
+
+When a click happens on a normal URL, it is allowed.
+
+Input `action`:
+```json
+{"type": "click", "x": 100, "y": 100}
+```
+
+Input `policy`:
+```json
+{"allowed_domains": null, "block_credential_entry": true, "block_url_shorteners": true, "max_type_length": 500}
+```
+
+Input `current_url`:
+```json
+"https://en.wikipedia.org/wiki/Test"
+```
+
+Input `page_context`:
+```json
+""
+```
+
+Returns:
+```json
+{"allowed": true, "reason": "", "severity": "info"}
+```
+
+### Bitly URL is blocked
+
+When the current URL uses bitly, it is blocked.
+
+Input `action`:
+```json
+{"type": "click", "x": 100, "y": 100}
+```
+
+Input `policy`:
+```json
+{"allowed_domains": null, "block_credential_entry": true, "block_url_shorteners": true, "max_type_length": 500}
+```
+
+Input `current_url`:
+```json
+"https://bit.ly/abc123"
+```
+
+Input `page_context`:
+```json
+""
+```
+
+Returns:
+```json
+{"allowed": false, "reason": "Blocked: URL shortener detected (bit.ly). Cannot verify destination.", "severity": "block"}
+```
+
+### URL shortener check can be disabled
+
+When URL shortener blocking is disabled, bitly is allowed unless another rule
+blocks it.
+
+Input `action`:
+```json
+{"type": "click", "x": 100, "y": 100}
+```
+
+Input `policy`:
+```json
+{"allowed_domains": null, "block_credential_entry": true, "block_url_shorteners": false, "max_type_length": 500}
+```
+
+Input `current_url`:
+```json
+"https://bit.ly/abc123"
+```
+
+Input `page_context`:
+```json
+""
+```
+
+Returns:
+```json
+{"allowed": true, "reason": "", "severity": "info"}
+```
+
+### Domain allowlist blocks unknown domains
+
+When an allowlist exists and the current domain is not listed, block with warn
+severity.
+
+Input `action`:
+```json
+{"type": "click", "x": 100, "y": 100}
+```
+
+Input `policy`:
+```json
+{"allowed_domains": ["wikipedia.org"], "block_credential_entry": true, "block_url_shorteners": true, "max_type_length": 500}
+```
+
+Input `current_url`:
+```json
+"https://evil.com/stuff"
+```
+
+Input `page_context`:
+```json
+""
+```
+
+Returns:
+```json
+{"allowed": false, "reason": "Blocked: domain evil.com not in allowlist", "severity": "warn"}
+```
+
+### Base domain allowlist permits subdomains
+
+When the base domain is listed, a subdomain is allowed.
+
+Input `action`:
+```json
+{"type": "click", "x": 100, "y": 100}
+```
+
+Input `policy`:
+```json
+{"allowed_domains": ["wikipedia.org"], "block_credential_entry": true, "block_url_shorteners": true, "max_type_length": 500}
+```
+
+Input `current_url`:
+```json
+"https://en.wikipedia.org/wiki/Test"
+```
+
+Input `page_context`:
+```json
+""
+```
+
+Returns:
+```json
+{"allowed": true, "reason": "", "severity": "info"}
+```
+
+### Empty URL is allowed
+
+When the current URL is empty, URL checks do not block.
+
+Input `action`:
+```json
+{"type": "click", "x": 100, "y": 100}
+```
+
+Input `policy`:
+```json
+{"allowed_domains": null, "block_credential_entry": true, "block_url_shorteners": true, "max_type_length": 500}
+```
+
+Input `current_url`:
+```json
+""
+```
+
+Input `page_context`:
+```json
+""
+```
+
+Returns:
+```json
+{"allowed": true, "reason": "", "severity": "info"}
+```
+
+### Russian domain is suspicious
+
+When the URL contains a .ru path, block it as suspicious.
+
+Input `action`:
+```json
+{"type": "click", "x": 100, "y": 100}
+```
+
+Input `policy`:
+```json
+{"allowed_domains": null, "block_credential_entry": true, "block_url_shorteners": true, "max_type_length": 500}
+```
+
+Input `current_url`:
+```json
+"https://example.ru/something"
+```
+
+Input `page_context`:
+```json
+""
+```
+
+Returns:
+```json
+{"allowed": false, "reason": "Blocked: suspicious URL pattern (.*\\.ru/.*)", "severity": "warn"}
+```
+
+### Password reset URL is suspicious
+
+When the URL contains password before reset, block it.
+
+Input `action`:
+```json
+{"type": "click", "x": 100, "y": 100}
+```
+
+Input `policy`:
+```json
+{"allowed_domains": null, "block_credential_entry": true, "block_url_shorteners": true, "max_type_length": 500}
+```
+
+Input `current_url`:
+```json
+"https://example.com/password-reset"
+```
+
+Input `page_context`:
+```json
+""
+```
+
+Returns:
+```json
+{"allowed": false, "reason": "Blocked: suspicious URL pattern (.*password.*reset.*)", "severity": "warn"}
+```
+
+### SSN text is blocked
+
+When typed text is exactly nine digits after stripping dashes and spaces, block
+it as a credential.
+
+Input `action`:
+```json
+{"type": "type", "text": "123-45-6789"}
+```
+
+Input `policy`:
+```json
+{"allowed_domains": null, "block_credential_entry": true, "block_url_shorteners": true, "max_type_length": 500}
+```
+
+Input `current_url`:
+```json
+"https://example.com"
+```
+
+Input `page_context`:
+```json
+""
+```
+
+Returns:
+```json
+{"allowed": false, "reason": "Blocked: text looks like a credential (SSN, card number, etc.)", "severity": "block"}
+```
+
+### Credit card text with spaces is blocked
+
+When typed text is thirteen to nineteen digits after stripping spaces, block it.
+
+Input `action`:
+```json
+{"type": "type", "text": "4532 1234 5678 9012"}
+```
+
+Input `policy`:
+```json
+{"allowed_domains": null, "block_credential_entry": true, "block_url_shorteners": true, "max_type_length": 500}
+```
+
+Input `current_url`:
+```json
+"https://example.com"
+```
+
+Input `page_context`:
+```json
+""
+```
+
+Returns:
+```json
+{"allowed": false, "reason": "Blocked: text looks like a credential (SSN, card number, etc.)", "severity": "block"}
+```
+
+### Short CVV is blocked
+
+When typed text is three or four digits and the original text length is at most
+four, block it.
+
+Input `action`:
+```json
+{"type": "type", "text": "123"}
+```
+
+Input `policy`:
+```json
+{"allowed_domains": null, "block_credential_entry": true, "block_url_shorteners": true, "max_type_length": 500}
+```
+
+Input `current_url`:
+```json
+"https://example.com"
+```
+
+Input `page_context`:
+```json
+""
+```
+
+Returns:
+```json
+{"allowed": false, "reason": "Blocked: text looks like a credential (SSN, card number, etc.)", "severity": "block"}
+```
+
+### Credential detection can be disabled
+
+When credential-entry blocking is disabled, credential-looking text is allowed.
+
+Input `action`:
+```json
+{"type": "type", "text": "123456789"}
+```
+
+Input `policy`:
+```json
+{"allowed_domains": null, "block_credential_entry": false, "block_url_shorteners": true, "max_type_length": 500}
+```
+
+Input `current_url`:
+```json
+"https://example.com"
+```
+
+Input `page_context`:
+```json
+""
+```
+
+Returns:
+```json
+{"allowed": true, "reason": "", "severity": "info"}
+```
+
+### Password field context is blocked
+
+When the page context suggests a password field, block typing even harmless text.
+
+Input `action`:
+```json
+{"type": "type", "text": "hello"}
+```
+
+Input `policy`:
+```json
+{"allowed_domains": null, "block_credential_entry": true, "block_url_shorteners": true, "max_type_length": 500}
+```
+
+Input `current_url`:
+```json
+"https://example.com"
+```
+
+Input `page_context`:
+```json
+"<input type='password' name='login-password'>"
+```
+
+Returns:
+```json
+{"allowed": false, "reason": "Blocked typing into potential credential field (matched: password)", "severity": "block"}
+```
+
+### Normal typed text is allowed
+
+When typed text does not look sensitive, allow it.
+
+Input `action`:
+```json
+{"type": "type", "text": "neural networks explained"}
+```
+
+Input `policy`:
+```json
+{"allowed_domains": null, "block_credential_entry": true, "block_url_shorteners": true, "max_type_length": 500}
+```
+
+Input `current_url`:
+```json
+"https://google.com"
+```
+
+Input `page_context`:
+```json
+"<input name='search' placeholder='search'>"
+```
+
+Returns:
+```json
+{"allowed": true, "reason": "", "severity": "info"}
+```
+
+### Oversized type action is blocked
+
+When typed text is longer than the maximum, block it with warn severity.
+
+Input `action`:
+```json
+{"type": "type", "text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
+```
+
+Input `policy`:
+```json
+{"allowed_domains": null, "block_credential_entry": true, "block_url_shorteners": true, "max_type_length": 100}
+```
+
+Input `current_url`:
+```json
+"https://example.com"
+```
+
+Input `page_context`:
+```json
+""
+```
+
+Returns:
+```json
+{"allowed": false, "reason": "Blocked: type action too long (200 chars > 100)", "severity": "warn"}
+```
+
+### Exact type limit is allowed
+
+When typed text length equals the maximum, allow it.
+
+Input `action`:
+```json
+{"type": "type", "text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
+```
+
+Input `policy`:
+```json
+{"allowed_domains": null, "block_credential_entry": true, "block_url_shorteners": true, "max_type_length": 100}
+```
+
+Input `current_url`:
+```json
+"https://example.com"
+```
+
+Input `page_context`:
+```json
+""
+```
+
+Returns:
+```json
+{"allowed": true, "reason": "", "severity": "info"}
+```
+
+### Negative click coordinate is blocked
+
+When a click has a negative coordinate, block it.
+
+Input `action`:
+```json
+{"type": "click", "x": -5, "y": 100}
+```
+
+Input `policy`:
+```json
+{"allowed_domains": null, "block_credential_entry": true, "block_url_shorteners": true, "max_type_length": 500}
+```
+
+Input `current_url`:
+```json
+"https://example.com"
+```
+
+Input `page_context`:
+```json
+""
+```
+
+Returns:
+```json
+{"allowed": false, "reason": "Blocked: negative click coordinates", "severity": "warn"}
+```
+
+### Click without coordinates is allowed
+
+When click coordinates are absent, do not crash or block.
+
+Input `action`:
+```json
+{"type": "click", "x": null, "y": null}
+```
+
+Input `policy`:
+```json
+{"allowed_domains": null, "block_credential_entry": true, "block_url_shorteners": true, "max_type_length": 500}
+```
+
+Input `current_url`:
+```json
+"https://example.com"
+```
+
+Input `page_context`:
+```json
+""
+```
+
+Returns:
+```json
+{"allowed": true, "reason": "", "severity": "info"}
+```
+
+### Non-type action ignores credential-looking text
+
+When an action is not a type action, type-safety checks do not apply.
+
+Input `action`:
+```json
+{"type": "scroll", "direction": "down", "amount": 300, "text": "123456789"}
+```
+
+Input `policy`:
+```json
+{"allowed_domains": null, "block_credential_entry": true, "block_url_shorteners": true, "max_type_length": 500}
+```
+
+Input `current_url`:
+```json
+"https://example.com"
+```
+
+Input `page_context`:
+```json
+"password"
+```
+
+Returns:
+```json
+{"allowed": true, "reason": "", "severity": "info"}
+```
