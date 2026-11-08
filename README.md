@@ -113,7 +113,7 @@ This is the tool's shape, not a bug. The CV classifier can't compress what isn't
 Every DV trace records two distinct token costs per step. They mean different things and conflating them is the most common way to overstate or misstate DV's effect:
 
 - **`dv_internal_tokens`** — what DV consumed internally on this step. Always equals the cost of the full screenshot at the consumed viewport size. DV needs the full frame in memory to compute the next-step diff, so this number does not go down regardless of what the model sees. This is the infrastructure cost of running the pipeline.
-- **`model_facing_tokens`** — what DV actually shipped to the model on this step. On a delta step this is just the changed crops; on a full-frame step it equals `dv_internal_tokens`. This is the number that drives user-visible token spend on Claude, GPT, etc.
+- **`model_facing_tokens`** — what DV actually shipped to the model on this step. On a delta step this is a 320x225 thumbnail plus up to 2 changed-region crops; on a full-frame step it equals `dv_internal_tokens`. This is the number that drives user-visible token spend on Claude, GPT, etc.
 
 Every "X% savings" claim in this README is computed as
 
@@ -122,6 +122,8 @@ savings = 1 − sum(model_facing_tokens) / sum(dv_internal_tokens)
 ```
 
 over the trace. The infrastructure cost (`dv_internal_tokens`) is **not** reduced — DV is observation middleware, not a screenshot-skipper. What it reduces is the bytes that reach the model.
+
+Both numbers are **estimates, not billed API usage**: each image is priced at `max(75, width * height / 750)` tokens (Anthropic's published approximation), and text blocks in the benchmark payloads at `len(text) / 4`. No benchmark in this README reads token counts back from a provider's usage field.
 
 If you read a saved benchmark JSON, the explicit keys are `dv_internal_tokens` / `model_facing_tokens` per step and `dv_internal_total_tokens` / `model_facing_total_tokens` / `total_savings_pct` in the summary. Older benchmark outputs use `ff_tokens` / `dv_tokens` (per step) and `ff_total_tokens` / `dv_total_tokens` (summary) as legacy aliases — they map exactly to `dv_internal` / `model_facing` respectively, kept for one release.
 
@@ -416,11 +418,17 @@ published its own independent ablation:
 
 > The token numbers below use the same accounting convention as the rest of this README — the forced-full-frame baseline is the `dv_internal` denominator and the delta-gated number is the `model_facing` numerator. See [Cost accounting](#cost-accounting--what-savings-means-here).
 
-- **Same 10-step trajectory run twice** on a real Mac desktop, natural
-  Qwen2.5-VL behavior. No cherry-picking — exact same actions each time.
+- **Same scripted 10-step trajectory run twice** on a real Mac desktop
+  (waits plus a Spotlight open and close, replayed by a `ScriptedModel`, no
+  VLM in the loop). Identical actions both runs, so the only variable is
+  the gating.
 - Forced full-frame: 17,600 image tokens
 - Delta-gated: 5,600 image tokens
-- **68.2% savings, zero difference in task outcome.**
+- **68.2% fewer observation tokens.** Tokens are counted with fixed
+  per-frame constants (1,600 per full frame, 400 per delta), not measured.
+  This run measures observation cost only; it does **not** measure task
+  success, because the actions are scripted and cannot react to what the
+  model would have seen.
 
 Plus a threshold sweep (3 trajectories × 3 values of `NEW_PAGE_DIFF_THRESHOLD`)
 empirically confirmed that the pHash layer dominates: diff-threshold in
@@ -441,7 +449,10 @@ Repo: https://github.com/ddavidgao/deltavision-os
 
 Two benchmarks, both same Anthropic `tool_result` format, both real Playwright,
 same `DeltaVisionObserver` wrapping — nothing else changes between baseline
-and DV. Savings vary by task type; here's the honest shape:
+and DV. The actions are scripted (no model in the loop), so these tables
+measure observation cost on a fixed action sequence, not agent task success.
+Tokens are estimated from image size (see Cost accounting). Savings vary by
+task type; here's the honest shape:
 
 **SPA + mixed browser tasks (5 tasks, 40 steps)** — reproduce: `python examples/multi_site_benchmark.py`
 
